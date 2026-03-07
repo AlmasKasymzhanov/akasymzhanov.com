@@ -1,0 +1,193 @@
+{
+  "v": 2,
+  "name": "MPStats WB API",
+  "folders": [
+    {
+      "v": 2,
+      "name": "1. Анализ ниши (категории)",
+      "folders": [],
+      "requests": [
+        {
+          "v": "4",
+          "name": "Подкатегории",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/subcategories",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null },
+          "preRequestScript": "",
+          "testScript": ""
+        },
+        {
+          "v": "4",
+          "name": "Тренды ниши (5 лет)",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/trends",
+          "params": [
+            { "key": "d1", "value": "2024-01-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "Ценовые сегменты",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/price_segmentation",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "ТОП бренды в нише",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/brands",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "ТОП продавцы в нише",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/sellers",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "Дневные метрики категории",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category/by_date",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        }
+      ]
+    },
+    {
+      "v": 2,
+      "name": "2. Товары в нише",
+      "folders": [],
+      "requests": [
+        {
+          "v": "4",
+          "name": "Все товары в категории",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/category",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true },
+            { "key": "path", "value": "Здоровье/Ортопедия", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        }
+      ]
+    },
+    {
+      "v": 2,
+      "name": "3. Анализ товара",
+      "folders": [],
+      "requests": [
+        {
+          "v": "4",
+          "name": "Информация о товаре",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/item/40435840",
+          "params": [],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "Продажи и остатки по дням",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/item/40435840/sales",
+          "params": [
+            { "key": "d1", "value": "2026-02-01", "active": true },
+            { "key": "d2", "value": "2026-03-01", "active": true }
+          ],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "ВСЕ отзывы товара",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/item/40435840/comments",
+          "params": [],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        },
+        {
+          "v": "4",
+          "name": "Похожие товары-конкуренты",
+          "method": "GET",
+          "endpoint": "https://mpstats.io/api/wb/get/item/40435840/similar",
+          "params": [],
+          "headers": [
+            { "key": "X-Mpstats-TOKEN", "value": "<YOUR_TOKEN>", "active": true },
+            { "key": "Content-Type", "value": "application/json", "active": true }
+          ],
+          "body": { "contentType": null, "body": null }
+        }
+      ]
+    }
+  ],
+  "requests": []
+}

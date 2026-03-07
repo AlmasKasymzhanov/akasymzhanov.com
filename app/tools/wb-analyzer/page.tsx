@@ -737,12 +737,18 @@ export default function WbAnalyzerPage() {
           <div style={{ display: "inline-block", marginTop: 8, padding: "3px 10px", borderRadius: 4, background: "rgba(108,92,231,0.15)", color: C.accent, fontSize: 11, fontWeight: 600 }}>
             Инсайт — данные продаж/выручки используются напрямую
           </div>
-          <div style={{ marginTop: 16 }}>
+          <div style={{ marginTop: 16, display: "flex", flexDirection: "column", gap: 8 }}>
             <Link
               href="/tools/wb-analyzer/guide"
               style={{ fontSize: 13, color: C.accent, textDecoration: "none", fontWeight: 500 }}
             >
               Инструкция: как анализировать ниши →
+            </Link>
+            <Link
+              href="/tools/mpstats-api"
+              style={{ fontSize: 13, color: C.green, textDecoration: "none", fontWeight: 500 }}
+            >
+              API Гайд: выгрузка данных из MPStats →
             </Link>
           </div>
         </div>
@@ -814,6 +820,9 @@ export default function WbAnalyzerPage() {
           )}
           <Link href="/tools/wb-analyzer/guide" style={{ padding: "6px 10px", borderRadius: 6, border: `1px solid ${C.border}`, background: C.surface, color: C.dim, fontSize: 13, cursor: "pointer", textDecoration: "none", display: "inline-flex", alignItems: "center", fontWeight: 600 }}>
             ?
+          </Link>
+          <Link href="/tools/mpstats-api" style={{ padding: "6px 10px", borderRadius: 6, border: `1px solid ${C.border}`, background: C.surface, color: C.green, fontSize: 12, cursor: "pointer", textDecoration: "none", display: "inline-flex", alignItems: "center", fontWeight: 600 }}>
+            API
           </Link>
           <button onClick={() => fileRef.current?.click()} style={{ padding: "6px 10px", borderRadius: 6, border: `1px solid ${C.border}`, background: C.surface, color: C.dim, fontSize: 14, cursor: "pointer" }}>
             📂
