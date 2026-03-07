@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef } from "react";
+import Link from "next/link";
 
 /* ───────────────────────── types ───────────────────────── */
 
@@ -736,6 +737,14 @@ export default function WbAnalyzerPage() {
           <div style={{ display: "inline-block", marginTop: 8, padding: "3px 10px", borderRadius: 4, background: "rgba(108,92,231,0.15)", color: C.accent, fontSize: 11, fontWeight: 600 }}>
             Инсайт — данные продаж/выручки используются напрямую
           </div>
+          <div style={{ marginTop: 16 }}>
+            <Link
+              href="/tools/wb-analyzer/guide"
+              style={{ fontSize: 13, color: C.accent, textDecoration: "none", fontWeight: 500 }}
+            >
+              Инструкция: как анализировать ниши →
+            </Link>
+          </div>
         </div>
         <div
           onDrop={handleDrop}
@@ -803,6 +812,9 @@ export default function WbAnalyzerPage() {
               ✕ Сброс
             </button>
           )}
+          <Link href="/tools/wb-analyzer/guide" style={{ padding: "6px 10px", borderRadius: 6, border: `1px solid ${C.border}`, background: C.surface, color: C.dim, fontSize: 13, cursor: "pointer", textDecoration: "none", display: "inline-flex", alignItems: "center", fontWeight: 600 }}>
+            ?
+          </Link>
           <button onClick={() => fileRef.current?.click()} style={{ padding: "6px 10px", borderRadius: 6, border: `1px solid ${C.border}`, background: C.surface, color: C.dim, fontSize: 14, cursor: "pointer" }}>
             📂
           </button>
