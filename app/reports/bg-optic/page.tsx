@@ -134,13 +134,13 @@ export default function BgOpticReport() {
             Enterprise Report
           </div>
           <h1 style={{ fontSize: 32, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.03em", lineHeight: 1.2 }}>
-            Выход на Kaspi.kz<br />с очковой продукцией
+            Выход на Kaspi.kz<br />с оптикой
           </h1>
           <p style={{ color: C.dim, fontSize: 14, margin: "12px 0 0" }}>
-            Подготовлено для <strong style={{ color: C.text }}>Даниар (BRO Glasses / BG Optic)</strong>
+            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong> для <strong style={{ color: C.text }}>Данияра Шайкемелова</strong>, CEO BG Optic
           </p>
           <div style={{ display: "flex", gap: 20, marginTop: 12, fontSize: 12, color: C.dim }}>
-            <span>Данные: <strong style={{ color: C.text }}>RedStat Analytics</strong></span>
+            <span>Данные: <strong style={{ color: C.text }}>Redstat.kz</strong></span>
             <span>Период: <strong style={{ color: C.text }}>Январь 2026</strong></span>
             <span>Дата: <strong style={{ color: C.text }}>5 марта 2026</strong></span>
           </div>
@@ -748,23 +748,12 @@ export default function BgOpticReport() {
             />
           </div>
 
-          <div style={{ ...sCard, background: "#0d0d18" }}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>API endpoints (для воспроизводимости)</h3>
-            <div style={{ fontFamily: "'JetBrains Mono', monospace", fontSize: 11, color: C.dim, lineHeight: 2 }}>
-              <div><span style={{ color: C.green }}>Subject Detail:</span>  /api/subject/detail?category=...&subcategory=...&subject=...&filter_date=2026-01-01</div>
-              <div><span style={{ color: C.green }}>Subject History:</span> /api/subject/history?category=...&subcategory=...&subject=...</div>
-              <div><span style={{ color: C.green }}>Brand List:</span>      /api/brand?category=...&subcategory=...&subject=...&filter_date=2026-01-01&sort_by=revenue&sort_order=desc</div>
-            </div>
-          </div>
         </Section>
 
         {/* ═══ Footer ═══ */}
         <div style={{ paddingTop: 32, borderTop: `1px solid ${C.border}`, textAlign: "center" }}>
           <p style={{ ...sP, fontSize: 12, color: C.faint }}>
-            Отчёт подготовлен с использованием данных RedStat Analytics. Все цифры актуальны на январь 2026 года.
-          </p>
-          <p style={{ ...sP, fontSize: 12, color: C.faint }}>
-            Подготовил: Алмас | <Link href="/" style={{ color: C.accent, textDecoration: "none" }}>akasymzhanov.com</Link>
+            Подготовил Алмас Касымжанов | <Link href="/" style={{ color: C.accent, textDecoration: "none" }}>akasymzhanov.com</Link>
           </p>
         </div>
       </div>
