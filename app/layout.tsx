@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Manrope, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
-import { Sidebar } from "@/components/sidebar";
-import { SidebarMobile } from "@/components/sidebar-mobile";
+import { Navbar } from "@/components/navbar";
 import "./globals.css";
 
 const manrope = Manrope({
@@ -31,11 +30,8 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${manrope.variable} ${ibmPlex.variable} ${jetbrains.variable}`}>
       <body className="font-body">
-        <div className="flex h-screen">
-          <Sidebar />
-          <SidebarMobile />
-          <main className="flex-1 overflow-auto">{children}</main>
-        </div>
+        <Navbar />
+        <main>{children}</main>
       </body>
     </html>
   );
