@@ -33,23 +33,22 @@ function Section({ id, title, children }: { id: string; title: string; children:
 }
 
 /* ───── Metric Card ───── */
-function MetricCard({ label, value, sub, color, icon }: { label: string; value: string; sub?: string; color: string; icon: string }) {
+function MetricCard({ label, value, sub, color }: { label: string; value: string; sub?: string; color: string }) {
   return (
-    <div style={{ ...sCard, borderTop: `3px solid ${color}`, textAlign: "center", padding: "28px 20px" }}>
-      <div style={{ fontSize: 28, marginBottom: 8 }}>{icon}</div>
-      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", color: C.dim, marginBottom: 8, fontWeight: 600 }}>{label}</div>
+    <div style={{ ...sCard, borderTop: `2px solid ${color}`, textAlign: "center", padding: "28px 20px" }}>
+      <div style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: "0.08em", color: C.dim, marginBottom: 10, fontWeight: 600 }}>{label}</div>
       <div style={{ fontSize: 28, fontWeight: 800, color, letterSpacing: "-0.02em" }}>{value}</div>
-      {sub && <div style={{ fontSize: 12, color: C.dim, marginTop: 6 }}>{sub}</div>}
+      {sub && <div style={{ fontSize: 12, color: C.dim, marginTop: 8 }}>{sub}</div>}
     </div>
   );
 }
 
-/* ───── Star Rating ───── */
+/* ───── Score Bar ───── */
 function Stars({ count, max = 5 }: { count: number; max?: number }) {
   return (
-    <span style={{ letterSpacing: 2 }}>
+    <span style={{ display: "inline-flex", gap: 3 }}>
       {Array.from({ length: max }, (_, i) => (
-        <span key={i} style={{ color: i < count ? C.amber : C.faint }}>&#9733;</span>
+        <span key={i} style={{ width: 8, height: 8, borderRadius: 2, background: i < count ? C.accent : `${C.faint}44`, transition: "background 0.2s" }} />
       ))}
     </span>
   );
@@ -100,12 +99,11 @@ function DataTable({ headers, rows, highlight }: { headers: string[]; rows: (str
 }
 
 /* ───── SWOT cell ───── */
-function SwotCell({ title, items, color, icon }: { title: string; items: string[]; color: string; icon: string }) {
+function SwotCell({ title, items, color }: { title: string; items: string[]; color: string }) {
   return (
-    <div style={{ ...sCard, borderColor: `${color}44`, padding: 20 }}>
-      <div style={{ display: "flex", alignItems: "center", gap: 8, marginBottom: 12 }}>
-        <span style={{ fontSize: 20 }}>{icon}</span>
-        <span style={{ fontSize: 14, fontWeight: 700, color }}>{title}</span>
+    <div style={{ ...sCard, borderLeft: `3px solid ${color}`, borderRadius: 8, padding: 20 }}>
+      <div style={{ marginBottom: 12 }}>
+        <span style={{ fontSize: 13, fontWeight: 700, color, textTransform: "uppercase", letterSpacing: "0.04em" }}>{title}</span>
       </div>
       <ul style={{ margin: 0, paddingLeft: 16, listStyle: "disc" }}>
         {items.map((item, i) => (
@@ -168,9 +166,9 @@ export default function BgOpticReport() {
         {/* ═══ Section 1: Executive Summary ═══ */}
         <Section id="sec-1" title="1. Резюме для принятия решений">
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 24 }}>
-            <MetricCard icon="&#128526;" label="Солнцезащитные" value="111.0M ₸" sub="55 498 заказов/мес | Gini 0.772" color={C.amber} />
-            <MetricCard icon="&#128083;" label="Очки для зрения" value="27.5M ₸" sub="11 370 заказов/мес | Gini 0.631" color={C.green} />
-            <MetricCard icon="&#129299;" label="Смарт-очки" value="110.1M ₸" sub="1 155 заказов/мес | Gini 0.777" color={C.blue} />
+            <MetricCard label="Солнцезащитные" value="111.0M ₸" sub="55 498 заказов/мес | Gini 0.772" color={C.amber} />
+            <MetricCard label="Очки для зрения" value="27.5M ₸" sub="11 370 заказов/мес | Gini 0.631" color={C.green} />
+            <MetricCard label="Смарт-очки" value="110.1M ₸" sub="1 155 заказов/мес | Gini 0.777" color={C.blue} />
           </div>
 
           <DataTable
@@ -593,22 +591,22 @@ export default function BgOpticReport() {
 
           <h3 style={{ ...sH3, marginTop: 32 }}>SWOT-анализ входа BG Optic на Kaspi</h3>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            <SwotCell title="Сильные стороны" color={C.green} icon="&#128170;" items={[
+            <SwotCell title="Сильные стороны" color={C.green} items={[
               "Готовый бренд (BRO Glasses → BG Optic)",
               "Опыт в очковой индустрии",
               "Понимание целевой аудитории",
             ]} />
-            <SwotCell title="Слабые стороны" color={C.red} icon="&#9888;&#65039;" items={[
+            <SwotCell title="Слабые стороны" color={C.red} items={[
               "Нет опыта на Kaspi",
               "Нужны карточки и описания с нуля",
               "Начало с нуля по отзывам",
             ]} />
-            <SwotCell title="Возможности" color={C.blue} icon="&#128640;" items={[
+            <SwotCell title="Возможности" color={C.blue} items={[
               "Растущий рынок (+35% очки для зрения, ×48 смарт-очки)",
               "Низкий Gini в оптике (0.631)",
               "33% солнцезащитных — NoBrand (можно забрать)",
             ]} />
-            <SwotCell title="Угрозы" color={C.amber} icon="&#9889;" items={[
+            <SwotCell title="Угрозы" color={C.amber} items={[
               "Alberto Casiano / BLUE ELEPHANT в солнцезащитных",
               "Ray-Ban в смарт-очках (73.4% рынка)",
               "Сезонность солнцезащитных",
@@ -622,13 +620,13 @@ export default function BgOpticReport() {
             <h3 style={{ ...sH3, marginTop: 0, color: C.accent, fontSize: 18 }}>Стратегия: «Два фронта + наблюдение»</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
               {[
-                { months: "Месяц 1-2", seg: "Очки для зрения", desc: "стабильный доход", color: C.green, icon: "&#128083;" },
-                { months: "Месяц 2-3", seg: "Солнцезащитные", desc: "масштабирование к лету", color: C.amber, icon: "&#128526;" },
-                { months: "Месяц 6+", seg: "Смарт-очки", desc: "стратегический вход", color: C.blue, icon: "&#129299;" },
+                { months: "Месяц 1-2", seg: "Очки для зрения", desc: "стабильный доход", color: C.green },
+                { months: "Месяц 2-3", seg: "Солнцезащитные", desc: "масштабирование к лету", color: C.amber },
+                { months: "Месяц 6+", seg: "Смарт-очки", desc: "стратегический вход", color: C.blue },
               ].map((s, i) => (
                 <div key={i} style={{ display: "flex", gap: 16, padding: "16px 0", borderBottom: i < 2 ? `1px solid ${C.border}` : "none" }}>
                   <div style={{ width: 90, fontSize: 12, fontWeight: 600, color: C.dim, flexShrink: 0 }}>{s.months}</div>
-                  <div style={{ fontSize: 20, flexShrink: 0 }} dangerouslySetInnerHTML={{ __html: s.icon }} />
+                  <div style={{ width: 8, height: 8, borderRadius: "50%", background: s.color, marginTop: 5, flexShrink: 0 }} />
                   <div>
                     <div style={{ fontWeight: 600, color: s.color }}>{s.seg}</div>
                     <div style={{ fontSize: 12, color: C.dim }}>{s.desc}</div>
@@ -669,7 +667,7 @@ export default function BgOpticReport() {
               <h3 style={{ ...sH3, marginTop: 0, color: stage.color }}>{stage.title}</h3>
               {stage.items.map((item, j) => (
                 <div key={j} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
-                  <span style={{ color: stage.color, fontSize: 14, flexShrink: 0, marginTop: 1 }}>&#9744;</span>
+                  <span style={{ width: 6, height: 6, borderRadius: 1, background: stage.color, flexShrink: 0, marginTop: 6 }} />
                   <span style={{ ...sP, margin: 0 }}>{item}</span>
                 </div>
               ))}
@@ -726,11 +724,8 @@ export default function BgOpticReport() {
         {/* ═══ Section 10: Appendix ═══ */}
         <Section id="sec-10" title="10. Приложение: Источники и методология">
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Источники данных</h3>
-            <ul style={{ paddingLeft: 18, margin: 0 }}>
-              <li style={sP}><strong style={{ color: C.text }}>RedStat Analytics</strong> (app.redstat.kz) — данные за январь 2026 (факт), история за 12-14 месяцев</li>
-              <li style={sP}><strong style={{ color: C.text }}>Kaspi.kz</strong> — каталожная структура, ссылки на категории</li>
-            </ul>
+            <h3 style={{ ...sH3, marginTop: 0 }}>Источник данных</h3>
+            <p style={sP}><strong style={{ color: C.text }}>Redstat.kz</strong> — данные за январь 2026 (факт), история за 12-14 месяцев</p>
           </div>
 
           <div style={sCard}>
