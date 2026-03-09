@@ -28,7 +28,7 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
       <div className="max-w-2xl w-full">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight text-white mb-3">
+        <h1 className="text-4xl md:text-5xl font-extrabold tracking-tight text-white mb-3 font-heading">
           Almas Kasymzhanov
         </h1>
         <p className="text-lg text-dim mb-12 leading-relaxed">
@@ -52,7 +52,7 @@ export default function Home() {
                     style={{ background: tool.color }}
                   />
                   <div>
-                    <span className="text-base font-semibold text-white group-hover:text-accent transition-colors">
+                    <span className="text-base font-semibold text-white group-hover:text-accent transition-colors font-heading">
                       {tool.title}
                     </span>
                     <p className="text-sm text-dim mt-1 leading-relaxed">
@@ -82,7 +82,7 @@ export default function Home() {
                     style={{ background: r.color }}
                   />
                   <div>
-                    <span className="text-base font-semibold text-white group-hover:text-accent transition-colors">
+                    <span className="text-base font-semibold text-white group-hover:text-accent transition-colors font-heading">
                       {r.title}
                     </span>
                     <p className="text-sm text-dim mt-1 leading-relaxed">

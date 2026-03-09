@@ -13,7 +13,7 @@ export default function BlogPage() {
 
   return (
     <div className="max-w-2xl mx-auto px-6 py-16">
-      <h1 className="text-3xl font-bold tracking-tight text-white mb-2">
+      <h1 className="text-3xl font-extrabold tracking-tight text-white mb-2 font-heading">
         Блог
       </h1>
       <p className="text-dim mb-10">

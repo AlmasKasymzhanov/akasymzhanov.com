@@ -41,7 +41,7 @@ export default async function BlogPostPage({ params }: Props) {
       </Link>
 
       <header className="mb-10">
-        <h1 className="text-3xl font-bold tracking-tight text-white mb-3">
+        <h1 className="text-3xl font-extrabold tracking-tight text-white mb-3 font-heading">
           {post.title}
         </h1>
         <time className="text-sm text-dim tabular-nums">

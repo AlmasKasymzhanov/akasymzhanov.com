@@ -28,7 +28,7 @@ export function Sidebar() {
     <aside className="hidden lg:flex flex-col w-64 shrink-0 h-screen sticky top-0 border-r border-border bg-surface overflow-y-auto">
       <div className="px-6 py-6">
         <Link href="/" className="block no-underline">
-          <span className="text-lg font-bold tracking-tight text-white">
+          <span className="text-lg font-bold tracking-tight text-white font-heading">
             Almas K.
           </span>
           <span className="block text-xs text-dim mt-1">

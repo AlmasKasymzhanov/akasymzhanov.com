@@ -10,7 +10,6 @@
   "dependencies": {
     "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/typography": "^0.5.19",
-    "geist": "^1.7.0",
     "next": "^15.1.0",
     "postcss": "^8.5.8",
     "react": "^19.0.0",
