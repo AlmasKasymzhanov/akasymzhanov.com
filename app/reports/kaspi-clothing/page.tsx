@@ -482,6 +482,21 @@ export default function KaspiClothingReport() {
             />
             <p style={{ fontSize: 13, color: C.accent, marginTop: 16 }}>redstat.kz</p>
           </div>
+
+          {/* QR Code 10b */}
+          <div style={{ ...sCard, textAlign: "center", padding: "40px 24px" }}>
+            <div style={{ fontSize: 16, fontWeight: 600, color: C.text, marginBottom: 8 }}>10b.kz</div>
+            <p style={{ ...sP, textAlign: "center", marginBottom: 24 }}>Маркетплейс-комьюнити для продавцов Kaspi.kz — обучение, нетворкинг, инсайты</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=https://10b.kz&bgcolor=111119&color=e8e8f0"
+              alt="QR-код 10b.kz"
+              width={200}
+              height={200}
+              style={{ margin: "0 auto", borderRadius: 8, display: "block" }}
+            />
+            <p style={{ fontSize: 13, color: C.accent, marginTop: 16 }}>10b.kz</p>
+          </div>
         </Section>
 
         {/* ═══ Footer ═══ */}
