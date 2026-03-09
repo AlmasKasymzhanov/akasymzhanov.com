@@ -1,13 +1,6 @@
 import Link from "next/link";
 
-const REPORTS = [
-  {
-    title: "BG Optic — Рынок очков",
-    desc: "Enterprise-анализ 3 сегментов очков на Kaspi.kz: солнцезащитные, для зрения, смарт-очки. Данные RedStat Analytics, январь 2026.",
-    href: "/reports/bg-optic",
-    badge: "Аналитика",
-  },
-];
+const REPORTS: { title: string; desc: string; href: string; badge: string }[] = [];
 
 export const metadata = {
   title: "Аналитика — Almas Kasymzhanov",
