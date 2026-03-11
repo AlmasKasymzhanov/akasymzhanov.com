@@ -717,30 +717,6 @@ export default function TrendHuntingGuide() {
 
         {/* ═══ Footer ═══ */}
         <div style={{ paddingTop: 32, borderTop: `1px solid ${C.border}`, textAlign: "center" }}>
-          <div style={{ display: "flex", justifyContent: "center", gap: 32, marginBottom: 24 }}>
-            <div style={{ textAlign: "center" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://redstat.kz&bgcolor=111119&color=e8e8f0"
-                alt="QR-код Redstat.kz"
-                width={160}
-                height={160}
-                style={{ borderRadius: 8, display: "block", margin: "0 auto" }}
-              />
-              <p style={{ fontSize: 12, color: C.accent, marginTop: 10 }}>redstat.kz</p>
-            </div>
-            <div style={{ textAlign: "center" }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=https://10b.kz&bgcolor=111119&color=e8e8f0"
-                alt="QR-код 10b.kz"
-                width={160}
-                height={160}
-                style={{ borderRadius: 8, display: "block", margin: "0 auto" }}
-              />
-              <p style={{ fontSize: 12, color: C.accent, marginTop: 10 }}>10b.kz</p>
-            </div>
-          </div>
           <p style={{ ...sP, fontSize: 12, color: C.faint }}>
             Подготовил Алмас Касымжанов | <Link href="/" style={{ color: C.accent, textDecoration: "none" }}>akasymzhanov.com</Link>
           </p>
