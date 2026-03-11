@@ -39,7 +39,7 @@ function DataTable({ headers, rows, highlight }: { headers: string[]; rows: (str
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
         <thead>
           <tr>{headers.map((h, i) => (
-            <th key={i} style={{ padding: "10px 12px", textAlign: i === 0 ? "left" : "left", color: C.dim, fontWeight: 600, borderBottom: `1px solid ${C.border}`, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
+            <th key={i} style={{ padding: "10px 12px", textAlign: "left", color: C.dim, fontWeight: 600, borderBottom: `1px solid ${C.border}`, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
           ))}</tr>
         </thead>
         <tbody>
@@ -52,30 +52,6 @@ function DataTable({ headers, rows, highlight }: { headers: string[]; rows: (str
           ))}
         </tbody>
       </table>
-    </div>
-  );
-}
-
-/* ───── Tool Card ───── */
-function ToolCard({ name, url, type, price, desc, features }: { name: string; url: string; type: string; price: string; desc: string; features: string[] }) {
-  return (
-    <div style={{ ...sCard, borderLeft: `3px solid ${C.accent}` }}>
-      <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start", gap: 12, marginBottom: 10 }}>
-        <div>
-          <div style={{ fontWeight: 700, color: C.text, fontSize: 15 }}>{name}</div>
-          <span style={{ fontSize: 11, color: C.dim }}>{url}</span>
-        </div>
-        <div style={{ display: "flex", gap: 8, flexShrink: 0 }}>
-          <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 4, background: `${C.accent}18`, color: C.accent, fontWeight: 600 }}>{type}</span>
-          <span style={{ fontSize: 10, padding: "2px 8px", borderRadius: 4, background: `${C.green}18`, color: C.green, fontWeight: 600 }}>{price}</span>
-        </div>
-      </div>
-      <p style={{ ...sP, margin: "0 0 8px" }}>{desc}</p>
-      <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-        {features.map((f, i) => (
-          <span key={i} style={{ fontSize: 11, padding: "2px 8px", borderRadius: 4, background: `${C.faint}33`, color: C.dim }}>{f}</span>
-        ))}
-      </div>
     </div>
   );
 }
@@ -136,15 +112,15 @@ export default function TrendHuntingGuide() {
           {[
             ["sec-1", "1. Философия: Как думать о трендах"],
             ["sec-2", "2. Воронка поиска: От идеи до закупки"],
-            ["sec-3", "3. Западные рынки: Amazon и Shopify"],
-            ["sec-4", "4. Социальные сигналы: TikTok, Reddit, UGC"],
-            ["sec-5", "5. Аналитические инструменты: Тренд-радары"],
-            ["sec-6", "6. СНГ: Kaspi.kz и Wildberries"],
-            ["sec-7", "7. Amazing.com: Практический разбор"],
-            ["sec-8", "8. Методы валидации товара"],
-            ["sec-9", "9. Сезонность и тайминг"],
-            ["sec-10", "10. Чеклист: Пошаговый алгоритм"],
-            ["sec-11", "11. Полный стек инструментов"],
+            ["sec-3", "3. Helium 10: Поиск товаров на Amazon"],
+            ["sec-4", "4. Niche Scraper и ShopHunter: Spy за Shopify"],
+            ["sec-5", "5. Minea и PipiAds: Spy за рекламой"],
+            ["sec-6", "6. Бесплатные источники: TikTok, Reddit, TrendHunter"],
+            ["sec-7", "7. Google Trends и Exploding Topics"],
+            ["sec-8", "8. СНГ: Kaspi.kz (Redstat) и Wildberries"],
+            ["sec-9", "9. Методы валидации товара"],
+            ["sec-10", "10. Сезонность и тайминг"],
+            ["sec-11", "11. Чеклист: Пошаговый алгоритм"],
           ].map(([id, label]) => (
             <a key={id} href={`#${id}`} style={{ display: "block", fontSize: 13, color: C.accent, textDecoration: "none", padding: "4px 0" }}>{label}</a>
           ))}
@@ -183,7 +159,7 @@ export default function TrendHuntingGuide() {
             </div>
           </div>
 
-          <div style={{ ...sCard }}>
+          <div style={sCard}>
             <h3 style={{ ...sH3, marginTop: 0 }}>Два типа трендов</h3>
             <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
               <div style={{ padding: 16, borderRadius: 8, background: `${C.green}08`, border: `1px solid ${C.green}22` }}>
@@ -204,11 +180,11 @@ export default function TrendHuntingGuide() {
             <StepCard num={1} title="Генерация идей" desc="Собираем 50-100 потенциальных товаров из разных источников" color={C.cyan} items={[
               "Amazon Best Sellers + Movers & Shakers — ежедневный мониторинг",
               "TikTok #TikTokMadeMeBuyIt + #TikTokShopFinds — вирусные товары",
-              "Shopify Spy-инструменты — что продают успешные DTC-бренды",
-              "Reddit r/AmazonSeller, r/ecommerce — реальные кейсы продавцов",
-              "Exploding Topics / Glimpse — тренды до массового рынка",
-              "Google Trends — растущие поисковые запросы",
-              "Amazing.com Breakout Radar — AI-предсказание трендов Amazon",
+              "Niche Scraper / ShopHunter — что продают Shopify-магазины",
+              "Minea / PipiAds — какие товары рекламируют (TikTok, Facebook, Pinterest)",
+              "TrendHunter.com — статьи о зарождающихся трендах",
+              "Google Trends + Exploding Topics — растущие запросы",
+              "Reddit r/AmazonSeller, r/ecommerce — реальные кейсы",
             ]} />
             <StepCard num={2} title="Первичный фильтр" desc="Из 100 идей оставляем 10-15 перспективных" color={C.blue} items={[
               "Есть ли растущий спрос? (Google Trends: линия вверх, не пик и спад)",
@@ -217,88 +193,214 @@ export default function TrendHuntingGuide() {
               "Можно улучшить? (читаем негативные отзывы на Amazon — 1-3 звезды)",
               "Можно брендировать? (упаковка, дизайн, инструкция на русском/казахском)",
             ]} />
-            <StepCard num={3} title="Глубокая валидация" desc="10-15 товаров проверяем по метрикам" color={C.green} items={[
-              "Amazon BSR, количество продаж/мес (Jungle Scout / Helium 10 / Amazing)",
-              "Конкуренция: количество отзывов у ТОП-10 (< 500 отзывов = вход реален)",
+            <StepCard num={3} title="Глубокая валидация" desc="10-15 товаров проверяем через Helium 10 и Redstat" color={C.green} items={[
+              "Helium 10 Black Box: продажи/мес, BSR, количество отзывов",
+              "Helium 10 X-Ray (Chrome): данные прямо на странице Amazon",
+              "Конкуренция: отзывов у ТОП-10 < 500 = вход реален",
               "Маржа: цена продажи - себестоимость - доставка - комиссия > 30%",
-              "Проверка на Kaspi/WB: есть ли уже? Сколько продавцов? Какие цены?",
-              "Redstat.kz: выручка ниши, Gini (< 0.7), доля NoBrand",
+              "Redstat.kz: выручка ниши на Kaspi, Gini (< 0.7), доля NoBrand",
             ]} />
             <StepCard num={4} title="Тест и закупка" desc="3-5 финалистов: заказываем образцы" color={C.amber} items={[
-              "Образцы с Alibaba/1688 — проверка качества",
+              "Образцы с Alibaba / 1688 — проверка качества",
               "Тестовая партия 50-200 шт — проверка спроса",
               "Фото + карточка товара — профессиональный контент",
-              "Запуск на Kaspi/WB — первые продажи и отзывы",
+              "Запуск на Kaspi / WB — первые продажи и отзывы",
             ]} />
           </div>
         </Section>
 
-        {/* ═══ Section 3: Western Markets ═══ */}
-        <Section id="sec-3" title="3. Западные рынки: Amazon и Shopify">
+        {/* ═══ Section 3: Helium 10 ═══ */}
+        <Section id="sec-3" title="3. Helium 10: Поиск товаров на Amazon">
+          <div style={{ ...sCard, borderColor: `${C.amber}44` }}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.amber }}>Helium 10 — главный инструмент Amazon-ресёрча</h3>
+            <p style={sP}>30+ инструментов в одном. Для поиска трендовых товаров используем три ключевых: Black Box, X-Ray (Chrome Extension) и Keyword Research.</p>
+          </div>
 
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.amber }}>Amazon — главный источник трендов</h3>
-            <p style={sP}>Amazon US — крупнейший ecommerce-рынок мира. Тренды с Amazon приходят на рынки СНГ с задержкой 3-6 месяцев. Это ваше окно.</p>
-
-            <h3 style={sH3}>Где искать на Amazon</h3>
+            <h3 style={{ ...sH3, marginTop: 0 }}>Black Box — поиск товаров по фильтрам</h3>
+            <p style={sP}>Главный инструмент для систематического поиска. Вкладка Products → Advanced mode.</p>
+            <h3 style={sH3}>Рекомендуемые настройки Advanced</h3>
             <DataTable
-              headers={["Источник", "URL / метод", "Что даёт"]}
+              headers={["Параметр", "Значение", "Почему"]}
+              rows={[
+                ["Category", "Выбрать 2-3 интересные", "Home & Kitchen, Sports, Patio — лучшие для старта"],
+                ["Monthly Revenue", "$5,000 — $50,000", "Есть спрос, но не гиганты с огромными бюджетами"],
+                ["Price", "$20 — $50", "Оптимальная маржа при импульсных покупках"],
+                ["Review Count", "0 — 300", "Низкий барьер входа — реально набрать отзывы"],
+                ["Review Rating", "1.0 — 4.0", "Товары с проблемами = возможность сделать лучше"],
+                ["Monthly Sales", "200 — 2,000 шт", "Стабильный спрос без монополии"],
+                ["Weight", "0 — 2 lbs", "Лёгкий = дешёвая FBA и доставка из Китая"],
+                ["Product Size", "Small / Standard", "Помещается в shoebox = дешевле хранение"],
+              ]}
+            />
+
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16, marginTop: 12 }}>
+              <div><span style={{ color: C.amber }}>Workflow Black Box:</span></div>
+              <div>1. Выставляем фильтры → жмём Search</div>
+              <div>2. Сортируем результаты по <span style={{ color: C.green }}>Revenue</span> (убывание)</div>
+              <div>3. Смотрим: Review Count {"<"} 300 + Revenue {">"} $5K = <span style={{ color: C.green }}>перспективный</span></div>
+              <div>4. Кликаем на товар → открывается Amazon</div>
+              <div>5. На Amazon запускаем <span style={{ color: C.amber }}>X-Ray</span> для глубокого анализа</div>
+            </div>
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0 }}>X-Ray (Chrome Extension) — анализ на странице Amazon</h3>
+            <p style={sP}>Расширение показывает данные по каждому товару прямо на странице Amazon: продажи, выручка, BSR, количество продавцов.</p>
+            <DataTable
+              headers={["Что смотреть", "На что обращать внимание"]}
+              rows={[
+                ["Monthly Revenue", "Сколько зарабатывает этот конкретный товар в месяц"],
+                ["Monthly Sales", "Количество продаж — стабильный ли спрос"],
+                ["BSR", "Best Sellers Rank в категории — чем ниже, тем лучше"],
+                ["Review Count", "< 300 у ТОП-10 = можно конкурировать"],
+                ["Price", "Средняя цена ниши — ориентир для вашего товара"],
+                ["Revenue Trend", "Растёт или падает за последние месяцы"],
+              ]}
+            />
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0 }}>Black Box → вкладка Keywords</h3>
+            <p style={sP}>Поиск не по товарам, а по поисковым запросам. Находит растущие запросы = растущий спрос.</p>
+            <DataTable
+              headers={["Параметр", "Значение", "Зачем"]}
+              rows={[
+                ["Search Volume", "1,000 — 20,000", "Достаточный спрос, не перегретый"],
+                ["Word Count", "3+", "Длинные запросы = конкретный товар, не общая категория"],
+                ["Competing Products", "< 200", "Мало конкурентов по этому запросу"],
+                ["Sort by", "Search Volume Trend", "Показывает растущие запросы первыми"],
+              ]}
+            />
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0 }}>Где искать на Amazon (без инструментов)</h3>
+            <DataTable
+              headers={["Страница", "URL", "Что даёт"]}
               rows={[
                 ["Best Sellers", "amazon.com/bestsellers", "ТОП товаров по категориям — текущий спрос"],
-                ["Movers & Shakers", "amazon.com/gp/movers-and-shakers", "Товары с максимальным ростом BSR за 24ч — emerging тренды"],
-                ["New Releases", "amazon.com/gp/new-releases", "Новинки с лучшими продажами — свежие продукты"],
+                ["Movers & Shakers", "amazon.com/gp/movers-and-shakers", "Рост BSR за 24ч — emerging тренды"],
+                ["New Releases", "amazon.com/gp/new-releases", "Новинки с лучшими продажами"],
                 ["Most Wished For", "amazon.com/gp/most-wished-for", "Товары в вишлистах — будущий спрос"],
-                ["Gift Ideas", "amazon.com/gp/most-gifted", "Подарочные товары — сезонные возможности"],
               ]}
             />
-
-            <h3 style={sH3}>Метод BSR-анализа</h3>
-            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
-              <div>1. Открываем <span style={{ color: C.amber }}>Movers & Shakers</span> в интересующей категории</div>
-              <div>2. Фильтруем: рост BSR {"> 200%"} за 24ч</div>
-              <div>3. Проверяем: это разовый всплеск или устойчивый рост?</div>
-              <div>4. Смотрим <span style={{ color: C.amber }}>историю BSR</span> через Keepa / Helium 10 (3-6 мес)</div>
-              <div>5. Целимся на товары с BSR <span style={{ color: C.green }}>50-300 в субкатегории</span></div>
-              <div>6. {"> 500 отзывов"} у ТОП-5 = сложно конкурировать, {"< 100"} = идеально</div>
+            <div style={{ background: `${C.amber}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc" }}>
+              <strong style={{ color: C.amber }}>Метод:</strong> Открываем Movers & Shakers → находим интересный товар → открываем его → включаем X-Ray → смотрим данные → если подходит под критерии — добавляем в список кандидатов.
             </div>
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Shopify — DTC-бренды как индикатор</h3>
-            <p style={sP}>Shopify-магазины показывают, что работает в direct-to-consumer. Если DTC-бренд растёт — значит, продукт можно адаптировать для маркетплейсов.</p>
-
-            <DataTable
-              headers={["Инструмент", "Что делает", "Цена"]}
-              rows={[
-                ["Niche Scraper", "Сканирует Shopify-магазины, показывает бестселлеры и рекламу", "$13/мес"],
-                ["PPSPY", "Анализ 130K+ Shopify-магазинов, AI-оценка продаж (80% точность)", "Freemium"],
-                ["ShopHunter", "Отслеживает топовые Shopify-магазины, уведомления о новых товарах", "Freemium"],
-                ["SimplyTrends", "Chrome-расширение: технологии, трафик, бестселлеры любого Shopify", "Бесплатно"],
-                ["EachSpy", "Каталог трендовых Shopify-магазинов по категориям", "Бесплатно"],
-              ]}
-            />
-
-            <div style={{ background: `${C.green}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
-              <strong style={{ color: C.green }}>Метод:</strong> Находим растущий DTC-бренд на Shopify → смотрим их рекламу в Facebook Ad Library → проверяем, есть ли аналог на Kaspi/WB → если нет — это ваша возможность.
-            </div>
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Другие западные источники</h3>
-            <DataTable
-              headers={["Платформа", "Метод", "Для чего"]}
-              rows={[
-                ["Etsy", "Trending + Best Sellers по категориям", "Handmade и уникальные товары, растущие ниши"],
-                ["Kickstarter / Indiegogo", "Кампании с 500%+ финансированием", "Инновации за 6-12 мес до массового рынка"],
-                ["ProductHunt", "Ежедневные новинки, фильтр по категории", "Tech-товары и гаджеты раннего этапа"],
-                ["Temu / Shein", "Бестселлеры и «Trending Now»", "Что уже массово продаётся из Китая"],
-              ]}
-            />
           </div>
         </Section>
 
-        {/* ═══ Section 4: Social Signals ═══ */}
-        <Section id="sec-4" title="4. Социальные сигналы: TikTok, Reddit, UGC">
+        {/* ═══ Section 4: Niche Scraper + ShopHunter ═══ */}
+        <Section id="sec-4" title="4. Niche Scraper и ShopHunter: Spy за Shopify">
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Зачем следить за Shopify</h3>
+            <p style={sP}>Shopify-магазины — это DTC-бренды (direct-to-consumer). Если DTC-бренд растёт и тратит деньги на рекламу — значит, товар продаётся. Эти товары можно адаптировать для Kaspi/WB.</p>
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.accent }}>Niche Scraper — сканер Shopify-магазинов</h3>
+            <p style={sP}>Сканирует тысячи Shopify-магазинов и показывает их бестселлеры, рекламу и тренды.</p>
+
+            <h3 style={sH3}>Как работать с Niche Scraper</h3>
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
+              <div><span style={{ color: C.accent }}>Product Scraper:</span></div>
+              <div>1. Заходим в <span style={{ color: C.accent }}>Product Scraper</span></div>
+              <div>2. Фильтруем по категории (Home, Health, Fashion...)</div>
+              <div>3. Сортируем по <span style={{ color: C.green }}>Orders</span> или <span style={{ color: C.green }}>Trending</span></div>
+              <div>4. Смотрим: сколько заказов, какая цена, какой магазин</div>
+              <div></div>
+              <div><span style={{ color: C.accent }}>Store Analyzer:</span></div>
+              <div>1. Вставляем URL любого Shopify-магазина</div>
+              <div>2. Видим: трафик, бестселлеры, новые товары</div>
+              <div>3. Находим интересный товар → ищем его на AliExpress/1688</div>
+              <div></div>
+              <div><span style={{ color: C.accent }}>Hand Picked (Winning Products):</span></div>
+              <div>1. Ежедневная подборка товаров, отобранных вручную</div>
+              <div>2. С рекламными креативами и данными по продажам</div>
+              <div>3. Готовые идеи для быстрого тестирования</div>
+            </div>
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.blue }}>ShopHunter — трекер магазинов</h3>
+            <p style={sP}>Отслеживает продажи Shopify-магазинов в реальном времени. Показывает, какие товары реально продаются, а не просто лежат в каталоге.</p>
+            <DataTable
+              headers={["Функция", "Как использовать"]}
+              rows={[
+                ["Sales Tracker", "Добавляем интересный магазин → видим реальные продажи каждый день"],
+                ["Store Discovery", "Находим растущие Shopify-магазины в нужной категории"],
+                ["Product Alerts", "Настраиваем уведомления: новый товар у конкурента = сигнал"],
+                ["Top Products", "Рейтинг товаров по продажам — что реально покупают"],
+              ]}
+            />
+            <div style={{ background: `${C.blue}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc" }}>
+              <strong style={{ color: C.blue }}>Связка:</strong> Находим растущий магазин в ShopHunter → анализируем его бестселлеры в Niche Scraper → проверяем рекламу в Minea → проверяем нишу на Kaspi через Redstat.
+            </div>
+          </div>
+        </Section>
+
+        {/* ═══ Section 5: Minea + PipiAds ═══ */}
+        <Section id="sec-5" title="5. Minea и PipiAds: Spy за рекламой">
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.pink }}>Почему рекламный spy — это мощно</h3>
+            <p style={sP}>Если кто-то тратит деньги на рекламу товара — значит, товар продаётся. Рекламный spy показывает, какие товары прямо сейчас продвигают другие продавцы. Это самый быстрый индикатор после TikTok.</p>
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.accent }}>Minea — мульти-платформенный Ad Spy</h3>
+            <p style={sP}>Крупнейшая база рекламы ecommerce. Покрывает TikTok Ads, Facebook Ads, Pinterest Ads и influencer-маркетинг.</p>
+
+            <h3 style={sH3}>Как работать с Minea</h3>
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
+              <div><span style={{ color: C.accent }}>Поиск трендовых товаров:</span></div>
+              <div>1. Идём в <span style={{ color: C.accent }}>Ad Search</span> → выбираем платформу (TikTok / Facebook / Pinterest)</div>
+              <div>2. Фильтры: <span style={{ color: C.green }}>Ecommerce</span> тип + <span style={{ color: C.green }}>Last 7 days</span></div>
+              <div>3. Сортируем по <span style={{ color: C.green }}>Likes / Engagement</span></div>
+              <div>4. Смотрим: какой товар, сколько лайков, какой магазин</div>
+              <div>5. Кликаем → видим лендинг, цену, креатив</div>
+              <div></div>
+              <div><span style={{ color: C.accent }}>Анализ конкретного товара:</span></div>
+              <div>1. Нашли товар → жмём <span style={{ color: C.accent }}>Shop Analysis</span></div>
+              <div>2. Видим: все объявления этого магазина, их длительность</div>
+              <div>3. Если реклама крутится {">"} 2 недель = товар <span style={{ color: C.green }}>приносит прибыль</span></div>
+              <div>4. Если реклама пропала через 2-3 дня = <span style={{ color: C.red }}>не сработало</span></div>
+            </div>
+
+            <div style={{ background: `${C.accent}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
+              <strong style={{ color: C.accent }}>Правило длительности:</strong> Реклама крутится более 14 дней = товар прибыльный. Рекламодатель не будет платить за рекламу убыточного товара.
+            </div>
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.pink }}>PipiAds — TikTok Ads специалист</h3>
+            <p style={sP}>Фокусируется именно на TikTok — крупнейшая база TikTok-рекламы для ecommerce.</p>
+
+            <h3 style={sH3}>Как работать с PipiAds</h3>
+            <DataTable
+              headers={["Раздел", "Что делать", "На что смотреть"]}
+              rows={[
+                ["Ad Search", "Фильтр: Ecommerce + Shopify + Last 7 days", "Товары с высоким engagement = вирусный потенциал"],
+                ["Winning Products", "Раздел с автоматически отобранными хитами", "Товары, которые активно рекламируют прямо сейчас"],
+                ["Advertiser Spy", "Вводим домен конкурента", "Все его рекламные объявления, креативы, длительность"],
+                ["Creative Insights", "Анализ рекламных видео", "Какой формат видео работает: длина, стиль, hook"],
+              ]}
+            />
+
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16, marginTop: 12 }}>
+              <div><span style={{ color: C.pink }}>Workflow PipiAds:</span></div>
+              <div>1. Ad Search → фильтр Last 7 days + Ecommerce</div>
+              <div>2. Сортируем по <span style={{ color: C.green }}>Impressions</span> или <span style={{ color: C.green }}>Likes</span></div>
+              <div>3. Находим товар с {">"} 100K impressions</div>
+              <div>4. Проверяем магазин → сколько продаж (через Niche Scraper)</div>
+              <div>5. Ищем товар на AliExpress/1688 → считаем маржу</div>
+              <div>6. Проверяем на Kaspi через <span style={{ color: C.green }}>Redstat</span> → пусто? <span style={{ color: C.green }}>GO!</span></div>
+            </div>
+          </div>
+        </Section>
+
+        {/* ═══ Section 6: Free Sources ═══ */}
+        <Section id="sec-6" title="6. Бесплатные источники: TikTok, Reddit, TrendHunter">
 
           <div style={sCard}>
             <h3 style={{ ...sH3, marginTop: 0, color: C.pink }}>TikTok — самый быстрый индикатор</h3>
@@ -316,26 +418,36 @@ export default function TrendHuntingGuide() {
               ))}
             </div>
 
-            <h3 style={sH3}>Как анализировать TikTok</h3>
             <DataTable
               headers={["Метод", "Описание"]}
               rows={[
                 ["Поисковая строка TikTok", "Вбиваем категорию товара → сортируем по «Популярное» → смотрим просмотры"],
                 ["TikTok Shop → Trending", "Раздел Shop показывает реальные продажи, а не просто хайп"],
-                ["Helium 10 TikTok Finder", "AI-инструмент: показывает товары с высокими продажами в TikTok Shop в реальном времени"],
-                ["Сохраняем в закладки", "Каждый день 5-10 минут скроллинга → сохраняем интересные товары → анализируем через неделю"],
+                ["Сохраняем в закладки", "Каждый день 5-10 минут скроллинга → сохраняем интересное → анализируем через неделю"],
               ]}
             />
+          </div>
 
-            <div style={{ background: `${C.pink}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc" }}>
-              <strong style={{ color: C.pink }}>Ценовой сладкий диапазон TikTok:</strong> $10-30. Низкая цена = импульсная покупка. Сотни мелких UGC-креаторов дают больше продаж, чем один крупный блогер.
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.cyan }}>TrendHunter.com — статьи о трендах</h3>
+            <p style={sP}>Крупнейшее в мире комьюнити по трендам (160K+ участников). Публикуют статьи о зарождающихся трендах в технологиях, моде, lifestyle, дизайне, еде.</p>
+            <DataTable
+              headers={["Раздел", "Как использовать"]}
+              rows={[
+                ["Trending", "Ежедневная подборка самых горячих трендов — скроллим и сохраняем"],
+                ["Categories", "Фильтруем по нужной категории: Tech, Fashion, Lifestyle, Food"],
+                ["Trend Reports", "Глубокие аналитические отчёты по индустриям (AI-генерированные)"],
+                ["Search", "Вбиваем конкретный товар/категорию — видим все связанные тренды"],
+              ]}
+            />
+            <div style={{ background: `${C.cyan}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc" }}>
+              <strong style={{ color: C.cyan }}>Как использовать:</strong> TrendHunter — не для цифр, а для идей. Читаем статьи → видим зарождающийся тренд → проверяем через Google Trends (есть ли рост?) → проверяем через Helium 10 (есть ли продажи на Amazon?).
             </div>
           </div>
 
           <div style={sCard}>
             <h3 style={{ ...sH3, marginTop: 0, color: C.blue }}>Reddit и UGC-комьюнити</h3>
             <p style={sP}>Reddit — золотая жила для поиска реальных проблем и потребностей. Люди пишут честно, без рекламы.</p>
-
             <DataTable
               headers={["Сабреддит", "Что мониторить"]}
               rows={[
@@ -343,7 +455,6 @@ export default function TrendHuntingGuide() {
                 ["r/FulfillmentByAmazon", "FBA-специфика: тренды, проблемы, инсайты"],
                 ["r/ecommerce", "Общие тренды ecommerce, новые инструменты, стратегии"],
                 ["r/dropshipping", "Что сейчас продают дропшипперы — ранний индикатор"],
-                ["r/Entrepreneur", "Бизнес-идеи и валидация от реальных предпринимателей"],
                 ["r/BuyItForLife", "Товары высокого качества — возможность для premium-сегмента"],
                 ["r/shutupandtakemymoney", "Вирусные товары, импульсные покупки"],
               ]}
@@ -351,193 +462,97 @@ export default function TrendHuntingGuide() {
           </div>
 
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>YouTube и блогеры</h3>
+            <h3 style={{ ...sH3, marginTop: 0 }}>Другие бесплатные источники</h3>
             <DataTable
-              headers={["Тип контента", "Каналы / поиск", "Применение"]}
+              headers={["Платформа", "Метод", "Для чего"]}
               rows={[
-                ["Amazon FBA блогеры", "Jungle Scout, Helium 10, Travis Marziani, Tatiana James", "Методология поиска, кейсы, инструменты"],
-                ["Product review каналы", "Freakin' Reviews, Project Farm, Technology Connections", "Какие товары набирают просмотры = спрос"],
-                ["Unboxing каналы", "Unbox Therapy, iJustine, MKBHD (для гаджетов)", "Раннее обнаружение новинок"],
-                ["DTC / ecommerce", "Shopify Masters, My Wife Quit Her Job (Steve Chou)", "Стратегии DTC-брендов, тренды"],
+                ["Etsy", "Trending + Best Sellers по категориям", "Handmade и уникальные товары, растущие ниши"],
+                ["Kickstarter / Indiegogo", "Кампании с 500%+ финансированием", "Инновации за 6-12 мес до массового рынка"],
+                ["ProductHunt", "Ежедневные новинки, фильтр по категории", "Tech-товары и гаджеты раннего этапа"],
+                ["Temu / Shein", "Бестселлеры и Trending Now", "Что уже массово продаётся из Китая"],
+                ["YouTube", "Product review каналы, unboxing", "Какие товары набирают просмотры = спрос"],
+                ["Pinterest", "Trending Pins по категориям", "Визуальные тренды в декоре, моде, DIY"],
+                ["Facebook Ad Library", "Поиск по рекламодателю/теме", "Бесплатный spy за рекламой конкурентов"],
               ]}
             />
           </div>
         </Section>
 
-        {/* ═══ Section 5: Analytics Tools ═══ */}
-        <Section id="sec-5" title="5. Аналитические инструменты: Тренд-радары">
-
+        {/* ═══ Section 7: Google Trends + Exploding Topics ═══ */}
+        <Section id="sec-7" title="7. Google Trends и Exploding Topics">
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.accent }}>Тренд-детекторы</h3>
-            <p style={sP}>Инструменты, которые находят тренды ДО того, как они станут массовыми.</p>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.blue }}>Google Trends — первый шаг для любого товара</h3>
+            <p style={sP}>20+ лет данных, бесплатно. Показывает рост/спад интереса, сезонность, географию спроса.</p>
+
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
+              <div>1. Вводим товар в <span style={{ color: C.accent }}>trends.google.com</span></div>
+              <div>2. Период: <span style={{ color: C.accent }}>5 лет</span> (видим повторяющиеся паттерны)</div>
+              <div>3. География: Worldwide → потом Казахстан / Россия</div>
+              <div>4. Линия стабильно вверх = <span style={{ color: C.green }}>растущий тренд</span></div>
+              <div>5. Пик повторяется каждый год = <span style={{ color: C.amber }}>сезонный товар</span></div>
+              <div>6. Один пик и спад = <span style={{ color: C.red }}>хайп (не входить)</span></div>
+              <div>7. Смотрим <span style={{ color: C.accent }}>Related Queries → Rising</span> = растущие запросы</div>
+            </div>
           </div>
 
-          <ToolCard
-            name="Google Trends"
-            url="trends.google.com"
-            type="Тренд-анализ"
-            price="Бесплатно"
-            desc="Первый шаг для любого товара. Показывает рост/спад интереса, сезонность, географию спроса. 20+ лет исторических данных."
-            features={["Сезонность", "География", "Связанные запросы", "Rising queries", "Бесплатно"]}
-          />
-          <ToolCard
-            name="Exploding Topics"
-            url="explodingtopics.com"
-            type="Тренд-радар"
-            price="$39/мес"
-            desc="AI находит тренды за 6+ месяцев до массового рынка. Анализирует соцсети, поисковики, медиа. Есть отдельная база трендовых товаров с данными по продажам."
-            features={["AI-анализ", "Trending Products", "6 мес вперёд", "Фильтр по категории"]}
-          />
-          <ToolCard
-            name="Glimpse"
-            url="meetglimpse.com"
-            type="Тренд-аналитика"
-            price="Freemium"
-            desc="Расширение для Google Trends. Добавляет реальные объёмы поиска, прогнозы, оценку сложности. Также собственный каталог ecommerce-трендов."
-            features={["Google Trends+", "Реальные объёмы", "Ecommerce Trends", "Прогнозы"]}
-          />
-          <ToolCard
-            name="Treendly"
-            url="treendly.com"
-            type="Мульти-источник"
-            price="Freemium"
-            desc="Агрегирует данные из Google Trends, соцсетей, маркетплейсов. Можно настроить алерты на конкретные категории или товары."
-            features={["Мульти-источник", "Алерты", "Категории", "Локация"]}
-          />
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Exploding Topics — AI тренд-радар</h3>
+            <p style={sP}>AI анализирует миллионы источников и находит тренды за 6+ месяцев до массового рынка. Есть отдельная база Trending Products с данными по продажам.</p>
+            <DataTable
+              headers={["Раздел", "Как использовать"]}
+              rows={[
+                ["Trending Topics", "Фильтруем по категории → смотрим статус: Exploding, Regular, Peaked"],
+                ["Trending Products", "Товары с растущим спросом: фильтр по категории, revenue, reviews"],
+                ["Topic Alerts", "Настраиваем алерты → получаем уведомления когда тема растёт"],
+                ["Trend Status", "Exploding = ранний рост. Regular = стабильный. Peaked = поздно"],
+              ]}
+            />
+          </div>
         </Section>
 
-        {/* ═══ Section 6: CIS Markets ═══ */}
-        <Section id="sec-6" title="6. СНГ: Kaspi.kz и Wildberries">
-
+        {/* ═══ Section 8: CIS Markets ═══ */}
+        <Section id="sec-8" title="8. СНГ: Kaspi.kz (Redstat) и Wildberries">
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Kaspi.kz — Redstat.kz</h3>
-            <p style={sP}>Redstat — аналитика продаж Kaspi.kz. Показывает выручку, заказы, бренды, монополизацию по каждой нише. ML-прогнозы на 6 месяцев вперёд.</p>
-
-            <h3 style={sH3}>Как использовать Redstat для поиска трендов</h3>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Redstat.kz — аналитика Kaspi.kz</h3>
+            <p style={sP}>Бесплатная аналитика продаж Kaspi.kz. Показывает выручку, заказы, бренды, монополизацию по каждой нише. ML-прогнозы на 6 месяцев вперёд.</p>
             <DataTable
               headers={["Метод", "Как"]}
               rows={[
-                ["Растущие ниши", "Фильтр по росту выручки MoM > 20%. Если ниша растёт 3+ месяца подряд — это тренд, не всплеск"],
+                ["Растущие ниши", "Фильтр по росту выручки MoM > 20%. Если ниша растёт 3+ месяца подряд — это тренд"],
                 ["Низкая монополизация", "Gini < 0.65 = есть место для новых. Gini > 0.8 = монополия, не входить"],
-                ["Высокая доля NoBrand", "NoBrand > 30% выручки = покупатели берут без оглядки на бренд. Возможность для своего бренда"],
+                ["Высокая доля NoBrand", "NoBrand > 30% = покупатели берут без оглядки на бренд. Возможность для своего бренда"],
                 ["Пустые ниши", "Мало SKU (< 200) + высокая выручка/SKU = мало конкурентов, много спроса"],
                 ["ML-прогноз", "Predict показывает рост на 6 мес вперёд. Растущий прогноз = подтверждение тренда"],
               ]}
             />
           </div>
 
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.amber }}>Wildberries — Инструменты аналитики</h3>
-            <DataTable
-              headers={["Инструмент", "Что даёт", "Цена"]}
-              rows={[
-                ["MPStats.io", "Полная аналитика WB: продажи, ниши, бренды, тренды, ABC-анализ", "от 3 990 ₽/мес"],
-                ["Shopstat (Chrome)", "Бесплатное расширение: продажи, выручка, остатки прямо на WB", "Бесплатно"],
-                ["Moneyplace.io", "Аналитика ниш, трендов, сезонности на WB и Ozon", "от 990 ₽/мес"],
-                ["SellMonitor", "Мониторинг продаж и цен, статистика WB", "Freemium"],
-                ["Sellego", "Поиск ниш с расчётом unit-экономики, маржинальности", "от 1 990 ₽/мес"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Kaspi.kz — Дополнительные инструменты</h3>
-            <DataTable
-              headers={["Инструмент", "Что даёт", "Цена"]}
-              rows={[
-                ["Redstat.kz", "Аналитика продаж Kaspi: категории, бренды, ниши, ML-прогнозы", "Бесплатно"],
-                ["SkyMetric (Chrome)", "Расширение для Kaspi: анализ ниш, динамика рынка", "Freemium"],
-                ["AlgaTop.kz", "Аналитика Kaspi-магазина, поиск товаров, мониторинг конкурентов", "от 4 990 ₸/мес"],
-              ]}
-            />
-          </div>
-
           <div style={{ ...sCard, borderColor: `${C.green}44` }}>
             <h3 style={{ ...sH3, marginTop: 0, color: C.green }}>Стратегия: Запад → СНГ</h3>
-            <p style={sP}>
-              <strong style={{ color: C.text }}>1.</strong> Находим растущий товар на Amazon US (Movers & Shakers, BSR рост)
-            </p>
-            <p style={sP}>
-              <strong style={{ color: C.text }}>2.</strong> Проверяем на Kaspi через Redstat: есть ли ниша? Какой Gini? Сколько продавцов?
-            </p>
-            <p style={sP}>
-              <strong style={{ color: C.text }}>3.</strong> Если ниша пустая или низкая конкуренция — вы первые на рынке с 3-6 мес преимуществом.
-            </p>
-            <p style={sP}>
-              <strong style={{ color: C.text }}>4.</strong> Даже если есть аналоги — улучшаем: упаковка, описание на казахском, фото, Kaspi Red.
-            </p>
+            <p style={sP}><strong style={{ color: C.text }}>1.</strong> Находим растущий товар на Amazon (Helium 10 / Movers & Shakers)</p>
+            <p style={sP}><strong style={{ color: C.text }}>2.</strong> Подтверждаем через рекламу (Minea / PipiAds — товар рекламируют)</p>
+            <p style={sP}><strong style={{ color: C.text }}>3.</strong> Проверяем на Kaspi через Redstat: есть ли ниша? Какой Gini? Сколько продавцов?</p>
+            <p style={sP}><strong style={{ color: C.text }}>4.</strong> Если ниша пустая или низкая конкуренция — вы первые на рынке с 3-6 мес преимуществом</p>
+            <p style={sP}><strong style={{ color: C.text }}>5.</strong> Даже если есть аналоги — улучшаем: упаковка, описание на казахском, фото, Kaspi Red</p>
           </div>
         </Section>
 
-        {/* ═══ Section 7: Amazing.com ═══ */}
-        <Section id="sec-7" title="7. Amazing.com: Практический разбор">
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.accent }}>Что такое Amazing.com</h3>
-            <p style={sP}>
-              Amazing.com (бывший Zon.tools) — AI-платформа для продавцов Amazon. Включает софт для продуктового ресёрча, обучение (Amazing Selling Machine AI) и комьюнити 40K+ селлеров. Заявляют $2B+ суммарных продаж участников.
-            </p>
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Ключевые инструменты Amazing.com</h3>
-            <DataTable
-              headers={["Инструмент", "Что делает", "Применение для поиска трендов"]}
-              rows={[
-                ["Breakout Radar", "AI-предсказание трендов до их массового роста", "Главный инструмент: показывает товары, которые скоро взорвутся"],
-                ["Detective", "Глубокий продуктовый ресёрч: продажи, маржа, конкуренция", "Валидация товара: реальные продажи, прибыль, количество продавцов"],
-                ["AI Analyzer", "Анализ на базе Amazon COSMO модели", "Понимание, почему товар продаётся: ключевые атрибуты спроса"],
-                ["Competitor Analyzer", "Reverse ASIN: разбор конкурентов", "Какие ключевые слова, какие продажи, какая стратегия"],
-                ["Keyword Finder", "Поиск ключевых слов с объёмами", "Растущие запросы = растущий спрос на товар"],
-                ["Chrome Extension", "Данные прямо на странице Amazon", "Быстрая оценка: BSR, продажи, выручка без выхода со страницы"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Стоимость и доступ</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-              <div style={{ textAlign: "center", padding: 16, borderRadius: 8, background: `${C.accent}10` }}>
-                <div style={{ fontSize: 11, color: C.dim, marginBottom: 4 }}>Подписка</div>
-                <div style={{ fontSize: 28, fontWeight: 800, color: C.accent }}>$97/мес</div>
-                <div style={{ fontSize: 12, color: C.dim }}>Был $197 — сейчас скидка</div>
-              </div>
-              <div style={{ textAlign: "center", padding: 16, borderRadius: 8, background: `${C.green}10` }}>
-                <div style={{ fontSize: 11, color: C.dim, marginBottom: 4 }}>Пробный период</div>
-                <div style={{ fontSize: 28, fontWeight: 800, color: C.green }}>14 дней</div>
-                <div style={{ fontSize: 12, color: C.dim }}>Бесплатный доступ ко всему</div>
-              </div>
-            </div>
-          </div>
-
-          <div style={{ ...sCard, borderColor: `${C.amber}44` }}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.amber }}>Практический workflow с Amazing</h3>
-            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
-              <div>1. <span style={{ color: C.amber }}>Breakout Radar</span> → список товаров с прогнозом роста</div>
-              <div>2. Фильтруем: рост {">"} 100%, продажи {">"} 300 шт/мес</div>
-              <div>3. <span style={{ color: C.amber }}>Detective</span> → глубокий анализ каждого кандидата</div>
-              <div>4. <span style={{ color: C.amber }}>Chrome Extension</span> → на Amazon проверяем BSR и продажи</div>
-              <div>5. <span style={{ color: C.green }}>Redstat.kz</span> → проверяем аналогичную нишу на Kaspi</div>
-              <div>6. Если пусто или мало конкурентов → <span style={{ color: C.green }}>GO</span></div>
-            </div>
-          </div>
-        </Section>
-
-        {/* ═══ Section 8: Validation ═══ */}
-        <Section id="sec-8" title="8. Методы валидации товара">
+        {/* ═══ Section 9: Validation ═══ */}
+        <Section id="sec-9" title="9. Методы валидации товара">
           <div style={sCard}>
             <h3 style={{ ...sH3, marginTop: 0 }}>Чеклист валидации: 10 критериев</h3>
             <DataTable
               headers={["#", "Критерий", "Хорошо", "Плохо"]}
               rows={[
                 ["1", "Google Trends", "Линия вверх 6+ мес", "Пик и спад (хайп прошёл)"],
-                ["2", "Amazon BSR", "50-300 в субкатегории", "> 5000 (мало продаж)"],
+                ["2", "Amazon BSR (Helium 10)", "50-300 в субкатегории", "> 5000 (мало продаж)"],
                 ["3", "Отзывы ТОП-10", "< 500 у лидеров", "> 2000 (высокий барьер)"],
                 ["4", "Средний чек", "$15-70", "< $10 (нет маржи)"],
                 ["5", "Маржа после всех расходов", "> 30%", "< 20% (не выжить)"],
                 ["6", "Вес/габариты", "< 2 кг, компактный", "> 5 кг (дорогая доставка)"],
-                ["7", "Негативные отзывы", "Решаемые проблемы (упаковка, инструкция)", "Фундаментальные дефекты"],
-                ["8", "Касpi: Gini ниши", "< 0.65 (есть место)", "> 0.8 (монополия)"],
-                ["9", "Касpi: NoBrand доля", "> 25% (можно с брендом)", "< 5% (бренды доминируют)"],
+                ["7", "Реклама (Minea/PipiAds)", "Крутится > 14 дней", "Нет рекламы или < 3 дня"],
+                ["8", "Kaspi: Gini ниши", "< 0.65 (есть место)", "> 0.8 (монополия)"],
+                ["9", "Kaspi: NoBrand доля", "> 25% (можно с брендом)", "< 5% (бренды доминируют)"],
                 ["10", "Сезонность", "Круглый год или вы к сезону", "Узкий пик, опоздали"],
               ]}
             />
@@ -562,8 +577,8 @@ export default function TrendHuntingGuide() {
           </div>
         </Section>
 
-        {/* ═══ Section 9: Seasonality ═══ */}
-        <Section id="sec-9" title="9. Сезонность и тайминг">
+        {/* ═══ Section 10: Seasonality ═══ */}
+        <Section id="sec-10" title="10. Сезонность и тайминг">
           <div style={sCard}>
             <h3 style={{ ...sH3, marginTop: 0 }}>Календарь сезонных возможностей</h3>
             <DataTable
@@ -578,37 +593,24 @@ export default function TrendHuntingGuide() {
                 ["Декабрь", "Подарки, игрушки, гаджеты, сладости, украшения", "Октябрь"],
               ]}
             />
-
             <div style={{ background: `${C.amber}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
               <strong style={{ color: C.amber }}>Правило:</strong> Готовиться к сезону минимум за 2 месяца. Закупка + доставка + фото + карточка = 4-6 недель. Опоздать = потерять 70% сезонного спроса.
             </div>
           </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Как использовать Google Trends для сезонности</h3>
-            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
-              <div>1. Вводим товар в <span style={{ color: C.accent }}>Google Trends</span></div>
-              <div>2. Период: <span style={{ color: C.accent }}>5 лет</span> (видим повторяющиеся паттерны)</div>
-              <div>3. География: Казахстан / Россия / Worldwide</div>
-              <div>4. Если пик повторяется каждый год в одно время — это <span style={{ color: C.green }}>сезонный товар</span></div>
-              <div>5. Если линия стабильно вверх — это <span style={{ color: C.green }}>растущий тренд</span></div>
-              <div>6. Если пик был один раз — это <span style={{ color: C.red }}>хайп (не входить)</span></div>
-            </div>
-          </div>
         </Section>
 
-        {/* ═══ Section 10: Checklist ═══ */}
-        <Section id="sec-10" title="10. Чеклист: Пошаговый алгоритм">
+        {/* ═══ Section 11: Checklist ═══ */}
+        <Section id="sec-11" title="11. Чеклист: Пошаговый алгоритм">
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.accent, fontSize: 18 }}>Ежедневный ритуал продуктового ресёрча (30 мин)</h3>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.accent, fontSize: 18 }}>Ежедневный ритуал (30 мин)</h3>
             <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
               {[
                 { time: "5 мин", task: "Amazon Movers & Shakers — 3 категории", color: C.amber },
                 { time: "5 мин", task: "TikTok: скролл #TikTokMadeMeBuyIt, сохраняем интересное", color: C.pink },
                 { time: "5 мин", task: "Google Trends: проверяем вчерашние находки", color: C.blue },
-                { time: "5 мин", task: "Reddit: r/AmazonSeller + r/ecommerce — новые посты", color: C.cyan },
-                { time: "5 мин", task: "Exploding Topics / Glimpse — новые тренды", color: C.green },
-                { time: "5 мин", task: "Redstat.kz / MPStats — проверяем кандидатов на Kaspi/WB", color: C.accent },
+                { time: "5 мин", task: "TrendHunter.com: скроллим Trending", color: C.cyan },
+                { time: "5 мин", task: "Minea / PipiAds: новые рекламы за последние 24ч", color: C.accent },
+                { time: "5 мин", task: "Redstat.kz: проверяем кандидатов на Kaspi", color: C.green },
               ].map((s, i) => (
                 <div key={i} style={{ display: "flex", gap: 16, padding: "12px 0", borderBottom: i < 5 ? `1px solid ${C.border}` : "none" }}>
                   <div style={{ width: 50, fontSize: 12, fontWeight: 600, color: C.dim, flexShrink: 0, fontFamily: "monospace" }}>{s.time}</div>
@@ -624,11 +626,11 @@ export default function TrendHuntingGuide() {
             {[
               "Из накопленных за неделю идей отобрать ТОП-5",
               "Каждый проверить через Google Trends (5 лет + 12 мес)",
-              "Проверить через Amazing.com Detective / Jungle Scout / Helium 10",
+              "Helium 10 Black Box / X-Ray: продажи, BSR, отзывы, маржа",
+              "Minea: крутится ли реклама? Как долго? Какой engagement?",
+              "Redstat.kz: ниша на Kaspi, Gini, NoBrand, выручка",
               "Оценить маржу: цена продажи - себестоимость (1688/Alibaba) - доставка - комиссия",
-              "Проверить на Kaspi через Redstat: ниша, Gini, NoBrand, выручка",
               "По 2-3 лучшим — написать поставщикам за ценой и MOQ",
-              "Обновить Google Sheets / Notion с кандидатами",
             ].map((item, i) => (
               <div key={i} style={{ display: "flex", gap: 10, alignItems: "flex-start", marginBottom: 8 }}>
                 <span style={{ display: "inline-flex", alignItems: "center", justifyContent: "center", width: 20, height: 20, borderRadius: "50%", background: `${C.accent}22`, color: C.accent, fontSize: 11, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>{i + 1}</span>
@@ -636,80 +638,21 @@ export default function TrendHuntingGuide() {
               </div>
             ))}
           </div>
-        </Section>
 
-        {/* ═══ Section 11: Full Tool Stack ═══ */}
-        <Section id="sec-11" title="11. Полный стек инструментов">
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Amazon-инструменты</h3>
+          <div style={{ ...sCard, borderColor: C.green, borderWidth: 2 }}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.green, fontSize: 18 }}>Наш стек инструментов</h3>
+            <p style={{ ...sP, marginBottom: 16 }}>Все инструменты доступны через общий аккаунт. Доступ предоставляется участникам.</p>
             <DataTable
-              headers={["Инструмент", "Тип", "Цена", "Ключевая фича"]}
+              headers={["Инструмент", "Для чего"]}
               rows={[
-                ["Amazing.com", "Полная платформа", "$97/мес", "Breakout Radar — AI-предсказание трендов"],
-                ["Jungle Scout", "Продуктовый ресёрч", "от $49/мес", "Product Database + точность 84%"],
-                ["Helium 10", "Полная платформа", "от $39/мес", "Black Box + 30+ инструментов"],
-                ["Keepa", "История цен/BSR", "от $19/мес", "График BSR за всю историю товара"],
-                ["AMZScout", "Chrome + SaaS", "от $45/мес", "PRO Extension — данные на странице Amazon"],
-                ["ZonGuru", "Продуктовый ресёрч", "от $49/мес", "Niche Finder + Sales Spy"],
-                ["SellerSprite", "Аналитика Amazon", "от $39/мес", "Keyword Mining + BSR трекер"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Shopify / DTC Spy</h3>
-            <DataTable
-              headers={["Инструмент", "Тип", "Цена", "Ключевая фича"]}
-              rows={[
-                ["Niche Scraper", "Shopify Spy", "$13/мес", "Сканер магазинов + реклама"],
-                ["PPSPY", "Shopify анализ", "Freemium", "AI-оценка продаж 130K+ магазинов"],
-                ["ShopHunter", "Трекер магазинов", "Freemium", "Алерты по новым товарам"],
-                ["SimplyTrends", "Chrome", "Бесплатно", "Технологии + бестселлеры любого Shopify"],
-                ["Ecomhunt", "Winning Products", "от $29/мес", "Ручной отбор + рекламные креативы"],
-                ["Sell The Trend", "AI Nexus", "от $40/мес", "ML-алгоритм трендовых товаров"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Тренд-детекторы и аналитика</h3>
-            <DataTable
-              headers={["Инструмент", "Тип", "Цена", "Ключевая фича"]}
-              rows={[
-                ["Google Trends", "Поисковые тренды", "Бесплатно", "20+ лет данных, сезонность"],
-                ["Exploding Topics", "AI тренд-радар", "$39/мес", "Тренды за 6 мес до массового рынка"],
-                ["Glimpse", "Google Trends+", "Freemium", "Реальные объёмы поиска + прогнозы"],
-                ["Treendly", "Мульти-источник", "Freemium", "Алерты по категориям"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>СНГ / Kaspi / Wildberries</h3>
-            <DataTable
-              headers={["Инструмент", "Рынок", "Цена", "Ключевая фича"]}
-              rows={[
-                ["Redstat.kz", "Kaspi.kz", "Бесплатно", "Выручка, Gini, NoBrand, ML-прогнозы"],
-                ["SkyMetric", "Kaspi.kz", "Freemium", "Chrome-расширение, динамика рынка"],
-                ["AlgaTop.kz", "Kaspi.kz", "от 4 990 ₸/мес", "Аналитика магазина, мониторинг"],
-                ["MPStats.io", "Wildberries", "от 3 990 ₽/мес", "Полная аналитика WB"],
-                ["Shopstat", "Wildberries", "Бесплатно", "Chrome-расширение для WB"],
-                ["Moneyplace.io", "WB + Ozon", "от 990 ₽/мес", "Ниши, тренды, сезонность"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>Социальные платформы</h3>
-            <DataTable
-              headers={["Платформа", "Что мониторить", "Частота"]}
-              rows={[
-                ["TikTok", "#TikTokMadeMeBuyIt, TikTok Shop Trending", "Ежедневно"],
-                ["Reddit", "r/AmazonSeller, r/ecommerce, r/dropshipping", "Ежедневно"],
-                ["YouTube", "Product review каналы, FBA блогеры", "2-3 раза в неделю"],
-                ["Instagram", "Reels с товарами, DTC-бренды", "Ежедневно"],
-                ["Pinterest", "Trending Pins по категориям", "Еженедельно"],
-                ["Facebook Ad Library", "Реклама конкурентов и DTC-брендов", "Еженедельно"],
+                ["Helium 10", "Amazon: поиск товаров (Black Box), анализ на странице (X-Ray), ключевые слова"],
+                ["Niche Scraper", "Shopify: сканер магазинов, бестселлеры, winning products"],
+                ["ShopHunter", "Shopify: трекер продаж магазинов в реальном времени"],
+                ["Minea", "Ad Spy: реклама TikTok, Facebook, Pinterest — какие товары продвигают"],
+                ["PipiAds", "TikTok Ad Spy: крупнейшая база TikTok-рекламы для ecommerce"],
+                ["Exploding Topics", "Тренд-радар: тренды за 6 мес до массового рынка"],
+                ["Google Trends", "Бесплатно: сезонность, рост/спад интереса, география"],
+                ["Redstat.kz", "Бесплатно: аналитика Kaspi.kz — выручка, Gini, NoBrand, ML-прогнозы"],
               ]}
             />
           </div>
