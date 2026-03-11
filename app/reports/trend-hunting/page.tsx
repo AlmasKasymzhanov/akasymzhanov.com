@@ -98,7 +98,7 @@ export default function TrendHuntingGuide() {
             Поиск трендовых товаров<br />и новинок для маркетплейсов
           </h1>
           <p style={{ color: C.dim, fontSize: 14, margin: "12px 0 0" }}>
-            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong> для участников <strong style={{ color: C.text }}>10b.kz</strong>
+            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong>
           </p>
           <div style={{ display: "flex", gap: 20, marginTop: 12, fontSize: 12, color: C.dim }}>
             <span>Актуально: <strong style={{ color: C.text }}>Март 2026</strong></span>
@@ -195,7 +195,7 @@ export default function TrendHuntingGuide() {
             ]} />
             <StepCard num={3} title="Глубокая валидация" desc="10-15 товаров проверяем через Helium 10 и Redstat" color={C.green} items={[
               "Helium 10 Black Box: продажи/мес, BSR, количество отзывов",
-              "AMZScout / X-Ray (Chrome): данные по каждой карточке прямо на выдаче Amazon",
+              "Amazing (Chrome Extension): данные по каждой карточке прямо на выдаче Amazon",
               "Конкуренция: отзывов у ТОП-10 < 500 = вход реален",
               "Маржа: цена продажи - себестоимость - доставка - комиссия > 30%",
               "Redstat.kz: выручка ниши на Kaspi, Gini (< 0.7), доля NoBrand",
@@ -213,7 +213,7 @@ export default function TrendHuntingGuide() {
         <Section id="sec-3" title="3. Helium 10: Поиск товаров на Amazon">
           <div style={{ ...sCard, borderColor: `${C.amber}44` }}>
             <h3 style={{ ...sH3, marginTop: 0, color: C.amber }}>Helium 10 — главный инструмент Amazon-ресёрча</h3>
-            <p style={sP}>30+ инструментов в одном. Для поиска трендовых товаров используем три ключевых: Black Box, X-Ray (Chrome Extension) и Keyword Research.</p>
+            <p style={sP}>30+ инструментов в одном. Для поиска трендовых товаров используем два ключевых: Black Box и Keyword Research.</p>
           </div>
 
           <div style={sCard}>
@@ -240,34 +240,18 @@ export default function TrendHuntingGuide() {
               <div>2. Сортируем результаты по <span style={{ color: C.green }}>Revenue</span> (убывание)</div>
               <div>3. Смотрим: Review Count {"<"} 300 + Revenue {">"} $5K = <span style={{ color: C.green }}>перспективный</span></div>
               <div>4. Кликаем на товар → открывается Amazon</div>
-              <div>5. На Amazon запускаем <span style={{ color: C.amber }}>X-Ray</span> для глубокого анализа</div>
+              <div>5. На Amazon включаем <span style={{ color: C.cyan }}>Amazing Extension</span> для глубокого анализа выдачи</div>
             </div>
           </div>
 
           <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0 }}>X-Ray (Chrome Extension) — анализ на странице Amazon</h3>
-            <p style={sP}>Расширение показывает данные по каждому товару прямо на странице Amazon: продажи, выручка, BSR, количество продавцов.</p>
-            <DataTable
-              headers={["Что смотреть", "На что обращать внимание"]}
-              rows={[
-                ["Monthly Revenue", "Сколько зарабатывает этот конкретный товар в месяц"],
-                ["Monthly Sales", "Количество продаж — стабильный ли спрос"],
-                ["BSR", "Best Sellers Rank в категории — чем ниже, тем лучше"],
-                ["Review Count", "< 300 у ТОП-10 = можно конкурировать"],
-                ["Price", "Средняя цена ниши — ориентир для вашего товара"],
-                ["Revenue Trend", "Растёт или падает за последние месяцы"],
-              ]}
-            />
-          </div>
-
-          <div style={sCard}>
-            <h3 style={{ ...sH3, marginTop: 0, color: C.cyan }}>AMZScout (Chrome Extension) — анализ выдачи Amazon</h3>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.cyan }}>Amazing (Chrome Extension) — анализ выдачи Amazon</h3>
             <p style={sP}>
-              Chrome-расширение, которое работает <strong style={{ color: C.text }}>прямо на странице поиска Amazon</strong>. Вводите запрос → включаете расширение → видите выручку, продажи, BSR и тренды по <em>каждой карточке</em> на выдаче. Не нужно открывать каждый товар отдельно.
+              Chrome-расширение от <a href="https://amazing.com/" target="_blank" rel="noopener" style={{ color: C.cyan, textDecoration: "none", borderBottom: `1px solid ${C.cyan}44` }}>Amazing.com</a> (бывший Zoof). Работает <strong style={{ color: C.text }}>прямо на странице поиска Amazon</strong>: вводите запрос → включаете расширение → видите выручку, продажи, BSR и тренды по <em>каждой карточке</em> на выдаче. Не нужно открывать каждый товар отдельно.
             </p>
 
             <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
-              <div><span style={{ color: C.cyan }}>Workflow AMZScout Extension:</span></div>
+              <div><span style={{ color: C.cyan }}>Workflow Amazing Extension:</span></div>
               <div>1. Открываем Amazon → вводим запрос (напр. <span style={{ color: C.green }}>&quot;bug zapper&quot;</span>)</div>
               <div>2. Нажимаем иконку расширения в Chrome → открывается оверлей</div>
               <div>3. Видим по <span style={{ color: C.green }}>каждому товару на выдаче</span>:</div>
@@ -291,7 +275,7 @@ export default function TrendHuntingGuide() {
             />
 
             <div style={{ background: `${C.cyan}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
-              <strong style={{ color: C.cyan }}>Преимущество над X-Ray:</strong> AMZScout показывает данные <strong style={{ color: C.text }}>всей выдачи разом</strong> — не нужно заходить на каждую карточку. Открыли запрос → включили → видите всю картину ниши за 10 секунд.
+              <strong style={{ color: C.cyan }}>Главное преимущество:</strong> Amazing показывает данные <strong style={{ color: C.text }}>всей выдачи разом</strong> — не нужно заходить на каждую карточку. Открыли запрос → включили → видите всю картину ниши за 10 секунд.
             </div>
           </div>
 
@@ -321,7 +305,7 @@ export default function TrendHuntingGuide() {
               ]}
             />
             <div style={{ background: `${C.amber}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc" }}>
-              <strong style={{ color: C.amber }}>Метод:</strong> Открываем Movers & Shakers → находим интересный товар → открываем его → включаем X-Ray → смотрим данные → если подходит под критерии — добавляем в список кандидатов.
+              <strong style={{ color: C.amber }}>Метод:</strong> Открываем Movers & Shakers → находим интересный товар → включаем Amazing Extension → смотрим данные по всей выдаче → если подходит под критерии — добавляем в список кандидатов.
             </div>
           </div>
         </Section>
@@ -461,6 +445,11 @@ export default function TrendHuntingGuide() {
                 ["Сохраняем в закладки", "Каждый день 5-10 минут скроллинга → сохраняем интересное → анализируем через неделю"],
               ]}
             />
+
+            <div style={{ background: `${C.pink}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
+              <strong style={{ color: C.pink }}>TikTok Creative Center:</strong>{" "}
+              <a href="https://ads.tiktok.com/business/creativecenter/inspiration/topads/pc/en?region=KZ" target="_blank" rel="noopener" style={{ color: C.pink, textDecoration: "none", borderBottom: `1px solid ${C.pink}44` }}>ads.tiktok.com/business/creativecenter</a> — официальный инструмент TikTok для анализа топовых рекламных креативов. Фильтруйте по региону (KZ, RU), категории и периоду. Показывает самые эффективные рекламные видео — какие товары сейчас продвигают и какие форматы работают.
+            </div>
           </div>
 
           <div style={sCard}>
@@ -661,7 +650,7 @@ export default function TrendHuntingGuide() {
             {[
               "Из накопленных за неделю идей отобрать ТОП-5",
               "Каждый проверить через Google Trends (5 лет + 12 мес)",
-              "Helium 10 Black Box / X-Ray: продажи, BSR, отзывы, маржа",
+              "Helium 10 Black Box + Amazing Extension: продажи, BSR, отзывы, маржа",
               "Minea: крутится ли реклама? Как долго? Какой engagement?",
               "Redstat.kz: ниша на Kaspi, Gini, NoBrand, выручка",
               "Оценить маржу: цена продажи - себестоимость (1688/Alibaba) - доставка - комиссия",
@@ -680,8 +669,8 @@ export default function TrendHuntingGuide() {
             <DataTable
               headers={["Инструмент", "Для чего"]}
               rows={[
-                ["Helium 10", "Amazon: поиск товаров (Black Box), анализ на странице (X-Ray), ключевые слова"],
-                ["AMZScout", "Chrome Extension: анализ всей выдачи Amazon разом — выручка, продажи, BSR каждой карточки"],
+                ["Helium 10", "Amazon: поиск товаров (Black Box), ключевые слова (Keywords)"],
+                ["Amazing", "Chrome Extension: анализ всей выдачи Amazon разом — выручка, продажи, BSR каждой карточки"],
                 ["Niche Scraper", "Shopify: сканер магазинов, бестселлеры, winning products"],
                 ["ShopHunter", "Shopify: трекер продаж магазинов в реальном времени"],
                 ["Minea", "Ad Spy: реклама TikTok, Facebook, Pinterest — какие товары продвигают"],
