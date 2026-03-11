@@ -195,7 +195,7 @@ export default function TrendHuntingGuide() {
             ]} />
             <StepCard num={3} title="Глубокая валидация" desc="10-15 товаров проверяем через Helium 10 и Redstat" color={C.green} items={[
               "Helium 10 Black Box: продажи/мес, BSR, количество отзывов",
-              "Helium 10 X-Ray (Chrome): данные прямо на странице Amazon",
+              "AMZScout / X-Ray (Chrome): данные по каждой карточке прямо на выдаче Amazon",
               "Конкуренция: отзывов у ТОП-10 < 500 = вход реален",
               "Маржа: цена продажи - себестоимость - доставка - комиссия > 30%",
               "Redstat.kz: выручка ниши на Kaspi, Gini (< 0.7), доля NoBrand",
@@ -258,6 +258,41 @@ export default function TrendHuntingGuide() {
                 ["Revenue Trend", "Растёт или падает за последние месяцы"],
               ]}
             />
+          </div>
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, marginTop: 0, color: C.cyan }}>AMZScout (Chrome Extension) — анализ выдачи Amazon</h3>
+            <p style={sP}>
+              Chrome-расширение, которое работает <strong style={{ color: C.text }}>прямо на странице поиска Amazon</strong>. Вводите запрос → включаете расширение → видите выручку, продажи, BSR и тренды по <em>каждой карточке</em> на выдаче. Не нужно открывать каждый товар отдельно.
+            </p>
+
+            <div style={{ fontFamily: "monospace", fontSize: 12, color: C.dim, lineHeight: 2, background: "#0d0d18", borderRadius: 8, padding: 16 }}>
+              <div><span style={{ color: C.cyan }}>Workflow AMZScout Extension:</span></div>
+              <div>1. Открываем Amazon → вводим запрос (напр. <span style={{ color: C.green }}>&quot;bug zapper&quot;</span>)</div>
+              <div>2. Нажимаем иконку расширения в Chrome → открывается оверлей</div>
+              <div>3. Видим по <span style={{ color: C.green }}>каждому товару на выдаче</span>:</div>
+              <div>   — Monthly Revenue, Monthly Sales, BSR</div>
+              <div>   — Price, Reviews, Sales History (графики)</div>
+              <div>4. Сверху: <span style={{ color: C.amber }}>Total Monthly Revenue</span> всей выдачи (размер ниши)</div>
+              <div>5. Ищем товары с высокой выручкой + мало отзывов = <span style={{ color: C.green }}>возможность</span></div>
+            </div>
+
+            <DataTable
+              headers={["Метрика в оверлее", "На что смотреть"]}
+              rows={[
+                ["Tot. Monthly Revenue", "Общая выручка выдачи — размер ниши. > $500K = крупная ниша"],
+                ["Mo. Revenue (каждого)", "Выручка конкретного товара в месяц. $5K-50K = sweet spot"],
+                ["Mo. Sales", "Количество продаж. Стабильные > 100/мес = подтверждённый спрос"],
+                ["BSR", "Best Sellers Rank. Чем ниже, тем больше продаж"],
+                ["D. Sales", "Продажи за день — видно текущую динамику"],
+                ["Reviews", "< 300 у конкурента = реально обогнать набрав отзывы"],
+                ["Sales History", "Мини-график тренда. Линия вверх = растущий спрос"],
+              ]}
+            />
+
+            <div style={{ background: `${C.cyan}10`, borderRadius: 8, padding: "14px 16px", fontSize: 13, color: "#ccc", marginTop: 12 }}>
+              <strong style={{ color: C.cyan }}>Преимущество над X-Ray:</strong> AMZScout показывает данные <strong style={{ color: C.text }}>всей выдачи разом</strong> — не нужно заходить на каждую карточку. Открыли запрос → включили → видите всю картину ниши за 10 секунд.
+            </div>
           </div>
 
           <div style={sCard}>
@@ -646,6 +681,7 @@ export default function TrendHuntingGuide() {
               headers={["Инструмент", "Для чего"]}
               rows={[
                 ["Helium 10", "Amazon: поиск товаров (Black Box), анализ на странице (X-Ray), ключевые слова"],
+                ["AMZScout", "Chrome Extension: анализ всей выдачи Amazon разом — выручка, продажи, BSR каждой карточки"],
                 ["Niche Scraper", "Shopify: сканер магазинов, бестселлеры, winning products"],
                 ["ShopHunter", "Shopify: трекер продаж магазинов в реальном времени"],
                 ["Minea", "Ad Spy: реклама TikTok, Facebook, Pinterest — какие товары продвигают"],
