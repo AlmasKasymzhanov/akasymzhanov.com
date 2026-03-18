@@ -15,6 +15,13 @@ const TOOLS = [
     badge: "Гайд",
     color: "#00d2a0",
   },
+  {
+    title: "AI для селлеров",
+    desc: "NotebookLM + Claude: база знаний без лимитов + мозг-аналитик. Установка MCP, Claude for Sheets, API-интеграции.",
+    href: "/tools/ai-seller-guide",
+    badge: "Занятие 5",
+    color: "#e84393",
+  },
 ];
 
 export const metadata = {
