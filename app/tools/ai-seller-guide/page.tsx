@@ -562,6 +562,49 @@ export default function AiSellerGuidePage() {
                 В Проводнике нажмите «Вид» (сверху) &rarr; поставьте галочку «Расширения имен файлов».
                 Теперь вы увидите полные имена файлов и сможете переименовать правильно.
               </div>
+
+              {/* Troubleshooting — Windows */}
+              <div style={{ background: `${C.red}08`, border: `1px solid ${C.red}18`, borderRadius: 8, padding: "14px 16px", marginTop: 12 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C.red, marginBottom: 10 }}>Не получается открыть папку? Три запасных способа:</div>
+
+                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2, marginBottom: 12 }}>
+                  <strong style={{ color: C.amber }}>Способ 1:</strong> Убедитесь, что Claude Desktop был запущен хотя бы один раз.<br />
+                  <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>
+                    Папка Claude создаётся автоматически при первом запуске приложения.
+                    Запустите Claude Desktop &rarr; войдите в аккаунт &rarr; закройте &rarr; попробуйте снова.
+                  </div>
+                </div>
+
+                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2, marginBottom: 12 }}>
+                  <strong style={{ color: C.amber }}>Способ 2: Ручной путь через Проводник</strong><br />
+                  <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                    1. Откройте Проводник (иконка папки на панели задач)<br />
+                    2. В адресной строке сверху вставьте:
+                  </div>
+                </div>
+                <div style={{ ...sCodeBlock, margin: "0 0 8px 24px", fontSize: 11 }}>
+                  <CopyBtn text="C:\Users\ВАШ_ЛОГИН\AppData\Roaming\Claude" />
+                  {`C:\\Users\\ВАШ_ЛОГИН\\AppData\\Roaming\\Claude`}
+                </div>
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2, marginBottom: 12 }}>
+                  Замените <span style={sCode}>ВАШ_ЛОГИН</span> на ваше имя пользователя Windows
+                  (например, <span style={sCode}>Almas</span>, <span style={sCode}>Arman</span>, <span style={sCode}>User</span>).<br />
+                  <strong style={{ color: C.amber }}>Папка AppData скрыта!</strong> Чтобы её увидеть:
+                  Проводник &rarr; «Вид» &rarr; галочка «Скрытые элементы».
+                </div>
+
+                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                  <strong style={{ color: C.amber }}>Способ 3: Создать папку и файл вручную</strong><br />
+                  <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                    Если папки Claude нет совсем — создайте её сами:<br />
+                    1. Нажмите <span style={sCode}>Win + R</span> &rarr; вставьте <span style={sCode}>%APPDATA%</span> &rarr; Enter<br />
+                    2. Откроется папка Roaming. Нажмите правой кнопкой &rarr; «Создать» &rarr; «Папку»<br />
+                    3. Назовите её <span style={sCode}>Claude</span> (с большой буквы)<br />
+                    4. Зайдите в неё и создайте файл <span style={sCode}>claude_desktop_config.json</span><br />
+                    (правая кнопка &rarr; «Создать» &rarr; «Текстовый документ» &rarr; переименуйте с расширением .json)
+                  </div>
+                </div>
+              </div>
             </div>
 
             {/* Mac */}
@@ -596,6 +639,20 @@ export default function AiSellerGuidePage() {
               <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
                 <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>
                   3. Нажмите Enter — файл создан. Вернитесь в Finder и откройте его.
+                </div>
+              </div>
+
+              {/* Troubleshooting — Mac */}
+              <div style={{ background: `${C.red}08`, border: `1px solid ${C.red}18`, borderRadius: 8, padding: "14px 16px", marginTop: 12 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C.red, marginBottom: 8 }}>Не получается найти папку?</div>
+                <div style={{ fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                  <strong style={{ color: C.amber }}>1.</strong> Убедитесь, что Claude Desktop был запущен хотя бы раз (папка создаётся при первом запуске).<br />
+                  <strong style={{ color: C.amber }}>2.</strong> Папка Library скрыта. В Finder нажмите <span style={sCode}>Cmd + Shift + .</span> (точка) — скрытые папки станут видны.<br />
+                  <strong style={{ color: C.amber }}>3.</strong> Создайте папку и файл через Terminal:
+                </div>
+                <div style={{ ...sCodeBlock, margin: "8px 0", fontSize: 11 }}>
+                  <CopyBtn text={'mkdir -p ~/Library/Application\\ Support/Claude && touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json'} />
+                  {`mkdir -p ~/Library/Application\\ Support/Claude && touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json`}
                 </div>
               </div>
             </div>
