@@ -632,18 +632,18 @@ export default function AiSellerGuidePage() {
           <p style={sP}>Детальные отчёты по нишам Wildberries, подготовленные с помощью MPSTATS + AI-анализа:</p>
 
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12 }}>
-            <a href="https://docs.google.com/document/d/1" target="_blank" rel="noopener" style={{ textDecoration: "none" }}>
+            <Link href="/reports/kaspi-clothing" style={{ textDecoration: "none" }}>
               <div style={{ ...sCard, marginBottom: 0, cursor: "pointer", transition: "all 0.2s", borderColor: C.border }}>
-                <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: "0 0 6px" }}>👗 Отчёт: Одежда</p>
+                <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: "0 0 6px" }}>👗 Отчёт: Одежда на Kaspi</p>
                 <p style={{ fontSize: 12, color: C.dim, margin: 0 }}>Полный разбор ниши: выручка, бренды, монополизация, ценовые сегменты, точки входа</p>
               </div>
-            </a>
-            <a href="https://docs.google.com/document/d/2" target="_blank" rel="noopener" style={{ textDecoration: "none" }}>
+            </Link>
+            <Link href="/reports/optics-guide" style={{ textDecoration: "none" }}>
               <div style={{ ...sCard, marginBottom: 0, cursor: "pointer", transition: "all 0.2s", borderColor: C.border }}>
-                <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: "0 0 6px" }}>🕶 Отчёт: Очки</p>
-                <p style={{ fontSize: 12, color: C.dim, margin: 0 }}>Полный разбор ниши: выручка, бренды, монополизация, ценовые сегменты, точки входа</p>
+                <p style={{ fontSize: 14, fontWeight: 600, color: C.text, margin: "0 0 6px" }}>🕶 Разбор: Оптика (сезонный товар)</p>
+                <p style={{ fontSize: 12, color: C.dim, margin: 0 }}>Пример анализа сезонного товара: 3 сегмента, SWOT, план входа, прогноз выручки</p>
               </div>
-            </a>
+            </Link>
           </div>
 
           <div style={sTip}>
