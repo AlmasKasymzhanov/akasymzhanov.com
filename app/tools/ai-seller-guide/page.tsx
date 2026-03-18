@@ -386,189 +386,288 @@ export default function AiSellerGuidePage() {
             Лучшее из двух миров.
           </p>
 
-          <h3 style={sH3}>Установка (5 минут)</h3>
+          <h3 style={sH3}>Пошаговая установка</h3>
 
-          {/* ── Предварительные требования ── */}
-          <div style={{ ...sCard, borderColor: C.accent }}>
-            <div style={{ fontSize: 14, fontWeight: 600, color: C.accent, marginBottom: 12 }}>Что нужно установить</div>
-            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                <span style={sStepNum}>1</span>
-                <div>
-                  <strong>Node.js</strong> (версия 18+) — скачать с{" "}
-                  <a href="https://nodejs.org" target="_blank" rel="noopener" style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accent}44` }}>nodejs.org</a>
-                  <p style={{ fontSize: 12, color: C.dim, margin: "4px 0 0" }}>Нажмите кнопку LTS (рекомендуемая версия) &rarr; скачайте &rarr; установите, нажимая «Next» на всех шагах.</p>
-                </div>
-              </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                <span style={sStepNum}>2</span>
-                <div>
-                  <strong>Claude Desktop App</strong> — скачать с{" "}
-                  <a href="https://claude.ai/download" target="_blank" rel="noopener" style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accent}44` }}>claude.ai/download</a>
-                  <p style={{ fontSize: 12, color: C.dim, margin: "4px 0 0" }}>Именно десктоп-приложение, не сайт в браузере. Скачайте и установите.</p>
-                </div>
-              </div>
-              <div style={{ display: "flex", alignItems: "flex-start", gap: 10 }}>
-                <span style={sStepNum}>3</span>
-                <div>
-                  <strong>Текстовый редактор</strong> — для редактирования файла настроек
-                  <p style={{ fontSize: 12, color: C.dim, margin: "4px 0 0" }}>Нужен для одного действия — вставить настройку в JSON-файл. Два варианта:</p>
-                  <div style={{ display: "flex", gap: 8, marginTop: 8, flexWrap: "wrap" }}>
-                    <div style={{ background: `${C.green}10`, border: `1px solid ${C.green}22`, borderRadius: 8, padding: "10px 14px", flex: 1, minWidth: 200 }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: C.green, marginBottom: 4 }}>Простой вариант (ничего ставить не нужно)</div>
-                      <div style={{ fontSize: 12, color: C.dim, lineHeight: 1.5 }}>
-                        <strong style={{ color: "#ccc" }}>Windows:</strong> Блокнот (Notepad) — уже установлен<br />
-                        <strong style={{ color: "#ccc" }}>Mac:</strong> TextEdit — уже установлен
-                      </div>
-                    </div>
-                    <div style={{ background: `${C.accent}10`, border: `1px solid ${C.accent}22`, borderRadius: 8, padding: "10px 14px", flex: 1, minWidth: 200 }}>
-                      <div style={{ fontSize: 12, fontWeight: 700, color: C.accent, marginBottom: 4 }}>Продвинутый вариант (рекомендуется)</div>
-                      <div style={{ fontSize: 12, color: C.dim, lineHeight: 1.5 }}>
-                        <strong style={{ color: "#ccc" }}>VS Code</strong> — бесплатный редактор кода от Microsoft<br />
-                        Скачать:{" "}
-                        <a href="https://code.visualstudio.com" target="_blank" rel="noopener" style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accent}44` }}>code.visualstudio.com</a>
-                        <br />
-                        <span style={{ fontSize: 11 }}>Подсвечивает JSON, не даст ошибиться. Пригодится для API-скриптов.</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+          {/* ══════ ШАГ 1: Node.js ══════ */}
+          <div style={{ ...sCard, borderColor: C.green, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 36, height: 36, fontSize: 16 }}>1</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.green }}>Установите Node.js</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Время: 2 минуты</div>
               </div>
             </div>
-          </div>
 
-          {/* ── Шаг 1: Проверка Node.js ── */}
-          <div style={{ display: "flex", gap: 12, marginBottom: 16, alignItems: "flex-start" }}>
-            <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 32, height: 32, fontSize: 14 }}>1</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Проверьте, что Node.js установлен</div>
-              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.7, marginBottom: 8 }}>
-                <strong style={{ color: C.text }}>Windows:</strong> нажмите <span style={sCode}>Win + R</span>, введите <span style={sCode}>cmd</span>, нажмите Enter.<br />
-                <strong style={{ color: C.text }}>Mac:</strong> откройте Spotlight (<span style={sCode}>Cmd + Пробел</span>), введите <span style={sCode}>Terminal</span>, нажмите Enter.
+            <div style={{ background: `${C.green}08`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginBottom: 16, lineHeight: 1.7 }}>
+              <strong style={{ color: C.green }}>Что такое Node.js и зачем он нужен?</strong><br />
+              Node.js — это программа, которая позволяет запускать код на вашем компьютере.
+              Сам по себе он ничего не делает — он нужен как «движок» для работы MCP-плагина,
+              который связывает Claude с NotebookLM. Установили один раз — забыли, он работает в фоне.
+            </div>
+
+            <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2 }}>
+              <strong style={{ color: C.text }}>1.</strong> Откройте сайт{" "}
+              <a href="https://nodejs.org" target="_blank" rel="noopener" style={{ color: C.green, textDecoration: "none", borderBottom: `1px solid ${C.green}44` }}>nodejs.org</a><br />
+              <strong style={{ color: C.text }}>2.</strong> Нажмите большую зелёную кнопку <strong>«LTS»</strong> (это стабильная версия) — скачается файл<br />
+              <strong style={{ color: C.text }}>3.</strong> Откройте скачанный файл<br />
+              <strong style={{ color: C.text }}>4.</strong> Нажимайте <strong>«Next»</strong> на каждом экране, ничего не меняя<br />
+              <strong style={{ color: C.text }}>5.</strong> Когда появится экран <em>«Tools for Native Modules»</em> с галочкой — <strong style={{ color: C.amber }}>НЕ ставьте галочку</strong>, просто «Next»<br />
+              <strong style={{ color: C.text }}>6.</strong> Нажмите <strong>«Install»</strong>, затем <strong>«Finish»</strong>
+            </div>
+
+            <div style={{ borderTop: `1px solid ${C.border}`, marginTop: 16, paddingTop: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.text, marginBottom: 8 }}>Как проверить, что Node.js установился:</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2, marginBottom: 8 }}>
+                <strong style={{ color: C.text }}>Windows:</strong><br />
+                <div style={{ paddingLeft: 16 }}>
+                  1. На клавиатуре нажмите одновременно клавиши <span style={sCode}>Win</span> + <span style={sCode}>R</span> (клавиша Win — с логотипом Windows, внизу слева)<br />
+                  2. Появится маленькое окошко «Выполнить». Напишите в нём: <span style={sCode}>cmd</span><br />
+                  3. Нажмите Enter — откроется чёрное окно (это терминал / командная строка)<br />
+                  4. Напишите команду и нажмите Enter:
+                </div>
               </div>
-              <p style={{ ...sP, margin: "4px 0 8px" }}>В открывшемся окне введите команду:</p>
-              <div style={{ ...sCodeBlock, marginBottom: 0 }}>
+              <div style={{ ...sCodeBlock, marginBottom: 4 }}>
                 <CopyBtn text="node --version" />
                 {`node --version`}
               </div>
-              <p style={{ fontSize: 12, color: C.dim, margin: "6px 0 0" }}>
-                Если видите <span style={sCode}>v18.x.x</span> или выше — всё ОК.
-                Если ошибка — вернитесь и установите Node.js с nodejs.org.
-              </p>
-            </div>
-          </div>
-
-          {/* ── Шаг 2: Найти файл конфигурации ── */}
-          <div style={{ display: "flex", gap: 12, marginBottom: 16, alignItems: "flex-start" }}>
-            <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 32, height: 32, fontSize: 14 }}>2</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Найдите и откройте файл настроек Claude</div>
-
-              {/* Windows */}
-              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8, padding: "16px", marginBottom: 8 }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: C.green, marginBottom: 10 }}>Windows — пошагово:</div>
-                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                  <strong>1.</strong> Нажмите <span style={sCode}>Win + R</span> (откроется окно «Выполнить»)<br />
-                  <strong>2.</strong> Скопируйте и вставьте этот путь:
-                </div>
-                <div style={{ ...sCodeBlock, margin: "8px 0" }}>
-                  <CopyBtn text="%APPDATA%\Claude" />
-                  {`%APPDATA%\\Claude`}
-                </div>
-                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                  <strong>3.</strong> Нажмите Enter — откроется папка Claude<br />
-                  <strong>4.</strong> Ищите файл <span style={sCode}>claude_desktop_config.json</span><br />
-                  <strong>5.</strong> Если файла <strong>нет</strong> — создайте его:<br />
-                  <div style={{ paddingLeft: 20, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
-                    &bull; Правая кнопка мыши &rarr; «Создать» &rarr; «Текстовый документ»<br />
-                    &bull; Назовите его <span style={sCode}>claude_desktop_config.json</span><br />
-                    &bull; <strong style={{ color: C.amber }}>Важно:</strong> убедитесь, что расширение именно <span style={sCode}>.json</span>, а не <span style={sCode}>.json.txt</span>
-                  </div>
-                  <strong>6.</strong> Откройте файл:<br />
-                  <div style={{ paddingLeft: 20, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
-                    &bull; <strong>Блокнот:</strong> правая кнопка &rarr; «Открыть с помощью» &rarr; «Блокнот»<br />
-                    &bull; <strong>VS Code:</strong> правая кнопка &rarr; «Открыть с помощью» &rarr; «Visual Studio Code»
-                  </div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2 }}>
+                <strong style={{ color: C.text }}>Mac:</strong><br />
+                <div style={{ paddingLeft: 16 }}>
+                  1. Нажмите <span style={sCode}>Cmd</span> + <span style={sCode}>Пробел</span> (откроется поиск Spotlight)<br />
+                  2. Напишите <span style={sCode}>Terminal</span> и нажмите Enter<br />
+                  3. В открывшемся окне введите ту же команду: <span style={sCode}>node --version</span>
                 </div>
               </div>
-
-              {/* Mac */}
-              <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8, padding: "16px" }}>
-                <div style={{ fontSize: 13, fontWeight: 700, color: C.accent, marginBottom: 10 }}>Mac — пошагово:</div>
-                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                  <strong>1.</strong> Откройте Finder<br />
-                  <strong>2.</strong> Нажмите <span style={sCode}>Cmd + Shift + G</span> (откроется «Переход к папке»)<br />
-                  <strong>3.</strong> Скопируйте и вставьте:
-                </div>
-                <div style={{ ...sCodeBlock, margin: "8px 0" }}>
-                  <CopyBtn text="~/Library/Application Support/Claude" />
-                  {`~/Library/Application Support/Claude`}
-                </div>
-                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                  <strong>4.</strong> Нажмите Enter — откроется папка Claude<br />
-                  <strong>5.</strong> Ищите файл <span style={sCode}>claude_desktop_config.json</span><br />
-                  <strong>6.</strong> Если файла <strong>нет</strong> — откройте Terminal и выполните:
-                </div>
-                <div style={{ ...sCodeBlock, margin: "8px 0" }}>
-                  <CopyBtn text={'touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json'} />
-                  {`touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json`}
-                </div>
-                <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                  <strong>7.</strong> Откройте файл:<br />
-                  <div style={{ paddingLeft: 20, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
-                    &bull; <strong>TextEdit:</strong> двойной клик по файлу<br />
-                    &bull; <strong>VS Code:</strong> правая кнопка &rarr; «Open With» &rarr; «Visual Studio Code»
-                  </div>
-                </div>
+              <div style={{ background: `${C.green}10`, borderRadius: 6, padding: "8px 12px", fontSize: 12, color: C.dim, marginTop: 8 }}>
+                Если видите что-то вроде <span style={sCode}>v22.14.0</span> — Node.js установлен. Если ошибка «не распознана команда» — повторите установку.
               </div>
             </div>
           </div>
 
-          {/* ── Шаг 3: Вставить конфигурацию ── */}
-          <div style={{ display: "flex", gap: 12, marginBottom: 16, alignItems: "flex-start" }}>
-            <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 32, height: 32, fontSize: 14 }}>3</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 8 }}>Вставьте конфигурацию MCP</div>
-              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8, marginBottom: 8 }}>
-                <strong>Если файл пустой</strong> — скопируйте и вставьте весь блок ниже целиком:<br />
-                <strong>Если файл уже содержит другие настройки</strong> — добавьте блок <span style={sCode}>{`"notebooklm": { ... }`}</span> внутрь секции <span style={sCode}>{`"mcpServers"`}</span>.
+          {/* ══════ ШАГ 2: Claude Desktop ══════ */}
+          <div style={{ ...sCard, borderColor: C.accent, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.accent}22`, color: C.accent, width: 36, height: 36, fontSize: 16 }}>2</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.accent }}>Установите Claude Desktop</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Время: 2 минуты</div>
               </div>
-              <div style={sCodeBlock}>
-                <CopyBtn text={mcpConfig} />
-                {mcpConfig}
+            </div>
+
+            <div style={{ background: `${C.accent}08`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginBottom: 16, lineHeight: 1.7 }}>
+              <strong style={{ color: C.accent }}>Зачем нужно приложение, если есть сайт claude.ai?</strong><br />
+              Сайт claude.ai в браузере — это обычный чат. А десктоп-приложение поддерживает MCP —
+              протокол подключения к внешним данным (NotebookLM, файлам, базам данных).
+              Без приложения связка не работает.
+            </div>
+
+            <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2 }}>
+              <strong style={{ color: C.text }}>1.</strong> Откройте{" "}
+              <a href="https://claude.ai/download" target="_blank" rel="noopener" style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accent}44` }}>claude.ai/download</a><br />
+              <strong style={{ color: C.text }}>2.</strong> Нажмите <strong>«Download for Windows»</strong> (или «Download for Mac»)<br />
+              <strong style={{ color: C.text }}>3.</strong> Откройте скачанный файл и установите<br />
+              <strong style={{ color: C.text }}>4.</strong> Запустите Claude Desktop и войдите в аккаунт<br />
+              <strong style={{ color: C.text }}>5.</strong> Если Claude запросит доступ к камере — <strong>откажите</strong>, камера не нужна
+            </div>
+          </div>
+
+          {/* ══════ ШАГ 3: Текстовый редактор ══════ */}
+          <div style={{ ...sCard, borderColor: C.amber, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.amber}22`, color: C.amber, width: 36, height: 36, fontSize: 16 }}>3</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.amber }}>Выберите текстовый редактор</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Нужен для одного действия — вставить настройку в файл</div>
               </div>
-              <div style={{ background: `${C.red}10`, borderRadius: 8, padding: "12px 14px", fontSize: 12, color: "#ccc", marginTop: 8 }}>
-                <strong style={{ color: C.red }}>Частые ошибки:</strong>
-                <ul style={{ margin: "6px 0 0", paddingLeft: 18, lineHeight: 1.8 }}>
-                  <li>Лишняя запятая после последнего элемента — JSON не прощает</li>
-                  <li>Расширение файла <span style={sCode}>.json.txt</span> вместо <span style={sCode}>.json</span></li>
-                  <li>Кавычки не те — нужны обычные <span style={sCode}>{`""`}</span>, а не «кавычки-ёлочки»</li>
-                  <li>Если используете Блокнот — при сохранении выберите «Все файлы (*.*)» в типе файла</li>
-                </ul>
+            </div>
+
+            <div style={{ background: `${C.amber}08`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginBottom: 16, lineHeight: 1.7 }}>
+              <strong style={{ color: C.amber }}>Что такое текстовый редактор?</strong><br />
+              Это программа для редактирования текстовых файлов (не путать с Word — нам нужен именно чистый текст без форматирования).
+              Нам нужно открыть один файл настроек Claude, вставить туда текст и сохранить. Всё.
+            </div>
+
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap" }}>
+              <div style={{ background: `${C.green}10`, border: `1px solid ${C.green}22`, borderRadius: 8, padding: "14px 16px", flex: 1, minWidth: 220 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C.green, marginBottom: 6 }}>Вариант А: Блокнот / TextEdit</div>
+                <div style={{ fontSize: 12, color: C.dim, lineHeight: 1.6 }}>
+                  <strong style={{ color: "#ccc" }}>Ничего ставить не нужно</strong> — уже есть на компьютере.<br /><br />
+                  <strong style={{ color: "#ccc" }}>Windows:</strong> программа «Блокнот» (Notepad)<br />
+                  <strong style={{ color: "#ccc" }}>Mac:</strong> программа «TextEdit»<br /><br />
+                  <span style={{ color: C.amber }}>Минус:</span> не подсвечивает ошибки. Если случайно удалите запятую или кавычку — не увидите.
+                </div>
               </div>
-              <div style={{ background: `${C.accent}10`, borderRadius: 8, padding: "12px 14px", fontSize: 12, color: "#ccc", marginTop: 8 }}>
-                <strong style={{ color: C.accent }}>Совет:</strong>{" "}
-                В VS Code ошибки JSON подсвечиваются красным — если видите красное подчёркивание, значит где-то опечатка.
-                В Блокноте такой подсветки нет, поэтому просто копируйте текст целиком и не редактируйте руками.
+              <div style={{ background: `${C.accent}10`, border: `1px solid ${C.accent}22`, borderRadius: 8, padding: "14px 16px", flex: 1, minWidth: 220 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: C.accent, marginBottom: 6 }}>Вариант Б: VS Code (рекомендуем)</div>
+                <div style={{ fontSize: 12, color: C.dim, lineHeight: 1.6 }}>
+                  <strong style={{ color: "#ccc" }}>Бесплатный редактор кода от Microsoft.</strong><br /><br />
+                  Скачать:{" "}
+                  <a href="https://code.visualstudio.com" target="_blank" rel="noopener" style={{ color: C.accent, textDecoration: "none", borderBottom: `1px solid ${C.accent}44` }}>code.visualstudio.com</a><br /><br />
+                  <span style={{ color: C.green }}>Плюс:</span> подсвечивает ошибки красным — сразу видно, если что-то не так.
+                  Также пригодится позже для API-скриптов.
+                </div>
               </div>
             </div>
           </div>
 
-          {/* ── Шаг 4: Сохранить и перезапустить ── */}
-          <div style={{ display: "flex", gap: 12, marginBottom: 16, alignItems: "flex-start" }}>
-            <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 32, height: 32, fontSize: 14 }}>4</span>
-            <div style={{ flex: 1 }}>
-              <div style={{ fontSize: 14, fontWeight: 600, marginBottom: 4 }}>Сохраните файл и перезапустите Claude</div>
-              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
-                <strong>1.</strong> Сохраните файл (<span style={sCode}>Ctrl + S</span> на Windows / <span style={sCode}>Cmd + S</span> на Mac)<br />
-                <strong>2.</strong> Полностью закройте Claude Desktop (не просто свернуть!)<br />
-                <div style={{ paddingLeft: 20, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
-                  &bull; <strong>Windows:</strong> правая кнопка по иконке Claude в трее (внизу справа) &rarr; «Quit»<br />
-                  &bull; <strong>Mac:</strong> Claude в меню-баре &rarr; «Quit Claude» (или <span style={sCode}>Cmd + Q</span>)
-                </div>
-                <strong>3.</strong> Откройте Claude Desktop заново<br />
-                <strong>4.</strong> В новом чате Claude теперь имеет доступ к NotebookLM
+          {/* ══════ ШАГ 4: Найти файл настроек ══════ */}
+          <div style={{ ...sCard, borderColor: C.pink, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.pink}22`, color: C.pink, width: 36, height: 36, fontSize: 16 }}>4</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.pink }}>Найдите файл настроек Claude</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Время: 1 минута</div>
               </div>
+            </div>
+
+            <div style={{ background: `${C.pink}08`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginBottom: 16, lineHeight: 1.7 }}>
+              <strong style={{ color: C.pink }}>Что это за файл?</strong><br />
+              У Claude Desktop есть файл настроек — <span style={sCode}>claude_desktop_config.json</span>.
+              Это текстовый файл в формате JSON, в котором записано, к каким внешним сервисам Claude может подключаться.
+              Сейчас мы добавим туда подключение к NotebookLM.
+            </div>
+
+            {/* Windows */}
+            <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8, padding: "16px 18px", marginBottom: 10 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: C.green, marginBottom: 12 }}>Windows — пошагово:</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                <strong style={{ color: C.text }}>1.</strong> На клавиатуре нажмите одновременно <span style={sCode}>Win</span> + <span style={sCode}>R</span><br />
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>Появится маленькое окошко «Выполнить» в левом нижнем углу экрана</div>
+                <strong style={{ color: C.text }}>2.</strong> Скопируйте этот текст и вставьте в окошко:
+              </div>
+              <div style={{ ...sCodeBlock, margin: "8px 0" }}>
+                <CopyBtn text="%APPDATA%\Claude" />
+                {`%APPDATA%\\Claude`}
+              </div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                <strong style={{ color: C.text }}>3.</strong> Нажмите Enter — откроется папка<br />
+                <strong style={{ color: C.text }}>4.</strong> Посмотрите — есть ли в папке файл <span style={sCode}>claude_desktop_config.json</span>?<br />
+                <br />
+                <strong style={{ color: C.green }}>Если файл ЕСТЬ:</strong><br />
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                  Нажмите по нему правой кнопкой мыши &rarr; «Открыть с помощью» &rarr; выберите «Блокнот» или «Visual Studio Code»
+                </div>
+                <strong style={{ color: C.amber }}>Если файла НЕТ — создайте его:</strong><br />
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                  1. Нажмите правой кнопкой мыши на пустом месте в папке<br />
+                  2. Выберите «Создать» &rarr; «Текстовый документ»<br />
+                  3. Появится файл «Новый текстовый документ.txt»<br />
+                  4. Переименуйте его в: <span style={sCode}>claude_desktop_config.json</span><br />
+                  5. Windows спросит «Изменить расширение?» — нажмите <strong>«Да»</strong><br />
+                  6. Откройте его (правая кнопка &rarr; «Открыть с помощью» &rarr; Блокнот или VS Code)
+                </div>
+              </div>
+              <div style={{ background: `${C.amber}10`, borderRadius: 6, padding: "8px 12px", fontSize: 12, color: C.dim, marginTop: 8 }}>
+                <strong style={{ color: C.amber }}>Не видите расширения файлов (.json, .txt)?</strong>{" "}
+                В Проводнике нажмите «Вид» (сверху) &rarr; поставьте галочку «Расширения имен файлов».
+                Теперь вы увидите полные имена файлов и сможете переименовать правильно.
+              </div>
+            </div>
+
+            {/* Mac */}
+            <div style={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 8, padding: "16px 18px" }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: C.accent, marginBottom: 12 }}>Mac — пошагово:</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                <strong style={{ color: C.text }}>1.</strong> Откройте Finder (иконка с улыбающимся лицом в Dock внизу экрана)<br />
+                <strong style={{ color: C.text }}>2.</strong> Нажмите одновременно <span style={sCode}>Cmd</span> + <span style={sCode}>Shift</span> + <span style={sCode}>G</span><br />
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>Появится строка «Переход к папке»</div>
+                <strong style={{ color: C.text }}>3.</strong> Скопируйте и вставьте:
+              </div>
+              <div style={{ ...sCodeBlock, margin: "8px 0" }}>
+                <CopyBtn text="~/Library/Application Support/Claude" />
+                {`~/Library/Application Support/Claude`}
+              </div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                <strong style={{ color: C.text }}>4.</strong> Нажмите Enter — откроется папка Claude<br />
+                <strong style={{ color: C.text }}>5.</strong> Ищите файл <span style={sCode}>claude_desktop_config.json</span><br />
+                <br />
+                <strong style={{ color: C.green }}>Если файл ЕСТЬ:</strong> двойной клик, чтобы открыть в TextEdit (или правая кнопка &rarr; VS Code)<br />
+                <br />
+                <strong style={{ color: C.amber }}>Если файла НЕТ:</strong><br />
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                  1. Откройте Terminal (<span style={sCode}>Cmd + Пробел</span> &rarr; напишите «Terminal» &rarr; Enter)<br />
+                  2. Скопируйте и вставьте эту команду:
+                </div>
+              </div>
+              <div style={{ ...sCodeBlock, margin: "8px 0" }}>
+                <CopyBtn text={'touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json'} />
+                {`touch ~/Library/Application\\ Support/Claude/claude_desktop_config.json`}
+              </div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+                <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>
+                  3. Нажмите Enter — файл создан. Вернитесь в Finder и откройте его.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* ══════ ШАГ 5: Вставить конфигурацию ══════ */}
+          <div style={{ ...sCard, borderColor: C.pink, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.pink}22`, color: C.pink, width: 36, height: 36, fontSize: 16 }}>5</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.pink }}>Вставьте настройку в файл</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Самый важный шаг — копируем текст в файл</div>
+              </div>
+            </div>
+
+            <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2, marginBottom: 12 }}>
+              Файл <span style={sCode}>claude_desktop_config.json</span> сейчас открыт в текстовом редакторе.
+              Он может быть пустым или содержать какой-то текст.
+            </div>
+
+            <div style={{ background: `${C.green}10`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginBottom: 12, lineHeight: 1.7 }}>
+              <strong style={{ color: C.green }}>Если файл пустой</strong> — просто скопируйте весь текст ниже и вставьте в файл:
+            </div>
+
+            <div style={sCodeBlock}>
+              <CopyBtn text={mcpConfig} />
+              {mcpConfig}
+            </div>
+
+            <div style={{ background: `${C.amber}10`, borderRadius: 8, padding: "12px 16px", fontSize: 13, color: "#ccc", marginTop: 12, marginBottom: 12, lineHeight: 1.7 }}>
+              <strong style={{ color: C.amber }}>Если в файле уже что-то есть</strong> — найдите строку{" "}
+              <span style={sCode}>{`"mcpServers": {`}</span> и добавьте внутрь неё блок <span style={sCode}>notebooklm</span>.
+              Если не уверены — удалите всё и вставьте текст выше целиком.
+            </div>
+
+            <div style={{ borderTop: `1px solid ${C.border}`, marginTop: 16, paddingTop: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.red, marginBottom: 8 }}>Частые ошибки (проверьте себя):</div>
+              <div style={{ fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                <strong style={{ color: "#ccc" }}>1. Лишняя запятая.</strong> После последнего элемента запятой быть не должно. JSON это не прощает.<br />
+                <strong style={{ color: "#ccc" }}>2. Неправильные кавычки.</strong> Нужны обычные прямые кавычки <span style={sCode}>{`""`}</span>, а не «ёлочки» и не "кавычки из Word".<br />
+                <strong style={{ color: "#ccc" }}>3. Файл сохранён как .json.txt.</strong> Расширение должно быть именно <span style={sCode}>.json</span>.<br />
+                <strong style={{ color: "#ccc" }}>4. При сохранении в Блокноте</strong> — выберите тип файла «Все файлы (*.*)», а не «Текстовые документы (*.txt)».
+              </div>
+              <div style={{ background: `${C.accent}10`, borderRadius: 6, padding: "8px 12px", fontSize: 12, color: C.dim, marginTop: 8 }}>
+                <strong style={{ color: C.accent }}>Совет:</strong> Самый надёжный способ — просто нажать кнопку «Копировать» выше, вставить в пустой файл и сохранить.
+                Не редактируйте текст руками, если не уверены.
+              </div>
+            </div>
+          </div>
+
+          {/* ══════ ШАГ 6: Перезапустить ══════ */}
+          <div style={{ ...sCard, borderColor: C.green, marginBottom: 24 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={{ ...sStepNum, background: `${C.green}22`, color: C.green, width: 36, height: 36, fontSize: 16 }}>6</span>
+              <div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: C.green }}>Сохраните и перезапустите Claude</div>
+                <div style={{ fontSize: 12, color: C.dim }}>Последний шаг — 30 секунд</div>
+              </div>
+            </div>
+
+            <div style={{ fontSize: 13, color: "#ccc", lineHeight: 2.2 }}>
+              <strong style={{ color: C.text }}>1.</strong> Сохраните файл:<br />
+              <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim }}>
+                Windows: <span style={sCode}>Ctrl + S</span> &nbsp;|&nbsp; Mac: <span style={sCode}>Cmd + S</span>
+              </div>
+              <strong style={{ color: C.text }}>2.</strong> <strong>Полностью</strong> закройте Claude Desktop (не просто свернуть!):<br />
+              <div style={{ paddingLeft: 24, fontSize: 12, color: C.dim, lineHeight: 2 }}>
+                <strong>Windows:</strong> найдите иконку Claude внизу справа в трее (рядом с часами) &rarr; правая кнопка &rarr; «Quit»<br />
+                <strong>Mac:</strong> нажмите <span style={sCode}>Cmd + Q</span> в окне Claude, или правая кнопка по иконке в Dock &rarr; «Quit»
+              </div>
+              <strong style={{ color: C.text }}>3.</strong> Откройте Claude Desktop заново<br />
+              <strong style={{ color: C.text }}>4.</strong> Готово! Claude теперь подключён к NotebookLM
             </div>
           </div>
 
