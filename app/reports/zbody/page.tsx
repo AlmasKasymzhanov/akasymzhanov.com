@@ -145,7 +145,7 @@ export default function ZBodyReport() {
             ["sec-3", "3. Анализ рынка"],
             ["sec-4", "4. Конкурентный ландшафт"],
             ["sec-5", "5. Бизнес-модель — Phygital-воронка"],
-            ["sec-6", "6. Продуктовая линейка"],
+            ["sec-6", "6. Продуктовая линейка + анализ Kaspi.kz"],
             ["sec-7", "7. Unit-экономика (3 сценария)"],
             ["sec-8", "8. Финансовая модель (12 месяцев)"],
             ["sec-9", "9. Дорожная карта"],
@@ -384,6 +384,48 @@ export default function ZBodyReport() {
           <div style={{ ...sCard, background: `${C.green}08`, borderColor: C.green }}>
             <p style={sP}>
               <strong style={{ color: C.green }}>Ключевая связка:</strong> Каждый физический товар содержит QR-код → 1 месяц бесплатного Premium в приложении. Товар = инструмент привлечения для app.
+            </p>
+          </div>
+
+          <h3 style={{ ...sH3, color: C.amber, fontSize: 18, marginTop: 32 }}>Анализ товарных категорий на Kaspi.kz</h3>
+          <p style={sP}>
+            Проверка наличия и конкурентной среды каждой категории ZBody на маркетплейсе Kaspi.kz (данные на март 2026):
+          </p>
+
+          <DataTable
+            headers={["Товар ZBody", "На Kaspi?", "Конкуренция", "Бренды", "Возможность"]}
+            rows={[
+              ["Фитнес-резинки", "✅ Есть", "Средняя", "Много no-name, мало брендов", "🟢 Высокая"],
+              ["Леггинсы спортивные", "✅ Есть", "Средняя", "Sports Enterprise, LIMIKO, Alamata", "🟡 Средняя"],
+              ["Коврик для йоги", "✅ Есть", "Высокая (1000+ моделей)", "FLO, Nanofit, no-name", "🔴 Низкая"],
+              ["Бутылка спортивная", "✅ Есть", "Высокая (1000+ моделей)", "Sea&Sky, StatiX, no-name", "🔴 Низкая"],
+              ["Протеиновые батончики", "✅ Есть", "Средняя", "BombBar, Daribar, Pump Up, ONLYFIT", "🟡 Средняя"],
+              ["Коллаген капсулы", "✅ Есть", "Средняя", "Natural Health, GLS, Эвалар, TURAN", "🟡 Средняя"],
+            ]}
+          />
+
+          <h3 style={sH3}>Рекомендуемый порядок запуска</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 16, marginBottom: 16 }}>
+            <div style={{ ...sCard, borderTop: `2px solid ${C.green}` }}>
+              <div style={{ fontSize: 11, color: C.green, fontWeight: 600, marginBottom: 8, textTransform: "uppercase" }}>Фаза 1 — Запускать первыми</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>Фитнес-резинки</div>
+              <div style={{ fontSize: 12, color: C.dim }}>Мало брендов на Kaspi, низкий MOQ, маржа 80%, идеальная связка с челленджем приседаний. Комиссия Kaspi 10.9%</div>
+            </div>
+            <div style={{ ...sCard, borderTop: `2px solid ${C.blue}` }}>
+              <div style={{ fontSize: 11, color: C.blue, fontWeight: 600, marginBottom: 8, textTransform: "uppercase" }}>Фаза 2 — Запускать вторыми</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>Леггинсы + Спортпит</div>
+              <div style={{ fontSize: 12, color: C.dim }}>Леггинсы «Squat Collection» = product-market fit с аудиторией. Батончики — white-label. Комиссия 13.5% / 10.9%</div>
+            </div>
+            <div style={{ ...sCard, borderTop: `2px solid ${C.dim}` }}>
+              <div style={{ fontSize: 11, color: C.dim, fontWeight: 600, marginBottom: 8, textTransform: "uppercase" }}>Фаза 3 — Отложить</div>
+              <div style={{ fontSize: 14, fontWeight: 600, color: C.text, marginBottom: 4 }}>Коврики, бутылки, коллаген</div>
+              <div style={{ fontSize: 12, color: C.dim }}>Слишком много конкурентов (1000+ моделей). Запускать когда бренд ZBody уже узнаваем</div>
+            </div>
+          </div>
+
+          <div style={{ ...sCard, background: `${C.amber}08`, borderColor: C.amber }}>
+            <p style={sP}>
+              <strong style={{ color: C.amber }}>Ключевой инсайт:</strong> Фитнес-резинки — единственная категория с низкой конкуренцией брендов на Kaspi и идеальным product-market fit с аудиторией Зарины (челлендж приседаний). <strong style={{ color: C.text }}>Это must-have для запуска в Фазе 1.</strong>
             </p>
           </div>
         </Section>
