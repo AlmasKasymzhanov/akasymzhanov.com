@@ -1,25 +1,25 @@
 import type { Metadata } from "next";
-import { Manrope, IBM_Plex_Sans, JetBrains_Mono } from "next/font/google";
-import { Navbar } from "@/components/navbar";
+import localFont from "next/font/local";
 import "./globals.css";
 
-const manrope = Manrope({
-  subsets: ["cyrillic", "latin"],
-  variable: "--font-heading",
+const geist = localFont({
+  src: "../public/fonts/GeistVF.woff2",
+  variable: "--font-geist",
+  display: "swap",
 });
-const ibmPlex = IBM_Plex_Sans({
-  weight: ["400", "500", "600"],
-  subsets: ["cyrillic", "latin"],
-  variable: "--font-body",
-});
-const jetbrains = JetBrains_Mono({
-  subsets: ["cyrillic", "latin"],
-  variable: "--font-mono",
+
+const menlo = localFont({
+  src: [
+    { path: "../public/fonts/Menlo-Regular.ttf", weight: "400", style: "normal" },
+    { path: "../public/fonts/Menlo-Bold.ttf", weight: "700", style: "normal" },
+  ],
+  variable: "--font-menlo",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
-  title: "Almas Kasymzhanov — Marketplace Analytics & Data Products",
-  description: "Personal website, blog & marketplace analytics tools",
+  title: "Almas Kasymzhanov",
+  description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
 };
 
 export default function RootLayout({
@@ -28,11 +28,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${manrope.variable} ${ibmPlex.variable} ${jetbrains.variable}`}>
-      <body className="font-body">
-        <Navbar />
-        <main>{children}</main>
-      </body>
+    <html lang="ru" className={`${geist.variable} ${menlo.variable}`}>
+      <body>{children}</body>
     </html>
   );
 }

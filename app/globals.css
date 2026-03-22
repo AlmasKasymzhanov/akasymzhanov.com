@@ -2,45 +2,50 @@
 @plugin "@tailwindcss/typography";
 
 @theme {
-  --color-bg: #0a0a0f;
-  --color-surface: #111119;
-  --color-surface-hover: #1a1a25;
-  --color-accent: #6c5ce7;
-  --color-green: #00d2a0;
-  --color-text: #e8e8f0;
-  --color-dim: #888899;
-  --color-border: #2a2a3a;
-  --font-heading: var(--font-heading), system-ui, sans-serif;
-  --font-body: var(--font-body), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-mono), ui-monospace, monospace;
+  --color-bg: #0a0a0a;
+  --color-surface: #141414;
+  --color-surface-hover: #1c1c1c;
+  --color-accent: #ededed;
+  --color-text: #ededed;
+  --color-dim: #888888;
+  --color-border: #222222;
+  --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
+  --font-mono: var(--font-menlo), Menlo, Monaco, Consolas, monospace;
+}
+
+/* Light theme */
+html.light {
+  --color-bg: #fafafa;
+  --color-surface: #ffffff;
+  --color-surface-hover: #f0f0f0;
+  --color-accent: #171717;
+  --color-text: #171717;
+  --color-dim: #666666;
+  --color-border: #e5e5e5;
 }
 
 body {
   background: var(--color-bg);
   color: var(--color-text);
+  font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.2s ease, color 0.2s ease;
 }
 
-/* Scrollbar styling */
-::-webkit-scrollbar {
-  width: 6px;
-}
-::-webkit-scrollbar-track {
-  background: transparent;
-}
-::-webkit-scrollbar-thumb {
-  background: #333;
-  border-radius: 3px;
-}
+/* Scrollbar */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+html.light ::-webkit-scrollbar-thumb { background: #ccc; }
 
-/* Prose overrides for dark theme */
+/* Prose */
 .prose {
   --tw-prose-body: var(--color-text);
-  --tw-prose-headings: #f0f0f8;
-  --tw-prose-links: var(--color-accent);
-  --tw-prose-bold: #f0f0f8;
-  --tw-prose-code: var(--color-green);
+  --tw-prose-headings: var(--color-text);
+  --tw-prose-links: var(--color-text);
+  --tw-prose-bold: var(--color-text);
+  --tw-prose-code: var(--color-text);
   --tw-prose-pre-bg: var(--color-surface);
   --tw-prose-pre-code: var(--color-text);
   --tw-prose-quotes: var(--color-dim);
@@ -53,6 +58,6 @@ body {
 }
 
 .prose :is(h1, h2, h3, h4) {
-  font-family: var(--font-heading);
-  font-weight: 800;
+  font-family: var(--font-sans);
+  font-weight: 700;
 }
