@@ -10,7 +10,7 @@ const SOCIAL_LINKS = [
 ];
 
 const POSTS = [
-  { title: "Блеск и нищета Lick Beauty", date: "Март 2026", href: "/blog/why-blogger-brands-fail" },
+  { title: "Блеск и нищета Lick Beauty", date: "Март 25, 2026", href: "/blog/why-blogger-brands-fail" },
 ];
 
 const PROJECTS = [
@@ -70,8 +70,8 @@ export default function Home() {
                   className="text-[13px] text-dim hover:text-[var(--color-text)] transition-colors py-1 no-underline font-mono inline-flex items-center gap-1.5"
                 >
                   {item.label}
-                  <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" className="opacity-40">
-                    <path d="M3.5 1.5h7m0 0v7m0-7L2 10" strokeLinecap="round" strokeLinejoin="round" />
+                  <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                    <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
                   </svg>
                 </a>
               ))}
@@ -115,8 +115,8 @@ export default function Home() {
                           className="font-mono text-[14px] font-bold text-[var(--color-text)] no-underline hover:text-dim transition-colors inline-flex items-center gap-1.5"
                         >
                           {project.name}
-                          <svg width="10" height="10" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.5" className="opacity-40">
-                            <path d="M3.5 1.5h7m0 0v7m0-7L2 10" strokeLinecap="round" strokeLinejoin="round" />
+                          <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3" />
                           </svg>
                         </a>
                       ) : (

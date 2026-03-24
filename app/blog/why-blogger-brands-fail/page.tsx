@@ -66,7 +66,7 @@ function RevenueChart() {
             tickLine={{ stroke: "var(--color-dim)", strokeWidth: 0.5 }}
             tickSize={4}
             axisLine={{ stroke: "var(--color-dim)", strokeWidth: 0.7 }}
-            tickFormatter={(v: number) => `${v}М`}
+            tickFormatter={(v: number) => `${v} М`}
             width={42}
             tickCount={5}
           />
@@ -87,8 +87,81 @@ function RevenueChart() {
   );
 }
 
+/* ───── PUSY Revenue Chart ───── */
+const pusyData = [
+  { year: "2022", revenue: 176, profit: 63, label: "Запуск бренда" },
+  { year: "2023", revenue: 1540, profit: 0, label: "Рост x8.7" },
+  { year: "2024", revenue: 3250, profit: 802, label: "Рентабельность 25%" },
+];
+
+function PusyChartTooltip({ active, payload }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0].payload;
+  return (
+    <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg px-4 py-3 shadow-lg">
+      <p className="font-mono text-[11px] font-bold text-[var(--color-text)] mb-1">{d.year}</p>
+      <p className="font-mono text-[13px] text-[var(--color-text)]"><span className="font-bold">{d.revenue >= 1000 ? (d.revenue / 1000).toFixed(2) + " млрд" : d.revenue + " млн"}</span><span className="text-[8px] text-[var(--color-dim)] ml-[2px]">₽</span></p>
+      {d.profit > 0 && <p className="font-mono text-[11px] text-[#22c55e]">Прибыль: {d.profit} млн ₽</p>}
+      {d.label && <p className="font-mono text-[10px] text-[var(--color-dim)] mt-1">{d.label}</p>}
+    </div>
+  );
+}
+
+function PusyRevenueChart() {
+  return (
+    <div className="my-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[3px] p-5">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-dim)] mb-1">ВЫРУЧКА PUSY &nbsp; ООО «ДРОЖЬ БЬЮТИ»</p>
+          <p className="font-mono text-[22px] font-bold text-[var(--color-text)] tracking-tight">176 млн <span className="text-[var(--color-dim)] font-normal text-[16px] mx-1">→</span> 3.25 млрд <span className="text-[17px] font-normal text-[var(--color-dim)]">₽</span></p>
+        </div>
+        <span className="font-mono text-[13px] font-bold text-[#22c55e] bg-[#22c55e15] px-2.5 py-1 rounded-md">x18</span>
+      </div>
+      <ResponsiveContainer width="100%" height={240}>
+        <AreaChart data={pusyData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="pusyGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#22c55e" stopOpacity={0.2} />
+              <stop offset="100%" stopColor="#22c55e" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid horizontal={false} vertical={false} />
+          <XAxis
+            dataKey="year"
+            tick={{ fontSize: 11, fill: "var(--color-dim)", fontFamily: "var(--font-mono)" }}
+            tickLine={{ stroke: "var(--color-dim)", strokeWidth: 0.5 }}
+            tickSize={4}
+            axisLine={{ stroke: "var(--color-dim)", strokeWidth: 0.7 }}
+            tickMargin={8}
+          />
+          <YAxis
+            tick={{ fontSize: 11, fill: "var(--color-dim)", fontFamily: "var(--font-mono)" }}
+            tickLine={{ stroke: "var(--color-dim)", strokeWidth: 0.5 }}
+            tickSize={4}
+            axisLine={{ stroke: "var(--color-dim)", strokeWidth: 0.7 }}
+            tickFormatter={(v: number) => v >= 1000 ? `${(v/1000).toFixed(1)} млрд` : `${v} М`}
+            width={52}
+            tickCount={5}
+          />
+          <Tooltip content={<PusyChartTooltip />} cursor={{ stroke: "var(--color-dim)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+          <Area
+            type="linear"
+            dataKey="revenue"
+            stroke="#22c55e"
+            strokeWidth={1.5}
+            fill="url(#pusyGrad)"
+            dot={{ r: 3, fill: "#22c55e", stroke: "var(--color-surface)", strokeWidth: 1.5 }}
+            activeDot={{ r: 4.5, fill: "#22c55e", stroke: "var(--color-surface)", strokeWidth: 2 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+      <p className="font-mono text-[11px] text-[var(--color-dim)] mt-3 text-center">Источник: <a href="https://spark-interfax.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">СПАРК-Интерфакс</a></p>
+    </div>
+  );
+}
+
 /* ───── Table ───── */
-function Table({ headers, rows, highlightRow, source }: { headers: string[]; rows: (string | number | React.ReactNode)[][]; highlightRow?: number; source?: string }) {
+function Table({ headers, rows, highlightRow, source, sourceNode }: { headers: string[]; rows: (string | number | React.ReactNode)[][]; highlightRow?: number; source?: string; sourceNode?: React.ReactNode }) {
   return (
     <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
       <div className="overflow-x-auto">
@@ -111,7 +184,7 @@ function Table({ headers, rows, highlightRow, source }: { headers: string[]; row
           </tbody>
         </table>
       </div>
-      <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2 border-t border-[var(--color-border)]/30">Источник: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a>{source && <><span className="text-[var(--color-border)] mx-1">|</span>{source}</>}</p>
+      <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2 border-t border-[var(--color-border)]/30">{sourceNode ? <>Источник: {sourceNode}</> : <>Источник: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a>{source && <><span className="text-[var(--color-border)] mx-1">|</span>{source}</>}</>}</p>
     </div>
   );
 }
@@ -139,7 +212,7 @@ export default function LiqBeautyArticle() {
           <p className="text-[15px] text-[var(--color-dim)] leading-relaxed mb-6">
             <span className="font-mono">43</span> миллиона в первый месяц. <span className="font-mono">3.3</span> миллиона через полгода. Как бренд с <span className="font-mono">7</span> миллионами подписчиков проиграл реплике за <span className="font-mono">420</span> тенге
           </p>
-          <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Мар 25, 2026 · ~15 мин</p>
+          <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Март 25, 2026 <span className="text-[var(--color-border)] mx-1">|</span> ~15 мин</p>
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />
@@ -396,21 +469,18 @@ export default function LiqBeautyArticle() {
             В конце 2021 года Илона Дрожь - мастер по ламинированию бровей, около 500 тысяч подписчиков - и серийный предприниматель Артём Бородавкин основали PUSY. Бородавкин стал генеральным директором ООО «Дрожь Бьюти». Илона стала лицом. Он строил бизнес. Она давала ему лицо. Буквально.
           </p>
 
-          <Table
-            headers={["Год", "Выручка", "Прибыль"]}
-            rows={[
-              ["2022", "176 млн ₽", "63 млн ₽"],
-              ["2023", "1.54 млрд ₽", "-"],
-              ["2024", "3.25 млрд ₽", "802 млн ₽"],
-            ]}
-            source="СПАРК-Интерфакс"
-          />
+          <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden max-w-[520px] mx-auto">
+            <Image src="/blog/why-blogger-brands-fail/ilona-drozh.webp" alt="Илона Дрожь — основательница бренда PUSY" width={1200} height={1200} className="w-full h-auto" />
+            <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Илона Дрожь <span className="text-[var(--color-border)] mx-1">|</span> Instagram <a href="https://www.instagram.com/ilona.drozh/" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">@ilona.drozh</a></p>
+          </div>
+
+          <PusyRevenueChart />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Рентабельность - <span className="font-mono">25%</span>. Для бренда с блогерскими корнями - аномалия.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            По данным аналитики маркетплейсов (MPStats), за 30 дней - с 26 января по 24 февраля 2026 года - PUSY заработал только на Wildberries <span className="font-mono">74.6</span> миллиона рублей. Средняя дневная выручка - <span className="font-mono">2.4</span> миллиона. Ещё <span className="font-mono">13.5</span> миллионов - упущенная выручка: товар кончился на складе, а спрос остался. PUSY <em>теряет</em> из-за нехватки товара больше, чем Lick Beauty <em>зарабатывает</em> за месяц.
+            По данным аналитики маркетплейсов (MPSTATS), за 30 дней - с 26 января по 24 февраля 2026 года - PUSY заработал только на Wildberries <span className="font-mono">74.6</span> миллиона рублей. Средняя дневная выручка - <span className="font-mono">2.4</span> миллиона. Ещё <span className="font-mono">13.5</span> миллионов - упущенная выручка: товар кончился на складе, а спрос остался. PUSY <em>теряет</em> из-за нехватки товара больше, чем Lick Beauty <em>зарабатывает</em> за месяц.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
             У бренда - <span className="font-mono">1 377</span> SKU. У Lick Beauty - четыре.
@@ -419,15 +489,15 @@ export default function LiqBeautyArticle() {
           <Table
             headers={["Товар", "Выручка (30д, WB)", "Продажи"]}
             rows={[
-              ["Гель для бровей Lamination, 5 мл", "7.85 млн ₽", "16 601"],
+              [<a key="p1" href="https://www.wildberries.ru/catalog/755406779/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Гель для бровей Lamination, 5 мл <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "7.85 млн ₽", "16 601"],
               ["Гель фиксирующий стойкий", "5.15 млн ₽", "10 822"],
-              ["Гель для бровей версия 2.0", "4.91 млн ₽", "6 596"],
-              ["Шампунь и бальзам-кондиционер", "4.03 млн ₽", "4 703"],
-              ["Мини-гель SUPER FIX", "3.33 млн ₽", "10 308"],
-              ["Маска для волос с кератином", "1.71 млн ₽", "3 274"],
-              ["SOS-тоник для лица", "1.10 млн ₽", "1 259"],
+              [<a key="p3" href="https://www.wildberries.ru/catalog/211695539/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Гель для бровей версия 2.0 <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "4.91 млн ₽", "6 596"],
+              [<a key="p4" href="https://www.wildberries.ru/catalog/564679782/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Шампунь и бальзам-кондиционер <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "4.03 млн ₽", "4 703"],
+              [<a key="p5" href="https://www.wildberries.ru/catalog/434888804/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Мини-гель SUPER FIX <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "3.33 млн ₽", "10 308"],
+              [<a key="p6" href="https://www.wildberries.ru/catalog/564580844/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Маска для волос с кератином <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "1.71 млн ₽", "3 274"],
+              [<a key="p7" href="https://www.wildberries.ru/catalog/105037347/detail.aspx" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">SOS-тоник для лица <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "1.10 млн ₽", "1 259"],
             ]}
-            source="MPStats · Wildberries"
+            sourceNode={<><a href="https://mpstats.io" target="_blank" rel="noopener" className="text-[#22c55e] cursor-pointer hover:underline decoration-dotted decoration-[#22c55e] underline-offset-2">MPSTATS</a> <span className="text-[var(--color-border)] mx-1">|</span> Wildberries</>}
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
@@ -450,8 +520,14 @@ export default function LiqBeautyArticle() {
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             По данным Forbes и СПАРК, выручка VOIS в 2024-м - <span className="font-mono">2.5</span> миллиарда рублей. Рост с <span className="font-mono">388</span> миллионов за год. В <span className="font-mono">6.5</span> раз. Прибыль - <span className="font-mono">592</span> миллиона. Гедиеву - <span className="font-mono">30</span> лет. Победитель Forbes «30 до 30» 2025 года.
           </p>
+
+          <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+            <Image src="/blog/why-blogger-brands-fail/vois-forbes.webp" alt="VOIS — Forbes «30 до 30» 2025, выручка 2.5 млрд рублей" width={1200} height={800} className="w-full h-auto" />
+            <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">VOIS <span className="text-[var(--color-border)] mx-1">|</span> <a href="https://www.wildberries.ru/brands/vois" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[#a73afd] hover:underline decoration-dotted decoration-[#a73afd] underline-offset-2 transition-colors">Wildberries</a></p>
+          </div>
+
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Их находка: они первыми в России начали нанимать блогеров в штат. Не на разовые интеграции. В штат. Сейчас - <span className="font-mono">200</span> креаторов. Половина компании. Постоянный конвейер контента, который работает каждый день, а не когда у кого-то настроение снять сторис. Продажи на Wildberries - <span className="font-mono">+550%</span> за год.
+            Их находка: они первыми в России начали нанимать блогеров в штат. Не на разовые интеграции. В штат. Сейчас - <span className="font-mono">200</span> креаторов. Половина компании. Постоянный конвейер контента, который работает каждый день, а не когда у кого-то настроение снять сторис. Выручка - с <span className="font-mono">388</span> млн до <span className="font-mono">2.5</span> млрд за год, <span className="font-mono">+544%</span> (в <span className="font-mono">6.5</span> раз).
           </p>
         </div>
 
@@ -464,10 +540,16 @@ export default function LiqBeautyArticle() {
             Если бы история Lick Beauty была уникальной - можно было бы списать на невезение. Но она не уникальная. Она - правило.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Джаклин Хилл. Один из крупнейших бьюти-блогеров YouTube. Jaclyn Cosmetics - запуск 2019-го через Forma Brands. Покупатели нашли в помадах посторонние волокна. Полный возврат, перезапуск, выход в Ulta Beauty. Январь 2023-го - Forma подаёт на банкротство. Январь 2024-го - Jaclyn Cosmetics закрывается. Хилл предлагали выкупить бренд. Отказалась. Новый президент Forma после этого сказал фразу, которую стоит вырезать в камне: «Product first, not influencer first». Продукт - на первом месте. Не инфлюенсер.
+            Джаклин Хилл. Один из крупнейших бьюти-блогеров YouTube. Jaclyn Cosmetics - запуск 2019-го через Forma Brands. Покупатели нашли в помадах посторонние волокна. Полный возврат, перезапуск, выход в Ulta Beauty.
           </p>
+
+          <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+            <Image src="/blog/why-blogger-brands-fail/jaclyn-hill.webp" alt="Jaclyn Cosmetics — бренд Джаклин Хилл, закрытие в 2024 году" width={1200} height={800} className="w-full h-auto" />
+            <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Jaclyn Cosmetics <span className="text-[var(--color-border)] mx-1">|</span> Источник: <a href="https://cosmeticsbusiness.com/jaclyn-hill-make-up-brand-jaclyn-cosmetics-closing" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Cosmetics Business</a></p>
+          </div>
+
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Усэйн Болт. Олимпийский чемпион. <span className="font-mono">15</span> миллионов подписчиков. Bolt Mobility - электросамокаты. <span className="font-mono">$40+</span> миллионов инвестиций. Июль 2022-го - компания просто исчезает. Самокаты бросили на улицах. Сотрудникам не заплатили. Чиновники не могут дозвониться.
+            Январь 2023-го - Forma подаёт на банкротство. Январь 2024-го - Jaclyn Cosmetics закрывается. Хилл предлагали выкупить бренд. Отказалась. Новый президент Forma после этого сказал фразу, которую стоит вырезать в камне: «Product first, not influencer first». Продукт - на первом месте. Не инфлюенсер.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
             Разные страны. Разные отрасли. Разные масштабы. Один и тот же финал.
@@ -567,18 +649,34 @@ export default function LiqBeautyArticle() {
         {/* ─── Источники ─── */}
         <div className="mb-12">
           <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-text)] mb-4">Источники</h2>
-          <div className="text-[12px] text-[var(--color-dim)]/70 leading-relaxed space-y-2">
-            <p><em>Данные о продажах Lick Beauty, Sen Sulu, LUXVISAGE, Vivienne Sabo, Romand, Maybelline и товаров «Без бренда» на Kaspi.kz - Redstat, система аналитики маркетплейсов. Данные о ценах и продавцах Cherry 01 (SKU 143562625) получены через API Kaspi.</em></p>
-            <p><em>Данные о выручке PUSY (ООО «Дрожь Бьюти», ИНН 9705156525) - СПАРК-Интерфакс; Shoppers.media, 31.10.2025; Saby.ru. Данные о продажах PUSY на Wildberries за 26.01–24.02.2026 - MPStats.</em></p>
-            <p><em>Данные о выручке VOIS (ООО «Рокет Лаунч») - Forbes.ru, 01.07.2025; СПАРК-Интерфакс.</em></p>
-            <p><em>Информация о структуре компаний StartUp Studio и Glam Me - Finratings.kz, 08.08.2025.</em></p>
-            <p><em>Jaclyn Cosmetics / Forma Brands - Business of Fashion, 01.01.2024; Beauty Independent, 01.01.2024; Retail Dive, 05.01.2024.</em></p>
-            <p><em>Bolt Mobility - TechCrunch; Market Realist, 03.08.2022.</em></p>
+          <div className="font-mono text-[11px] text-[var(--color-dim)]/70 leading-relaxed space-y-3">
+            <p>Данные о продажах Lick Beauty, Sen Sulu, LUXVISAGE, Vivienne Sabo, Romand, Maybelline и товаров «Без бренда» на Kaspi.kz - <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">Redstat</a>, система аналитики маркетплейсов.</p>
+            <p>Данные о выручке PUSY (ООО «Дрожь Бьюти», ИНН 9705156525) - <a href="https://spark-interfax.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">СПАРК-Интерфакс</a>; <a href="https://shoppers.media" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Shoppers.media</a>, 31.10.2025; <a href="https://saby.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Saby.ru</a>.</p>
+            <p>Данные о продажах PUSY на Wildberries за 26.01–24.02.2026 - <a href="https://mpstats.io" target="_blank" rel="noopener" className="text-[#22c55e] hover:underline decoration-dotted decoration-[#22c55e] underline-offset-2">MPSTATS</a>.</p>
+            <p>Данные о выручке VOIS (ООО «Рокет Лаунч») - <a href="https://www.forbes.ru/svoi-biznes/537023-kak-brend-kosmetiki-s-marketplejsov-zarabatyvaet-milliardy-za-scet-stata-blogerov" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Forbes.ru</a>, 01.07.2025; <a href="https://spark-interfax.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">СПАРК-Интерфакс</a>.</p>
+            <p>Информация о структуре компаний StartUp Studio и Glam Me - <a href="https://finratings.kz" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Finratings.kz</a>, 08.08.2025.</p>
+            <p>Jaclyn Cosmetics / Forma Brands - <a href="https://cosmeticsbusiness.com/jaclyn-hill-make-up-brand-jaclyn-cosmetics-closing" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Cosmetics Business</a>; <a href="https://www.businessoffashion.com" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Business of Fashion</a>, 01.01.2024; <a href="https://www.retaildive.com" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Retail Dive</a>, 05.01.2024.</p>
+            <p>Российский рынок косметики - <a href="https://www.kommersant.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">Коммерсантъ FM</a>, 30.10.2025; <a href="https://style.rbc.ru" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">РБК Стиль</a>, 23.04.2025.</p>
+          </div>
+        </div>
+
+        {/* ─── Автор ─── */}
+        <div className="border-t border-[var(--color-border)] pt-10 mt-8 mb-10">
+          <div className="flex items-start gap-5">
+            <Image src="/avatar/almas.webp" alt="Almas Kasymzhanov" width={72} height={72} className="rounded-full shrink-0 grayscale hover:grayscale-0 transition-all duration-300" />
+            <div>
+              <p className="font-mono text-[14px] font-bold text-[var(--color-text)] mb-2">almas kasymzhanov</p>
+              <div className="flex flex-col gap-1.5 mt-1">
+                <a href="https://t.me/almaskasymzhanov" target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-mono text-[12px] text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">telegram <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                <a href="https://www.instagram.com/almas_kasymzhanov/" target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-mono text-[12px] text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">instagram <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+                <a href="https://github.com/AlmasKasymzhanov" target="_blank" rel="noopener" className="inline-flex items-center gap-1.5 font-mono text-[12px] text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">github <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>
+              </div>
+            </div>
           </div>
         </div>
 
         {/* Footer */}
-        <footer className="border-t border-[var(--color-border)] pt-6 mt-8">
+        <footer className="border-t border-[var(--color-border)] pt-6">
           <div className="flex items-center justify-between">
             <Link href="/" className="font-mono text-[12px] text-[var(--color-dim)] hover:text-[var(--color-text)] transition-colors no-underline">
               ← Главная
