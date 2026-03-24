@@ -10,7 +10,7 @@ const SOCIAL_LINKS = [
 ];
 
 const POSTS = [
-  { title: "Это ликбез", date: "Mar 2026", href: "#" },
+  { title: "Блеск и нищета Lick Beauty", date: "Март 2026", href: "/blog/why-blogger-brands-fail" },
 ];
 
 const PROJECTS = [
@@ -52,11 +52,11 @@ export default function Home() {
               almas kasymzhanov
             </h1>
             <p className="text-[13px] text-dim leading-relaxed mb-5">
-              Продавал БАДы в Перу, трусы в России, ложки в Казахстане. Разработал{" "}
+              Продавал БАДы в Перу. Трусы в России. Ложки в Казахстане. Разработал{" "}
               <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text)] hover:text-dim transition-colors no-underline font-mono font-bold">redstat.kz</a>
               {" "}и{" "}
               <a href="https://10b.kz" target="_blank" rel="noopener noreferrer" className="text-[var(--color-text)] hover:text-dim transition-colors no-underline font-mono font-bold">10b.kz</a>
-              , чтобы другие продавали с умом и зарабатывали. Пишу, разбираю рынки, копаю в данные. Иногда ошибаюсь — тоже пишу об этом.
+              {" "}— чтобы другие не торговали вслепую. Иногда ошибаюсь — тоже пишу об этом.
             </p>
 
             {/* Social */}
@@ -87,13 +87,13 @@ export default function Home() {
               </h2>
               <div>
                 {POSTS.map((post) => (
-                  <div key={post.title} className="mb-4">
-                    <span className="text-[14px] text-[var(--color-text)] font-medium">
+                  <Link key={post.title} href={post.href} className="block no-underline group mb-4">
+                    <span className="text-[14px] text-[var(--color-text)] group-hover:text-dim transition-colors font-medium">
                       {post.title}
                     </span>
                     <br />
                     <span className="font-mono text-[11px] text-dim/60">{post.date}</span>
-                  </div>
+                  </Link>
                 ))}
               </div>
             </div>
