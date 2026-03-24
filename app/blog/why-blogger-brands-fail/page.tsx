@@ -1,30 +1,117 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
+import {
+  AreaChart,
+  Area,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  ResponsiveContainer,
+} from "recharts";
+
+/* ───── Revenue Chart (Redstat enterprise style) ───── */
+const chartData = [
+  { month: "Авг 2025", revenue: 43.6, sales: 7241, label: "Запуск Cherry 01" },
+  { month: "Дек 2025", revenue: 16.0, sales: 2638, label: "Запуск 3 новых SKU" },
+  { month: "Янв 2026", revenue: 6.3, sales: 1124, label: "" },
+  { month: "Фев 2026", revenue: 3.3, sales: 596, label: "" },
+];
+
+function ChartTooltip({ active, payload, label }: any) {
+  if (!active || !payload?.length) return null;
+  const d = payload[0].payload;
+  return (
+    <div className="bg-[var(--color-surface)] border border-[var(--color-border)] rounded-lg px-4 py-3 shadow-lg">
+      <p className="font-mono text-[11px] font-bold text-[var(--color-text)] mb-1">{d.month}</p>
+      <p className="font-mono text-[13px] text-[var(--color-text)]"><span className="font-bold">{d.revenue} млн</span><span className="text-[8px] text-[var(--color-dim)] ml-[2px]">₸</span></p>
+      <p className="font-mono text-[11px] text-[var(--color-dim)]">{d.sales.toLocaleString()} продаж</p>
+      {d.label && <p className="font-mono text-[10px] text-[#f87171] mt-1">{d.label}</p>}
+    </div>
+  );
+}
+
+function RevenueChart() {
+  return (
+    <div className="my-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[3px] p-5">
+      <div className="flex items-center justify-between mb-5">
+        <div>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-dim)] mb-1">ВЫРУЧКА LICK BEAUTY &nbsp; ВСЕ SKU</p>
+          <p className="font-mono text-[22px] font-bold text-[var(--color-text)] tracking-tight">43.6 млн <span className="text-[var(--color-dim)] font-normal text-[16px] mx-1">→</span> 3.3 млн <span className="text-[17px] font-normal text-[var(--color-dim)]">₸</span></p>
+        </div>
+        <span className="font-mono text-[13px] font-bold text-[#f87171] bg-[#f8717115] px-2.5 py-1 rounded-md">−92%</span>
+      </div>
+      <ResponsiveContainer width="100%" height={240}>
+        <AreaChart data={chartData} margin={{ top: 10, right: 10, left: 0, bottom: 0 }}>
+          <defs>
+            <linearGradient id="revenueGrad" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stopColor="#f87171" stopOpacity={0.2} />
+              <stop offset="100%" stopColor="#f87171" stopOpacity={0} />
+            </linearGradient>
+          </defs>
+          <CartesianGrid horizontal={false} vertical={false} />
+          <XAxis
+            dataKey="month"
+            tick={{ fontSize: 11, fill: "var(--color-dim)", fontFamily: "var(--font-mono)" }}
+            tickLine={{ stroke: "var(--color-dim)", strokeWidth: 0.5 }}
+            tickSize={4}
+            axisLine={{ stroke: "var(--color-dim)", strokeWidth: 0.7 }}
+            tickMargin={8}
+          />
+          <YAxis
+            tick={{ fontSize: 11, fill: "var(--color-dim)", fontFamily: "var(--font-mono)" }}
+            tickLine={{ stroke: "var(--color-dim)", strokeWidth: 0.5 }}
+            tickSize={4}
+            axisLine={{ stroke: "var(--color-dim)", strokeWidth: 0.7 }}
+            tickFormatter={(v: number) => `${v}М`}
+            width={42}
+            tickCount={5}
+          />
+          <Tooltip content={<ChartTooltip />} cursor={{ stroke: "var(--color-dim)", strokeWidth: 1, strokeDasharray: "4 4" }} />
+          <Area
+            type="linear"
+            dataKey="revenue"
+            stroke="#f87171"
+            strokeWidth={1.5}
+            fill="url(#revenueGrad)"
+            dot={{ r: 3, fill: "#f87171", stroke: "var(--color-surface)", strokeWidth: 1.5 }}
+            activeDot={{ r: 4.5, fill: "#f87171", stroke: "var(--color-surface)", strokeWidth: 2 }}
+          />
+        </AreaChart>
+      </ResponsiveContainer>
+      <p className="font-mono text-[11px] text-[var(--color-dim)] mt-3 text-center">Источник: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a></p>
+    </div>
+  );
+}
 
 /* ───── Table ───── */
-function Table({ headers, rows, highlightRow }: { headers: string[]; rows: (string | number)[][]; highlightRow?: number }) {
+function Table({ headers, rows, highlightRow, source }: { headers: string[]; rows: (string | number | React.ReactNode)[][]; highlightRow?: number; source?: string }) {
   return (
-    <div className="overflow-x-auto my-6">
-      <table className="w-full text-[13px]" style={{ borderCollapse: "collapse" }}>
-        <thead>
-          <tr>
-            {headers.map((h, i) => (
-              <th key={i} className={`py-2.5 px-3 font-mono font-medium text-[var(--color-dim)] border-b border-[var(--color-border)] whitespace-nowrap text-[11px] ${i === 0 ? "text-left" : "text-right"}`}>{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((row, ri) => (
-            <tr key={ri} className={highlightRow === ri ? "bg-[var(--color-surface)]" : ""}>
-              {row.map((cell, ci) => (
-                <td key={ci} className={`py-2.5 px-3 border-b border-[var(--color-border)]/20 whitespace-nowrap ${ci === 0 ? "text-left font-medium text-[var(--color-text)]" : "text-right text-[var(--color-dim)]"}`}>{cell}</td>
+    <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+      <div className="overflow-x-auto">
+        <table className="w-full text-[13px]" style={{ borderCollapse: "collapse" }}>
+          <thead>
+            <tr className="bg-[var(--color-surface)]">
+              {headers.map((h, i) => (
+                <th key={i} className={`py-2.5 px-4 font-mono font-medium text-[var(--color-dim)] border-b border-[var(--color-border)] whitespace-nowrap text-[11px] uppercase tracking-wider ${i === 0 ? "text-left" : "text-right"}`}>{h}</th>
               ))}
             </tr>
-          ))}
-        </tbody>
-      </table>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => (
+              <tr key={ri} className={`${highlightRow === ri ? "bg-[#f8717108]" : ""} ${ri !== rows.length - 1 ? "border-b border-[var(--color-border)]/10" : ""}`}>
+                {row.map((cell, ci) => (
+                  <td key={ci} className={`py-2.5 px-4 whitespace-nowrap ${ci === 0 ? "text-left font-medium text-[var(--color-text)] text-[13px]" : "text-right font-mono text-[var(--color-dim)] text-[13px]"}`}>{cell}</td>
+                ))}
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2 border-t border-[var(--color-border)]/30">Источник: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a>{source && <><span className="text-[var(--color-border)] mx-1">|</span>{source}</>}</p>
     </div>
   );
 }
@@ -50,9 +137,9 @@ export default function LiqBeautyArticle() {
             Блеск и нищета Lick&nbsp;Beauty
           </h1>
           <p className="text-[15px] text-[var(--color-dim)] leading-relaxed mb-6">
-            43 миллиона в первый месяц. 3.3 миллиона через полгода. Как бренд с 7 миллионами подписчиков проиграл реплике за 420 тенге
+            <span className="font-mono">43</span> миллиона в первый месяц. <span className="font-mono">3.3</span> миллиона через полгода. Как бренд с <span className="font-mono">7</span> миллионами подписчиков проиграл реплике за <span className="font-mono">420</span> тенге
           </p>
-          <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Данные Redstat · Март 2026 · ~15 минут</p>
+          <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Мар 25, 2026 · ~15 мин</p>
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />
@@ -60,20 +147,34 @@ export default function LiqBeautyArticle() {
         {/* ─── Intro ─── */}
         <div className="mb-12">
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Есть такой момент, знакомый каждому, кто работает с данными маркетплейсов. Ты открываешь панель аналитики, вбиваешь название бренда, о котором весь казахстанский Instagram гудел прошлым летом, — и видишь график, похожий на кардиограмму пациента, которого перестали лечить. Пик, и длинное, ровное, безнадёжное сползание вниз.
+            Есть такой момент, знакомый каждому, кто работает с данными маркетплейсов. Ты открываешь панель аналитики, вбиваешь название бренда, о котором весь казахстанский Instagram гудел прошлым летом, - и видишь график, похожий на кардиограмму пациента, которого перестали лечить. Пик, и длинное, ровное, безнадёжное сползание вниз.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Именно это я увидел, когда набрал «Lick Beauty» в Redstat.
           </p>
+
+          <RevenueChart />
+
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Август 2025-го — 43.6 миллиона тенге. Декабрь — 16. Январь — 6.3. Февраль — 3.3. Минус девяносто два процента от пика. Каждый месяц хуже предыдущего. Без единого исключения.
+            Август 2025-го - <span className="font-mono">43.6</span> миллиона тенге. Декабрь - <span className="font-mono">16</span>. Январь - <span className="font-mono">6.3</span>. Февраль - <span className="font-mono">3.3</span>. Минус девяносто два процента от пика. Каждый месяц хуже предыдущего. Без единого исключения.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Данным, надо сказать, всё равно, сколько у тебя подписчиков. Они не смотрят сторис. Не подписаны ни на кого. Не ставят лайки. Они просто считают. И то, что они насчитали, — повод для длинного и честного разговора.
+            Данным, надо сказать, всё равно, сколько у тебя подписчиков. Они не смотрят сторис. Не подписаны ни на кого. Не ставят лайки. Они просто считают. И то, что они насчитали, - повод для длинного и честного разговора.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Не о конкретных людях — о модели. О модели, которая раз за разом приводит к одному результату. В Алматы, в Москве, в Лос-Анджелесе. У блогеров с семью миллионами подписчиков и у блогеров с десятью. Модель одна — результат один.
+            Не о конкретных людях - о модели. О модели, которая раз за разом приводит к одному результату. В Алматы, в Москве, в Лос-Анджелесе. У блогеров с семью миллионами подписчиков и у блогеров с десятью. Модель одна - результат один.
           </p>
+
+          <div className="flex flex-col gap-4 my-8">
+            <div className="border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+              <Image src="/blog/why-blogger-brands-fail/lick-beauty.webp" alt="Lick beauty на Redstat — выручка и продажи за февраль 2026" width={1200} height={800} className="w-full h-auto" />
+              <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Скриншот: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a> <span className="text-[var(--color-border)] mx-1">|</span> бренд «Lick beauty» <span className="text-[var(--color-border)] mx-1">|</span> февраль 2026</p>
+            </div>
+            <div className="border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+              <Image src="/blog/why-blogger-brands-fail/lick.webp" alt="LICK на Redstat — выручка и продажи за февраль 2026" width={1200} height={800} className="w-full h-auto" />
+              <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Скриншот: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a> <span className="text-[var(--color-border)] mx-1">|</span> бренд «LICK» <span className="text-[var(--color-border)] mx-1">|</span> февраль 2026</p>
+            </div>
+          </div>
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />
@@ -82,16 +183,22 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">За кулисами красивого запуска</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Для тех, кто не в контексте — а таких, подозреваю, немного, — объясню. Арман Юсупов и Карина Оксукпаева — это, пожалуй, самая узнаваемая пара казахстанского Instagram. Он — около двух миллионов подписчиков. Она — около пяти. Создатели Yuframe, команды, которая начала снимать вайны ещё в 2015-м и стала культурным явлением задолго до того, как в Казахстане научились произносить слово «инфлюенсер» без ухмылки. Серийные предприниматели — продакшн-студия 2ANY1, проект «Поток», франшизный бизнес в нескольких городах.
+            Для тех, кто не в контексте - а таких, подозреваю, немного, - объясню. Арман Юсупов и Карина Оксукпаева - это, пожалуй, самая узнаваемая пара казахстанского Instagram. Он - около двух миллионов подписчиков. Она - около пяти. Создатели Yuframe, команды, которая начала снимать вайны ещё в 2015-м и стала культурным явлением задолго до того, как в Казахстане научились произносить слово «инфлюенсер» без ухмылки. Серийные предприниматели - продакшн-студия 2ANY1, проект «Поток», франшизный бизнес в нескольких городах.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Люди, которые умеют делать. Это важно зафиксировать с самого начала, чтобы потом, когда пойдут жёсткие цифры, никто не подумал, что я занимаюсь разоблачением бездарностей. Бездарности не набирают семь миллионов подписчиков.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            В июле 2025-го они запустили бренд косметики. Блеск для губ Cherry 01. Цена: 4 499 тенге. Компания StartUp Studio, зарегистрированная в Алматы в ноябре 2024-го на имя Юсупова и его друга Рустема Жали. Производство: Китай, что, надо оговориться, абсолютно стандартная практика: так делают и PUSY, и VOIS, и половина того, что стоит на полках «Золотого яблока».
+            В июле 2025-го они запустили бренд косметики. Блеск для губ Cherry 01. Цена: <span className="font-mono">4 499</span> тенге. Компания StartUp Studio, зарегистрированная в Алматы в ноябре 2024-го на имя Юсупова и его друга Рустема Жали. Производство: Китай, что, надо оговориться, абсолютно стандартная практика: так делают и PUSY, и VOIS, и половина того, что стоит на полках «Золотого яблока».
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            В декабре добавили три оттенка — Twinkle, Cocoa и Marshmallow по 5 990 тенге. И вот что произошло дальше.
+            <div className="my-8 border border-[var(--color-border)] rounded-[3px] overflow-hidden max-w-[520px] mx-auto">
+              <Image src="/blog/why-blogger-brands-fail/lick-insta.webp" alt="Пост запуска Lick Beauty в Instagram — «Как мы создали LICK?»" width={1200} height={1200} className="w-full h-auto" />
+              <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Пост запуска Lick Beauty <span className="text-[var(--color-border)] mx-1">|</span> Instagram <a href="https://www.instagram.com/yusupov21/" target="_blank" rel="noopener" className="text-[var(--color-dim)] hover:text-[var(--color-text)] hover:underline decoration-dotted underline-offset-2 transition-colors">@yusupov21</a></p>
+            </div>
+          </p>
+          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
+            В декабре добавили три оттенка - Twinkle, Cocoa и Marshmallow по <span className="font-mono">5 990</span> тенге. И вот что произошло дальше.
           </p>
 
           <Table
@@ -106,13 +213,13 @@ export default function LiqBeautyArticle() {
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Запуск — всплеск — спад. Второй запуск — всплеск поменьше — спад побольше. Это не сбой. Это паттерн.
+            Запуск - всплеск - спад. Второй запуск - всплеск поменьше - спад побольше. Это не сбой. Это паттерн.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            В августе блеск купили 7 241 человек. В феврале — все четыре товара, вместе взятые — 596.
+            В августе блеск купили <span className="font-mono">7 241</span> человек. В феврале - все четыре товара, вместе взятые - <span className="font-mono">596</span>.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Конечно, семь миллионов подписчиков — это не семь миллионов покупателей. Аудитория разрозненная: часть за пределами Казахстана, часть — мужчины, часть просто не видит сторис. Охват у крупных блогеров — обычно 5–15% от базы. Допустим, реальная целевая — 250–350 тысяч человек. Купили — 596. Даже по самым щадящим оценкам — меньше 0.2%. При норме инфлюенс-маркетинга в 1–3%.
+            Конечно, семь миллионов подписчиков - это не семь миллионов покупателей. Аудитория разрозненная: часть за пределами Казахстана, часть - мужчины, часть просто не видит сторис. Охват у крупных блогеров - обычно <span className="font-mono">5–15%</span> от базы. Допустим, реальная целевая - <span className="font-mono">250–350</span> тысяч человек. Купили - <span className="font-mono">596</span>. Даже по самым щадящим оценкам - меньше <span className="font-mono">0.2%</span>. При норме инфлюенс-маркетинга в <span className="font-mono">1–3%</span>.
           </p>
         </div>
 
@@ -122,7 +229,7 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Февраль виноват? Спросим у конкурентов</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            Когда я показал эти цифры коллегам, первая реакция была предсказуемой: «Февраль короткий, праздники прошли, все просели». Нормальная гипотеза. Разумная. И абсолютно проверяемая — потому что у нас есть данные не только по Lick Beauty.
+            Когда я показал эти цифры коллегам, первая реакция была предсказуемой: «Февраль короткий, праздники прошли, все просели». Нормальная гипотеза. Разумная. И абсолютно проверяемая - потому что у нас есть данные не только по Lick Beauty.
           </p>
 
           <Table
@@ -133,13 +240,13 @@ export default function LiqBeautyArticle() {
               ["Vivienne Sabo", "17.5 млн ₸", "18.7 млн ₸", "+7%"],
               ["Romand", "8.6 млн ₸", "8.1 млн ₸", "−6%"],
               ["Maybelline", "7.6 млн ₸", "7.5 млн ₸", "−2%"],
-              ["Lick / LICK", "6.3 млн ₸", "3.3 млн ₸", "−48%"],
+              ["Lick / LICK", "6.3 млн ₸", "3.3 млн ₸", <span className="text-[#f87171] font-bold">−48%</span>],
             ]}
             highlightRow={5}
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Ниша просела на 2–18%. Lick — на 48%. Сезонность объясняет от силы треть. Остальные тридцать процентных пунктов — это не февраль. Это что-то другое.
+            Ниша просела на <span className="font-mono">2–18%</span>. Lick - на <span className="font-mono">48%</span>. Сезонность объясняет от силы треть. Остальные тридцать процентных пунктов - это не февраль. Это что-то другое.
           </p>
         </div>
 
@@ -149,37 +256,42 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Четыреста двадцать тенге</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            А теперь — факт, ради которого, возможно, и стоило садиться за эту статью.
+            А теперь - факт, ради которого, возможно, и стоило садиться за эту статью.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            На Kaspi в категории «Помады, контуры, блески» есть товары без зарегистрированного бренда. Просто «Без бренда». За февраль они суммарно заработали 7.1 миллиона тенге. 55 SKU, почти 12 тысяч продаж. В два с лишним раза больше, чем Lick Beauty.
+            На Kaspi в категории «Помады, контуры, блески» есть товары без зарегистрированного бренда. Просто «Без бренда». За февраль они суммарно заработали <span className="font-mono">7.1</span> миллиона тенге. <span className="font-mono">55</span> SKU, почти <span className="font-mono">12</span> тысяч продаж. В два с лишним раза больше, чем Lick Beauty.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            Я полез внутрь — и обнаружил кое-что неожиданное. Большинство этих «безбрендовых» товаров — Rhode. Тот самый бренд Хейли Бибер. Только вот оригинальный Rhode Peptide Lip Tint стоит ~$16 — примерно 7 500 тенге. А на Kaspi он продаётся по 420–515 тенге. С одной фотографией на карточке. Без описания. Без истории бренда. Очевидно — китайские реплики, которые используют название и визуал Rhode.
+            Я полез внутрь - и обнаружил кое-что неожиданное. Большинство этих «безбрендовых» товаров - Rhode. Тот самый бренд Хейли Бибер. Только вот оригинальный Rhode Peptide Lip Tint стоит ~<span className="font-mono">$16</span> - примерно <span className="font-mono">7 500</span> тенге. А на Kaspi он продаётся по <span className="font-mono">420–515</span> тенге. С одной фотографией на карточке. Без описания. Без истории бренда. Очевидно - китайские реплики, которые используют название и визуал Rhode.
+          </p>
+
+          <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+            <Image src="/blog/why-blogger-brands-fail/rhode-redstat.webp" alt="Rhode Espresso на Redstat — 1.6 млн тенге выручки за февраль 2026" width={1200} height={800} className="w-full h-auto" />
+            <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Rhode Espresso на Kaspi.kz <span className="text-[var(--color-border)] mx-1">|</span> Скриншот: <a href="https://redstat.kz" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">redstat.kz</a></p>
+          </div>
+
+          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
+            <span className="font-mono">3 274</span> продажи в месяц. У Cherry 01 от Lick Beauty - <span className="font-mono">195</span>.
+          </p>
+          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
+            Реплика с одной картинкой продаёт в семнадцать раз больше, чем оригинальный бренд с семимиллионной аудиторией.
           </p>
 
           <Table
             headers={["Товар", "Цена", "Выручка (фев)", "Продажи"]}
             rows={[
-              ["Rhode Espresso", "421 ₸", "1 600 604 ₸", "3 274"],
-              ["Rhode Toast", "515 ₸", "525 066 ₸", "990"],
-              ["Rhode Ribbon", "498 ₸", "403 578 ₸", "745"],
-              ["Фруктовый Блеск (ноунейм)", "298 ₸", "361 685 ₸", "1 368"],
-              ["Rhode Raspberry Jelly", "403 ₸", "293 371 ₸", "661"],
+              [<a key="e" href="https://kaspi.kz/shop/p/rhode-blesk-dlja-gub-espresso-142386324" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Rhode Espresso <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "421 ₸", "1 600 604 ₸", "3 274"],
+              [<a key="t" href="https://kaspi.kz/shop/p/rhode-blesk-dlja-gub-toast-144626391" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Rhode Toast <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "515 ₸", "525 066 ₸", "990"],
+              [<a key="r" href="https://kaspi.kz/shop/p/rhode-blesk-dlja-gub-ribbon-145296485" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Rhode Ribbon <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "498 ₸", "403 578 ₸", "745"],
+              [<a key="f" href="https://kaspi.kz/shop/p/blesk-dlja-gub-blesk-dlja-gub-fruktovyi-blesk-1-sht-152798242" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Фруктовый Блеск (ноунейм) <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "298 ₸", "361 685 ₸", "1 368"],
+              [<a key="rj" href="https://kaspi.kz/shop/p/rhode-blesk-dlja-gub-raspberry-jelly-142387040" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Rhode Raspberry Jelly <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "403 ₸", "293 371 ₸", "661"],
             ]}
           />
-
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            3 274 продажи в месяц. У Cherry 01 от Lick Beauty — 195.
-          </p>
-          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Реплика с одной картинкой продаёт в семнадцать раз больше, чем оригинальный бренд с семимиллионной аудиторией.
-          </p>
-          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            И вот тут я подхожу к штуке, которую на наших рынках знает каждый продавец, но которую почему-то забывают, когда разговор заходит о «брендах блогеров». В маркетинговых учебниках это называют красивым словом «ценовая эластичность спроса». На нашем рынке формулируют проще: цена решает. В Казахстане, в России, во всём СНГ — цена была, есть и будет главным фильтром покупки. Не бренд. Не подписчики. Не сторис. Цена.
+            И вот тут я подхожу к штуке, которую на наших рынках знает каждый продавец, но которую почему-то забывают, когда разговор заходит о «брендах блогеров». В маркетинговых учебниках это называют красивым словом «ценовая эластичность спроса». На нашем рынке формулируют проще: цена решает. В Казахстане, в России, во всём СНГ - цена была, есть и будет главным фильтром покупки. Не бренд. Не подписчики. Не сторис. Цена.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Реплика за 420 тенге — это импульсная покупка. Увидела в выдаче — добавила в корзину — не думая. Даже если качество так себе — четыреста двадцать тенге не жалко. А блеск за 5 990 — это осознанное решение. Покупатель должен <em>знать</em>, что именно этот блеск ему нужен. А откуда он это знает? Из сторис. Которые были полгода назад.
+            Реплика за <span className="font-mono">420</span> тенге - это импульсная покупка. Увидела в выдаче - добавила в корзину - не думая. Даже если качество так себе - четыреста двадцать тенге не жалко. А блеск за <span className="font-mono">5 990</span> - это осознанное решение. Покупатель должен <em>знать</em>, что именно этот блеск ему нужен. А откуда он это знает? Из сторис. Которые были полгода назад.
           </p>
         </div>
 
@@ -187,18 +299,18 @@ export default function LiqBeautyArticle() {
 
         {/* ─── Запуск это не бизнес ─── */}
         <div className="mb-12">
-          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Запуск — это не бизнес. Это аплодисменты</h2>
+          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Запуск - это не бизнес. Это аплодисменты</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            В театре бывает так: спектакль закончился, зрители хлопают, актёры кланяются, все счастливы. А потом наступает завтра. Нужно снова выходить на сцену. И послезавтра. И через месяц. И через год. И зрители каждый раз — новые. И им плевать, что вчера был аншлаг.
+            В театре бывает так: спектакль закончился, зрители хлопают, актёры кланяются, все счастливы. А потом наступает завтра. Нужно снова выходить на сцену. И послезавтра. И через месяц. И через год. И зрители каждый раз - новые. И им плевать, что вчера был аншлаг.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Запуск бренда блогера — это аплодисменты. Один раз. Блогер записывает серию сторис, показывает продукт, говорит сокровенное: «Я так долго к этому шла». Аудитория покупает. Не блеск — причастность. Не товар — лояльность. Кусочек жизни человека, за которым наблюдают каждый день.
+            Запуск бренда блогера - это аплодисменты. Один раз. Блогер записывает серию сторис, показывает продукт, говорит сокровенное: «Я так долго к этому шла». Аудитория покупает. Не блеск - причастность. Не товар - лояльность. Кусочек жизни человека, за которым наблюдают каждый день.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Первый месяц — это не продажи. Это одноразовая конвертация социального капитала в деньги. Капитал копился годами. Конвертация происходит за неделю. Дальше капитал обнуляется. Начинается бизнес.
+            Первый месяц - это не продажи. Это одноразовая конвертация социального капитала в деньги. Капитал копился годами. Конвертация происходит за неделю. Дальше капитал обнуляется. Начинается бизнес.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            А бизнес — это логистика, закупки, остатки на складе, карточки, SEO, реклама, ценообразование, контроль дистрибуции, юнит-экономика, повторные покупки, ассортимент, каналы. Длинный и скучный перечень, в котором нет ни одного пункта, решаемого сторис.
+            А бизнес - это логистика, закупки, остатки на складе, карточки, SEO, реклама, ценообразование, контроль дистрибуции, юнит-экономика, повторные покупки, ассортимент, каналы. Длинный и скучный перечень, в котором нет ни одного пункта, решаемого сторис.
           </p>
         </div>
 
@@ -208,40 +320,46 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Девятнадцать продавцов одной баночки</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Вот тут я залез глубже, чем обычно. Посмотрел не просто продажи — залез в конкретный SKU. 143562625: «Lick beauty Lip Gloss блеск для губ вишневый Cherry 01». Одна карточка на Kaspi. Один товар. Одна и та же баночка.
+            Вот тут я залез глубже, чем обычно. Посмотрел не просто продажи - залез в конкретный SKU. 143562625: «Lick beauty Lip Gloss блеск для губ вишневый Cherry 01». Одна карточка на Kaspi. Один товар. Одна и та же баночка.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Девятнадцать продавцов. Каждый — со своей ценой.
+            Девятнадцать продавцов. Каждый - со своей ценой.
+          </p>
+
+          <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
+            <Image src="/blog/why-blogger-brands-fail/lick-lip-gloss.webp" alt="Cherry 01 на Kaspi — 19 продавцов, разброс цен от 5 800 до 16 995 тенге" width={1200} height={800} className="w-full h-auto" />
+            <p className="font-mono text-[11px] text-[var(--color-dim)] text-center py-2.5">Скриншот: <a href="https://kaspi.kz/shop/p/lick-beauty-lip-gloss-blesk-dlja-gub-vishnevyi-cherry-01-143562625" target="_blank" rel="noopener" className="text-[#f87171] cursor-pointer hover:underline decoration-dotted decoration-[#f87171] underline-offset-2">Kaspi.kz</a> <span className="text-[var(--color-border)] mx-1">|</span> Lick beauty Lip Gloss Cherry 01</p>
+          </div>
+
+          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
+            Сами авторы - LICK - ставят <span className="font-mono">5 990</span> тенге. Но три продавца на той же карточке - <span className="font-mono">5 800</span>. Дешевле автора. Зачем переплачивать бренду, если рядом - тот же товар за меньшие деньги?
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Сами авторы — LICK — ставят 5 990 тенге. Но три продавца на той же карточке — 5 800. Дешевле автора. Зачем переплачивать бренду, если рядом — тот же товар за меньшие деньги?
-          </p>
-          <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            На другом конце — ИП Metaverse. Тот же блеск. Та же карточка. 16 995 тенге. Почти в три раза дороже. Между ними — ещё пятнадцать продавцов. Один из них — ELEXIR COLLECTION — с рейтингом 3.0, статусом TERRIBLE и 13% возвратов. Этот продавец с ужасной репутацией торгует вашим блеском за 8 900 тенге.
+            На другом конце - ИП Metaverse. Тот же блеск. Та же карточка. <span className="font-mono">16 995</span> тенге. Почти в три раза дороже. Между ними - ещё пятнадцать продавцов. Один из них - ELEXIR COLLECTION - с рейтингом <span className="font-mono">3.0</span>, статусом TERRIBLE и <span className="font-mono">13%</span> возвратов. Этот продавец с ужасной репутацией торгует вашим блеском за <span className="font-mono">8 900</span> тенге.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            Для покупателя на Kaspi всё это — одно лицо. Лицо вашего бренда.
+            Для покупателя на Kaspi всё это - одно лицо. Лицо вашего бренда.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            Это не перекупщики. Скорее — неуправляемая дистрибуция. Похоже, команда Lick раздала товар сторонним продавцам, но не выстроила контроль рекомендованных розничных цен. Итог: одна баночка — от 5 800 до 16 995 тенге. Разброс в три раза. Нет единой ценовой политики — нет контроля над брендом. Это азбука, которую почему-то никто не читает.
+            Это не перекупщики. Скорее - неуправляемая дистрибуция. Похоже, команда Lick раздала товар сторонним продавцам, но не выстроила контроль рекомендованных розничных цен. Итог: одна баночка - от <span className="font-mono">5 800</span> до <span className="font-mono">16 995</span> тенге. Разброс в три раза. Нет единой ценовой политики - нет контроля над брендом. Это азбука, которую почему-то никто не читает.
           </p>
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-2">
-            Новые SKU — Twinkle, Cocoa, Marshmallow — продаёт один продавец. Сами авторы. Но даже без ценового хаоса:
+            Новые SKU - Twinkle, Cocoa, Marshmallow - продаёт один продавец. Сами авторы. Но даже без ценового хаоса:
           </p>
 
           <Table
             headers={["Товар", "Выручка (фев)", "Продажи", "Динамика"]}
             rows={[
-              ["Cherry 01", "898 256 ₸", "195 шт", "−56.5%"],
-              ["Twinkle", "1 087 278 ₸", "178 шт", "−35.3%"],
-              ["Cocoa", "942 864 ₸", "154 шт", "−36.2%"],
-              ["Marshmallow", "365 252 ₸", "64 шт", "−66.6%"],
+              [<a key="c" href="https://kaspi.kz/shop/p/lick-beauty-lip-gloss-blesk-dlja-gub-vishnevyi-cherry-01-143562625" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Cherry 01 <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "898 256 ₸", "195 шт", <span className="text-[#f87171] font-bold">−56.5%</span>],
+              [<a key="tw" href="https://kaspi.kz/shop/p/lick-lip-gloss-blesk-dlja-gub-twinkle-152237502" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Twinkle <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "1 087 278 ₸", "178 шт", <span className="text-[#f87171] font-bold">−35.3%</span>],
+              [<a key="co" href="https://kaspi.kz/shop/p/lick-lip-gloss-blesk-dlja-gub-cocoa-152237715" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Cocoa <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "942 864 ₸", "154 шт", <span className="text-[#f87171] font-bold">−36.2%</span>],
+              [<a key="ma" href="https://kaspi.kz/shop/p/lick-lip-gloss-blesk-dlja-gub-marshmallow-152237844" target="_blank" rel="noopener" className="inline-flex items-center gap-1 text-[var(--color-text)] hover:text-[#f87171] hover:underline decoration-dotted decoration-[#f87171] underline-offset-2 transition-colors">Marshmallow <svg className="w-3 h-3 opacity-40" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6M15 3h6v6M10 14L21 3"/></svg></a>, "365 252 ₸", "64 шт", <span className="text-[#f87171] font-bold">−66.6%</span>],
             ]}
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Marshmallow — минус 66.6% за месяц. При рейтинге 4.8–5.0 и 1 390 отзывах у Cherry. Покупатели довольны. Продукт — нормальный. Проблема не в качестве.
+            Marshmallow - минус <span className="font-mono">66.6%</span> за месяц. При рейтинге <span className="font-mono">4.8–5.0</span> и <span className="font-mono">1 390</span> отзывах у Cherry. Покупатели довольны. Продукт - нормальный. Проблема не в качестве.
           </p>
         </div>
 
@@ -251,16 +369,16 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Продукт, который покупают один раз</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Проблема — в самом продукте.
+            Проблема - в самом продукте.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Блеск для губ — разовая покупка. Одного тюбика хватает на месяцы. Купил — поставил на полку — забыл. Нет повторных продаж. Нет LTV. Клиент пришёл и ушёл.
+            Блеск для губ - разовая покупка. Одного тюбика хватает на месяцы. Купил - поставил на полку - забыл. Нет повторных продаж. Нет LTV. Клиент пришёл и ушёл.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Это как ресторан, который продаёт только одно блюдо — притом настолько сытное, что после него не хочется есть неделю. Отличное блюдо. Все хвалят. Все рекомендуют. Но никто не возвращается.
+            Это как ресторан, который продаёт только одно блюдо - притом настолько сытное, что после него не хочется есть неделю. Отличное блюдо. Все хвалят. Все рекомендуют. Но никто не возвращается.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Если бы в линейке были расходники — мицеллярная вода, тоники, маски, патчи — покупатели приходили бы каждый месяц. Блеск — это красивый сувенир, который купили один раз по сторис. Через месяц нет повода вернуться.
+            Если бы в линейке были расходники - мицеллярная вода, тоники, маски, патчи - покупатели приходили бы каждый месяц. Блеск - это красивый сувенир, который купили один раз по сторис. Через месяц нет повода вернуться.
           </p>
         </div>
 
@@ -270,31 +388,32 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Те, кто строил</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Любой диагноз убедителен ровно настолько, насколько убедительно лечение. Если проблема — в модели, то где-то должны существовать люди, которые построили другую модель и выиграли.
+            Любой диагноз убедителен ровно настолько, насколько убедительно лечение. Если проблема - в модели, то где-то должны существовать люди, которые построили другую модель и выиграли.
           </p>
 
           <h3 className="text-[17px] font-bold text-[var(--color-text)] mt-10 mb-4">PUSY: 500 тысяч подписчиков и 3.2 миллиарда</h3>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            В конце 2021 года Илона Дрожь — мастер по ламинированию бровей, около 500 тысяч подписчиков — и серийный предприниматель Артём Бородавкин основали PUSY. Бородавкин стал генеральным директором ООО «Дрожь Бьюти». Илона стала лицом. Он строил бизнес. Она давала ему лицо. Буквально.
+            В конце 2021 года Илона Дрожь - мастер по ламинированию бровей, около 500 тысяч подписчиков - и серийный предприниматель Артём Бородавкин основали PUSY. Бородавкин стал генеральным директором ООО «Дрожь Бьюти». Илона стала лицом. Он строил бизнес. Она давала ему лицо. Буквально.
           </p>
 
           <Table
             headers={["Год", "Выручка", "Прибыль"]}
             rows={[
               ["2022", "176 млн ₽", "63 млн ₽"],
-              ["2023", "1.54 млрд ₽", "—"],
+              ["2023", "1.54 млрд ₽", "-"],
               ["2024", "3.25 млрд ₽", "802 млн ₽"],
             ]}
+            source="СПАРК-Интерфакс"
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Рентабельность — 25%. Для бренда с блогерскими корнями — аномалия.
+            Рентабельность - <span className="font-mono">25%</span>. Для бренда с блогерскими корнями - аномалия.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            По данным аналитики маркетплейсов (MPStats), за 30 дней — с 26 января по 24 февраля 2026 года — PUSY заработал только на Wildberries 74.6 миллиона рублей. Средняя дневная выручка — 2.4 миллиона. Ещё 13.5 миллионов — упущенная выручка: товар кончился на складе, а спрос остался. PUSY <em>теряет</em> из-за нехватки товара больше, чем Lick Beauty <em>зарабатывает</em> за месяц.
+            По данным аналитики маркетплейсов (MPStats), за 30 дней - с 26 января по 24 февраля 2026 года - PUSY заработал только на Wildberries <span className="font-mono">74.6</span> миллиона рублей. Средняя дневная выручка - <span className="font-mono">2.4</span> миллиона. Ещё <span className="font-mono">13.5</span> миллионов - упущенная выручка: товар кончился на складе, а спрос остался. PUSY <em>теряет</em> из-за нехватки товара больше, чем Lick Beauty <em>зарабатывает</em> за месяц.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-6">
-            У бренда — 1 377 SKU. У Lick Beauty — четыре.
+            У бренда - <span className="font-mono">1 377</span> SKU. У Lick Beauty - четыре.
           </p>
 
           <Table
@@ -308,30 +427,31 @@ export default function LiqBeautyArticle() {
               ["Маска для волос с кератином", "1.71 млн ₽", "3 274"],
               ["SOS-тоник для лица", "1.10 млн ₽", "1 259"],
             ]}
+            source="MPStats · Wildberries"
           />
 
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Гели для бровей — расходник номер один. Заканчивается — покупают снова. Но PUSY не остановился на гелях. Шампуни, маски, тоники, тушь, автозагар — 1 377 позиций. Каждая — расходник. Каждая — повод вернуться. Основной ценовой сегмент — 400–1 060 рублей.
+            Гели для бровей - расходник номер один. Заканчивается - покупают снова. Но PUSY не остановился на гелях. Шампуни, маски, тоники, тушь, автозагар - <span className="font-mono">1 377</span> позиций. Каждая - расходник. Каждая - повод вернуться. Основной ценовой сегмент - <span className="font-mono">400–1 060</span> рублей.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Что сделал Бородавкин? Он не снимал сторис. Он строил: производство, логистику, маркетплейсы, финансы. Wildberries, Ozon, Магнит Косметик, Золотое Яблоко, Л&apos;Этуаль, четыре маркетплейса Китая. В 2025-м — Amazon и ближневосточный Noon. Сотни микроблогеров вместо одного большого.
+            Что сделал Бородавкин? Он не снимал сторис. Он строил: производство, логистику, маркетплейсы, финансы. Wildberries, Ozon, Магнит Косметик, Золотое Яблоко, Л&apos;Этуаль, четыре маркетплейса Китая. В 2025-м - Amazon и ближневосточный Noon. Сотни микроблогеров вместо одного большого.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-8">
-            Lick Beauty — четыре SKU. Один маркетплейс. Один рынок.
+            Lick Beauty - четыре SKU. Один маркетплейс. Один рынок.
           </p>
 
-          <h3 className="text-[17px] font-bold text-[var(--color-text)] mt-10 mb-4">VOIS: вообще без блогера — 2.5 миллиарда рублей</h3>
+          <h3 className="text-[17px] font-bold text-[var(--color-text)] mt-10 mb-4">VOIS: вообще без блогера - 2.5 миллиарда рублей</h3>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             А вот кейс, который ломает вообще всю привычную схему.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            VOIS — бренд уходовой косметики. Основан в 2021-м Исламом Гедиевым из Кисловодска и Владимиром Загорским из белорусского Воложина. Двое предпринимателей. Никакого блогера-основателя. Вообще.
+            VOIS - бренд уходовой косметики. Основан в 2021-м Исламом Гедиевым из Кисловодска и Владимиром Загорским из белорусского Воложина. Двое предпринимателей. Никакого блогера-основателя. Вообще.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            По данным Forbes и СПАРК, выручка VOIS в 2024-м — 2.5 миллиарда рублей. Рост с 388 миллионов за год. В 6.5 раз. Прибыль — 592 миллиона. Гедиеву — 30 лет. Победитель Forbes «30 до 30» 2025 года.
+            По данным Forbes и СПАРК, выручка VOIS в 2024-м - <span className="font-mono">2.5</span> миллиарда рублей. Рост с <span className="font-mono">388</span> миллионов за год. В <span className="font-mono">6.5</span> раз. Прибыль - <span className="font-mono">592</span> миллиона. Гедиеву - <span className="font-mono">30</span> лет. Победитель Forbes «30 до 30» 2025 года.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Их находка: они первыми в России начали нанимать блогеров в штат. Не на разовые интеграции. В штат. Сейчас — 200 креаторов. Половина компании. Постоянный конвейер контента, который работает каждый день, а не когда у кого-то настроение снять сторис. Продажи на Wildberries — +550% за год.
+            Их находка: они первыми в России начали нанимать блогеров в штат. Не на разовые интеграции. В штат. Сейчас - <span className="font-mono">200</span> креаторов. Половина компании. Постоянный конвейер контента, который работает каждый день, а не когда у кого-то настроение снять сторис. Продажи на Wildberries - <span className="font-mono">+550%</span> за год.
           </p>
         </div>
 
@@ -341,13 +461,13 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">От Алматы до Лос-Анджелеса: один и тот же паттерн</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Если бы история Lick Beauty была уникальной — можно было бы списать на невезение. Но она не уникальная. Она — правило.
+            Если бы история Lick Beauty была уникальной - можно было бы списать на невезение. Но она не уникальная. Она - правило.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Джаклин Хилл. Один из крупнейших бьюти-блогеров YouTube. Jaclyn Cosmetics — запуск 2019-го через Forma Brands. Покупатели нашли в помадах посторонние волокна. Полный возврат, перезапуск, выход в Ulta Beauty. Январь 2023-го — Forma подаёт на банкротство. Январь 2024-го — Jaclyn Cosmetics закрывается. Хилл предлагали выкупить бренд. Отказалась. Новый президент Forma после этого сказал фразу, которую стоит вырезать в камне: «Product first, not influencer first». Продукт — на первом месте. Не инфлюенсер.
+            Джаклин Хилл. Один из крупнейших бьюти-блогеров YouTube. Jaclyn Cosmetics - запуск 2019-го через Forma Brands. Покупатели нашли в помадах посторонние волокна. Полный возврат, перезапуск, выход в Ulta Beauty. Январь 2023-го - Forma подаёт на банкротство. Январь 2024-го - Jaclyn Cosmetics закрывается. Хилл предлагали выкупить бренд. Отказалась. Новый президент Forma после этого сказал фразу, которую стоит вырезать в камне: «Product first, not influencer first». Продукт - на первом месте. Не инфлюенсер.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Усэйн Болт. Олимпийский чемпион. 15 миллионов подписчиков. Bolt Mobility — электросамокаты. $40+ миллионов инвестиций. Июль 2022-го — компания просто исчезает. Самокаты бросили на улицах. Сотрудникам не заплатили. Чиновники не могут дозвониться.
+            Усэйн Болт. Олимпийский чемпион. <span className="font-mono">15</span> миллионов подписчиков. Bolt Mobility - электросамокаты. <span className="font-mono">$40+</span> миллионов инвестиций. Июль 2022-го - компания просто исчезает. Самокаты бросили на улицах. Сотрудникам не заплатили. Чиновники не могут дозвониться.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
             Разные страны. Разные отрасли. Разные масштабы. Один и тот же финал.
@@ -363,13 +483,13 @@ export default function LiqBeautyArticle() {
             Есть деталь, которая мне как аналитику кажется самой красноречивой во всей этой истории.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Lick Beauty — не единственный бьюти-бренд Юсупова. Те же учредители — Юсупов и Жали — владеют компанией Glam Me, которая выпускает BlushMe — румяна от Айым Сейтметовой, бывшей участницы Yuframe.
+            Lick Beauty - не единственный бьюти-бренд Юсупова. Те же учредители - Юсупов и Жали - владеют компанией Glam Me, которая выпускает BlushMe - румяна от Айым Сейтметовой, бывшей участницы Yuframe.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Модель поставлена на конвейер. Блогер из ближнего круга — бренд — Китай — сторис — выручка первого месяца. Повторить.
+            Модель поставлена на конвейер. Блогер из ближнего круга - бренд - Китай - сторис - выручка первого месяца. Повторить.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Конвейер сам по себе — не порок. Порок — когда в конвейере не предусмотрена та часть, где бизнес продолжает работать после того, как сторис закончились.
+            Конвейер сам по себе - не порок. Порок - когда в конвейере не предусмотрена та часть, где бизнес продолжает работать после того, как сторис закончились.
           </p>
         </div>
 
@@ -377,15 +497,15 @@ export default function LiqBeautyArticle() {
 
         {/* ─── Рынок ─── */}
         <div className="mb-12">
-          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Даже если стать первым — хватит ли рынка?</h2>
+          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Даже если стать первым - хватит ли рынка?</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Допустим, всё починили. Навели порядок в дистрибуции, расширили линейку, нашли операционного партнёра. Стали номером один.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Лидер ниши Sen Sulu — 26 миллионов тенге в месяц. Вся категория помад на Kaspi — ~116 миллионов. Это $230 тысяч на всю нишу. На весь Kaspi. Для бренда с аудиторией в семь миллионов — это потолок одного кабинета.
+            Лидер ниши Sen Sulu - <span className="font-mono">26</span> миллионов тенге в месяц. Вся категория помад на Kaspi - ~<span className="font-mono">116</span> миллионов. Это <span className="font-mono">$230</span> тысяч на всю нишу. На весь Kaspi. Для бренда с аудиторией в семь миллионов - это потолок одного кабинета.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            Казахстан — не приговор. Но Kaspi в одиночку — добровольное ограничение.
+            Казахстан - не приговор. Но Kaspi в одиночку - добровольное ограничение.
           </p>
         </div>
 
@@ -398,22 +518,22 @@ export default function LiqBeautyArticle() {
             Это не претензии. Это вещи, которые видны, когда смотришь на рынок из-за цифр, а не из-за камеры телефона.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-3">
-            <strong className="text-[var(--color-text)]">Расходники.</strong> Мицеллярная вода, тоники, маски, патчи — всё, что заканчивается. Один блеск — LTV ~5 500 тенге. Линейка расходников — 40–60 тысяч в год. Разница в 8–10 раз.
+            <strong className="text-[var(--color-text)]">Расходники.</strong> Мицеллярная вода, тоники, маски, патчи - всё, что заканчивается. Один блеск - LTV ~<span className="font-mono">5 500</span> тенге. Линейка расходников - <span className="font-mono">40–60</span> тысяч в год. Разница в <span className="font-mono">8–10</span> раз.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-3">
-            <strong className="text-[var(--color-text)]">Цена.</strong> На наших рынках цена — главный фильтр. Реплики Rhode по 420 тенге — импульсная покупка. Блеск за 5 990 — осознанное решение, которое без повторного прогрева не принимается. Не можешь конкурировать ценой — давай ценность, которая оправдывает разницу.
+            <strong className="text-[var(--color-text)]">Цена.</strong> На наших рынках цена - главный фильтр. Реплики Rhode по <span className="font-mono">420</span> тенге - импульсная покупка. Блеск за <span className="font-mono">5 990</span> - осознанное решение, которое без повторного прогрева не принимается. Не можешь конкурировать ценой - давай ценность, которая оправдывает разницу.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-3">
-            <strong className="text-[var(--color-text)]">Партнёр с юнит-экономикой.</strong> У PUSY — Бородавкин. У VOIS — Загорский и Гедиев. У Lick Beauty — два блогера и друг-соучредитель.
+            <strong className="text-[var(--color-text)]">Партнёр с юнит-экономикой.</strong> У PUSY - Бородавкин. У VOIS - Загорский и Гедиев. У Lick Beauty - два блогера и друг-соучредитель.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-3">
-            <strong className="text-[var(--color-text)]">Каналы.</strong> WB и Ozon уже в Казахстане. Российский рынок в 10–15 раз больше.
+            <strong className="text-[var(--color-text)]">Каналы.</strong> WB и Ozon уже в Казахстане. Российский рынок в <span className="font-mono">10–15</span> раз больше.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-3">
-            <strong className="text-[var(--color-text)]">Контроль дистрибуции.</strong> 19 продавцов, разброс от 5 800 до 16 995, продавец с 13% возвратов — хаос.
+            <strong className="text-[var(--color-text)]">Контроль дистрибуции.</strong> <span className="font-mono">19</span> продавцов, разброс от <span className="font-mono">5 800</span> до <span className="font-mono">16 995</span>, продавец с <span className="font-mono">13%</span> возвратов - хаос.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            <strong className="text-[var(--color-text)]">200 микроблогеров вместо одного мегаблогера.</strong> Конвейер, который не зависит от настроения одного человека.
+            <strong className="text-[var(--color-text)]"><span className="font-mono">200</span> микроблогеров вместо одного мегаблогера.</strong> Конвейер, который не зависит от настроения одного человека.
           </p>
         </div>
 
@@ -421,24 +541,24 @@ export default function LiqBeautyArticle() {
 
         {/* ─── Финал ─── */}
         <div className="mb-12">
-          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Хайп заканчивается. Процессы — нет</h2>
+          <h2 className="text-[20px] font-bold tracking-tight text-[var(--color-text)] mb-6">Хайп заканчивается. Процессы - нет</h2>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Арман и Карина — талантливые люди. Это нужно сказать без оговорок. Семь миллионов подписчиков не покупаются и не накручиваются. Yuframe — культурное явление. Рейтинги Lick — 4.8–5.0. Покупатели довольны. Эти люди умеют создавать вещи, которые нравятся аудитории.
+            Арман и Карина - талантливые люди. Это нужно сказать без оговорок. Семь миллионов подписчиков не покупаются и не накручиваются. Yuframe - культурное явление. Рейтинги Lick - <span className="font-mono">4.8–5.0</span>. Покупатели довольны. Эти люди умеют создавать вещи, которые нравятся аудитории.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            Но нравиться аудитории и работать как бизнес — два разных ремесла. Подписчики — это внимание. Бизнес — это повторные продажи. Между первым и вторым — операции, логистика, финансы и партнёр, который всё это строит.
+            Но нравиться аудитории и работать как бизнес - два разных ремесла. Подписчики - это внимание. Бизнес - это повторные продажи. Между первым и вторым - операции, логистика, финансы и партнёр, который всё это строит.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Модель «запустить блеск и продавать через сторис» не работает. Ни здесь, ни в Америке, ни у кого. Работает другое: партнёр-операционщик. Расходники. Армия микроблогеров. Много каналов. Контроль цен.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            43.6 миллиона тенге в августе — это не бизнес. Это вспышка. Бизнес — то, что остаётся, когда вспышка гаснет.
+            <span className="font-mono">43.6</span> миллиона тенге в августе - это не бизнес. Это вспышка. Бизнес - то, что остаётся, когда вспышка гаснет.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
-            У Lick Beauty рейтинг 5.0. Продукт хороший. Аудитория огромная. Шанс — есть. Но для этого нужно перестать продавать блеск через сторис и начать строить компанию.
+            У Lick Beauty рейтинг <span className="font-mono">5.0</span>. Продукт хороший. Аудитория огромная. Шанс - есть. Но для этого нужно перестать продавать блеск через сторис и начать строить компанию.
           </p>
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
-            И напоследок — помните тот факт из середины? Китайские реплики Rhode по 420 тенге — с одной фотографией на карточке, без подписчиков, без лица, без единого сторис — за февраль заработали на Kaspi 7.1 миллиона тенге. Lick Beauty с аудиторией в семь миллионов — 3.3 миллиона. Стоит ли вкладывать месяцы работы, производство, логистику, прогрев многомиллионной аудитории — чтобы в итоге продавать в два раза меньше, чем реплика с одной фотографией и ценником 420 тенге?
+            И напоследок - помните тот факт из середины? Китайские реплики Rhode по <span className="font-mono">420</span> тенге - с одной фотографией на карточке, без подписчиков, без лица, без единого сторис - за февраль заработали на Kaspi <span className="font-mono">7.1</span> миллиона тенге. Lick Beauty с аудиторией в семь миллионов - <span className="font-mono">3.3</span> миллиона. Стоит ли вкладывать месяцы работы, производство, логистику, прогрев многомиллионной аудитории - чтобы в итоге продавать в два раза меньше, чем реплика с одной фотографией и ценником <span className="font-mono">420</span> тенге?
           </p>
         </div>
 
@@ -448,12 +568,12 @@ export default function LiqBeautyArticle() {
         <div className="mb-12">
           <h2 className="text-[16px] font-bold tracking-tight text-[var(--color-text)] mb-4">Источники</h2>
           <div className="text-[12px] text-[var(--color-dim)]/70 leading-relaxed space-y-2">
-            <p><em>Данные о продажах Lick Beauty, Sen Sulu, LUXVISAGE, Vivienne Sabo, Romand, Maybelline и товаров «Без бренда» на Kaspi.kz — Redstat, система аналитики маркетплейсов. Данные о ценах и продавцах Cherry 01 (SKU 143562625) получены через API Kaspi.</em></p>
-            <p><em>Данные о выручке PUSY (ООО «Дрожь Бьюти», ИНН 9705156525) — СПАРК-Интерфакс; Shoppers.media, 31.10.2025; Saby.ru. Данные о продажах PUSY на Wildberries за 26.01–24.02.2026 — MPStats.</em></p>
-            <p><em>Данные о выручке VOIS (ООО «Рокет Лаунч») — Forbes.ru, 01.07.2025; СПАРК-Интерфакс.</em></p>
-            <p><em>Информация о структуре компаний StartUp Studio и Glam Me — Finratings.kz, 08.08.2025.</em></p>
-            <p><em>Jaclyn Cosmetics / Forma Brands — Business of Fashion, 01.01.2024; Beauty Independent, 01.01.2024; Retail Dive, 05.01.2024.</em></p>
-            <p><em>Bolt Mobility — TechCrunch; Market Realist, 03.08.2022.</em></p>
+            <p><em>Данные о продажах Lick Beauty, Sen Sulu, LUXVISAGE, Vivienne Sabo, Romand, Maybelline и товаров «Без бренда» на Kaspi.kz - Redstat, система аналитики маркетплейсов. Данные о ценах и продавцах Cherry 01 (SKU 143562625) получены через API Kaspi.</em></p>
+            <p><em>Данные о выручке PUSY (ООО «Дрожь Бьюти», ИНН 9705156525) - СПАРК-Интерфакс; Shoppers.media, 31.10.2025; Saby.ru. Данные о продажах PUSY на Wildberries за 26.01–24.02.2026 - MPStats.</em></p>
+            <p><em>Данные о выручке VOIS (ООО «Рокет Лаунч») - Forbes.ru, 01.07.2025; СПАРК-Интерфакс.</em></p>
+            <p><em>Информация о структуре компаний StartUp Studio и Glam Me - Finratings.kz, 08.08.2025.</em></p>
+            <p><em>Jaclyn Cosmetics / Forma Brands - Business of Fashion, 01.01.2024; Beauty Independent, 01.01.2024; Retail Dive, 05.01.2024.</em></p>
+            <p><em>Bolt Mobility - TechCrunch; Market Realist, 03.08.2022.</em></p>
           </div>
         </div>
 
