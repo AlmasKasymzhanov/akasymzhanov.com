@@ -89,6 +89,13 @@ export function ShareButtons({ url, title, variant = "compact" }: ShareButtonsPr
 
     track("share", { channel: channelId, url });
 
+    // Supabase event tracking
+    fetch("/api/events", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ slug: url.split("/").pop(), event_type: "share", channel: channelId }),
+    }).catch(() => {});
+
     if (channelId === "copy") {
       navigator.clipboard.writeText(url);
       setCopied("copy");

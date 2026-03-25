@@ -5,6 +5,7 @@ import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ViewCounter } from "@/components/view-counter";
 import { ShareButtons } from "@/components/share-buttons";
+import { ReadTracker } from "@/components/read-tracker";
 import {
   AreaChart,
   Area,
@@ -195,6 +196,7 @@ function Table({ headers, rows, highlightRow, source, sourceNode }: { headers: s
 export default function LiqBeautyArticle() {
   return (
     <div className="min-h-screen">
+      <ReadTracker slug="why-blogger-brands-fail" />
       <div className="max-w-[680px] mx-auto px-6 py-12 md:py-20">
 
         {/* Header */}
