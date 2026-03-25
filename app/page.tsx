@@ -47,7 +47,7 @@ export default function Home() {
               alt="Almas Kasymzhanov"
               width={80}
               height={80}
-              className="rounded-full mb-5 avatar-bw"
+              className="rounded-full mb-5"
             />
             <h1 className="font-mono text-[15px] font-bold text-[var(--color-text)] mb-2 tracking-tight">
               almas kasymzhanov

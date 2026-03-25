@@ -663,7 +663,7 @@ export default function LiqBeautyArticle() {
         {/* ─── Автор ─── */}
         <div className="border-t border-[var(--color-border)] pt-10 mt-8 mb-10">
           <div className="flex items-start gap-5">
-            <Image src="/avatar/almas.webp" alt="Almas Kasymzhanov" width={72} height={72} className="rounded-full shrink-0 avatar-bw" />
+            <Image src="/avatar/almas.webp" alt="Almas Kasymzhanov" width={72} height={72} className="rounded-full shrink-0" />
             <div>
               <p className="font-mono text-[14px] font-bold text-[var(--color-text)] mb-2">almas kasymzhanov</p>
               <div className="flex flex-col gap-1.5 mt-1">

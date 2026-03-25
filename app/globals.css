@@ -50,18 +50,6 @@ html.light ::-webkit-scrollbar-thumb { background: #ccc; }
   .overflow-x-auto::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
 }
 
-/* Avatar grayscale: desktop = hover, mobile = always color */
-.avatar-bw {
-  filter: grayscale(100%);
-  transition: filter 0.5s ease;
-}
-@media (hover: hover) {
-  .avatar-bw:hover { filter: grayscale(0%); }
-}
-@media (hover: none) {
-  .avatar-bw { filter: grayscale(0%); }
-}
-
 /* Prose */
 .prose {
   --tw-prose-body: var(--color-text);
