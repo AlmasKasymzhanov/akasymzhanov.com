@@ -6,6 +6,7 @@ const SOCIAL_LINKS = [
   { label: "telegram", href: "https://t.me/almaskasymzhanov" },
   { label: "instagram", href: "https://www.instagram.com/almas_kasymzhanov/" },
   { label: "github", href: "https://github.com/AlmasKasymzhanov" },
+  { label: "linkedin", href: "https://www.linkedin.com/in/akasymzhanov/" },
   { label: "email", href: "mailto:almaskasymzhanov@gmail.com" },
 ];
 
@@ -46,7 +47,7 @@ export default function Home() {
               alt="Almas Kasymzhanov"
               width={80}
               height={80}
-              className="rounded-full mb-5 grayscale hover:grayscale-0 transition-all duration-500"
+              className="rounded-full mb-5 avatar-bw"
             />
             <h1 className="font-mono text-[15px] font-bold text-[var(--color-text)] mb-2 tracking-tight">
               almas kasymzhanov

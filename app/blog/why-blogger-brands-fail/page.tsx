@@ -164,7 +164,7 @@ function PusyRevenueChart() {
 function Table({ headers, rows, highlightRow, source, sourceNode }: { headers: string[]; rows: (string | number | React.ReactNode)[][]; highlightRow?: number; source?: string; sourceNode?: React.ReactNode }) {
   return (
     <div className="my-6 border border-[var(--color-border)] rounded-[3px] overflow-hidden">
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto" style={{ WebkitOverflowScrolling: "touch", scrollbarWidth: "thin" }}>
         <table className="w-full text-[13px]" style={{ borderCollapse: "collapse" }}>
           <thead>
             <tr className="bg-[var(--color-surface)]">
@@ -663,7 +663,7 @@ export default function LiqBeautyArticle() {
         {/* ─── Автор ─── */}
         <div className="border-t border-[var(--color-border)] pt-10 mt-8 mb-10">
           <div className="flex items-start gap-5">
-            <Image src="/avatar/almas.webp" alt="Almas Kasymzhanov" width={72} height={72} className="rounded-full shrink-0 grayscale hover:grayscale-0 transition-all duration-300" />
+            <Image src="/avatar/almas.webp" alt="Almas Kasymzhanov" width={72} height={72} className="rounded-full shrink-0 avatar-bw" />
             <div>
               <p className="font-mono text-[14px] font-bold text-[var(--color-text)] mb-2">almas kasymzhanov</p>
               <div className="flex flex-col gap-1.5 mt-1">

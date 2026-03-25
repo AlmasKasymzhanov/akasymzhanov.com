@@ -28,7 +28,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${geist.variable} ${menlo.variable}`}>
+    <html lang="ru" className={`${geist.variable} ${menlo.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: `
+          try {
+            if (localStorage.getItem('theme') === 'light') {
+              document.documentElement.classList.add('light');
+            }
+          } catch (e) {}
+        `}} />
+      </head>
       <body>{children}</body>
     </html>
   );

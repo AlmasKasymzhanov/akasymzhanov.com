@@ -34,10 +34,33 @@ body {
 }
 
 /* Scrollbar */
-::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
 html.light ::-webkit-scrollbar-thumb { background: #ccc; }
+
+/* Table horizontal scroll — always visible on mobile */
+@media (max-width: 768px) {
+  .overflow-x-auto {
+    overflow-x: scroll;
+    -webkit-overflow-scrolling: touch;
+  }
+  .overflow-x-auto::-webkit-scrollbar { height: 4px; display: block; }
+  .overflow-x-auto::-webkit-scrollbar-track { background: var(--color-surface); }
+  .overflow-x-auto::-webkit-scrollbar-thumb { background: var(--color-border); border-radius: 2px; }
+}
+
+/* Avatar grayscale: desktop = hover, mobile = always color */
+.avatar-bw {
+  filter: grayscale(100%);
+  transition: filter 0.5s ease;
+}
+@media (hover: hover) {
+  .avatar-bw:hover { filter: grayscale(0%); }
+}
+@media (hover: none) {
+  .avatar-bw { filter: grayscale(0%); }
+}
 
 /* Prose */
 .prose {
