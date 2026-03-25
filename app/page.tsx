@@ -1,6 +1,9 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ViewCounter } from "@/components/view-counter";
 
 const SOCIAL_LINKS = [
   { label: "telegram", href: "https://t.me/almaskasymzhanov" },
@@ -93,7 +96,10 @@ export default function Home() {
                       {post.title}
                     </span>
                     <br />
-                    <span className="font-mono text-[11px] text-dim/60">{post.date}</span>
+                    <span className="flex items-center justify-between">
+                      <span className="font-mono text-[11px] text-dim/60">{post.date}</span>
+                      <ViewCounter slug={post.href.replace("/blog/", "")} track={false} />
+                    </span>
                   </Link>
                 ))}
               </div>

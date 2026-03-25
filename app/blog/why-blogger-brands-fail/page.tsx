@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
+import { ViewCounter } from "@/components/view-counter";
 import {
   AreaChart,
   Area,
@@ -212,7 +213,10 @@ export default function LiqBeautyArticle() {
           <p className="text-[15px] text-[var(--color-dim)] leading-relaxed mb-6">
             <span className="font-mono">43</span> миллиона в первый месяц. <span className="font-mono">3.3</span> миллиона через полгода. Как бренд с <span className="font-mono">7</span> миллионами подписчиков проиграл реплике за <span className="font-mono">420</span> тенге
           </p>
-          <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Март 25, 2026 <span className="text-[var(--color-border)] mx-1">|</span> ~15 мин</p>
+          <div className="flex items-center justify-between">
+            <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Март 25, 2026 <span className="text-[var(--color-border)] mx-1">|</span> ~15 мин</p>
+            <ViewCounter slug="why-blogger-brands-fail" />
+          </div>
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />
