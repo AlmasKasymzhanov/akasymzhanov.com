@@ -4,6 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { ViewCounter } from "@/components/view-counter";
+import { ShareButtons } from "@/components/share-buttons";
 import {
   AreaChart,
   Area,
@@ -215,7 +216,10 @@ export default function LiqBeautyArticle() {
           </p>
           <div className="flex items-center justify-between">
             <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Март 25, 2026 <span className="text-[var(--color-border)] mx-1">|</span> ~15 мин</p>
-            <ViewCounter slug="why-blogger-brands-fail" />
+            <div className="flex items-center gap-3">
+              <ViewCounter slug="why-blogger-brands-fail" />
+              <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и нищета Lick Beauty — Almas Kasymzhanov" variant="compact" />
+            </div>
           </div>
         </div>
 
@@ -646,6 +650,11 @@ export default function LiqBeautyArticle() {
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8]">
             И напоследок - помните тот факт из середины? Китайские реплики Rhode по <span className="font-mono">420</span> тенге - с одной фотографией на карточке, без подписчиков, без лица, без единого сторис - за февраль заработали на Kaspi <span className="font-mono">7.1</span> миллиона тенге. Lick Beauty с аудиторией в семь миллионов - <span className="font-mono">3.3</span> миллиона. Стоит ли вкладывать месяцы работы, производство, логистику, прогрев многомиллионной аудитории - чтобы в итоге продавать в два раза меньше, чем реплика с одной фотографией и ценником <span className="font-mono">420</span> тенге?
           </p>
+        </div>
+
+        {/* ─── Поделиться ─── */}
+        <div className="my-12">
+          <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и нищета Lick Beauty — Almas Kasymzhanov" variant="full" />
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />

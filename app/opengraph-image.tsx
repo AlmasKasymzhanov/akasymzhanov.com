@@ -1,10 +1,12 @@
 import { ImageResponse } from "next/og";
-
-export const runtime = "edge";
+import { readFileSync } from "fs";
+import { join } from "path";
 
 export const alt = "Almas Kasymzhanov — Founder of Redstat & 10b.kz";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+const avatarBase64 = `data:image/png;base64,${readFileSync(join(process.cwd(), "public/avatar/almas.png")).toString("base64")}`;
 
 export default function OGImage() {
   return new ImageResponse(
@@ -29,22 +31,12 @@ export default function OGImage() {
             gap: "24px",
           }}
         >
-          <div
-            style={{
-              width: "96px",
-              height: "96px",
-              borderRadius: "50%",
-              background: "#222",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              fontSize: "40px",
-              color: "#ededed",
-              fontWeight: 700,
-            }}
-          >
-            AK
-          </div>
+          <img
+            src={avatarBase64}
+            width="120"
+            height="120"
+            style={{ borderRadius: "50%", objectFit: "cover" }}
+          />
 
           <div
             style={{
