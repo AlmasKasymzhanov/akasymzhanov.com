@@ -72,3 +72,8 @@ html.light ::-webkit-scrollbar-thumb { background: #ccc; }
   font-family: var(--font-sans);
   font-weight: 700;
 }
+
+/* Heading utility — Geist for all page titles & navbar */
+@utility font-heading {
+  font-family: var(--font-sans);
+}
