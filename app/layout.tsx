@@ -56,10 +56,13 @@ export default function RootLayout({
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full" />
         <script dangerouslySetInnerHTML={{ __html: `
           try {
-            if (localStorage.getItem('theme') === 'light') {
+            var t = localStorage.getItem('theme');
+            if (t !== 'dark') {
               document.documentElement.classList.add('light');
             }
-          } catch (e) {}
+          } catch (e) {
+            document.documentElement.classList.add('light');
+          }
         `}} />
       </head>
       <body>{children}<Analytics /></body>
