@@ -216,9 +216,9 @@ export default function LiqBeautyArticle() {
           <p className="text-[15px] text-[var(--color-dim)] leading-relaxed mb-6">
             <span className="font-mono">43</span> миллиона в первый месяц. <span className="font-mono">3.3</span> миллиона через полгода. Как бренд с <span className="font-mono">7</span> миллионами подписчиков проиграл реплике за <span className="font-mono">420</span> тенге
           </p>
-          <div className="flex items-center justify-between">
-            <p className="font-mono text-[11px] text-[var(--color-dim)]/60">Март 25, 2026 <span className="text-[var(--color-border)] mx-1">|</span> ~15 мин</p>
-            <div className="flex items-center gap-3">
+          <div className="flex items-center justify-between gap-4">
+            <p className="font-mono text-[11px] text-[var(--color-dim)]/60 whitespace-nowrap">Март 25, 2026</p>
+            <div className="flex items-center gap-3 whitespace-nowrap">
               <ViewCounter slug="why-blogger-brands-fail" />
               <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и нищета Lick Beauty — Almas Kasymzhanov" variant="compact" />
             </div>
