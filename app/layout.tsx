@@ -20,6 +20,24 @@ const menlo = localFont({
 export const metadata: Metadata = {
   title: "Almas Kasymzhanov",
   description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+  metadataBase: new URL("https://akasymzhanov.com"),
+  openGraph: {
+    title: "Almas Kasymzhanov",
+    description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+    url: "https://akasymzhanov.com",
+    siteName: "akasymzhanov.com",
+    locale: "ru_RU",
+    type: "website",
+  },
+  twitter: {
+    card: "summary",
+    title: "Almas Kasymzhanov",
+    description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
