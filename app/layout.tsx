@@ -48,6 +48,8 @@ export default function RootLayout({
   return (
     <html lang="ru" className={`${geist.variable} ${menlo.variable}`} suppressHydrationWarning>
       <head>
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
+        <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full" />
         <script dangerouslySetInnerHTML={{ __html: `
           try {
             if (localStorage.getItem('theme') === 'light') {

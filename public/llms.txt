@@ -1,0 +1,24 @@
+# Almas Kasymzhanov
+
+> Онлайн-торговец, разработчик, аналитик. Основатель Redstat.kz (ML-аналитика Kaspi маркетплейса) и 10b.kz (аналитика госзакупок Казахстана). Пишу data-driven статьи о маркетплейсах, брендах и e-commerce.
+
+## О сайте
+
+Персональный сайт с аналитическими статьями, исследованиями рынков и разборами бизнес-кейсов. Основной фокус: e-commerce в Казахстане и СНГ, аналитика маркетплейсов, бренды блогеров, данные Kaspi.kz.
+
+## Блог
+
+- [Блеск и нищета Lick Beauty](https://akasymzhanov.com/blog/why-blogger-brands-fail): Data-driven анализ провала бренда блогера на Kaspi.kz. 43.6 млн тенге в первый месяц, 3.3 млн через полгода. Сравнение с PUSY (3.25 млрд рублей) и VOIS (2.5 млрд рублей). Данные Redstat, СПАРК-Интерфакс, MPSTATS.
+
+## Проекты
+
+- [Redstat.kz](https://redstat.kz): Бесплатный ML-аналитический сервис для продавцов Kaspi.kz. Выручка, тренды, прогнозы, конкуренция по всем нишам. 1.21 млн SKU, данные в реальном времени.
+- [10b.kz](https://10b.kz): Аналитика тендеров и госзакупок Казахстана. Поиск, разбор, оценка контрактов.
+
+## Контакты
+
+- Telegram: https://t.me/almaskasymzhanov
+- Instagram: https://www.instagram.com/almas_kasymzhanov/
+- GitHub: https://github.com/AlmasKasymzhanov
+- LinkedIn: https://www.linkedin.com/in/akasymzhanov/
+- Email: almaskasymzhanov@gmail.com
