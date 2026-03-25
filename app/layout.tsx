@@ -31,7 +31,7 @@ export const metadata: Metadata = {
     type: "website",
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Almas Kasymzhanov",
     description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
   },
