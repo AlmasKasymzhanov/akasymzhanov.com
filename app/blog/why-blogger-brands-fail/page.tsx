@@ -209,7 +209,7 @@ export default function LiqBeautyArticle() {
 
         {/* Title */}
         <div className="mb-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-dim)] mb-4">Анатомия провала блогерского бренда</p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-dim)] mb-4">Анатомия блогерского бренда</p>
           <h1 className="text-[28px] md:text-[34px] font-bold tracking-tight text-[var(--color-text)] leading-[1.2] mb-5">
             Блеск и нищета Lick&nbsp;Beauty
           </h1>
