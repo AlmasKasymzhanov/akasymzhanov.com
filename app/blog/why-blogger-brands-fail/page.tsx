@@ -209,9 +209,9 @@ export default function LiqBeautyArticle() {
 
         {/* Title */}
         <div className="mb-12">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-dim)] mb-4">Анатомия блогерского бренда</p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-dim)] mb-4">Рентген блогерского бренда</p>
           <h1 className="text-[28px] md:text-[34px] font-bold tracking-tight text-[var(--color-text)] leading-[1.2] mb-5">
-            Блеск и нищета Lick&nbsp;Beauty
+            Блеск и тени Lick&nbsp;Beauty
           </h1>
           <p className="text-[15px] text-[var(--color-dim)] leading-relaxed mb-6">
             <span className="font-mono">43</span> миллиона в первый месяц. <span className="font-mono">3.3</span> миллиона через полгода. Как бренд с <span className="font-mono">7</span> миллионами подписчиков проиграл реплике за <span className="font-mono">420</span> тенге
@@ -220,7 +220,7 @@ export default function LiqBeautyArticle() {
             <p className="font-mono text-[11px] text-[var(--color-dim)]/60 whitespace-nowrap">Март 25, 2026</p>
             <div className="flex items-center gap-3 whitespace-nowrap">
               <ViewCounter slug="why-blogger-brands-fail" />
-              <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и нищета Lick Beauty — Almas Kasymzhanov" variant="compact" />
+              <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и тени Lick Beauty — Almas Kasymzhanov" variant="compact" />
             </div>
           </div>
         </div>
@@ -656,7 +656,7 @@ export default function LiqBeautyArticle() {
 
         {/* ─── Поделиться ─── */}
         <div className="my-12">
-          <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и нищета Lick Beauty — Almas Kasymzhanov" variant="full" />
+          <ShareButtons url="https://akasymzhanov.com/blog/why-blogger-brands-fail" title="Блеск и тени Lick Beauty — Almas Kasymzhanov" variant="full" />
         </div>
 
         <hr className="border-[var(--color-border)] mb-12" />

@@ -14,7 +14,7 @@ const SOCIAL_LINKS = [
 ];
 
 const POSTS = [
-  { title: "Блеск и нищета Lick Beauty", date: "Март 25, 2026", href: "/blog/why-blogger-brands-fail" },
+  { title: "Блеск и тени Lick Beauty", date: "Март 25, 2026", href: "/blog/why-blogger-brands-fail" },
 ];
 
 const PROJECTS = [
