@@ -94,7 +94,7 @@ export default function BrandPortfolioReport() {
             <span>SKU проанализировано: <strong style={{ color: C.text }}>40+</strong></span>
             <span>Отзывов: <strong style={{ color: C.text }}>35 000+</strong></span>
           </div>
-          <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт накладывает портфель из 21 бренда клиента на рыночные данные из <a href="/reports/kaspi-korean-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Части I (Рынок «Красота и здоровье»)</a>. По каждому бренду: позиция на рынке, SKU-анализ, отзывы, динамика, рекомендации.</p>
+          <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт накладывает портфель из 21 бренда клиента на рыночные данные из <a href="/reports/kaspi-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Части I (Рынок «Красота и здоровье»)</a>. По каждому бренду: позиция на рынке, SKU-анализ, отзывы, динамика, рекомендации.</p>
         </div>
 
         {/* ═══ TOC ═══ */}
@@ -472,7 +472,7 @@ export default function BrandPortfolioReport() {
               Проанализировано: <strong style={{ color: C.text }}>73 000+ ниш</strong> &middot; <strong style={{ color: C.text }}>16 месяцев данных</strong> (ноябрь 2024 — февраль 2026) &middot; <strong style={{ color: C.text }}>35 000+ отзывов</strong> покупателей Kaspi.kz &middot; <strong style={{ color: C.text }}>21 бренд</strong> &middot; <strong style={{ color: C.text }}>40+ SKU</strong>
             </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a> &middot; Связанный документ: <a href="/reports/kaspi-korean-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Часть I — Рынок «Красота и здоровье» на Kaspi.kz</a>
+              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a> &middot; Связанный документ: <a href="/reports/kaspi-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Часть I — Рынок «Красота и здоровье» на Kaspi.kz</a>
             </p>
           </div>
         </Section>
