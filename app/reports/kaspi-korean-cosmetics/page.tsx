@@ -82,7 +82,7 @@ export default function BeautyMarketReport() {
             <span>Дата: <strong style={{ color: C.text }}>Март 2026</strong></span>
             <span>Период: <strong style={{ color: C.text }}>Ноябрь 2024 — Февраль 2026</strong></span>
             <span>Ниш: <strong style={{ color: C.text }}>73 000+</strong></span>
-            <span>Источник: <strong style={{ color: C.text }}>ClickHouse OLAP</strong></span>
+            <span>Источник: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.text, textDecoration: "none" }}>RedStat.kz</a></span>
           </div>
           <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт покрывает <strong style={{ color: C.text }}>весь рынок «Красота и здоровье»</strong> на Kaspi.kz без привязки к конкретным брендам или странам происхождения. Разбор портфеля клиента — в отдельном документе (Часть II).</p>
         </div>
@@ -547,10 +547,10 @@ export default function BeautyMarketReport() {
 
           <div style={{ marginTop: 24, padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
             <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
-              <strong style={{ color: C.text }}>Источник данных:</strong> RedStat API (ClickHouse OLAP). 73 000+ ниш, 16 месяцев помесячной истории (ноябрь 2024 — февраль 2026). 35 000+ отзывов проанализировано.
+              Проанализировано: <strong style={{ color: C.text }}>73 000+ ниш</strong> &middot; <strong style={{ color: C.text }}>16 месяцев данных</strong> (ноябрь 2024 — февраль 2026) &middot; <strong style={{ color: C.text }}>35 000+ отзывов</strong> покупателей Kaspi.kz
             </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-              <strong style={{ color: C.text }}>Следующий шаг:</strong> Часть II — Детальный разбор портфеля из 21 бренда клиента с наложением на рыночные данные.
+              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a> &middot; Следующий шаг: <a href="/reports/kaspi-brand-portfolio" style={{ color: C.accent, textDecoration: "none" }}>Часть II — Детальный разбор портфеля из 21 бренда</a>
             </p>
           </div>
         </Section>

@@ -469,10 +469,10 @@ export default function BrandPortfolioReport() {
 
           <div style={{ marginTop: 24, padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
             <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
-              <strong style={{ color: C.text }}>Источник данных:</strong> RedStat API (ClickHouse OLAP). 73 000+ ниш, 16 месяцев (ноябрь 2024 — февраль 2026). 35 000+ отзывов покупателей Kaspi.kz проанализировано.
+              Проанализировано: <strong style={{ color: C.text }}>73 000+ ниш</strong> &middot; <strong style={{ color: C.text }}>16 месяцев данных</strong> (ноябрь 2024 — февраль 2026) &middot; <strong style={{ color: C.text }}>35 000+ отзывов</strong> покупателей Kaspi.kz &middot; <strong style={{ color: C.text }}>21 бренд</strong> &middot; <strong style={{ color: C.text }}>40+ SKU</strong>
             </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-              <strong style={{ color: C.text }}>Связанный документ:</strong> <a href="/reports/kaspi-korean-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Часть I — Рынок «Красота и здоровье» на Kaspi.kz</a>
+              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a> &middot; Связанный документ: <a href="/reports/kaspi-korean-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>Часть I — Рынок «Красота и здоровье» на Kaspi.kz</a>
             </p>
           </div>
         </Section>
