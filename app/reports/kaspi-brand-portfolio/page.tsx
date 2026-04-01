@@ -104,7 +104,7 @@ export default function BrandPortfolioReport() {
             ["s1", "1. Executive Summary — портфель на карте рынка"],
             ["s2", "2. Матрица присутствия: 21 бренд x категории"],
             ["s3", "3. Тир 1 — Лидеры (>50M/мес): 6 брендов"],
-            ["s4", "4. Тир 2 — Средние (5-50M/мес): 4 бренда"],
+            ["s4", "4. Тир 2 — Средние (5-50M/мес): 7 брендов"],
             ["s5", "5. Тир 3 — Начальный этап (<5M/мес): 5 брендов"],
             ["s6", "6. Тир 4 — Минимальные продажи (<1M/мес): 4 бренда"],
             ["s7", "7. Дополнительные замечания по брендам"],
@@ -171,7 +171,7 @@ export default function BrandPortfolioReport() {
 
         {/* ═══ 3. TIER 1 ═══ */}
         <Section id="s3" title="3. Тир 1 — Лидеры (>50M/мес)">
-          <p style={sP}>6 брендов с суммарной выручкой ~710M KZT/мес. Это ядро портфеля.</p>
+          <p style={sP}>6 брендов с суммарной выручкой ~845M KZT/мес (включая Sen Sulu + The Yeon = ~135M). Это ядро портфеля.</p>
 
           <BrandCard name="Celimax" tier="ЛИДЕР" rev="~239M" growth="+208% YoY" color={C.green}
             categories="Тоники #1 (61M), Кремы #3 (89M), Умывание #3 (35M), Скрабы #1 (13M), Наборы #3 (41M)"
@@ -218,7 +218,7 @@ export default function BrandPortfolioReport() {
 
         {/* ═══ 4. TIER 2 ═══ */}
         <Section id="s4" title="4. Тир 2 — Средние (5-50M/мес)">
-          <p style={sP}>4 бренда с потенциалом кратного роста.</p>
+          <p style={sP}>7 брендов с выручкой 5-50M KZT/мес. Включая Anua и VT Cosmetics — значительно крупнее, чем казалось при первичном анализе.</p>
 
           <BrandCard name="Anua" tier="СРЕДНИЙ" rev="~49M" growth="Растёт" color={C.blue}
             categories="Кремы и сыворотки (Azelaic, PDRN, Niacinamide), Тонеры (Heartleaf 77%, Peach 77), Кремы (Ceramide Panthenol)"
@@ -241,7 +241,7 @@ export default function BrandPortfolioReport() {
             insight="Линейка шире, чем казалось: Snail 92, Snail 96 Mucin, BHA Blackhead, AHA BHA Toner, Low pH Gel, Salicylic Cleanser, Niacinamide Serum — всё уже на Kaspi. 16M/мес суммарно. Но продажи распределены тонко по многим SKU. Глобальный #1 K-beauty бренд с потенциалом масштабирования."
             recommendation="Фокус на маркетинг существующих SKU, а не на завоз новых. Snail 96 Mucin (321 отзыв) и BHA Blackhead (99 отзывов) — набрать до 500+. Niacinamide Serum (9.3K, 56 отз.) — премиум-позиция для роста. Поднять цену патчей с 1K → 2-3K." />
 
-          <BrandCard name="Mommy Care" tier="СРЕДНИЙ" rev="~15M" growth="—" color={C.dim}
+          <BrandCard name="Mommy Care" tier="СРЕДНИЙ" rev="~30M" growth="Стабильный" color={C.dim}
             categories="Малая косметологическая техника"
             bestSku="Микротоковый массажёр" skuPrice="60K" skuRev="7M" reviews="—" rating="—" negPct="—"
             topComplaint="" topPraise=""
@@ -259,7 +259,7 @@ export default function BrandPortfolioReport() {
             ["Beplain", "~1.4M", "Mung Bean пенки, SPF, кремы, маски", "20", "4.7-5.0", "Mung Bean пенка 160мл (7.2K, 25 отз.), SPF Sunmuse (8K, 18 отз.), Cicaterol крем (9.5K, 9 отз.). Широкий ассортимент, нужны отзывы."],
           ]} />
           <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
-            <strong style={{ color: C.blue }}>Инсайт по Mediheal: </strong>Мировой лидер тканевых масок. На Kaspi маски для лица = 122M/мес, #1 — Gegemoon (Китай, 13M). <strong style={{ color: C.green }}>Mediheal может занять эту нишу</strong> — бренд узнаваем, продукт проверен. Нужно 10-15 SKU тканевых масок.
+            <strong style={{ color: C.blue }}>Инсайт: </strong>Bueno (3M, 21 SKU) и Bohicare (2.6M, 20 SKU) — бренды с сильной продуктовой линейкой и высокими рейтингами (4.9-5.0). При правильном маркетинге и наборе отзывов — каждый может выйти на 10M+ в течение 3-6 месяцев. Ценовой сегмент 7-22K — выше порога подделок.
           </div>
         </Section>
 
@@ -294,13 +294,13 @@ export default function BrandPortfolioReport() {
         <Section id="s8" title="8. Deep Dive: Beplain и Skinfood">
           <div style={{ ...sCard, borderTop: `3px solid ${C.purple}` }}>
             <h3 style={{ ...sH3, margin: "0 0 12px", color: C.purple }}>Beplain — пошаговый план активации</h3>
-            <p style={sP}><strong>Текущий статус:</strong> 2-3 карточки (Mung Bean пенка ~7K, масло ~7K). 0 отзывов. 0 продаж.</p>
-            <h3 style={{ ...sH3, fontSize: 14 }}>Почему не продаётся:</h3>
+            <p style={sP}><strong>Текущий статус:</strong> 20 SKU, выручка ~1.4M/мес. Ассортимент: Mung Bean пенка 160мл (7.2K, 25 отз., 4.9★), масло 200мл (6.7K, 19 отз.), Cicaterol крем (9.5K, 9 отз.), SPF Sunmuse (8K, 18 отз., 5.0★), маска Pore Clay (6.5K, 17 отз.), тонер Mung Bean (8K, 5 отз.).</p>
+            <h3 style={{ ...sH3, fontSize: 14 }}>Почему продажи низкие:</h3>
             <div style={{ fontSize: 13, lineHeight: 1.8, color: "#ccc", marginBottom: 16 }}>
-              <div>1. <strong>Нет отзывов</strong> — карточки без отзывов не конвертируют на Kaspi. Покупатели не рискуют.</div>
+              <div>1. <strong>Мало отзывов</strong> — максимум 25 на топ-SKU. На Kaspi порог доверия = 50-100 отзывов.</div>
               <div>2. <strong>Нет продвижения</strong> — не участвует в акциях, нет рекламы, нет внешнего трафика.</div>
-              <div>3. <strong>Цена 7K без контекста</strong> — дороже Dr. Althea (1K), Round Lab (1K), но без узнаваемости.</div>
-              <div>4. <strong>Мало SKU</strong> — 2-3 позиции, нет набора/линейки, нет кросс-продаж.</div>
+              <div>3. <strong>Цена 7-10K без узнаваемости</strong> — дороже Dr. Althea (1K), Round Lab (1K), но бренд неизвестен.</div>
+              <div>4. <strong>Нет наборов</strong> — все товары поштучно. Наборы = 43% выручки категории в премиуме.</div>
             </div>
             <h3 style={{ ...sH3, fontSize: 14 }}>План активации:</h3>
             <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
