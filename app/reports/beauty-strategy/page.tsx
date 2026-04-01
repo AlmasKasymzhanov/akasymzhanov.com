@@ -76,14 +76,14 @@ export default function StrategyReport() {
         <Section id="s1" title="1. Executive Summary — ключевые решения">
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
             <MetricCard label="Суммарный рынок" value="~175B" sub="KZT/мес (Kaspi + WB)" color={C.accent} />
-            <MetricCard label="Портфель: Kaspi" value="~750M" sub="KZT/мес (18 брендов)" color={C.green} />
+            <MetricCard label="Портфель: Kaspi" value="~900M" sub="KZT/мес (21 бренд)" color={C.green} />
             <MetricCard label="Портфель: WB" value="~975M" sub="KZT/мес (3 бренда)" color={C.purple} />
             <MetricCard label="Потенциал роста" value="x2-3" sub="за 12 месяцев" color={C.cyan} />
           </div>
           <div style={sCard}>
             <h3 style={{ ...sH3, margin: "0 0 16px" }}>5 стратегических решений</h3>
             <div style={{ fontSize: 14, lineHeight: 2.2, color: "#ccc" }}>
-              <div style={{ display: "flex", gap: 12, marginBottom: 8 }}><span style={{ ...sBadge(C.red), minWidth: 28, textAlign: "center" }}>1</span><span><strong style={{ color: C.text }}>Немедленно завести COSRX Snail 96 на обе площадки.</strong> Глобальный #1 K-beauty, отсутствует и на Kaspi, и в топ-200 WB. Потенциал: +50M KZT/мес только на Kaspi.</span></div>
+              <div style={{ display: "flex", gap: 12, marginBottom: 8 }}><span style={{ ...sBadge(C.red), minWidth: 28, textAlign: "center" }}>1</span><span><strong style={{ color: C.text }}>Масштабировать COSRX через маркетинг.</strong> Snail 96, BHA Blackhead, AHA Toner уже на Kaspi (16M). Нужен маркетинг, не завоз. Потенциал: 16M → 50M+.</span></div>
               <div style={{ display: "flex", gap: 12, marginBottom: 8 }}><span style={{ ...sBadge(C.red), minWidth: 28, textAlign: "center" }}>2</span><span><strong style={{ color: C.text }}>Поднять цены на Dr. Althea, Round Lab, AXIS-Y с 1K до 3-5K KZT.</strong> 50% негативных отзывов = подделки. Причина: при 1K KZT нет маржи для оригинала.</span></div>
               <div style={{ display: "flex", gap: 12, marginBottom: 8 }}><span style={{ ...sBadge(C.amber), minWidth: 28, textAlign: "center" }}>3</span><span><strong style={{ color: C.text }}>Kaspi = основная площадка для 15 из 21 бренда.</strong> WB = масштабирование только для Celimax, Round Lab, VT Cosmetics. Остальные — сначала Kaspi.</span></div>
               <div style={{ display: "flex", gap: 12, marginBottom: 8 }}><span style={{ ...sBadge(C.amber), minWidth: 28, textAlign: "center" }}>4</span><span><strong style={{ color: C.text }}>Наборы = главная сезонная стратегия.</strong> 8 марта (1B KZT) и НГ (1.1B KZT) — два пика. Премиум-наборы (34K+) = 43% рынка.</span></div>
@@ -110,9 +110,9 @@ export default function StrategyReport() {
           <div style={{ ...sCard, borderTop: `3px solid ${C.blue}` }}>
             <h3 style={{ ...sH3, margin: "0 0 12px", color: C.blue }}>Группа B: Раскрутить (продукт есть, продаж мало)</h3>
             <DataTable headers={["Бренд", "Kaspi", "WB", "Главная возможность"]} rows={[
-              ["COSRX", "8M", "< топ-200", "Завести Snail 96 + BHA + AHA → потенциал 50M+ на Kaspi"],
-              ["VT Cosmetics", "14M (Kaspi) / 115M (WB)", "23M RUB", "PDRN тренд. Высокий чек. Рейтинг на WB нужно поднять."],
-              ["Anua", "18M", "< топ-200", "Azelaic Acid + PDRN — трендовые ингредиенты"],
+              ["COSRX", "16M", "< топ-200", "Snail 96, BHA, AHA уже на Kaspi — нужен маркетинг для масштабирования до 50M+"],
+              ["VT Cosmetics", "47M (Kaspi) / 115M (WB)", "23M RUB", "PDRN линейка полная. 47M/мес. Набор PDRN 25-30K. Один из самых перспективных."],
+              ["Anua", "49M", "< топ-200", "49M/мес с 20+ SKU. Heartleaf тонер, Azelaic, PDRN, Ceramide. Тренд-ингредиенты."],
               ["Mediheal", "4M", "< топ-200", "Тканевые маски: ниша 122M, лидер = Китай. Забрать."],
               ["Sen Sulu / The Yeon", "135M", "—", "Уже #1 в 5 нишах декора на Kaspi. Расширить палитру."],
             ]} />
@@ -236,7 +236,7 @@ export default function StrategyReport() {
           <div style={sCard}>
             <div style={{ fontSize: 13, lineHeight: 2.5, color: "#ccc" }}>
               {[
-                { n: "1", t: "Завести COSRX Snail 96 Mucin + BHA Blackhead на Kaspi", d: "Глобальный бестселлер #1. На Kaspi = только патчи (8M). Потенциал: +30-50M/мес. Нужно: карточки, контент, 50 первых отзывов.", impact: "50M+ KZT/мес", effort: "Средний" },
+                { n: "1", t: "Масштабировать COSRX через маркетинг", d: "Snail 96, BHA Blackhead, AHA Toner уже на Kaspi (16M). Нужен маркетинг, не завоз: набрать 500+ отзывов на Snail 96 (321 сейчас) и BHA (99 сейчас). Потенциал: 16M → 50M+.", impact: "50M+ KZT/мес", effort: "Средний" },
                 { n: "2", t: "Поднять цену Dr. Althea 345 Relief с 1K до 3-5K", d: "Отсечёт 80% подделок. Маржа вырастет x3. Негативные отзывы упадут на 40-50%.", impact: "Маржа x3", effort: "Низкий" },
                 { n: "3", t: "QR-верификация на Dr. Althea, Round Lab, AXIS-Y", d: "Стикер QR → покупатель сканирует → «Оригинал подтверждён». Стоимость: ~$0.05/шт. Эффект: +15-20% конверсия.", impact: "+15-20% конверсия", effort: "Низкий" },
                 { n: "4", t: "Создать наборы к Kaspi Жума / НГ из Celimax + Skin1004", d: "Наборы = 862M ниша, премиум (34K+) = 43%. Dual Barrier Set (27K) уже = 23M. Добавить: Madagascar Premium Set.", impact: "30M+ KZT в пик", effort: "Низкий" },
@@ -292,10 +292,10 @@ export default function StrategyReport() {
         {/* ═══ 10. KPI ═══ */}
         <Section id="s10" title="10. KPI и метрики успеха">
           <DataTable headers={["KPI", "Текущее", "Цель 6 мес", "Цель 12 мес", "Как измерять"]} rows={[
-            ["Суммарная выручка Kaspi", "~750M KZT/мес", "1.2B", "2B", "RedStat помесячно"],
+            ["Суммарная выручка Kaspi", "~900M KZT/мес", "1.4B", "2B", "RedStat помесячно"],
             ["Суммарная выручка WB", "~975M KZT/мес", "1.5B", "2.5B", "MPStats помесячно"],
             ["Количество брендов >50M на Kaspi", "6", "8", "10", "RedStat бренд-сплит"],
-            ["COSRX выручка на Kaspi", "8M", "30M", "50M", "RedStat"],
+            ["COSRX выручка на Kaspi", "16M", "30M", "50M", "RedStat"],
             ["Treecell выручка (шампуни)", "<1M", "5M", "15M", "RedStat"],
             ["Средний рейтинг портфеля", "4.8", "4.85", "4.9", "Kaspi/WB"],
             ["% негативных отзывов о подделках", "~30%", "<15%", "<5%", "Анализ отзывов"],

@@ -105,9 +105,9 @@ export default function BrandPortfolioReport() {
             ["s2", "2. Матрица присутствия: 21 бренд x категории"],
             ["s3", "3. Тир 1 — Лидеры (>50M/мес): 6 брендов"],
             ["s4", "4. Тир 2 — Средние (5-50M/мес): 4 бренда"],
-            ["s5", "5. Тир 3 — Слабые (<5M/мес): 4 бренда"],
-            ["s6", "6. Тир 4 — Без заметных продаж: 5 брендов"],
-            ["s7", "7. Тир 5 — Отсутствуют на Kaspi: 2 бренда"],
+            ["s5", "5. Тир 3 — Начальный этап (<5M/мес): 5 брендов"],
+            ["s6", "6. Тир 4 — Минимальные продажи (<1M/мес): 4 бренда"],
+            ["s7", "7. Дополнительные замечания по брендам"],
             ["s8", "8. Deep Dive: Beplain и Skinfood"],
             ["s9", "9. Динамика за 16 месяцев — кто растёт, кто падает"],
             ["s10", "10. Конкурентный анализ — бренды вне портфеля"],
@@ -121,20 +121,21 @@ export default function BrandPortfolioReport() {
         {/* ═══ 1. EXECUTIVE SUMMARY ═══ */}
         <Section id="s1" title="1. Executive Summary">
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
-            <MetricCard label="Портфель на Kaspi" value="18/21" sub="брендов найдено" color={C.green} />
-            <MetricCard label="Суммарная выручка" value="~750M+" sub="KZT/мес (оценка)" color={C.accent} />
+            <MetricCard label="Портфель на Kaspi" value="21/21" sub="все бренды найдены" color={C.green} />
+            <MetricCard label="Суммарная выручка" value="~900M+" sub="KZT/мес (верифицировано)" color={C.accent} />
             <MetricCard label="Тир 1 (лидеры)" value="6" sub="брендов >50M" color={C.green} />
-            <MetricCard label="Не на Kaspi" value="2" sub="Bueno, Healthy" color={C.red} />
+            <MetricCard label="Начальный этап" value="8" sub="брендов <5M" color={C.amber} />
           </div>
           <div style={sCard}>
             <h3 style={{ ...sH3, margin: "0 0 12px" }}>Ключевые выводы</h3>
             <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
-              <div>1. <strong style={{ color: C.green }}>6 брендов — лидеры рынка</strong> (Celimax, Dr. Althea, Skin1004, Sen Sulu/The Yeon, Round Lab, AXIS-Y) с суммарной выручкой ~710M/мес</div>
-              <div>2. <strong style={{ color: C.blue }}>4 бренда — средний уровень</strong> (Anua, VT Cosmetics, Mommy Care, COSRX) с потенциалом роста до 50M+</div>
-              <div>3. <strong style={{ color: C.amber }}>5 брендов присутствуют, но без продаж</strong> (Beplain, Skinfood, Treecell, Moda Moda, Bohicare) — нужна активация</div>
-              <div>4. <strong style={{ color: C.red }}>COSRX — главная упущенная возможность</strong>: глобальный #1 K-beauty, на Kaspi = только патчи (8M). Линейки Snail, BHA, AHA отсутствуют.</div>
-              <div>5. <strong style={{ color: C.green }}>Treecell — стратегическая возможность</strong>: шампуни 630M, нет сильного лидера-бренда</div>
+              <div>1. <strong style={{ color: C.green }}>Все 21 бренд присутствуют на Kaspi.</strong> 6 лидеров (&gt;50M), 7 средних (5-50M), 8 на начальном этапе (&lt;5M).</div>
+              <div>2. <strong style={{ color: C.green }}>6 брендов — лидеры рынка</strong> (Celimax 239M, Dr. Althea 171M, Skin1004 136M, Sen Sulu/The Yeon 135M, Round Lab 86M, AXIS-Y 78M)</div>
+              <div>3. <strong style={{ color: C.blue }}>Anua (49M) и VT Cosmetics (47M)</strong> — значительно крупнее, чем казалось на первый взгляд. Широкие линейки PDRN и Azelaic Acid.</div>
+              <div>4. <strong style={{ color: C.blue }}>COSRX (16M)</strong> — линейки Snail 96, BHA Blackhead, AHA уже представлены на Kaspi. Потенциал масштабирования за счёт маркетинга.</div>
+              <div>5. <strong style={{ color: C.green }}>Treecell — стратегическая возможность</strong>: шампуни 630M, нет сильного лидера-бренда. Бренд присутствует, но на начальном этапе.</div>
               <div>6. <strong style={{ color: C.red }}>Подделки</strong> бьют по Dr. Althea (50% негативов), Round Lab (50%), AXIS-Y (50%) из-за цен &lt;2K</div>
+              <div>7. <strong style={{ color: C.amber }}>Bueno (3M)</strong> и <strong style={{ color: C.amber }}>Bohicare (2.6M)</strong> — активно набирают отзывы, рейтинги 4.9-5.0. Фаза роста.</div>
             </div>
           </div>
         </Section>
@@ -142,30 +143,30 @@ export default function BrandPortfolioReport() {
         {/* ═══ 2. MATRIX ═══ */}
         <Section id="s2" title="2. Матрица присутствия: 21 бренд x категории">
           <p style={sP}>Проанализировано присутствие каждого бренда в 26+ leaf-категориях Kaspi через бренд-сплит и SKU-поиск.</p>
-          <DataTable headers={["#", "Бренд", "Выручка/мес", "Тир", "Кол-во категорий", "Главная категория"]} rows={[
-            ["1", "Celimax", "~239M", "Лидер", "5", "Тоники #1"],
-            ["2", "Dr. Althea", "~171M", "Лидер", "5", "Кремы #1"],
-            ["3", "Skin1004", "~136M", "Лидер", "5", "Кремы #5, Наборы #4"],
-            ["4", "Sen Sulu (The Yeon)", "~135M", "Лидер", "8", "Декор: #1 в 5 нишах"],
-            ["5", "Round Lab", "~86M", "Лидер", "4", "Умывание #2"],
-            ["6", "AXIS-Y", "~78M", "Лидер", "4", "Кремы #8"],
-            ["7", "Anua", "~18M", "Средний", "2", "Кремы (сыворотки)"],
-            ["8", "Mommy Care", "~15M", "Средний", "1", "Техника (массажёры)"],
-            ["9", "VT Cosmetics", "~14M", "Средний", "1", "Кремы (PDRN)"],
-            ["10", "COSRX", "~8M", "Средний", "2", "Патчи #3"],
-            ["11", "Mediheal", "~4M", "Слабый", "3", "Патчи, скрабы"],
-            ["12", "TFIT", "~2M", "Слабый", "1", "Консилеры"],
-            ["13", "Mizon (MIZON)", "~1M", "Слабый", "1", "Наборы"],
-            ["14", "Anua (скрабы)", "~1M", "Слабый", "1", "Скрабы"],
-            ["15", "Beplain", "<1M", "Без продаж", "1", "Умывание (карточки есть)"],
-            ["16", "Skinfood", "<1M", "Без продаж", "2", "Скрабы, кремы (карточки)"],
-            ["17", "Treecell", "<1M", "Без продаж", "2", "Шампуни, уход (карточки)"],
-            ["18", "Moda Moda", "<1M", "Без продаж", "1", "Шампуни (карточки)"],
-            ["19", "Bohicare", "<1M", "Без продаж", "2", "SPF, бальзам (карточки)"],
-            ["20", "Bueno", "0", "Не на Kaspi", "0", "—"],
-            ["21", "Healthy", "0", "Не на Kaspi", "0", "—"],
+          <DataTable headers={["#", "Бренд", "Выручка/мес", "Тир", "SKU", "Главная категория"]} rows={[
+            ["1", "Celimax", "~239M", "Лидер", "74+", "Тоники #1, Кремы #3"],
+            ["2", "Dr. Althea", "~171M", "Лидер", "62+", "Кремы #1"],
+            ["3", "Skin1004", "~136M", "Лидер", "89+", "Кремы #5, Наборы #4"],
+            ["4", "Sen Sulu / The Yeon", "~135M", "Лидер", "27+", "Декор: #1 в 5 нишах"],
+            ["5", "Round Lab", "~86M", "Лидер", "58+", "Умывание #2"],
+            ["6", "AXIS-Y", "~78M", "Лидер", "43+", "Кремы #8"],
+            ["7", "Anua", "~49M", "Средний", "20+", "Кремы, сыворотки, тонеры"],
+            ["8", "VT Cosmetics", "~47M", "Средний", "20+", "Кремы (PDRN линейка)"],
+            ["9", "Mommy Care", "~30M", "Средний", "20+", "Техника (массажёры)"],
+            ["10", "The Yeon (свой бренд)", "~32M", "Средний", "15+", "BB-кремы, пилинги, гели"],
+            ["11", "COSRX", "~16M", "Средний", "20+", "Патчи, Snail, BHA, умывание"],
+            ["12", "Mediheal", "~8M", "Средний", "20+", "Патчи, тонер-пэды, пилинги"],
+            ["13", "Mizon (MIZON)", "~5M", "Начальный", "10+", "Наборы, коллаген, маски"],
+            ["14", "TFIT", "~3M", "Начальный", "5", "Консилеры (3 оттенка)"],
+            ["15", "Bueno", "~3M", "Начальный", "21", "Пептидные кремы, гели, патчи"],
+            ["16", "Bohicare", "~2.6M", "Начальный", "20", "SPF, бальзам, пенка, кушон"],
+            ["17", "Beplain", "~1.4M", "Начальный", "20", "Mung Bean пенки, SPF, кремы"],
+            ["18", "Moda Moda", "~0.6M", "Начальный", "10", "Оттеночные шампуни"],
+            ["19", "Treecell", "~0.5M", "Начальный", "19", "Шампуни, масло-флюид"],
+            ["20", "Skinfood", "~0.3M", "Начальный", "20", "Carrot Carotene, Rice"],
+            ["21", "Healthy Place", "~0.04M", "Начальный", "1", "Стик для лица (бренд не указан в карточке)"],
           ]} />
-          <p style={{ ...sP, fontSize: 12, color: C.dim }}>Примечание: Sen Sulu — казахстанский бренд, продающий продукцию The Yeon. В таблице объединены, т.к. BB-кремы The Yeon продаются под брендом Sen Sulu на Kaspi.</p>
+          <p style={{ ...sP, fontSize: 12, color: C.dim }}>Примечание: Sen Sulu — казахстанский бренд, продающий продукцию The Yeon. The Yeon также присутствует как самостоятельный бренд с BB-кремами и пилингами. Healthy Place — бренд указан только в названии товара, поле «бренд» в карточке не заполнено.</p>
         </Section>
 
         {/* ═══ 3. TIER 1 ═══ */}
@@ -219,26 +220,26 @@ export default function BrandPortfolioReport() {
         <Section id="s4" title="4. Тир 2 — Средние (5-50M/мес)">
           <p style={sP}>4 бренда с потенциалом кратного роста.</p>
 
-          <BrandCard name="Anua" tier="СРЕДНИЙ" rev="~18M" growth="Растёт" color={C.blue}
-            categories="Кремы / сыворотки (16M), Скрабы (1M)"
+          <BrandCard name="Anua" tier="СРЕДНИЙ" rev="~49M" growth="Растёт" color={C.blue}
+            categories="Кремы и сыворотки (Azelaic, PDRN, Niacinamide), Тонеры (Heartleaf 77%, Peach 77), Кремы (Ceramide Panthenol)"
             bestSku="Azelaic Acid 10 Hyaluron Serum 30мл" skuPrice="5K" skuRev="8M" reviews="319" rating="4.8" negPct="4.7%"
             topComplaint="Подделка болып шықты — вышла подделка." topPraise="Оригинал екен, рахмет — оригинал, спасибо."
-            insight="PDRN и Azelaic Acid — трендовые ингредиенты 2025-2026. Средний чек 5-13K — выше большинства конкурентов, что снижает проблему подделок. Широкая линейка: Azelaic, PDRN, Niacinamide."
-            recommendation="Масштабировать PDRN Hyaluronic Cream (13K, 4M) — высокий чек, маржинальный. Добавить набор Anua (сыворотка + крем) по 15-18K. Набрать 500+ отзывов для главных SKU." />
+            insight="Значительно крупнее, чем казалось: 49M/мес с 20+ SKU. Heartleaf тонер (1.7K, 481 продажа), PDRN крем (13K, 355 продаж), Ceramide Panthenol крем (10K, 113 продаж). Широкая линейка с трендовыми ингредиентами."
+            recommendation="Усилить маркетинг Heartleaf тонера — низкий чек (1.7K), высокий объём. Набор Anua (сыворотка + тонер + крем) по 15-18K. PDRN крем масштабировать." />
 
-          <BrandCard name="VT Cosmetics" tier="СРЕДНИЙ" rev="~14M" growth="Растёт" color={C.blue}
-            categories="Кремы / сыворотки (PDRN линейка)"
+          <BrandCard name="VT Cosmetics" tier="СРЕДНИЙ" rev="~47M" growth="Быстрый рост" color={C.blue}
+            categories="PDRN Essence (сыворотка 14K), Phyto PDRN Capsule Cream (11K), PDRN Stick Balm (9K), Reedle Shot Lifting Eye (9K), PDRN Glow Ampoule (11K)"
             bestSku="PDRN Essence 100 (30мл)" skuPrice="14K" skuRev="5M" reviews="70" rating="5.0" negPct="1.4%"
             topComplaint="Лента на товаре была прорезана — вскрытая упаковка." topPraise="Лицо подтягивается, увлажнение, тургор. Супер! Пользуюсь серией, каждый раз удивляют."
-            insight="1 негативный из 70 = рейтинг 5.0. PDRN-специализация уникальна на Kaspi. Средний чек 9-14K — премиум-зона с минимумом подделок. Линейка: сыворотка, крем, стик, крем для век."
-            recommendation="Масштабировать агрессивно: VT Cosmetics = идеальный кандидат для роста. Высокий чек, отличный рейтинг, трендовый ингредиент. Набрать 300+ отзывов. Создать набор PDRN по 25-30K." />
+            insight="Значительно крупнее: 47M/мес. Полная PDRN-линейка: сыворотка (5M), крем (5M), стик (4M), крем для век (3M), ампула (1.3M). Средний чек 8-14K — премиум-зона. 1 негативный из 70 = рейтинг 5.0."
+            recommendation="VT Cosmetics — один из самых перспективных брендов портфеля. Высокий чек, отличный рейтинг, полная линейка, трендовый PDRN. Создать набор PDRN по 25-30K. Усилить маркетинг — бренд готов к масштабированию." />
 
-          <BrandCard name="COSRX" tier="СРЕДНИЙ" rev="~8M" growth="Стагнация" color={C.amber}
-            categories="Патчи #3 (4M), Умывание (1M)"
+          <BrandCard name="COSRX" tier="СРЕДНИЙ" rev="~16M" growth="Потенциал" color={C.blue}
+            categories="Патчи Acne Pimple (2M), Snail 92 Cream (2.8K, 409 отз.), Snail 96 Mucin Essence (1.9K, 321 отз.), BHA Blackhead Power (3.6K, 99 отз.), AHA BHA Toner (4.6K, 309 отз.), Low pH Good Morning Gel (2K, 649 отз.), Salicylic Acid Cleanser (1.8K, 719 отз.), Niacinamide Serum (9.3K)"
             bestSku="Acne Pimple Master Patch" skuPrice="1-2K" skuRev="2M" reviews="754" rating="4.8" negPct="10.1%"
-            topComplaint="Не справляются с задачей. В пачке мало, не вытягивает ничего. Больно снимаются." topPraise="Наносить на сухое лицо сразу после умывания — эффективное средство."
-            insight="ГЛАВНАЯ УПУЩЕННАЯ ВОЗМОЖНОСТЬ. COSRX = глобальный #1 K-beauty бренд, но на Kaspi = только патчи (8M). Отсутствуют: Advanced Snail 96 Mucin, BHA Blackhead Power, AHA 7 Whitehead, Low pH Cleanser (полноценная линейка). 10.1% негатива = самый высокий среди портфеля."
-            recommendation="ПРИОРИТЕТ #1: завести Snail 96 Mucin Power Essence (глобальный бестселлер), BHA Blackhead Power Liquid, AHA 7 Whitehead Power Liquid. Потенциал: 8M → 50M+ при полной линейке. Поднять цену патчей с 1K → 2-3K." />
+            topComplaint="Не справляются с задачей. В пачке мало, не вытягивает ничего." topPraise="Наносить на сухое лицо сразу после умывания — эффективное средство."
+            insight="Линейка шире, чем казалось: Snail 92, Snail 96 Mucin, BHA Blackhead, AHA BHA Toner, Low pH Gel, Salicylic Cleanser, Niacinamide Serum — всё уже на Kaspi. 16M/мес суммарно. Но продажи распределены тонко по многим SKU. Глобальный #1 K-beauty бренд с потенциалом масштабирования."
+            recommendation="Фокус на маркетинг существующих SKU, а не на завоз новых. Snail 96 Mucin (321 отзыв) и BHA Blackhead (99 отзывов) — набрать до 500+. Niacinamide Serum (9.3K, 56 отз.) — премиум-позиция для роста. Поднять цену патчей с 1K → 2-3K." />
 
           <BrandCard name="Mommy Care" tier="СРЕДНИЙ" rev="~15M" growth="—" color={C.dim}
             categories="Малая косметологическая техника"
@@ -249,11 +250,13 @@ export default function BrandPortfolioReport() {
         </Section>
 
         {/* ═══ 5. TIER 3 ═══ */}
-        <Section id="s5" title="5. Тир 3 — Слабые (<5M/мес)">
-          <DataTable headers={["Бренд", "Выручка", "Категория", "SKU", "Рейтинг", "Потенциал", "Действие"]} rows={[
-            ["Mediheal", "~4M", "Патчи, скрабы, тонер-пэды", "5+", "4.9", "30M+", "Тканевые маски = пустая ниша (122M, #1 = Китай)"],
-            ["TFIT", "~2M", "Консилеры", "2", "4.8", "5M", "Нишевый. Расширить палитру оттенков"],
-            ["Mizon / MIZON", "~1M", "Наборы (Green Monster)", "1", "—", "5M", "Green Monster набор = 9K. Мало продвижения"],
+        <Section id="s5" title="5. Тир 3 — Начальный этап (<5M/мес)">
+          <DataTable headers={["Бренд", "Выручка", "Категория", "SKU", "Рейтинг", "Инсайт"]} rows={[
+            ["Mizon (MIZON)", "~5M", "Коллаген наборы, маски, желе", "10+", "4.9", "Green Monster набор (9K). Collagen набор для мужчин (13K, 199 продаж). Бренд активен."],
+            ["TFIT", "~3M", "Консилеры (3 оттенка)", "5", "4.8", "Cover Up Pro Concealer: 01 Neutral (1M), 00 Light (0.6M), 02 Warm (0.4M). Нишевый, но стабильный."],
+            ["Bueno", "~3M", "Пептидные кремы, гели, патчи", "21", "4.9-5.0", "Anti wrinkle Peptide крем (11.5K, 78 отз.), Pure Moonlight Rose гель (7K, 90 отз.). Рейтинги отличные. Фаза набора."],
+            ["Bohicare", "~2.6M", "SPF, бальзам, пенка, кушон, лифтинг", "20", "4.9-5.0", "Clear Glow бальзам (7.7K, 83 отз.), SPF LightAIR (9.5K, 84 отз.), Pro-Age Lifting крем (22.5K). Премиум-позиционирование."],
+            ["Beplain", "~1.4M", "Mung Bean пенки, SPF, кремы, маски", "20", "4.7-5.0", "Mung Bean пенка 160мл (7.2K, 25 отз.), SPF Sunmuse (8K, 18 отз.), Cicaterol крем (9.5K, 9 отз.). Широкий ассортимент, нужны отзывы."],
           ]} />
           <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
             <strong style={{ color: C.blue }}>Инсайт по Mediheal: </strong>Мировой лидер тканевых масок. На Kaspi маски для лица = 122M/мес, #1 — Gegemoon (Китай, 13M). <strong style={{ color: C.green }}>Mediheal может занять эту нишу</strong> — бренд узнаваем, продукт проверен. Нужно 10-15 SKU тканевых масок.
@@ -261,27 +264,30 @@ export default function BrandPortfolioReport() {
         </Section>
 
         {/* ═══ 6. TIER 4 ═══ */}
-        <Section id="s6" title="6. Тир 4 — Без заметных продаж (<1M/мес)">
-          <p style={sP}>Карточки товаров на Kaspi существуют, но продажи нулевые или минимальные.</p>
-          <DataTable headers={["Бренд", "SKU на Kaspi", "Цена", "Причина отсутствия продаж", "Потенциал"]} rows={[
-            ["Beplain", "Mung Bean пенка, масло", "7K", "0 отзывов, нет продвижения", "10M+ (см. Deep Dive)"],
-            ["Skinfood", "Carrot тонер, Rice крем", "10-22K", "0 отзывов, нет продвижения", "10M+ (см. Deep Dive)"],
-            ["Treecell", "Oil essence, шампунь", "6-9K", "Категория волос, 0 отзывов", "15M+ (шампуни 630M!)"],
-            ["Moda Moda", "Оттеночные шампуни", "13-14K", "Нулевые продажи", "5M (краска 161M)"],
-            ["Bohicare", "SPF крем, бальзам", "8-9K", "Нулевые продажи", "5M (SPF тренд)"],
+        <Section id="s6" title="6. Тир 4 — Минимальные продажи (<1M/мес)">
+          <p style={sP}>Бренды присутствуют, ассортимент размещён, но объёмы продаж пока минимальные. Требуется активация.</p>
+          <DataTable headers={["Бренд", "Выручка", "SKU", "Цена", "Ситуация", "Потенциал"]} rows={[
+            ["Moda Moda", "~0.6M", "10", "6.5-14K", "Оттеночные шампуни. Малый объём продаж.", "5M+ (краска для волос = 161M ниша)"],
+            ["Treecell", "~0.5M", "19", "1-14K", "Шампуни, масло-флюид. Recovery Oil (6.3K, 66 отз.).", "15M+ (шампуни 630M без лидера!)"],
+            ["Skinfood", "~0.3M", "20", "3-22K", "Carrot Carotene, Rice, консилер Salmon. Мало отзывов.", "10M+ (Rice = уникальное позиционирование)"],
+            ["Healthy Place", "~0.04M", "1", "6.8K", "Стик для лица. Бренд не указан в карточке (как «Без бренда»).", "2M+ (при исправлении карточки и расширении SKU)"],
           ]} />
           <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
             <strong style={{ color: C.green }}>Ключевой инсайт: </strong>Treecell = стратегическая возможность. Шампуни = 630M/мес (+80% YoY), <strong>нет сильного бренда-лидера</strong> (elline #1 с 103M — аномалия, 1 SKU). Night Collagen Shampoo — уникальное позиционирование, аналогов на Kaspi нет.
           </div>
         </Section>
 
-        {/* ═══ 7. TIER 5 ═══ */}
-        <Section id="s7" title="7. Тир 5 — Отсутствуют на Kaspi">
-          <DataTable headers={["Бренд", "Статус", "Комментарий"]} rows={[
-            ["Bueno", "Не найден на Kaspi.kz", "Ни одной карточки товара. Нужно создавать с нуля."],
-            ["Healthy", "Не найден на Kaspi.kz", "Ни одной карточки товара. Нужно создавать с нуля."],
-          ]} />
-          <p style={sP}>Green Monster — присутствует как суббренд MIZON (набор MIZON Green Monster Premium Collagen). Отдельного бренда «Green Monster» на Kaspi нет.</p>
+        {/* ═══ 7. ADDITIONAL NOTES ═══ */}
+        <Section id="s7" title="7. Дополнительные замечания по брендам">
+          <div style={sCard}>
+            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
+              <div><strong style={{ color: C.text }}>Green Monster</strong> — присутствует как суббренд MIZON (набор MIZON Green Monster Premium Collagen, 9.2K). Отдельного бренда «Green Monster» на Kaspi нет.</div>
+              <div><strong style={{ color: C.text }}>The Yeon</strong> — продаётся как под брендом Sen Sulu (BB-кремы Cover Fit, ~31M), так и под собственным брендом The YEON (BB-крем 2x Calming, пилинг Vita 7, Charcoal гель, ~32M). Суммарно ~63M.</div>
+              <div><strong style={{ color: C.text }}>Healthy Place</strong> — 1 SKU (стик для лица, 6 780 KZT). В карточке товара бренд указан как «Без бренда». Рекомендация: исправить карточку — указать бренд «Healthy Place» для индексации в поиске.</div>
+              <div><strong style={{ color: C.text }}>Bueno</strong> — 21 SKU, рейтинги 4.9-5.0 (78-90 отзывов на топ-SKU). Линейки: Peptide Anti Wrinkle, Pure Moonlight Rose, Bakuchiol, Hydro Volume. Ценовой сегмент 4-16.5K — здоровый, выше порога подделок.</div>
+              <div><strong style={{ color: C.text }}>Bohicare</strong> — 20 SKU, рейтинги 4.9-5.0. Линейки: Pro-Age Lifting (премиум 22.5K), Clear Glow, SPF LightAIR, кушон. Позиционирование «премиум anti-age» — ценовой сегмент 7-25K.</div>
+            </div>
+          </div>
         </Section>
 
         {/* ═══ 8. DEEP DIVE ═══ */}
@@ -447,16 +453,16 @@ export default function BrandPortfolioReport() {
           <div style={sCard}>
             <div style={{ fontSize: 13, lineHeight: 2.2, color: "#ccc" }}>
               {[
-                { n: "1", d: "Завести COSRX Snail 96 Mucin + BHA Blackhead на Kaspi — потенциал +30M/мес", p: "critical" },
-                { n: "2", d: "Поднять цену Dr. Althea 345 Relief с 1K до 3-5K — отсечь подделки", p: "critical" },
-                { n: "3", d: "QR-верификация на Dr. Althea, Round Lab, AXIS-Y — борьба с 50% негативов", p: "critical" },
-                { n: "4", d: "Завести Mediheal тканевые маски (10-15 SKU) — ниша 122M без лидера", p: "high" },
-                { n: "5", d: "Создать наборы к 8 марта: Celimax Dual Barrier Set, Skin1004 Madagascar Premium", p: "high" },
-                { n: "6", d: "Запустить Treecell Night Collagen Shampoo — ниша 630M, 0 лидеров", p: "high" },
-                { n: "7", d: "Масштабировать VT Cosmetics PDRN — набор 25-30K, набрать 300+ отзывов", p: "medium" },
-                { n: "8", d: "Активировать Beplain: набор Mung Bean 15-18K + 50 отзывов + 2 блогера", p: "medium" },
-                { n: "9", d: "Активировать Skinfood: Rice Brightening Set 20-25K + уникальное позиционирование", p: "medium" },
-                { n: "10", d: "Сократить число продавцов Dr. Althea до авторизованных — остановить демпинг", p: "medium" },
+                { n: "1", d: "Поднять цену Dr. Althea 345 Relief с 1K до 3-5K — отсечь 80% подделок, маржа x3", p: "critical" },
+                { n: "2", d: "QR-верификация на Dr. Althea, Round Lab, AXIS-Y — 50% негативов = подделки", p: "critical" },
+                { n: "3", d: "Масштабировать COSRX: Snail 96 (321 отз.) и BHA (99 отз.) уже на Kaspi — нужен маркетинг, не завоз", p: "critical" },
+                { n: "4", d: "VT Cosmetics PDRN: 47M/мес, линейка полная — создать набор 25-30K, усилить маркетинг", p: "high" },
+                { n: "5", d: "Anua: 49M/мес с 20+ SKU — набор Heartleaf + Azelaic + PDRN крем по 18-22K", p: "high" },
+                { n: "6", d: "Наборы к сезону: Celimax Dual Barrier Set + Skin1004 Madagascar Premium + Anua Set", p: "high" },
+                { n: "7", d: "Treecell в шампуни (630M ниша): Recovery Oil имеет 66 отзывов — масштабировать Night Collagen", p: "medium" },
+                { n: "8", d: "Bueno: 21 SKU, рейтинги 4.9-5.0 — набрать 200+ отзывов на топ-SKU, увеличить видимость", p: "medium" },
+                { n: "9", d: "Bohicare: Pro-Age Lifting 22.5K — премиум anti-age позиционирование, набрать отзывы", p: "medium" },
+                { n: "10", d: "Healthy Place: исправить карточку — указать бренд (сейчас «Без бренда»), расширить SKU", p: "medium" },
               ].map((item) => (
                 <div key={item.n} style={{ display: "flex", gap: 8, marginBottom: 4 }}>
                   <span style={{ color: item.p === "critical" ? C.red : item.p === "high" ? C.amber : C.blue, fontWeight: 700, minWidth: 24 }}>{item.n}.</span>
