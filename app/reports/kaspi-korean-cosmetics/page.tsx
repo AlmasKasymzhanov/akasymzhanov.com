@@ -71,7 +71,7 @@ export default function BeautyMarketReport() {
 
         {/* ═══ HEADER ═══ */}
         <div style={{ marginBottom: 48, paddingBottom: 32, borderBottom: `1px solid ${C.border}` }}>
-          <div style={sBadge(C.accent)}><span style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}>Часть I — Рынок</span></div>
+          <div style={sBadge(C.accent)}><span style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}>Enterprise Analytics Report</span></div>
           <h1 style={{ fontSize: 32, fontWeight: 800, margin: "16px 0 8px", letterSpacing: "-0.03em", lineHeight: 1.2 }}>
             Рынок «Красота и здоровье»<br />на Kaspi.kz
           </h1>
@@ -84,7 +84,7 @@ export default function BeautyMarketReport() {
             <span>Ниш: <strong style={{ color: C.text }}>73 000+</strong></span>
             <span>Источник: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.text, textDecoration: "none" }}>RedStat.kz</a></span>
           </div>
-          <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт покрывает <strong style={{ color: C.text }}>весь рынок «Красота и здоровье»</strong> на Kaspi.kz без привязки к конкретным брендам или странам происхождения. Разбор портфеля клиента — в отдельном документе (Часть II).</p>
+          <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт покрывает <strong style={{ color: C.text }}>весь рынок «Красота и здоровье»</strong> на Kaspi.kz: структуру, ключевые ниши, топ-бренды, сезонность, ценовые сегменты, динамику год к году, точки роста и стратегические рекомендации.</p>
         </div>
 
         {/* ═══ TOC ═══ */}
@@ -550,7 +550,7 @@ export default function BeautyMarketReport() {
               Проанализировано: <strong style={{ color: C.text }}>73 000+ ниш</strong> &middot; <strong style={{ color: C.text }}>16 месяцев данных</strong> (ноябрь 2024 — февраль 2026) &middot; <strong style={{ color: C.text }}>35 000+ отзывов</strong> покупателей Kaspi.kz
             </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a> &middot; Следующий шаг: <a href="/reports/kaspi-brand-portfolio" style={{ color: C.accent, textDecoration: "none" }}>Часть II — Детальный разбор портфеля из 21 бренда</a>
+              Источник данных: <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>RedStat.kz</a>
             </p>
           </div>
         </Section>
