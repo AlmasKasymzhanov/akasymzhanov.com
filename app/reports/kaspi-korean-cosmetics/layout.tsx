@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Корейская косметика на Kaspi.kz — Enterprise-аналитика рынка",
+  title: "Рынок «Красота и здоровье» на Kaspi.kz — Enterprise-аналитика",
   description:
-    "Полный аналитический отчёт по рынку корейской косметики на Kaspi.kz: 73 000+ ниш, 21 бренд, 16 месяцев данных, ценовые сегменты, отзывы, стратегия входа.",
+    "Полный аналитический отчёт рынка «Красота и здоровье» на Kaspi.kz. TAM 612B KZT, 73 000+ ниш, 16 месяцев данных. Структура, сегменты, бренды, сезонность, YoY, инсайты и рекомендации.",
 };
 
-export default function KoreanCosmeticsLayout({ children }: { children: React.ReactNode }) {
+export default function BeautyMarketLayout({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }

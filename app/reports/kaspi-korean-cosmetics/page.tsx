@@ -11,15 +11,13 @@ const C = {
   blue: "#60a5fa", pink: "#f472b6", cyan: "#22d3ee", purple: "#a78bfa",
 };
 
-/* ───── style helpers ───── */
 const sSection: React.CSSProperties = { marginBottom: 56 };
 const sH2: React.CSSProperties = { fontSize: 22, fontWeight: 700, margin: "0 0 24px", color: C.text, letterSpacing: "-0.01em", borderBottom: `1px solid ${C.border}`, paddingBottom: 12 };
 const sH3: React.CSSProperties = { fontSize: 16, fontWeight: 600, margin: "28px 0 12px", color: C.text };
 const sP: React.CSSProperties = { fontSize: 14, lineHeight: 1.75, color: "#ccc", margin: "0 0 12px" };
 const sCard: React.CSSProperties = { background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "24px", marginBottom: 16 };
-const sBadge = (color: string): React.CSSProperties => ({ display: "inline-block", padding: "3px 10px", borderRadius: 20, background: `${color}18`, color, fontSize: 11, fontWeight: 600, letterSpacing: "0.03em" });
+const sBadge = (color: string): React.CSSProperties => ({ display: "inline-block", padding: "3px 10px", borderRadius: 20, background: `${color}18`, color, fontSize: 11, fontWeight: 600 });
 
-/* ───── Collapsible Section ───── */
 function Section({ id, title, children }: { id: string; title: string; children: React.ReactNode }) {
   const [open, setOpen] = useState(true);
   return (
@@ -33,31 +31,17 @@ function Section({ id, title, children }: { id: string; title: string; children:
   );
 }
 
-/* ───── Data Table ───── */
 function DataTable({ headers, rows, highlight }: { headers: string[]; rows: (string | number)[][]; highlight?: number }) {
   return (
     <div style={{ overflowX: "auto", marginBottom: 16 }}>
       <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
-        <thead>
-          <tr>{headers.map((h, i) => (
-            <th key={i} style={{ padding: "10px 12px", textAlign: "left", color: C.dim, fontWeight: 600, borderBottom: `1px solid ${C.border}`, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
-          ))}</tr>
-        </thead>
-        <tbody>
-          {rows.map((row, ri) => (
-            <tr key={ri} style={{ background: highlight !== undefined && ri === highlight ? `${C.accent}12` : "transparent" }}>
-              {row.map((cell, ci) => (
-                <td key={ci} style={{ padding: "10px 12px", textAlign: "left", color: ci === 0 ? C.text : "#ccc", borderBottom: `1px solid ${C.border}20`, fontWeight: ci === 0 ? 500 : 400, whiteSpace: ci === 0 ? "nowrap" : "normal" }}>{cell}</td>
-              ))}
-            </tr>
-          ))}
-        </tbody>
+        <thead><tr>{headers.map((h, i) => (<th key={i} style={{ padding: "10px 12px", textAlign: "left", color: C.dim, fontWeight: 600, borderBottom: `1px solid ${C.border}`, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>))}</tr></thead>
+        <tbody>{rows.map((row, ri) => (<tr key={ri} style={{ background: highlight !== undefined && ri === highlight ? `${C.accent}12` : "transparent" }}>{row.map((cell, ci) => (<td key={ci} style={{ padding: "10px 12px", textAlign: "left", color: ci === 0 ? C.text : "#ccc", borderBottom: `1px solid ${C.border}20`, fontWeight: ci === 0 ? 500 : 400, whiteSpace: ci === 0 ? "nowrap" : "normal" }}>{cell}</td>))}</tr>))}</tbody>
       </table>
     </div>
   );
 }
 
-/* ───── MetricCard ───── */
 function MetricCard({ label, value, sub, color }: { label: string; value: string; sub?: string; color?: string }) {
   return (
     <div style={{ ...sCard, padding: "16px 20px", flex: 1, minWidth: 140 }}>
@@ -68,331 +52,376 @@ function MetricCard({ label, value, sub, color }: { label: string; value: string
   );
 }
 
-/* ───── Quote ───── */
-function Quote({ text, rating }: { text: string; rating: number }) {
-  const color = rating <= 2 ? C.red : rating === 3 ? C.amber : C.green;
-  return (
-    <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb", lineHeight: 1.6 }}>
-      <span style={{ ...sBadge(color), marginRight: 8, fontSize: 10 }}>{rating}/5</span>
-      {text}
-    </div>
-  );
+function Insight({ text, type = "info" }: { text: string; type?: "info" | "warning" | "success" }) {
+  const color = type === "warning" ? C.amber : type === "success" ? C.green : C.blue;
+  return <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 14, margin: "12px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}><strong style={{ color }}>Инсайт: </strong>{text}</div>;
 }
 
-/* ───── Tier Badge ───── */
-function Tier({ tier }: { tier: 1 | 2 | 3 | 4 | 5 }) {
-  const map: Record<number, [string, string]> = { 1: [C.green, "ЛИДЕР"], 2: [C.blue, "СРЕДНИЙ"], 3: [C.amber, "СЛАБЫЙ"], 4: [C.dim, "НУЛЕВЫЕ"], 5: [C.red, "НЕТ НА KASPI"] };
-  const [color, label] = map[tier];
-  return <span style={sBadge(color)}>{label}</span>;
+function Rec({ text }: { text: string }) {
+  return <div style={{ borderLeft: `3px solid ${C.accent}`, paddingLeft: 14, margin: "12px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}><strong style={{ color: C.accent }}>Рекомендация: </strong>{text}</div>;
 }
 
-/* ═══════════════════════════════════════════════ */
-/*                  MAIN PAGE                      */
-/* ═══════════════════════════════════════════════ */
-export default function KoreanCosmeticsReport() {
+/* ═══════════════════ MAIN ═══════════════════ */
+export default function BeautyMarketReport() {
   return (
     <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "'Inter', -apple-system, sans-serif" }}>
       <div style={{ maxWidth: 960, margin: "0 auto", padding: "40px 24px 80px" }}>
 
-        {/* ═══ Header ═══ */}
-        <div style={{ marginBottom: 16 }}>
-          <Link href="/" style={{ color: C.dim, fontSize: 13, textDecoration: "none" }}>&larr; akasymzhanov.com</Link>
-        </div>
+        <div style={{ marginBottom: 16 }}><Link href="/" style={{ color: C.dim, fontSize: 13, textDecoration: "none" }}>&larr; akasymzhanov.com</Link></div>
 
+        {/* ═══ HEADER ═══ */}
         <div style={{ marginBottom: 48, paddingBottom: 32, borderBottom: `1px solid ${C.border}` }}>
-          <div style={{ display: "inline-block", padding: "4px 12px", borderRadius: 20, background: `${C.accent}18`, color: C.accent, fontSize: 11, fontWeight: 600, letterSpacing: "0.05em", marginBottom: 16, textTransform: "uppercase" }}>
-            Enterprise Analytics Report
-          </div>
-          <h1 style={{ fontSize: 32, fontWeight: 800, margin: "0 0 8px", letterSpacing: "-0.03em", lineHeight: 1.2 }}>
-            Корейская косметика<br />на Kaspi.kz
+          <div style={sBadge(C.accent)}><span style={{ textTransform: "uppercase", letterSpacing: "0.05em" }}>Часть I — Рынок</span></div>
+          <h1 style={{ fontSize: 32, fontWeight: 800, margin: "16px 0 8px", letterSpacing: "-0.03em", lineHeight: 1.2 }}>
+            Рынок «Красота и здоровье»<br />на Kaspi.kz
           </h1>
           <p style={{ color: C.dim, fontSize: 14, margin: "12px 0 0" }}>
-            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong> &middot; на основе данных <strong style={{ color: C.text }}>RedStat</strong>
+            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong> &middot; данные <strong style={{ color: C.text }}>RedStat</strong>
           </p>
           <div style={{ display: "flex", gap: 20, marginTop: 12, fontSize: 12, color: C.dim, flexWrap: "wrap" }}>
-            <span>Дата: <strong style={{ color: C.text }}>27 марта 2026</strong></span>
-            <span>Данные: <strong style={{ color: C.text }}>73 000+ ниш, 16 мес</strong></span>
-            <span>Брендов: <strong style={{ color: C.text }}>21 бренд</strong></span>
-            <span>Рынок: <strong style={{ color: C.text }}>Kaspi.kz</strong></span>
+            <span>Дата: <strong style={{ color: C.text }}>Март 2026</strong></span>
+            <span>Период: <strong style={{ color: C.text }}>Ноябрь 2024 — Февраль 2026</strong></span>
+            <span>Ниш: <strong style={{ color: C.text }}>73 000+</strong></span>
+            <span>Источник: <strong style={{ color: C.text }}>ClickHouse OLAP</strong></span>
           </div>
+          <p style={{ ...sP, marginTop: 16, fontSize: 13, color: C.dim }}>Данный отчёт покрывает <strong style={{ color: C.text }}>весь рынок «Красота и здоровье»</strong> на Kaspi.kz без привязки к конкретным брендам или странам происхождения. Разбор портфеля клиента — в отдельном документе (Часть II).</p>
         </div>
 
         {/* ═══ TOC ═══ */}
         <div style={{ ...sCard, marginBottom: 48, padding: "20px 24px" }}>
           <div style={{ fontSize: 13, fontWeight: 600, color: C.dim, marginBottom: 12 }}>Содержание</div>
           {[
-            ["sec-market", "1. Рынок Beauty на Kaspi — TAM, структура, ключевые ниши"],
-            ["sec-skincare", "2. Уход за лицом — где Корея доминирует"],
-            ["sec-decor", "3. Декоративная косметика — территория Sen Sulu"],
-            ["sec-seasons", "4. Сезонность — когда что продавать"],
-            ["sec-yoy", "5. Год к году — кто вырос, кто упал"],
-            ["sec-brands", "6. Разбор 21 бренда клиента — тиры и карточки"],
-            ["sec-top10", "7. Топ-10 K-beauty SKU на Kaspi"],
-            ["sec-fakes", "8. Проблема подделок — масштаб и решения"],
-            ["sec-prices", "9. Ценовые сегменты — где маржа, где подделки"],
-            ["sec-recs", "10. Рекомендации и план действий"],
+            ["s1", "1. Executive Summary"],
+            ["s2", "2. TAM и структура рынка"],
+            ["s3", "3. Уход за лицом — крупнейшая подкатегория"],
+            ["s4", "4. Декоративная косметика"],
+            ["s5", "5. Уход за волосами"],
+            ["s6", "6. Уход за телом"],
+            ["s7", "7. Парфюмерия, наборы, техника"],
+            ["s8", "8. Сезонность — помесячная динамика"],
+            ["s9", "9. Год к году (YoY)"],
+            ["s10", "10. Ценовые сегменты"],
+            ["s11", "11. Уход vs Декоративная косметика"],
+            ["s12", "12. Проблема подделок"],
+            ["s13", "13. Точки роста и белые пятна"],
+            ["s14", "14. Инсайты и рекомендации"],
           ].map(([id, label]) => (
-            <a key={id} href={`#${id}`} style={{ display: "block", padding: "6px 0", fontSize: 13, color: C.accent, textDecoration: "none" }}>{label}</a>
+            <a key={id} href={`#${id}`} style={{ display: "block", padding: "5px 0", fontSize: 13, color: C.accent, textDecoration: "none" }}>{label}</a>
           ))}
         </div>
 
-        {/* ═══ SECTION 1: MARKET ═══ */}
-        <Section id="sec-market" title="1. Рынок Beauty на Kaspi — TAM и структура">
+        {/* ═══ 1. EXECUTIVE SUMMARY ═══ */}
+        <Section id="s1" title="1. Executive Summary">
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
-            <MetricCard label="TAM (агрегат 16 мес)" value="612B" sub="KZT" color={C.accent} />
-            <MetricCard label="Заказов" value="198M" sub="за 16 месяцев" />
-            <MetricCard label="Товаров" value="1.5M" sub="SKU" />
+            <MetricCard label="TAM (16 мес)" value="612B" sub="KZT выручки" color={C.accent} />
+            <MetricCard label="Заказов" value="198M" sub="#1 на Kaspi по объёму" />
+            <MetricCard label="SKU" value="1.5M" sub="товарных позиций" />
             <MetricCard label="Брендов" value="271K" sub="на площадке" />
           </div>
-          <p style={sP}>«Красота и здоровье» — 7-я по выручке категория на Kaspi, но <strong style={{ color: C.text }}>1-я по количеству заказов</strong> (198M — больше, чем телефоны и бытовая техника).</p>
-
-          <h3 style={sH3}>Структура рынка: L2 подкатегории</h3>
-          <DataTable headers={["Подкатегория", "Выручка/мес", "% рынка", "Продавцов", "Брендов"]} rows={[
-            ["Уход за лицом", "2 919M", "18.3%", "1 438", "882"],
-            ["Техника для красоты", "2 221M", "13.9%", "884", "493"],
-            ["Уход за волосами", "2 013M", "12.6%", "2 075", "939"],
-            ["Декоративная косметика", "1 716M", "10.8%", "1 093", "587"],
-            ["Парфюмерия", "1 650M", "10.3%", "404", "356"],
-            ["Уход за телом", "1 012M", "6.3%", "1 311", "888"],
-            ["Наборы косметики", "862M", "5.4%", "388", "242"],
-          ]} />
-          <p style={sP}><strong style={{ color: C.accent }}>SAM для корейской косметики:</strong> Уход за лицом (2.9B) + Декор (1.7B) + Волосы (2B) + Тело (1B) + Наборы (862M) = <strong style={{ color: C.text }}>~8.5B KZT/мес</strong></p>
-        </Section>
-
-        {/* ═══ SECTION 2: SKINCARE ═══ */}
-        <Section id="sec-skincare" title="2. Уход за лицом — территория Кореи">
-          <DataTable headers={["Leaf-ниша", "Выручка", "% от L2", "SKU", "Брендов"]} rows={[
-            ["Кремы и сыворотки", "1 712M", "59%", "3 095", "551"],
-            ["Средства для умывания", "517M", "18%", "954", "287"],
-            ["Тоники, тонеры", "290M", "10%", "546", "194"],
-            ["Маски для лица", "122M", "4%", "627", "170"],
-            ["Снятие макияжа", "84M", "3%", "158", "64"],
-            ["Скрабы и пилинги", "64M", "2%", "199", "96"],
-            ["Патчи", "45M (+114% YoY!)", "2%", "182", "62"],
-          ]} />
-
-          <h3 style={sH3}>Кремы и сыворотки (1 712M) — ТОП-10 брендов</h3>
-          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов", "Страна"]} rows={[
-            ["1", "Dr. Althea", "142M", "62", "28 901", "Корея"],
-            ["2", "Bioderma", "96M", "60", "11 523", "Франция"],
-            ["3", "Celimax", "89M", "74", "20 542", "Корея"],
-            ["4", "MEDI-PEEL", "63M", "82", "11 701", "Корея"],
-            ["5", "Skin1004", "55M", "89", "15 177", "Корея"],
-            ["6", "La Roche-Posay", "55M", "37", "4 652", "Франция"],
-            ["7", "ANGIOPHARM", "51M", "56", "3 571", "Россия"],
-            ["8", "AXIS-Y", "47M", "43", "20 872", "Корея"],
-            ["9", "Round Lab", "39M", "58", "9 947", "Корея"],
-            ["10", "Без бренда", "39M", "133", "11 997", "—"],
-          ]} highlight={0} />
-          <p style={sP}><strong style={{ color: C.green }}>Инсайт:</strong> Корея = 5 из топ-10 в кремах. Dr. Althea <strong>сместил Bioderma с #1</strong> за последний год (рост +133% YoY).</p>
-
-          <h3 style={sH3}>Тоники (290M) — абсолютная корейская территория</h3>
-          <DataTable headers={["#", "Бренд", "Выручка", "Доля", "Страна"]} rows={[
-            ["1", "Celimax", "61M", "21%", "Корея"],
-            ["2", "BIDALLI", "14M", "5%", "Корея"],
-            ["3", "Paula's Choice", "12M", "4%", "США"],
-            ["4", "AXIS-Y", "12M", "4%", "Корея"],
-            ["5", "Round Lab", "10M", "3%", "Корея"],
-          ]} highlight={0} />
-          <p style={sP}><strong style={{ color: C.green }}>Инсайт:</strong> 7 из 10 в тониках = Корея. Celimax — абсолютный лидер с 21% долей.</p>
-
-          <div style={{ ...sCard, borderLeft: `3px solid ${C.cyan}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.cyan }}>Карта доминирования Кореи</h3>
-            <div style={{ fontSize: 13, lineHeight: 1.8, color: "#ccc" }}>
-              <div><span style={{ color: C.green }}>Доминирует (&gt;50%):</span> Тоники, Кремы, Умывание, Скрабы</div>
-              <div><span style={{ color: C.amber }}>Присутствует (20-40%):</span> Маски, Патчи, Наборы</div>
-              <div><span style={{ color: C.red }}>Слабо (&lt;10%):</span> Шампуни, Тональные, Помады, Тушь, Дезодоранты</div>
+          <p style={sP}>«Красота и здоровье» — <strong style={{ color: C.text }}>крупнейшая категория Kaspi по количеству заказов</strong> (198M за 16 мес — больше, чем телефоны и бытовая техника). По выручке — 7-я (612B KZT), уступая высокочековым электронике и авто.</p>
+          <div style={sCard}>
+            <h3 style={{ ...sH3, margin: "0 0 12px" }}>Ключевые выводы отчёта</h3>
+            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
+              <div>1. Рынок растёт <strong style={{ color: C.green }}>+40-80% YoY</strong> по ключевым нишам (кремы, шампуни, наборы)</div>
+              <div>2. <strong style={{ color: C.text }}>Уходовая косметика = 1.7x выручка</strong> декоративной, но по заказам равны</div>
+              <div>3. Два пиковых сезона: <strong style={{ color: C.amber }}>8 марта</strong> (наборы 1B+, тональные 991M) и <strong style={{ color: C.amber }}>Новый год</strong> (наборы 1.1B+)</div>
+              <div>4. <strong style={{ color: C.red }}>Подделки</strong> — системная проблема: при цене SKU &lt;2K KZT до 50% негативных отзывов о фейках</div>
+              <div>5. <strong style={{ color: C.green }}>Патчи</strong> — самый быстрорастущий сегмент (+114% YoY), но мелкий (45M)</div>
+              <div>6. <strong style={{ color: C.text }}>Шампуни (630M)</strong> — крупная ниша без выраженного лидера-бренда</div>
+              <div>7. Оптимальная ценовая зона для косметики: <strong style={{ color: C.green }}>6-10K KZT</strong> (52% рынка кремов, минимум подделок)</div>
+              <div>8. Премиум-наборы (&gt;34K) = <strong style={{ color: C.green }}>43% выручки</strong> категории наборов</div>
             </div>
           </div>
         </Section>
 
-        {/* ═══ SECTION 3: DECOR ═══ */}
-        <Section id="sec-decor" title="3. Декоративная косметика — территория Sen Sulu">
+        {/* ═══ 2. TAM ═══ */}
+        <Section id="s2" title="2. TAM и структура рынка">
+          <p style={sP}>Рынок состоит из <strong style={{ color: C.text }}>19 L2-подкатегорий</strong>. Ниже — полная структура с выручкой за февраль 2026.</p>
+          <DataTable headers={["#", "Подкатегория", "Выручка/мес", "% рынка", "Продавцов", "SKU", "Брендов"]} rows={[
+            ["1", "Уход за лицом", "2 919M", "18.3%", "1 438", "6 388", "882"],
+            ["2", "Техника для красоты", "2 221M", "13.9%", "884", "1 830", "493"],
+            ["3", "Уход за волосами", "2 013M", "12.6%", "2 075", "7 375", "939"],
+            ["4", "Декоративная косметика", "1 716M", "10.8%", "1 093", "4 904", "587"],
+            ["5", "Парфюмерия", "1 650M", "10.3%", "404", "2 334", "356"],
+            ["6", "Уход за телом", "1 012M", "6.3%", "1 311", "4 142", "888"],
+            ["7", "Массажеры и кресла", "1 003M", "6.3%", "542", "865", "271"],
+            ["8", "Наборы косметики", "862M", "5.4%", "388", "944", "242"],
+            ["9", "Уход за полостью рта", "577M", "3.6%", "784", "1 922", "362"],
+            ["10", "Маникюр и педикюр", "538M", "3.4%", "727", "3 514", "480"],
+            ["11", "Брови и ресницы", "501M", "3.1%", "689", "2 096", "358"],
+            ["12", "Аксессуары", "199M", "1.2%", "740", "1 010", "175"],
+            ["13", "Мебель для салонов", "184M", "1.2%", "36", "83", "24"],
+            ["14", "Депиляция и эпиляция", "182M", "1.1%", "195", "587", "104"],
+            ["15", "Товары для бритья", "111M", "0.7%", "244", "502", "106"],
+            ["16", "Инструменты для укладки", "81M", "0.5%", "251", "498", "110"],
+            ["17", "Тату и перманент", "60M", "0.4%", "54", "199", "59"],
+            ["18", "Ароматерапия", "22M", "0.1%", "81", "218", "42"],
+            ["19", "Аппаратная косметология", "5M", "0.0%", "11", "12", "9"],
+          ]} />
+          <Insight text="Топ-4 подкатегории (уход за лицом, техника, волосы, декор) = 56% рынка. Это основное поле для косметических брендов." />
+          <Rec text="Фокус для косметического дистрибьютора: Уход за лицом (2.9B), Декор (1.7B), Волосы (2B), Наборы (862M). Техника и парфюмерия — другие компетенции." />
+        </Section>
+
+        {/* ═══ 3. SKINCARE ═══ */}
+        <Section id="s3" title="3. Уход за лицом — крупнейшая подкатегория (2 919M)">
+          <DataTable headers={["Leaf-ниша", "Выручка/мес", "% от L2", "Продавцов", "SKU", "Брендов"]} rows={[
+            ["Кремы и сыворотки", "1 712M", "59%", "864", "3 095", "551"],
+            ["Средства для умывания", "517M", "18%", "493", "954", "287"],
+            ["Тоники, тонеры", "290M", "10%", "334", "546", "194"],
+            ["Маски для лица", "122M", "4%", "298", "627", "170"],
+            ["Снятие макияжа", "84M", "3%", "129", "158", "64"],
+            ["Скрабы и пилинги", "64M", "2%", "148", "199", "96"],
+            ["Патчи", "45M (+114% YoY)", "2%", "99", "182", "62"],
+            ["Уход за губами", "37M", "1%", "178", "282", "100"],
+          ]} />
+
+          <h3 style={sH3}>Кремы и сыворотки (1 712M) — топ-10 брендов</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Продавцов", "Заказов/мес"]} rows={[
+            ["1", "Dr. Althea", "142M", "62", "67", "28 901"],
+            ["2", "Bioderma", "96M", "60", "31", "11 523"],
+            ["3", "Celimax", "89M", "74", "68", "20 542"],
+            ["4", "MEDI-PEEL", "63M", "82", "44", "11 701"],
+            ["5", "Skin1004", "55M", "89", "66", "15 177"],
+            ["6", "La Roche-Posay", "55M", "37", "20", "4 652"],
+            ["7", "ANGIOPHARM", "51M", "56", "33", "3 571"],
+            ["8", "AXIS-Y", "47M", "43", "43", "20 872"],
+            ["9", "Round Lab", "39M", "58", "54", "9 947"],
+            ["10", "Без бренда", "39M", "133", "111", "11 997"],
+          ]} highlight={0} />
+          <Insight text="Dr. Althea (#1) обогнал Bioderma за последний год. Рост Dr. Althea: 36M → 142M (+133% YoY). Bioderma удерживает #2, La Roche-Posay — #6." />
+          <Insight text="«Без бренда» = 39M (2.3% ниши) при 133 SKU и 111 продавцах. Низкая выручка на единицу → пространство для брендированных продуктов." type="success" />
+
+          <h3 style={sH3}>Средства для умывания (517M) — топ-10</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов"]} rows={[
+            ["1", "Bioderma", "49M", "25", "7 030"],
+            ["2", "Round Lab", "36M", "30", "12 330"],
+            ["3", "Celimax", "35M", "25", "8 876"],
+            ["4", "Skin1004", "25M", "35", "10 077"],
+            ["5", "La Roche-Posay", "21M", "13", "1 894"],
+            ["6", "CeraVe", "20M", "18", "8 796"],
+            ["7", "ANGIOPHARM", "15M", "18", "1 681"],
+            ["8", "Dr. Althea", "15M", "14", "2 662"],
+            ["9", "LAGOM", "13M", "9", "3 095"],
+            ["10", "Sugarlife", "12M", "10", "5 557"],
+          ]} />
+          <Insight text="Bioderma удерживает #1 в умывании (мицеллярная вода). Но Round Lab (#2) и Celimax (#3) наращивают долю. Sugarlife — локальный КЗ-бренд в топ-10." />
+
+          <h3 style={sH3}>Тоники и тонеры (290M) — топ-10</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "Доля ниши", "Заказов"]} rows={[
+            ["1", "Celimax", "61M", "21%", "11 016"],
+            ["2", "BIDALLI", "14M", "5%", "1 265"],
+            ["3", "Paula's Choice", "12M", "4%", "959"],
+            ["4", "AXIS-Y", "12M", "4%", "4 799"],
+            ["5", "Round Lab", "10M", "3%", "2 425"],
+            ["6", "Dr. Althea", "10M", "3%", "1 489"],
+            ["7", "MEDI-PEEL", "10M", "3%", "1 755"],
+            ["8", "Skin1004", "10M", "3%", "2 753"],
+            ["9", "ANGIOPHARM", "9M", "3%", "1 026"],
+            ["10", "Sugarlife", "6M", "2%", "1 981"],
+          ]} highlight={0} />
+          <Insight text="Celimax доминирует в тониках с 21% долей — больше, чем #2 + #3 + #4 вместе. Рост x3.2 за год (19M → 61M)." type="success" />
+
+          <h3 style={sH3}>Патчи (45M) — самый быстрорастущий сегмент</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов"]} rows={[
+            ["1", "SADOER", "6M", "39", "7 306"],
+            ["2", "MeyRim", "4M", "6", "3 216"],
+            ["3", "COSRX", "4M", "4", "2 337"],
+            ["4", "DOBRAVA beauty", "3M", "6", "735"],
+            ["5", "MEDI-PEEL", "2M", "8", "885"],
+          ]} />
+          <Insight text="Патчи выросли +114% YoY (21M → 45M). Ниша маленькая, но темп роста максимальный во всём beauty. SADOER (Китай) лидирует." />
+        </Section>
+
+        {/* ═══ 4. DECOR ═══ */}
+        <Section id="s4" title="4. Декоративная косметика (1 716M)">
           <DataTable headers={["Leaf-ниша", "Выручка", "SKU", "Брендов", "#1 бренд"]} rows={[
             ["Тональные средства", "536M", "758", "170", "RoRoBell (72M)"],
             ["Помады, блески", "209M", "1 077", "153", "Sen Sulu (26M)"],
             ["Румяна, бронзеры", "203M", "500", "110", "HOURGLASS (30M)"],
-            ["Тушь", "149M", "355", "84", "Loreal (23M)"],
+            ["Тушь", "149M", "355", "84", "Loreal Paris (23M)"],
             ["Пудры", "116M", "250", "81", "Sen Sulu (24M)"],
             ["Тени для век", "97M", "358", "96", "Sen Sulu (18M)"],
-            ["Корректоры", "95M", "218", "62", "Sen Sulu (30M)"],
+            ["Корректоры и консилеры", "95M", "218", "62", "Sen Sulu (30M)"],
+            ["Основы и фиксаторы", "82M", "153", "69", "LUXVISAGE (10M)"],
+            ["Контур для глаз", "65M", "361", "105", "Vivienne Sabo (7M)"],
           ]} />
+          <Insight text="Sen Sulu — #1 в 5 из 9 ниш декоративки (пудры, тени, корректоры, помады, контур). Суммарная выручка ~135M/мес. Казахстанский бренд." type="success" />
+          <Insight text="RoRoBell — #1 в тональных (72M). Три оттенка Bfadation по 13-16K = 67M. Единственный бренд в премиум-тональном сегменте." />
 
-          <div style={{ ...sCard, borderTop: `3px solid ${C.pink}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 12px", color: C.pink }}>Sen Sulu = The Yeon — скрытый гигант</h3>
-            <p style={sP}><strong>Sen Sulu — #1 в 5 из 8 категорий</strong> декоративной косметики (пудры, тени, корректоры, помады, контур). Суммарно ~135M/мес.</p>
-            <p style={sP}>BB кремы The Yeon Cover Fit SPF36 продаются под Sen Sulu. Это <strong>казахстанский бренд с корейским производством</strong>.</p>
-            <DataTable headers={["Категория", "Выручка", "Позиция"]} rows={[
-              ["Корректоры", "30M", "#1"],
-              ["Помады", "26M", "#1"],
-              ["Пудры", "24M", "#1"],
-              ["Тени", "18M", "#1"],
-              ["Тональные", "18M", "#7"],
-              ["Наборы", "127M", "#1"],
-            ]} />
-          </div>
+          <h3 style={sH3}>Тональные средства (536M) — топ-10</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов"]} rows={[
+            ["1", "RoRoBell", "72M", "6", "5 102"],
+            ["2", "PRE MORE", "51M", "16", "5 574"],
+            ["3", "Eveline Cosmetics", "36M", "30", "11 376"],
+            ["4", "LUXVISAGE", "31M", "22", "15 331"],
+            ["5", "Estee Lauder", "28M", "20", "1 284"],
+            ["6", "Henlics", "24M", "12", "9 093"],
+            ["7", "Sen Sulu", "18M", "5", "2 906"],
+            ["8", "Influence", "18M", "15", "4 802"],
+            ["9", "MISSHA", "18M", "30", "7 686"],
+            ["10", "Loreal Paris", "13M", "22", "1 692"],
+          ]} />
+          <Insight text="Декоративка более фрагментирована, чем уходовая. Нет бренда с >15% долей в тональных (RoRoBell = 13%). В уходовых Dr. Althea = 8.3%." />
+          <Rec text="Декоративная косметика — менее концентрированный рынок с возможностью для новых брендов, особенно в сегменте помад и теней." />
         </Section>
 
-        {/* ═══ SECTION 4: SEASONS ═══ */}
-        <Section id="sec-seasons" title="4. Сезонность — когда что продавать">
-          <DataTable headers={["Категория", "Янв-Фев", "Март (8М)", "Апр-Май", "Июн-Авг", "Сен-Окт", "Ноя-Дек"]} rows={[
-            ["Кремы/сыворотки", "Рост", "Пик", "Ровно", "Ровно", "Ровно", "Высокий"],
-            ["Тональные", "Рост", "ПИК (991M!)", "Спад", "Лето", "Рост", "Высокий"],
-            ["Наборы", "Ровно", "ПИК #2 (1029M)", "Спад", "Ровно", "Рост", "ПИК #1 (1126M)"],
-            ["Патчи", "Ровно", "Ровно", "Ровно", "Ровно", "Рост", "Рост"],
-            ["Помады", "Дно", "Рост", "Дно", "Рост", "Высокий", "ПИК (323M)"],
-            ["Румяна", "Ровно", "Ровно", "Ровно", "Пик (232M)", "Ровно", "ПИК (256M)"],
+        {/* ═══ 5. HAIR ═══ */}
+        <Section id="s5" title="5. Уход за волосами (2 013M)">
+          <DataTable headers={["Leaf-ниша", "Выручка", "SKU", "Брендов"]} rows={[
+            ["Шампуни", "630M", "1 496", "384"],
+            ["Средства по уходу", "451M", "668", "224"],
+            ["Маски и бальзамы", "300M", "950", "226"],
+            ["Краска для волос", "161M", "909", "94"],
+            ["Аксессуары для волос", "151M", "2 095", "187"],
+            ["Средства для укладки", "125M", "354", "91"],
           ]} />
-          <div style={{ ...sCard, borderLeft: `3px solid ${C.green}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.green }}>Ключевые даты для K-beauty</h3>
-            <div style={{ fontSize: 13, lineHeight: 1.8, color: "#ccc" }}>
-              <div><strong style={{ color: C.text }}>8 марта:</strong> Наборы (1029M), тональные (991M), кремы — пиковый месяц. Закупка за 4-6 недель.</div>
-              <div><strong style={{ color: C.text }}>Kaspi Жума (ноябрь):</strong> Все категории +20-40%. Скидки решают.</div>
-              <div><strong style={{ color: C.text }}>Новый год (декабрь):</strong> Наборы — ПИКОВЫЙ (1126M). Подарочные сеты = 43% выручки наборов.</div>
-              <div><strong style={{ color: C.text }}>Лето:</strong> SPF-кремы, умывание, тоники — летний уход.</div>
+          <h3 style={sH3}>Шампуни (630M) — топ-10</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов"]} rows={[
+            ["1", "elline", "103M", "1", "6 820"],
+            ["2", "Vichy", "32M", "15", "2 861"],
+            ["3", "VOIS", "18M", "4", "1 569"],
+            ["4", "KeraSys", "16M", "43", "5 595"],
+            ["5", "Без бренда", "15M", "36", "6 267"],
+            ["6", "DUCRAY", "14M", "16", "1 686"],
+            ["7", "Concept", "14M", "28", "3 345"],
+            ["8", "ESTEL PROFESSIONAL", "13M", "40", "2 157"],
+            ["9", "Tashe", "13M", "19", "4 328"],
+            ["10", "Ederra Lab", "11M", "11", "761"],
+          ]} />
+          <Insight text="elline — аномалия: 103M с 1 SKU (один шампунь). Vichy (#2) = медицинский позиционинг. Профессиональные бренды (Concept, ESTEL) = 27M." type="warning" />
+          <Insight text="Шампуни — 630M ниша без выраженного лидера-бренда среди косметических. Это белое пятно для брендов с фокусом на hair care." type="success" />
+          <Rec text="Для входа в шампуни рекомендуется позиционирование «премиум hair care» (средний чек 5-10K) — между массовыми (1-3K) и профессиональными (10K+)." />
+        </Section>
+
+        {/* ═══ 6. BODY ═══ */}
+        <Section id="s6" title="6. Уход за телом (1 012M)">
+          <DataTable headers={["Leaf-ниша", "Выручка", "Брендов", "#1 бренд"]} rows={[
+            ["Кремы и масла для тела", "400M", "380", "La Roche-Posay (26M)"],
+            ["Дезодоранты", "196M", "135", "Vichy (25M)"],
+            ["Средства для душа", "159M", "217", "Bioderma (16M)"],
+            ["Гигиенические прокладки", "94M", "65", "—"],
+            ["Скрабы для тела", "36M", "56", "The Act (10M)"],
+          ]} />
+          <Insight text="Уход за телом — территория медицинских/аптечных брендов (La Roche-Posay, Bioderma, Vichy). Мало конкуренции со стороны косметических брендов." />
+          <Rec text="Кремы для тела (400M) — крупная ниша с мощным YoY ростом (+101%). Возможность для брендов с уходовой линейкой расширить ассортимент на тело." />
+        </Section>
+
+        {/* ═══ 7. PERFUME + SETS + TECH ═══ */}
+        <Section id="s7" title="7. Парфюмерия, наборы, техника">
+          <h3 style={sH3}>Парфюмерия (1 650M) — топ-10</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU"]} rows={[
+            ["1", "Yves Saint Laurent", "84M", "41"],
+            ["2", "Avon", "75M", "190"],
+            ["3", "MILLAC", "69M", "5"],
+            ["4", "CHANEL", "68M", "33"],
+            ["5", "Giorgio Armani", "58M", "37"],
+            ["6", "Dior", "51M", "26"],
+            ["7", "TOM FORD", "40M", "23"],
+            ["8", "Versace", "40M", "30"],
+            ["9", "Jean Paul Gaultier", "35M", "18"],
+            ["10", "Mary Kay", "33M", "24"],
+          ]} />
+          <Insight text="Парфюмерия = территория люксовых домов (YSL, CHANEL, Dior, Armani). Avon (#2) — аномалия за счёт объёма SKU (190 позиций). MILLAC (#3, 69M с 5 SKU) — нишевый с высоким средним чеком." />
+
+          <h3 style={sH3}>Наборы косметики (862M) — стратегическая категория</h3>
+          <DataTable headers={["#", "Бренд", "Выручка", "SKU", "Заказов"]} rows={[
+            ["1", "Sen Sulu", "127M", "27", "2 467"],
+            ["2", "Без бренда", "106M", "107", "13 981"],
+            ["3", "Celimax", "41M", "14", "2 379"],
+            ["4", "Skin1004", "40M", "21", "4 922"],
+            ["5", "Amennissa", "29M", "10", "1 619"],
+            ["6", "Ederra Lab", "28M", "13", "716"],
+            ["7", "SADOER", "22M", "58", "11 092"],
+            ["8", "MIXIT", "18M", "16", "2 173"],
+            ["9", "Sugarlife", "15M", "8", "3 086"],
+            ["10", "AXIS-Y", "12M", "7", "893"],
+          ]} />
+          <Insight text="«Без бренда» = 106M (12%) в наборах — огромное пространство для брендированных наборов. Sen Sulu лидирует (127M) за счёт декоративных сетов." type="success" />
+          <Rec text="Наборы — ключевая категория для подарочных сезонов (8 марта, НГ). Премиум-наборы (>34K) = 43% выручки. Рекомендуется формировать подарочные сеты из уходовых линеек." />
+
+          <h3 style={sH3}>Техника для красоты (2 221M) — для справки</h3>
+          <DataTable headers={["Ниша", "Выручка", "Продавцов"]} rows={[
+            ["Фены", "891M", "268"],
+            ["Щипцы", "385M", "246"],
+            ["Машинки для стрижки", "259M", "206"],
+            ["Малая косметологическая техника", "208M", "136"],
+            ["Электробритвы", "164M", "127"],
+            ["Эпиляторы", "103M", "85"],
+          ]} />
+        </Section>
+
+        {/* ═══ 8. SEASONS ═══ */}
+        <Section id="s8" title="8. Сезонность — помесячная динамика">
+          <p style={sP}>Анализ 16 месяцев помесячных данных по 12 ключевым leaf-категориям.</p>
+
+          <DataTable headers={["Категория", "Мин. месяц", "Мин. выручка", "Макс. месяц", "Макс. выручка", "Амплитуда"]} rows={[
+            ["Кремы/сыворотки", "Дек 2024", "868M", "Фев 2026", "1 712M", "x2.0"],
+            ["Тональные", "Дек 2024", "322M", "Фев 2025", "991M", "x3.1"],
+            ["Наборы", "Май 2025", "381M", "Дек 2025", "1 126M", "x3.0"],
+            ["Помады", "Янв 2025", "146M", "Авг 2025", "335M", "x2.3"],
+            ["Румяна", "Апр 2025", "115M", "Дек 2025", "256M", "x2.2"],
+            ["Патчи", "Дек 2024", "20M", "Фев 2026", "45M", "x2.3"],
+            ["Шампуни", "Дек 2024", "236M", "Авг 2025", "623M", "x2.6"],
+            ["Кремы для тела", "Дек 2024", "160M", "Дек 2025", "432M", "x2.7"],
+          ]} />
+
+          <h3 style={sH3}>Сезонная матрица: категория x квартал</h3>
+          <DataTable headers={["Категория", "Q1 (Янв-Мар)", "Q2 (Апр-Июн)", "Q3 (Июл-Сен)", "Q4 (Окт-Дек)"]} rows={[
+            ["Кремы/сыворотки", "Рост → Пик (8М)", "Стабильно", "Стабильно", "Высокий (НГ)"],
+            ["Тональные", "ПИК (8М: 991M!)", "Спад", "Рост (осень)", "Высокий"],
+            ["Наборы", "ПИК #2 (8М: 1029M)", "Спад", "Рост", "ПИК #1 (НГ: 1126M)"],
+            ["Помады", "Рост к 8М", "Дно", "Высокий (осень)", "ПИК (323M)"],
+            ["Шампуни", "Рост", "Высокий", "ПИК (лето)", "Спад"],
+            ["Кремы для тела", "Рост (8М)", "Стабильно", "Стабильно", "ПИК (НГ: 432M)"],
+          ]} />
+
+          <div style={{ ...sCard, borderLeft: `3px solid ${C.amber}` }}>
+            <h3 style={{ ...sH3, margin: "0 0 12px", color: C.amber }}>Календарь закупок для beauty-дистрибьютора</h3>
+            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
+              <div><strong style={{ color: C.text }}>Январь-Февраль:</strong> Закупка наборов и тональных к 8 марта. Пик #2 наборов (1029M).</div>
+              <div><strong style={{ color: C.text }}>Март:</strong> Продажи 8 марта. Тональные 991M — рекорд. Кремы на пике.</div>
+              <div><strong style={{ color: C.text }}>Апрель-Май:</strong> SPF-кремы, тоники, умывание — переход к летнему уходу.</div>
+              <div><strong style={{ color: C.text }}>Июнь-Август:</strong> Шампуни пик. Помады растут. Лёгкие текстуры.</div>
+              <div><strong style={{ color: C.text }}>Сентябрь-Октябрь:</strong> Осенний уход: кремы, сыворотки, восстановление после лета.</div>
+              <div><strong style={{ color: C.text }}>Ноябрь (Kaspi Жума):</strong> Все категории +20-40%. Скидки решают.</div>
+              <div><strong style={{ color: C.text }}>Декабрь:</strong> Наборы ПИК #1 (1126M). Подарочные сеты = 43% выручки.</div>
             </div>
           </div>
         </Section>
 
-        {/* ═══ SECTION 5: YOY ═══ */}
-        <Section id="sec-yoy" title="5. Год к году — кто вырос, кто упал">
-          <p style={sP}>Сравнение ноябрь-февраль 2024/25 vs 2025/26.</p>
-          <DataTable headers={["Категория", "2024/25", "2025/26", "YoY рост"]} rows={[
+        {/* ═══ 9. YOY ═══ */}
+        <Section id="s9" title="9. Год к году (YoY)">
+          <p style={sP}>Сравнение ноябрь-февраль 2024/25 vs 2025/26 (4 мес, пересекающийся период).</p>
+          <DataTable headers={["Категория", "Нояб-Фев 24/25", "Нояб-Фев 25/26", "YoY"]} rows={[
             ["Кремы для тела", "796M", "1 603M", "+101%"],
             ["Патчи", "86M", "165M", "+92%"],
             ["Шампуни", "1 313M", "2 361M", "+80%"],
             ["Наборы", "1 890M", "3 262M", "+73%"],
             ["Румяна", "539M", "894M", "+66%"],
             ["Кремы/сыворотки", "4 069M", "6 424M", "+58%"],
+            ["Маски для лица", "345M", "493M", "+43%"],
             ["Тоники", "790M", "1 100M", "+39%"],
             ["Помады", "796M", "1 001M", "+26%"],
             ["Скрабы", "226M", "267M", "+18%"],
             ["Тональные", "2 083M", "2 190M", "+5%"],
           ]} highlight={0} />
-
-          <h3 style={sH3}>Лестница брендов: кто вытеснил кого</h3>
-          <DataTable headers={["Позиция", "Прошлый год", "Текущий год", "Изменение"]} rows={[
-            ["#1 кремы", "Bioderma ~320M", "Dr. Althea 550M", "Сместил Bioderma!"],
-            ["#2 кремы", "Dr. Althea ~240M", "Celimax ~390M", "Рост +63%"],
-            ["#1 тоники", "Celimax ~76M", "Celimax 234M", "x3 за год"],
-            ["#1 умывание", "Bioderma", "Bioderma (удержал)", "Round Lab #2 давит"],
-          ]} />
+          <Insight text="Весь beauty-рынок растёт. Но темпы неравномерны: кремы для тела (+101%) и патчи (+92%) — лидеры роста. Тональные (+5%) и скрабы (+18%) — замедление, возможно насыщение." />
+          <Insight text="Наборы выросли на 73% (1.89B → 3.26B) — подтверждение тренда на подарочные сеты." type="success" />
         </Section>
 
-        {/* ═══ SECTION 6: BRANDS ═══ */}
-        <Section id="sec-brands" title="6. Разбор 21 бренда клиента">
-
-          {/* Tier 1 */}
-          <h3 style={{ ...sH3, color: C.green }}>Тир 1 — Лидеры (&gt;50M/мес)</h3>
-          {[
-            { name: "Celimax", rev: "~239M", cats: "Тоники #1, Скрабы #1, Кремы #3, Умывание #3, Наборы #3", sku: "Dual Barrier Toner (32M/мес)", reviews: "3 411", rating: "4.9", insight: "Абсолютный лидер тоников. Линейка Dual Barrier — системообразующая. Рост x3.2 за год.", growth: "+208% YoY" },
-            { name: "Dr. Althea", rev: "~171M", cats: "Кремы #1, Умывание #8, Тоники #6, Скрабы #4", sku: "345 Relief Cream (39M/мес)", reviews: "4 900", rating: "4.9", insight: "Сместил Bioderma с #1. Но цена 1K = 50% негативов о подделках. Нужно поднять цену.", growth: "+133% YoY" },
-            { name: "Skin1004", rev: "~136M", cats: "Кремы #5, Наборы #4, Умывание #4, Тоники, Маски", sku: "Madagascar Set (17M/мес)", reviews: "934", rating: "4.8", insight: "Самый широкий ассортимент (89 SKU в кремах). Madagascar Centella — узнаваемая линейка.", growth: "+83% YoY" },
-            { name: "Sen Sulu (The Yeon)", rev: "~135M", cats: "Декор: Пудры #1, Корректоры #1, Тени #1, Помады #1, Наборы #1", sku: "BB Cream Cover Fit SPF36 (10M)", reviews: "914", rating: "4.9", insight: "#1 в 5 категориях декоративки. КЗ-бренд + корейское производство.", growth: "Стабильный" },
-            { name: "Round Lab", rev: "~86M", cats: "Умывание #2, Кремы #9, Тоники #5", sku: "1025 Dokdo Cleanser (19M)", reviews: "7 191", rating: "4.8", insight: "Рекорд по отзывам. Но 376 негативных (5.2%) — подделки. Рост замедляется (+22% YoY).", growth: "+22% YoY" },
-            { name: "AXIS-Y", rev: "~78M", cats: "Кремы #8, Тоники #4, Маски #2, Наборы #10", sku: "Dark Spot Serum (18M)", reviews: "6 796", rating: "4.8", insight: "Средний чек упал в 2 раза (4.1K → 2.3K) — демпинг. Заказы растут, выручка стагнирует.", growth: "+27% YoY" },
-          ].map((b) => (
-            <div key={b.name} style={sCard}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 12 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 10 }}>
-                  <span style={{ fontSize: 16, fontWeight: 700 }}>{b.name}</span>
-                  <span style={sBadge(C.green)}>{b.rev}/мес</span>
-                </div>
-                <span style={sBadge(C.green)}>{b.growth}</span>
-              </div>
-              <div style={{ fontSize: 12, color: C.dim, marginBottom: 8 }}>{b.cats}</div>
-              <div style={{ fontSize: 12, color: "#ccc", marginBottom: 8 }}>Бестселлер: <strong style={{ color: C.text }}>{b.sku}</strong> | {b.reviews} отзывов | {b.rating}</div>
-              <p style={{ ...sP, fontSize: 13, margin: 0 }}>{b.insight}</p>
-            </div>
-          ))}
-
-          {/* Tier 2 */}
-          <h3 style={{ ...sH3, color: C.blue }}>Тир 2 — Средние (5-50M/мес)</h3>
-          <DataTable headers={["Бренд", "Выручка", "Категория", "Бестселлер", "Инсайт"]} rows={[
-            ["Anua", "~18M", "Кремы (сыворотки)", "Azelaic Acid Serum 5K", "PDRN и Azelaic — тренды. Средний чек выше = меньше подделок"],
-            ["Mommy Care", "~15M", "Техника (массажёры)", "Микротоковый 60K", "Не косметика — другой рынок"],
-            ["VT Cosmetics", "~14M", "Кремы (PDRN)", "PDRN Essence 14K", "1 негативный из 70. PDRN тренд. Высокий чек — рост потенциал"],
-            ["COSRX", "~8M", "Патчи #3", "Acne Pimple Master 1K", "Глобальный #1 K-beauty, но на Kaspi только патчи! Нет Snail/BHA"],
-          ]} />
-
-          {/* Tier 3-5 */}
-          <h3 style={{ ...sH3, color: C.amber }}>Тир 3-5 — Слабые, нулевые, отсутствующие</h3>
-          <DataTable headers={["Бренд", "Выручка", "Статус", "Возможность"]} rows={[
-            ["Mediheal", "~4M", "Патчи, скрабы", "Тканевые маски = пустая ниша (122M, лидер Китай)"],
-            ["TFIT", "~2M", "Консилеры", "Нишевый, низкий потенциал"],
-            ["Mizon (MIZON)", "~1M", "Green Monster набор", "Минимальные продажи"],
-            ["Beplain", "<1M", "Карточки есть, 0 продаж", "Наборы Mung Bean + отзывы = 10M+ потенциал"],
-            ["Skinfood", "<1M", "Карточки есть, 0 продаж", "Rice + Carrot линейки, наборы = 10M+"],
-            ["Treecell", "<1M", "Масло-флюид, шампунь", "Шампуни 630M, 0 корейских лидеров!"],
-            ["Moda Moda", "<1M", "Оттеночные шампуни", "Нулевые продажи на Kaspi"],
-            ["Bohicare", "<1M", "SPF крем, бальзам", "Нулевые продажи"],
-            ["Bueno", "0", "Нет на Kaspi", "Не представлен"],
-            ["Healthy", "0", "Нет на Kaspi", "Не представлен"],
-          ]} />
-        </Section>
-
-        {/* ═══ SECTION 7: TOP 10 SKU ═══ */}
-        <Section id="sec-top10" title="7. Топ-10 K-beauty SKU на Kaspi">
-          <DataTable headers={["#", "Товар", "Бренд", "Цена", "Rev/мес", "Отзывов", "Причина лидерства"]} rows={[
-            ["1", "345 Relief Cream 50мл", "Dr. Althea", "1K", "39M", "4 900", "TikTok-вирусность, #1 крем КЗ"],
-            ["2", "Dual Barrier Toner 150мл", "Celimax", "2K", "32M", "3 411", "#1 тоник, Dual Barrier линейка"],
-            ["3", "Bfadation тональный 21", "RoRoBell", "13K", "30M", "590", "#1 тональное, премиум"],
-            ["4", "Dual Barrier набор", "Celimax", "27K", "23M", "609", "Высокий чек набора"],
-            ["5", "Bfadation тональный 23", "RoRoBell", "13K", "21M", "545", "Второй оттенок #1"],
-            ["6", "1025 Dokdo Cleanser", "Round Lab", "1K", "19M", "7 191", "#1 умывалка, рекорд отзывов"],
-            ["7", "Peptide 9 Emulsion", "MEDI-PEEL", "4K", "19M", "4 245", "#1 пептидная эмульсия"],
-            ["8", "Dark Spot Glow Serum", "AXIS-Y", "1K", "18M", "6 796", "Сыворотка от пигментации"],
-            ["9", "Madagascar Set", "Skin1004", "9K", "17M", "934", "Набор 4-5 средств Centella"],
-            ["10", "Bfadation тональный 19", "RoRoBell", "16K", "16M", "85", "Новый оттенок, быстрый рост"],
-          ]} />
-        </Section>
-
-        {/* ═══ SECTION 8: FAKES ═══ */}
-        <Section id="sec-fakes" title="8. Проблема подделок — масштаб и решения">
-          <p style={sP}>Подделки — <strong style={{ color: C.red }}>проблема #1 рынка K-beauty на Kaspi.</strong> Корреляция: чем ниже цена → тем больше подделок.</p>
-
-          <DataTable headers={["Ценовой сегмент", "% негатива о подделках", "Бренды-жертвы"]} rows={[
-            ["<2K KZT", "50%+", "Dr. Althea, Round Lab, AXIS-Y"],
-            ["2-5K KZT", "25-30%", "Celimax, Skin1004"],
-            ["5-10K KZT", "5-10%", "Anua, VT Cosmetics"],
-            [">10K KZT", "<3%", "RoRoBell, Наборы"],
-          ]} highlight={0} />
-
-          <Quote text="Товар оказался подделкой. Упаковка и консистенция отличаются от оригинала, вызывает раздражение." rating={1} />
-          <Quote text="Не ориг." rating={1} />
-          <Quote text="Подделкасын салып жіберген — подделку прислали." rating={1} />
-
-          <div style={{ ...sCard, borderLeft: `3px solid ${C.red}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.red }}>Корневая причина</h3>
-            <p style={sP}>При цене 1K KZT за крем (Dr. Althea 345) маржа продавца = 100-200 KZT. Нет экономического смысла торговать оригиналом. Подделка обходится в 300-500 KZT → маржа x2-3.</p>
-          </div>
-
-          <div style={{ ...sCard, borderLeft: `3px solid ${C.green}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.green }}>Решения</h3>
-            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
-              <div>1. <strong>Не продавать дешевле 3-5K</strong> — отсекает подделочников</div>
-              <div>2. <strong>QR-верификация</strong> на каждой упаковке (~$0.05/шт)</div>
-              <div>3. <strong>«Авторизованный дистрибьютор»</strong> в заголовке карточки</div>
-              <div>4. <strong>Фото с корейского склада</strong> в галерее</div>
-              <div>5. <strong>Видео-распаковка</strong> от блогера</div>
-              <div>6. <strong>Ответ на каждый негативный отзыв</strong> о подделке</div>
-            </div>
-          </div>
-        </Section>
-
-        {/* ═══ SECTION 9: PRICES ═══ */}
-        <Section id="sec-prices" title="9. Ценовые сегменты — где маржа, где подделки">
-          <h3 style={sH3}>Кремы и сыворотки (1 712M)</h3>
-          <DataTable headers={["Сегмент", "Медиана", "Выручка", "Доля", "Бренд %"]} rows={[
+        {/* ═══ 10. PRICE SEGMENTS ═══ */}
+        <Section id="s10" title="10. Ценовые сегменты">
+          <h3 style={sH3}>Кремы и сыворотки — распределение по цене</h3>
+          <DataTable headers={["Сегмент", "Медиана цены", "Выручка", "Доля рынка", "% брендированных"]} rows={[
             ["Низкий", "1K", "135M", "8%", "92%"],
             ["Бюджетный", "3K", "311M", "18%", "96%"],
             ["Средний", "6K", "440M", "26%", "95%"],
             ["Дорогой", "10K", "449M", "26%", "95%"],
             ["Премиум", "23K", "376M", "22%", "99%"],
-          ]} highlight={3} />
-          <p style={sP}><strong style={{ color: C.green }}>Sweetspot: медиана 6-10K.</strong> Средний + Дорогой = 52% рынка. Dr. Althea (1K) и Round Lab (1K) в низком сегменте — подвержены подделкам.</p>
+          ]} />
+          <Insight text="Средний + Дорогой (медиана 6-10K) = 52% рынка кремов. Это оптимальная ценовая зона: достаточная маржа, минимум подделок, максимальный объём." type="success" />
 
-          <h3 style={sH3}>Наборы (862M) — премиум = 43%!</h3>
+          <h3 style={sH3}>Наборы — премиум доминирует</h3>
           <DataTable headers={["Сегмент", "Медиана", "Выручка", "Доля"]} rows={[
             ["Низкий", "2K", "64M", "7%"],
             ["Бюджетный", "5K", "87M", "10%"],
@@ -400,62 +429,128 @@ export default function KoreanCosmeticsReport() {
             ["Дорогой", "15K", "172M", "20%"],
             ["Премиум", "34K", "371M", "43%"],
           ]} highlight={4} />
-          <p style={sP}>Покупатели <strong>готовы платить за наборы 34K+</strong> (подарки). Celimax набор 27K — верная стратегия.</p>
+          <Insight text="Премиум-наборы (34K+) = 43% выручки категории. Покупатели готовы платить за подарочные сеты. Это не «дешёвый» рынок." type="success" />
+          <Rec text="Формировать наборы в диапазоне 15-35K (дорогой + премиум = 63% рынка). Ниже 5K — территория «без бренда» и SADOER." />
+
+          <h3 style={sH3}>Тональные — дорогой сегмент = 31%</h3>
+          <DataTable headers={["Сегмент", "Медиана", "Выручка", "Доля"]} rows={[
+            ["Низкий", "2K", "106M", "20%"],
+            ["Бюджетный", "4K", "95M", "18%"],
+            ["Средний", "7K", "75M", "14%"],
+            ["Дорогой", "10K", "166M", "31%"],
+            ["Премиум", "25K", "93M", "17%"],
+          ]} highlight={3} />
+          <Insight text="В тональных дорогой сегмент (медиана 10K) = 31% рынка. RoRoBell Bfadation (13K) попадает точно сюда — поэтому он #1." />
         </Section>
 
-        {/* ═══ SECTION 10: RECS ═══ */}
-        <Section id="sec-recs" title="10. Рекомендации и план действий">
-
-          <h3 style={sH3}>Приоритет A — Масштабировать</h3>
-          <DataTable headers={["Бренд", "Текущая", "Потенциал", "Действие"]} rows={[
-            ["Celimax", "239M", "350M+", "Расширить (SPF, маски). Наборы к 8 марта и НГ."],
-            ["Dr. Althea", "171M", "250M+", "Поднять цены 1K→3-5K. QR-верификация."],
-            ["Skin1004", "136M", "200M+", "Madagascar — расширить. Наборы усилить."],
-            ["Round Lab", "86M", "120M+", "Birch Juice развить. Бороться с подделками."],
-            ["AXIS-Y", "78M", "100M+", "Dark Spot — основа. Mugwort линейка."],
+        {/* ═══ 11. CARE vs DECOR ═══ */}
+        <Section id="s11" title="11. Уход vs Декоративная косметика">
+          <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
+            <MetricCard label="Уход за лицом" value="2 919M" sub="790K заказов, ср. чек 3.7K" color={C.green} />
+            <MetricCard label="Декоративная косметика" value="1 716M" sub="759K заказов, ср. чек 2.3K" color={C.pink} />
+          </div>
+          <DataTable headers={["Метрика", "Уход за лицом", "Декоративка", "Соотношение"]} rows={[
+            ["Выручка/мес", "2 919M", "1 716M", "1.7 : 1"],
+            ["Заказов/мес", "790 859", "759 458", "1.04 : 1"],
+            ["Средний чек", "3 690 KZT", "2 260 KZT", "1.6x"],
+            ["SKU", "6 388", "4 904", "1.3x"],
+            ["Брендов", "882", "587", "1.5x"],
+            ["YoY (кремы/тональные)", "+58%", "+5%", "Уход растёт быстрее"],
           ]} />
+          <Insight text="По заказам уход и декор практически равны (~760-790K). Разница в выручке (1.7x) — за счёт более высокого среднего чека в уходе (3.7K vs 2.3K)." />
+          <Insight text="Уходовая косметика растёт значительно быстрее: кремы +58% vs тональные +5%. Глобальный тренд «skincare first» подтверждается данными Kaspi." type="success" />
+          <Rec text="Приоритет для дистрибьютора: уходовая косметика (выше чек, быстрее рост). Декор — как дополнение для полноты ассортимента и подарочных наборов." />
+        </Section>
 
-          <h3 style={sH3}>Приоритет B — Раскрутить</h3>
-          <DataTable headers={["Бренд", "Текущая", "Потенциал", "Действие"]} rows={[
-            ["COSRX", "8M", "50M+", "Завести Snail 96, BHA Blackhead, AHA 7 — на Kaspi только патчи!"],
-            ["VT Cosmetics", "14M", "40M+", "PDRN тренд. Высокий чек = мало подделок."],
-            ["Mediheal", "4M", "30M+", "Тканевые маски — пустая ниша 122M, лидер = Китай."],
-            ["Treecell", "<1M", "15M+", "Шампуни 630M, 0 корейских лидеров. Night Collagen."],
-          ]} />
-
-          <h3 style={sH3}>Приоритет C — Создать с нуля</h3>
-          <DataTable headers={["Бренд", "Потенциал", "Стратегия"]} rows={[
-            ["Beplain", "10M+", "Наборы Mung Bean. Отзывы. Премиум-позиционирование."],
-            ["Skinfood", "10M+", "Rice Brightening Set. Carrot Carotene линейка."],
-          ]} />
-
-          <h3 style={sH3}>Топ-10 конкретных действий (30 дней)</h3>
+        {/* ═══ 12. FAKES ═══ */}
+        <Section id="s12" title="12. Проблема подделок">
+          <p style={sP}>Анализ 35 000+ отзывов по beauty-SKU выявил системную проблему: <strong style={{ color: C.red }}>подделки = причина #1 негативных отзывов</strong>.</p>
+          <DataTable headers={["Ценовой сегмент SKU", "% негатива о подделках", "Типичные бренды-жертвы"]} rows={[
+            ["<2K KZT", "50%+", "Dr. Althea (1K), Round Lab (1K), AXIS-Y (1K)"],
+            ["2-5K KZT", "25-30%", "Celimax (2K), Skin1004 (3K)"],
+            ["5-10K KZT", "5-10%", "Anua (5K), MEDI-PEEL (4-7K)"],
+            [">10K KZT", "<3%", "RoRoBell (13K), VT Cosmetics (14K), Наборы"],
+          ]} highlight={0} />
           <div style={sCard}>
+            <h3 style={{ ...sH3, margin: "0 0 8px" }}>Цитаты покупателей</h3>
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb", lineHeight: 1.6 }}>
+              «Товар оказался подделкой. Упаковка и консистенция отличаются от оригинала, вызывает раздражение кожи.»
+            </div>
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb", lineHeight: 1.6 }}>
+              «Обожгла всё лицо, вечером умылась — на утро увидела ужас. Спас Бепантен.»
+            </div>
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb", lineHeight: 1.6 }}>
+              «Подделкасын салып жіберген» — подделку прислали.
+            </div>
+          </div>
+          <Insight text="Корневая причина: при цене 1K KZT маржа продавца = 100-200 KZT. Подделка обходится в 300-500 KZT → маржа x2-3. Экономический стимул продавать фейк." type="warning" />
+          <Rec text="Для авторизованного дистрибьютора: не продавать ниже 3-5K; QR-верификация на упаковке; маркировка «авторизованный дистрибьютор» в карточке; фото с оригинального склада." />
+        </Section>
+
+        {/* ═══ 13. GROWTH SPOTS ═══ */}
+        <Section id="s13" title="13. Точки роста и белые пятна">
+          <div style={{ ...sCard, borderTop: `3px solid ${C.green}` }}>
+            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.green }}>Быстрорастущие ниши</h3>
+            <DataTable headers={["Ниша", "Выручка", "YoY рост", "Комментарий"]} rows={[
+              ["Патчи", "45M", "+114%", "Маленькая, но самая быстрая. SADOER лидирует."],
+              ["Кремы для тела", "400M", "+101%", "Крупная ниша. La Roche-Posay = #1 (26M)."],
+              ["Шампуни", "630M", "+80%", "Крупная, нет выраженного бренда-лидера."],
+              ["Наборы", "862M", "+73%", "Подарочная категория. Два пика (8М, НГ)."],
+              ["Румяна", "203M", "+66%", "Рост декоративки в сегменте «щёки»."],
+            ]} />
+          </div>
+
+          <div style={{ ...sCard, borderTop: `3px solid ${C.cyan}` }}>
+            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.cyan }}>Белые пятна (ниши без сильного лидера)</h3>
+            <DataTable headers={["Ниша", "Выручка", "Проблема", "Возможность"]} rows={[
+              ["Шампуни (630M)", "630M", "#1 = elline (103M с 1 SKU — аномалия)", "Нет бренда с широкой линейкой hair care"],
+              ["Маски для лица (122M)", "122M", "#1 = Gegemoon (Китай, 13M)", "Нет сильного уходового бренда в масках"],
+              ["Кремы для тела (400M)", "400M", "#1 = La Roche-Posay (26M = 6.5%)", "Фрагментированный рынок без доминанта"],
+              ["Без бренда в наборах", "106M (12%)", "107 SKU от 65 продавцов", "Брендированные наборы заберут долю"],
+            ]} />
+          </div>
+
+          <div style={{ ...sCard, borderTop: `3px solid ${C.amber}` }}>
+            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.amber }}>Замедляющиеся ниши</h3>
+            <DataTable headers={["Ниша", "Выручка", "YoY", "Комментарий"]} rows={[
+              ["Тональные", "536M", "+5%", "Возможно, насыщение. Или перетекание в BB/CC кремы."],
+              ["Скрабы", "64M", "+18%", "Ниже среднего роста. Тренд на мягкое очищение?"],
+            ]} />
+          </div>
+        </Section>
+
+        {/* ═══ 14. RECOMMENDATIONS ═══ */}
+        <Section id="s14" title="14. Инсайты и рекомендации">
+
+          <div style={sCard}>
+            <h3 style={{ ...sH3, margin: "0 0 16px" }}>Стратегические рекомендации для beauty-дистрибьютора на Kaspi</h3>
             <div style={{ fontSize: 13, lineHeight: 2.2, color: "#ccc" }}>
               {[
-                "Завести COSRX Snail 96 + BHA Blackhead на Kaspi — потенциал +30M/мес",
-                "Создать наборы к 8 марта: Celimax + Skin1004 + AXIS-Y — пик наборов 1029M",
-                "Завести Mediheal тканевые маски (10-15 SKU) — ниша 122M без корейских лидеров",
-                "Поднять цену Dr. Althea 345 Relief до 3-5K — меньше подделок, выше маржа",
-                "Запустить Treecell шампуни — ниша 630M, 0 корейских лидеров",
-                "Создать набор Beplain Mung Bean Set — вход в нишу 862M (наборы)",
-                "Масштабировать VT Cosmetics PDRN — тренд, высокий чек",
-                "Завести Skinfood Rice Brightening Set — уникальное позиционирование",
-                "QR-верификация на топ-SKU (Dr. Althea, Round Lab, AXIS-Y)",
-                "50+ отзывов на каждый новый SKU перед масштабированием",
-              ].map((item, i) => (
-                <div key={i} style={{ display: "flex", gap: 8 }}>
-                  <span style={{ color: C.accent, fontWeight: 700, minWidth: 20 }}>{i + 1}.</span>
-                  <span>{item}</span>
+                { n: "1", t: "Ценовая политика", d: "Оптимальная зона — 6-10K KZT за единицу (52% рынка кремов). Ниже 3K — территория подделок. Наборы — 15-35K (63% рынка наборов)." },
+                { n: "2", t: "Борьба с подделками", d: "QR-верификация, маркировка «авторизованный дистрибьютор», фото с оригинального склада, ответы на негативные отзывы." },
+                { n: "3", t: "Сезонная стратегия", d: "Два ключевых пика: 8 марта (наборы 1B, тональные 991M) и Новый год (наборы 1.1B). Закупка за 4-6 недель до пика." },
+                { n: "4", t: "Наборы как стратегия", d: "43% выручки наборов = премиум (34K+). Формировать подарочные сеты из уходовых линеек для обоих пиков." },
+                { n: "5", t: "Уход > Декор", d: "Уходовая косметика растёт быстрее (+58% vs +5%), средний чек выше (3.7K vs 2.3K). Приоритет ассортимента — уход." },
+                { n: "6", t: "Hair care — белое пятно", d: "Шампуни 630M (+80% YoY) без сильного бренда. Возможность для входа с премиум hair care линейкой." },
+                { n: "7", t: "Патчи — тренд", d: "+114% YoY. Маленькая ниша (45M), но растёт быстрее всех. Первопроходцы получат долю." },
+                { n: "8", t: "Отзывы = конверсия", d: "На Kaspi отзывы решают всё. Минимум 50-100 отзывов на SKU перед масштабированием. Фото-отзывы удваивают конверсию." },
+                { n: "9", t: "Кремы для тела", d: "+101% YoY, 400M ниша. Фрагментированная (La Roche-Posay #1 с 6.5%). Возможность для брендов расширить линейку на тело." },
+                { n: "10", t: "Мониторинг конкурентов", d: "Dr. Althea сместил Bioderma с #1 за год. Рынок динамичный — лидеры меняются быстро. Регулярный мониторинг через RedStat." },
+              ].map((item) => (
+                <div key={item.n} style={{ marginBottom: 8 }}>
+                  <span style={{ color: C.accent, fontWeight: 700, marginRight: 8 }}>{item.n}.</span>
+                  <strong style={{ color: C.text }}>{item.t}:</strong> {item.d}
                 </div>
               ))}
             </div>
           </div>
 
           <div style={{ marginTop: 24, padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
+            <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
+              <strong style={{ color: C.text }}>Источник данных:</strong> RedStat API (ClickHouse OLAP). 73 000+ ниш, 16 месяцев помесячной истории (ноябрь 2024 — февраль 2026). 35 000+ отзывов проанализировано.
+            </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-              Данные: <strong style={{ color: C.text }}>RedStat API</strong> (ClickHouse, 73 000+ ниш, нояб 2024 — фев 2026).
-              Отзывы: покупатели Kaspi.kz (40+ SKU проанализировано, 35 000+ отзывов).
+              <strong style={{ color: C.text }}>Следующий шаг:</strong> Часть II — Детальный разбор портфеля из 21 бренда клиента с наложением на рыночные данные.
             </p>
           </div>
         </Section>
