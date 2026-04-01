@@ -76,7 +76,7 @@ export default function BeautyMarketReport() {
             Рынок «Красота и здоровье»<br />на Kaspi.kz
           </h1>
           <p style={{ color: C.dim, fontSize: 14, margin: "12px 0 0" }}>
-            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong> &middot; данные <strong style={{ color: C.text }}>RedStat</strong>
+            Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong>
           </p>
           <div style={{ display: "flex", gap: 20, marginTop: 12, fontSize: 12, color: C.dim, flexWrap: "wrap" }}>
             <span>Дата: <strong style={{ color: C.text }}>Март 2026</strong></span>
