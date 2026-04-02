@@ -68,11 +68,11 @@ export default function WBCosmeticsReport() {
             ["s3", "3. Тренды — рост рынка за 6 лет"],
             ["s4", "4. Топ-30 брендов категории «Красота»"],
             ["s5", "5. Концентрация рынка и конкурентная среда"],
-            ["s6", "6. Бренды клиента на Wildberries"],
-            ["s7", "7. Celimax — детальный разбор (#9 в «Красоте»)"],
-            ["s8", "8. Round Lab — детальный разбор (#65)"],
-            ["s9", "9. VT Cosmetics — детальный разбор (#181)"],
-            ["s10", "10. Бренды портфеля вне топ-200"],
+            ["s6", "6. Все 21 бренд клиента — полные данные за год"],
+            ["s7", "7. Celimax — детальный разбор (#1 портфеля на WB)"],
+            ["s8", "8. Round Lab — детальный разбор (#2)"],
+            ["s9", "9. VT Cosmetics — детальный разбор (#3)"],
+            ["s10", "10. Skin1004, Anua, COSRX — средний уровень на WB"],
             ["s11", "11. Kaspi vs WB — сравнение площадок"],
             ["s12", "12. Рекомендации"],
           ].map(([id, label]) => (
@@ -207,21 +207,57 @@ export default function WBCosmeticsReport() {
         </Section>
 
         {/* ═══ 6. CLIENT BRANDS ═══ */}
-        <Section id="s6" title="6. Бренды клиента на Wildberries">
-          <p style={sP}>Из 21 бренда портфеля в топ-200 «Красоты» на WB попали 3 бренда. Остальные 18 присутствуют на площадке, но не входят в топ-200 по выручке (ниже 21M RUB/мес).</p>
+        <Section id="s6" title="6. Все 21 бренд клиента на Wildberries">
+          <p style={sP}>Полные данные по каждому бренду за год (апрель 2025 — март 2026). Источник: MPStats Insight, экспорт по брендам. Выкупы до 11.03.2026.</p>
 
-          <DataTable headers={["Бренд", "Позиция", "Выручка/мес", "Продажи", "SKU", "Ср. цена", "Рейтинг", "Статус"]} rows={[
-            ["Celimax", "#9", "124M RUB", "97 360", "3 968", "1 278₽", "4.89", "ЛИДЕР"],
-            ["Round Lab", "#65", "48M RUB", "31 956", "3 565", "1 487₽", "4.79", "СРЕДНИЙ"],
-            ["VT Cosmetics", "#181", "23M RUB", "12 325", "3 342", "1 874₽", "4.65", "НАЧАЛЬНЫЙ"],
+          <DataTable headers={["#", "Бренд", "Выручка/год", "~Выручка/мес", "Продажи/год", "Выкупы/год", "SKU", "Ср. рейтинг", "Отзывов"]} rows={[
+            ["1", "Celimax", "2 235M", "~186M", "1 629K", "1 306K", "16 674", "4.83", "727K"],
+            ["2", "Round Lab", "699M", "~58M", "529K", "282K", "15 048", "4.77", "184K"],
+            ["3", "VT Cosmetics", "279M", "~23M", "154K", "224K", "12 993", "4.68", "60K"],
+            ["4", "Skin1004", "267M", "~22M", "214K", "187K", "19 737", "4.67", "96K"],
+            ["5", "Anua", "197M", "~16M", "113K", "84K", "18 914", "4.66", "47K"],
+            ["6", "Sen Sulu", "68M", "~6M", "84K", "73K", "1 739", "4.66", "17K"],
+            ["7", "Dr. Althea", "53M", "~4M", "39K", "47K", "2 838", "4.63", "14K"],
+            ["8", "AXIS-Y", "50M", "~4M", "48K", "35K", "938", "4.62", "18K"],
+            ["9", "COSRX", "49M", "~4M", "48K", "23K", "10 105", "4.69", "58K"],
+            ["10", "TFIT", "39M", "~3M", "31K", "17K", "511", "4.83", "6K"],
+            ["11", "Mediheal", "26M", "~2M", "19K", "13K", "3 664", "4.84", "12K"],
+            ["12", "Mizon", "22M", "~2M", "21K", "21K", "6 676", "4.75", "94K"],
+            ["13", "Bueno", "21M", "~2M", "11K", "6K", "688", "4.80", "13K"],
+            ["14", "Bohicare", "20M", "~2M", "8K", "5K", "58", "4.98", "5K"],
+            ["15", "Beplain", "4M", "~0.3M", "3K", "1K", "499", "4.61", "689"],
+            ["16", "Mommy Care", "3M", "~0.3M", "2K", "1K", "140", "4.50", "3K"],
+            ["17", "The Yeon", "1M", "~0.1M", "2K", "1K", "79", "4.78", "1K"],
+            ["18", "Skinfood", "1M", "~0.1M", "1K", "0.4K", "376", "4.74", "764"],
+            ["19", "Moda Moda", "0.07M", "~0M", "110", "444", "14", "4.63", "304"],
+            ["20", "Treecell", "0.03M", "~0M", "25", "59", "400", "4.56", "177"],
+            ["21", "Healthy Place", "0.02M", "~0M", "29", "579", "27", "4.92", "149"],
           ]} highlight={0} />
 
-          <div style={{ ...sCard, borderLeft: `3px solid ${C.amber}` }}>
-            <h3 style={{ ...sH3, margin: "0 0 8px", color: C.amber }}>Остальные 18 брендов портфеля</h3>
-            <p style={sP}>Бренды Dr. Althea, Skin1004, AXIS-Y, Anua, COSRX, Mediheal, Beplain, Skinfood, Treecell, Mizon, TFIT, Moda Moda, Bohicare, Mommy Care, Bueno, Healthy, Green Monster, The Yeon/Sen Sulu — <strong style={{ color: C.text }}>не входят в топ-200 брендов «Красоты» на WB</strong> (порог входа ~21M RUB/мес).</p>
-            <p style={sP}>Это <strong>не означает их отсутствие</strong> на площадке — они могут присутствовать с выручкой ниже порога топ-200. Однако это сигнализирует, что <strong style={{ color: C.amber }}>на WB эти бренды значительно слабее, чем на Kaspi</strong>, где Dr. Althea (#1 в кремах, 142M KZT) и Skin1004 (136M KZT) — лидеры рынка.</p>
-            <p style={sP}><strong style={{ color: C.green }}>Стратегический вывод:</strong> Kaspi = основная площадка для большинства брендов портфеля. WB = площадка роста для Celimax, Round Lab, VT Cosmetics. Для остальных — WB требует отдельной стратегии выхода.</p>
-          </div>
+          <Insight text="Celimax = абсолютный лидер: 2.2B RUB/год, 727K отзывов, 16.7K SKU. Это в 32 раза больше, чем #2 (Round Lab). На WB Celimax — безоговорочный #1 из портфеля." type="success" />
+          <Insight text="Bohicare — аномалия: всего 58 SKU, но 20M RUB/год и рейтинг 4.98 (лучший в портфеле!). Премиум-позиционирование работает на WB." type="success" />
+          <Insight text="Treecell, Moda Moda, Healthy Place — практически отсутствуют на WB (менее 100 продаж за год). Площадка не освоена." type="warning" />
+
+          <h3 style={sH3}>Топ-3 SKU по выручке для каждого бренда</h3>
+
+          {[
+            { brand: "Celimax", items: ["Сыворотка Vita-A Retinol Shot — 114M, 66K продаж, 15K отзывов", "Тонер Dual Barrier — 98M, 62K продаж, 8K отзывов", "Крем-бустер Vita-A Retinol — 89M, 57K продаж, 11K отзывов"] },
+            { brand: "Round Lab", items: ["SPF крем SPF50 — 43M, 29K продаж, 5K отзывов", "Пенка Dokdo с морской водой — 40M, 32K продаж, 7K отзывов", "Сыворотка от пигментации с витамином С — 14M, 9K продаж"] },
+            { brand: "VT Cosmetics", items: ["Reedle Shot 300 сыворотка — 10M, 3.4K продаж, 637 отзывов", "PDRN 100 сыворотка — 8M, 1.8K продаж, 430 отзывов", "Сыворотка с микроиглами — 6M, 3.3K продаж"] },
+            { brand: "Skin1004", items: ["Centella Sun Serum SPF50 — 18M, 15K продаж, 3K отзывов", "Осветляющая сыворотка Centella 100мл — 6M, 2.6K продаж", "Brightening Capsule Ampoule — 5M, 3.5K продаж"] },
+            { brand: "Anua", items: ["Сыворотка с ниацинамидом 10% — 6M, 3.2K продаж, 649 отзывов", "Сыворотка с азелаиновой кислотой — 5M, 2.3K продаж", "Осветляющая сыворотка с ниацинамидом 30мл — 5M, 2.6K продаж"] },
+            { brand: "Dr. Althea", items: ["Крем с ресвератролом — 9M, 5.7K продаж, 1K отзывов", "Крем восстанавливающий — 6M, 3.9K продаж, 886 отзывов", "Крем 147 Barrier — 3M, 2.1K продаж, 433 отзыва"] },
+            { brand: "COSRX", items: ["Сыворотка от прыщей — 2M, 1.2K продаж, 364 отзыва", "Гель-пенка для умывания — 2M, 1.4K продаж, 567 отзывов", "Патчи Acne Pimple Master — 2M, 4.6K продаж, 2.3K отзывов"] },
+            { brand: "Bueno", items: ["Anti Wrinkle Peptide Cream — 2M, 672 продажи, 357 отзывов", "Патчи Bakuchiol для глаз — 1M, 625 продаж, 174 отзыва", "MGF Peptide Cream Plus — 1M, 473 продажи, 186 отзывов"] },
+            { brand: "Bohicare", items: ["Anti-age Lifting крем — 3M, 754 продажи, 700 отзывов (4 380₽!)", "SPF LightAIR Veggie — 2M, 887 продаж, 737 отзывов", "Гидрофильный бальзам — 2M, 791 продажа, 424 отзыва"] },
+          ].map(({brand, items}) => (
+            <div key={brand} style={{ ...sCard, padding: "16px 20px" }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 8 }}>{brand}</div>
+              {items.map((item, i) => (
+                <div key={i} style={{ fontSize: 12, color: "#ccc", lineHeight: 1.8 }}>{i+1}. {item}</div>
+              ))}
+            </div>
+          ))}
         </Section>
 
         {/* ═══ 7. CELIMAX ═══ */}
@@ -354,15 +390,15 @@ export default function WBCosmeticsReport() {
           <div style={sCard}>
             <h3 style={{ ...sH3, margin: "0 0 12px" }}>Что это значит для стратегии</h3>
             <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
-              <div>1. <strong style={{ color: C.red }}>Dr. Althea</strong> — #1 на Kaspi (171M KZT), но вне топ-200 WB. Бренд <strong>географически сконцентрирован на Казахстане</strong>. На WB — значительно слабее.</div>
-              <div>2. <strong style={{ color: C.red }}>Skin1004</strong> — #5 на Kaspi (136M KZT), но вне топ-200 WB. Аналогичная ситуация.</div>
-              <div>3. <strong style={{ color: C.red }}>AXIS-Y</strong> — #8 на Kaspi (78M KZT), вне топ-200 WB.</div>
-              <div>4. <strong style={{ color: C.amber }}>COSRX</strong> — на Kaspi всего 8M, на WB тоже вне топ-200. Глобальный бренд, но <strong>не раскручен ни на одной площадке в КЗ/РФ</strong>.</div>
-              <div>5. <strong style={{ color: C.text }}>Anua, Mediheal, Beplain, Skinfood, Treecell</strong> — вне топ-200 на обеих площадках. Нужна стратегия с нуля.</div>
+              <div>1. <strong style={{ color: C.text }}>Skin1004</strong> — #5 на Kaspi (136M KZT), на WB 267M RUB/год (22M/мес) — присутствует, но значительно слабее. SPF Sun Serum = основной SKU (18M).</div>
+              <div>2. <strong style={{ color: C.text }}>Anua</strong> — на Kaspi 49M, на WB 197M RUB/год (16M/мес). Сыворотка с ниацинамидом = топ-SKU. Потенциал роста через маркетинг.</div>
+              <div>3. <strong style={{ color: C.text }}>COSRX</strong> — на Kaspi 16M, на WB 49M RUB/год (4M/мес). 10K SKU, 58K отзывов — бренд узнаваем, но продажи распределены тонко.</div>
+              <div>4. <strong style={{ color: C.text }}>Dr. Althea</strong> — #1 на Kaspi (171M KZT), но на WB всего 53M RUB/год (4M/мес). Крем с ресвератролом = основной SKU (9M). Потенциал масштабирования на WB.</div>
+              <div>5. <strong style={{ color: C.text }}>AXIS-Y</strong> — #8 на Kaspi (78M KZT), на WB 50M RUB/год (4M/мес). Осветляющая сыворотка = топ-SKU (8M). Начальный уровень.</div>
             </div>
           </div>
 
-          <Insight text="Dr. Althea, Skin1004, AXIS-Y — сильные на Kaspi, но слабые на WB. Это может быть возможностью: если бренд уже доказал спрос в КЗ, его можно масштабировать на российский WB с проверенным продуктом." type="success" />
+          <Insight text="Все 5 брендов присутствуют на WB с продажами — не «с нуля». Dr. Althea (53M/год), Skin1004 (267M/год) — бренды уже знает WB-аудитория. Задача = масштабирование, не запуск." type="success" />
         </Section>
 
         {/* ═══ 11. KASPI vs WB ═══ */}
@@ -380,18 +416,31 @@ export default function WBCosmeticsReport() {
 
           <div style={sCard}>
             <h3 style={{ ...sH3, margin: "0 0 12px" }}>Где какой бренд сильнее</h3>
-            <DataTable headers={["Бренд", "Kaspi", "WB", "Сильнее на"]} rows={[
-              ["Celimax", "~239M KZT", "~620M KZT", "WB (2.6x)"],
-              ["Dr. Althea", "~171M KZT", "<105M KZT (вне топ-200)", "Kaspi"],
-              ["Skin1004", "~136M KZT", "<105M KZT", "Kaspi"],
-              ["Round Lab", "~86M KZT", "~240M KZT", "WB (2.8x)"],
-              ["AXIS-Y", "~78M KZT", "<105M KZT", "Kaspi"],
-              ["VT Cosmetics", "~70M KZT", "~115M KZT", "WB (1.6x)"],
-              ["COSRX", "~8M KZT", "<105M KZT", "Обе слабо"],
+            <DataTable headers={["Бренд", "Kaspi/мес (KZT)", "WB/мес (RUB)", "WB ≈ KZT", "Сильнее на"]} rows={[
+              ["Celimax", "239M", "186M", "~930M", "WB (3.9x)"],
+              ["Dr. Althea", "171M", "4M", "~22M", "Kaspi (7.8x)"],
+              ["Skin1004", "136M", "22M", "~112M", "Kaspi (1.2x)"],
+              ["Sen Sulu / The Yeon", "167M", "6M", "~30M", "Kaspi (5.6x)"],
+              ["Round Lab", "86M", "58M", "~290M", "WB (3.4x)"],
+              ["AXIS-Y", "78M", "4M", "~21M", "Kaspi (3.7x)"],
+              ["Anua", "49M", "16M", "~82M", "WB (1.7x)"],
+              ["VT Cosmetics", "47M", "23M", "~117M", "WB (2.5x)"],
+              ["Mommy Care", "30M", "0.3M", "~1.5M", "Kaspi (20x)"],
+              ["COSRX", "16M", "4M", "~20M", "WB (1.3x)"],
+              ["Mediheal", "8M", "2M", "~11M", "WB (1.4x)"],
+              ["Mizon", "5M", "2M", "~9M", "WB (1.8x)"],
+              ["TFIT", "3M", "3M", "~16M", "WB (5.3x)"],
+              ["Bueno", "3M", "2M", "~9M", "WB (3x)"],
+              ["Bohicare", "2.6M", "2M", "~8M", "WB (3x)"],
+              ["Beplain", "1.4M", "0.3M", "~2M", "WB (1.4x)"],
+              ["Treecell", "0.5M", "~0", "~0", "Kaspi"],
+              ["Skinfood", "0.3M", "0.1M", "~0.4M", "Равно"],
+              ["Healthy Place", "0.04M", "~0", "~0.2M", "WB"],
             ]} />
           </div>
 
-          <Insight text="Celimax и Round Lab — мультиплатформенные лидеры. Dr. Althea, Skin1004, AXIS-Y — сильны только на Kaspi. Это разные стратегии: для первых — масштабирование на WB, для вторых — доминирование на Kaspi." type="success" />
+          <Insight text="Три группы: 1) WB-лидеры (Celimax 930M, Round Lab 290M, VT 117M, Anua 82M) — масштабировать на WB. 2) Kaspi-лидеры (Dr. Althea 171M, Skin1004 136M, AXIS-Y 78M) — доминировать на Kaspi. 3) Сбалансированные (COSRX, Mediheal, TFIT, Bueno, Bohicare) — развивать обе площадки." type="success" />
+          <Insight text="TFIT — неожиданность: на Kaspi 3M, а на WB 16M (в пересчёте на KZT). Консилеры лучше продаются на WB. Bohicare: 58 SKU, но 20M/год при рейтинге 4.98 — премиум работает." />
         </Section>
 
         {/* ═══ 12. RECS ═══ */}
@@ -405,7 +454,7 @@ export default function WBCosmeticsReport() {
                 { n: "2", t: "Round Lab — усилить на WB", d: "#65 → цель #30-40. Средний чек 1 487₽ — выше Kaspi. Проблема подделок менее острая. Сфокусировать маркетинг." },
                 { n: "3", t: "VT Cosmetics — улучшить рейтинг", d: "4.65 = ниже порога. Рейтинг — #1 фактор конверсии на WB. Работа с отзывами, качество описаний, фотоконтент." },
                 { n: "4", t: "Dr. Althea, Skin1004, AXIS-Y — выход на WB", d: "Сильные на Kaspi, слабые на WB. Проверенный спрос → можно масштабировать на WB с теми же SKU." },
-                { n: "5", t: "COSRX — приоритет #1 для WB-выхода", d: "Глобальный бренд с нулевым присутствием. Snail 96 Mucin = потенциальный бестселлер WB (как на Amazon)." },
+                { n: "5", t: "COSRX на WB: 49M RUB/год, но тонко", d: "Присутствует (10K SKU, 58K отзывов), но выручка размазана. Топ — патчи (2M) и пенка (2M). Фокус на Snail Mucin и BHA для роста." },
                 { n: "6", t: "Подкатегория «Корейские бренды» на WB", d: "228M RUB отдельная витрина. Оптимизировать карточки для попадания в этот раздел — дополнительный трафик." },
                 { n: "7", t: "Kaspi = основа для большинства брендов", d: "15 из 21 бренда сильнее (или только) на Kaspi. Не терять фокус на основной площадке." },
                 { n: "8", t: "Средний чек на WB выше", d: "Celimax: 1 278₽ (WB) vs ~400₽ эквивалент (Kaspi). Покупатели WB платят больше. Не демпинговать." },
@@ -420,7 +469,7 @@ export default function WBCosmeticsReport() {
 
           <div style={{ marginTop: 24, padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
             <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
-              Проанализировано: <strong style={{ color: C.text }}>930 000+ SKU</strong> &middot; <strong style={{ color: C.text }}>64 700+ брендов</strong> &middot; <strong style={{ color: C.text }}>74 месяца трендов</strong> &middot; <strong style={{ color: C.text }}>топ-200 брендов</strong> с полными метриками &middot; <strong style={{ color: C.text }}>3 бренда</strong> клиента с дневными графиками
+              Проанализировано: <strong style={{ color: C.text }}>930 000+ SKU</strong> &middot; <strong style={{ color: C.text }}>64 700+ брендов</strong> &middot; <strong style={{ color: C.text }}>74 месяца трендов</strong> &middot; <strong style={{ color: C.text }}>все 21 бренд</strong> клиента с полными данными за год &middot; <strong style={{ color: C.text }}>110K+ SKU</strong> портфеля на WB &middot; <strong style={{ color: C.text }}>1.3M+ отзывов</strong>
             </p>
             <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
               Источник данных: <a href="https://mpstats.io" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>MPStats</a>
