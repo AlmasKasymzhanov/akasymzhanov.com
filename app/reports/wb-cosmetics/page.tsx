@@ -93,7 +93,7 @@ export default function WBCosmeticsReport() {
             <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc" }}>
               <div>1. Рынок <strong style={{ color: C.green }}>вырос x16 за 6 лет</strong> (с 2.4B до 38B RUB/мес). Стабильный рост продолжается.</div>
               <div>2. <strong style={{ color: C.text }}>«Уход за кожей»</strong> — крупнейшая подкатегория (8.0B RUB, 27%), опережает макияж и парфюмерию.</div>
-              <div>3. Из 21 бренда клиента в топ-200 WB попали <strong style={{ color: C.green }}>3 бренда: Celimax (#9), Round Lab (#65), VT Cosmetics (#181)</strong>.</div>
+              <div>3. <strong style={{ color: C.green }}>Все 21 бренд верифицированы на WB.</strong> Лидеры: Celimax (2.2B RUB/год), Round Lab (699M), VT Cosmetics (279M), Skin1004 (267M), Anua (197M).</div>
               <div>4. <strong style={{ color: C.accent }}>Celimax — #9 во всей «Красоте» WB</strong> (124M RUB/мес) — сильнее, чем GARNIER (#15), ESTEL (#14), LA ROCHE-POSAY.</div>
               <div>5. На WB есть выделенная подкатегория <strong style={{ color: C.text }}>«Корейские бренды»</strong> (228M RUB/мес) — отдельная витрина.</div>
               <div>6. Только <strong style={{ color: C.amber }}>6.8% SKU имеют продажи</strong> — рынок перенасыщен карточками без оборота.</div>
