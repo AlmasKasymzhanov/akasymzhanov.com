@@ -52,7 +52,7 @@ export default function WBCosmeticsReport() {
             Подготовил <strong style={{ color: C.text }}>Алмас Касымжанов</strong>
           </p>
           <div style={{ display: "flex", gap: 20, marginTop: 12, fontSize: 12, color: C.dim, flexWrap: "wrap" }}>
-            <span>Период: <strong style={{ color: C.text }}>Март 2026</strong></span>
+            <span>Период: <strong style={{ color: C.text }}>Апр 2025 — Мар 2026</strong></span>
             <span>SKU с продажами: <strong style={{ color: C.text }}>930 000+</strong></span>
             <span>Брендов: <strong style={{ color: C.text }}>64 700+</strong></span>
             <span>Тренды: <strong style={{ color: C.text }}>6+ лет</strong></span>
@@ -94,7 +94,7 @@ export default function WBCosmeticsReport() {
               <div>1. Рынок <strong style={{ color: C.green }}>вырос x16 за 6 лет</strong> (с 2.4B до 38B RUB/мес). Стабильный рост продолжается.</div>
               <div>2. <strong style={{ color: C.text }}>«Уход за кожей»</strong> — крупнейшая подкатегория (8.0B RUB, 27%), опережает макияж и парфюмерию.</div>
               <div>3. <strong style={{ color: C.green }}>Все 21 бренд верифицированы на WB.</strong> Лидеры: Celimax (2.2B RUB/год), Round Lab (699M), VT Cosmetics (279M), Skin1004 (267M), Anua (197M).</div>
-              <div>4. <strong style={{ color: C.accent }}>Celimax — #9 во всей «Красоте» WB</strong> (124M RUB/мес) — сильнее, чем GARNIER (#15), ESTEL (#14), LA ROCHE-POSAY.</div>
+              <div>4. <strong style={{ color: C.accent }}>Celimax — #9 во всей «Красоте» WB</strong> (124M RUB в марте 2026, 2.2B RUB за год) — сильнее, чем GARNIER (#15), ESTEL (#14), LA ROCHE-POSAY.</div>
               <div>5. На WB есть выделенная подкатегория <strong style={{ color: C.text }}>«Корейские бренды»</strong> (228M RUB/мес) — отдельная витрина.</div>
               <div>6. Только <strong style={{ color: C.amber }}>6.8% SKU имеют продажи</strong> — рынок перенасыщен карточками без оборота.</div>
               <div>7. Средний рейтинг категории <strong style={{ color: C.text }}>4.73</strong> — высокий порог качества.</div>
@@ -262,9 +262,10 @@ export default function WBCosmeticsReport() {
 
         {/* ═══ 7. CELIMAX ═══ */}
         <Section id="s7" title="7. Celimax — #9 в «Красоте» WB">
+          <p style={{ ...sP, fontSize: 12, color: C.dim }}>Данные ниже: метрики за март 2026 (API MPStats). Годовые данные — в секции 6.</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-            <MetricCard label="Выручка/мес" value="124M" sub="RUB (~620M KZT)" color={C.green} />
-            <MetricCard label="Продажи" value="97 360" sub="ед./мес" />
+            <MetricCard label="Выручка (март 2026)" value="124M" sub="RUB (~620M KZT)" color={C.green} />
+            <MetricCard label="Продажи (март)" value="97 360" sub="ед./мес" />
             <MetricCard label="Средний чек" value="1 278₽" sub="~6 400 KZT" />
             <MetricCard label="Рейтинг" value="4.89" sub="276 отзывов/SKU" />
           </div>
@@ -308,9 +309,10 @@ export default function WBCosmeticsReport() {
 
         {/* ═══ 8. ROUND LAB ═══ */}
         <Section id="s8" title="8. Round Lab — #65 в «Красоте» WB">
+          <p style={{ ...sP, fontSize: 12, color: C.dim }}>Данные ниже: метрики за март 2026 (API MPStats). Годовая выручка: 699M RUB (секция 6).</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-            <MetricCard label="Выручка/мес" value="48M" sub="RUB (~240M KZT)" color={C.blue} />
-            <MetricCard label="Продажи" value="31 956" sub="ед./мес" />
+            <MetricCard label="Выручка (март 2026)" value="48M" sub="RUB (~240M KZT)" color={C.blue} />
+            <MetricCard label="Продажи (март)" value="31 956" sub="ед./мес" />
             <MetricCard label="Средний чек" value="1 487₽" sub="~7 400 KZT" />
             <MetricCard label="Рейтинг" value="4.79" sub="82 отзыва/SKU" />
           </div>
@@ -351,9 +353,10 @@ export default function WBCosmeticsReport() {
 
         {/* ═══ 9. VT COSMETICS ═══ */}
         <Section id="s9" title="9. VT Cosmetics — #181 в «Красоте» WB">
+          <p style={{ ...sP, fontSize: 12, color: C.dim }}>Данные ниже: метрики за март 2026 (API MPStats). Годовая выручка: 279M RUB (секция 6).</p>
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
-            <MetricCard label="Выручка/мес" value="23M" sub="RUB (~115M KZT)" color={C.purple} />
-            <MetricCard label="Продажи" value="12 325" sub="ед./мес" />
+            <MetricCard label="Выручка (март 2026)" value="23M" sub="RUB (~115M KZT)" color={C.purple} />
+            <MetricCard label="Продажи (март)" value="12 325" sub="ед./мес" />
             <MetricCard label="Средний чек" value="1 874₽" sub="~9 400 KZT — самый высокий" color={C.green} />
             <MetricCard label="Рейтинг" value="4.65" sub="28 отзывов/SKU" color={C.amber} />
           </div>
