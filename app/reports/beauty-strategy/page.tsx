@@ -77,7 +77,7 @@ export default function StrategyReport() {
           <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 24 }}>
             <MetricCard label="Суммарный рынок" value="~175B" sub="KZT/мес (Kaspi + WB)" color={C.accent} />
             <MetricCard label="Портфель: Kaspi" value="~900M" sub="KZT/мес (21 бренд)" color={C.green} />
-            <MetricCard label="Портфель: WB" value="~975M" sub="KZT/мес (3 бренда)" color={C.purple} />
+            <MetricCard label="Портфель: WB" value="~3.7B" sub="RUB/год (21 бренд)" color={C.purple} />
             <MetricCard label="Потенциал роста" value="x2-3" sub="за 12 месяцев" color={C.cyan} />
           </div>
           <div style={sCard}>
