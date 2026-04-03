@@ -1350,6 +1350,84 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 15 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 15</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «По помадам кто лидирует? Румяны тоже. Тушь — какого бренда? Пудры — Sen Sulu? Тени — тоже? Корректоры? Основы и фиксаторы — непонятно. Контур для глаз тоже. PRE MORE раньше был номер один, Роробель его вытеснил. А The Yeon / Sen Sulu по продажам мало. И BB Mizon — на какой он позиции, на 25-м или 15-м?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong>, только Kaspi.kz онлайн.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>#1 бренд в каждой из 9 ниш декоративки</h3>
+
+            <DataTable headers={["Ниша", "Выручка ниши (фев 2026)", "#1 бренд", "Выручка #1", "#1 SKU — конкретный товар", "Цена"]} rows={[
+              ["Тональные", "536M", "RoRoBell", "72M", "Bfadation тональный крем 21 (30 мл)", "13 160 ₸"],
+              ["Помады, блески", "209M", "Sen Sulu", "26M", "Линейка помад и блесков (29 SKU)", "~2 000–4 000 ₸"],
+              ["Румяна, бронзеры", "203M", "HOURGLASS", "30M", "Ambient Lighting Edit палетка", "75 000–89 900 ₸"],
+              ["Тушь", "149M", "Loreal Paris", "23M", "Telescopic Explosion тушь", "4 188 ₸"],
+              ["Пудры", "116M", "Sen Sulu", "24M", "Минеральная пудра V1", "4 799 ₸"],
+              ["Тени для век", "97M", "Sen Sulu", "18M", "Палетки теней", "~3 000–5 000 ₸"],
+              ["Корректоры, консилеры", "95M", "Sen Sulu", "30M", "Консилер 01 milk beige / 02 light beige", "3 000 ₸"],
+              ["Основы, фиксаторы", "82M", "LUXVISAGE", "10M", "Линейка праймеров и фиксаторов", "~1 500–3 000 ₸"],
+              ["Контур для глаз", "65M", "Vivienne Sabo", "7M", "Линейка подводок и карандашей", "~1 000–2 500 ₸"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Подтверждение ваших предположений: </strong>
+              <strong style={{ color: C.green }}>Пудры = Sen Sulu</strong> — верно.
+              <strong style={{ color: C.green }}> Тени = Sen Sulu</strong> — верно.
+              <strong style={{ color: C.green }}> Корректоры = Sen Sulu</strong> — верно (30M, 32% ниши!).
+              <strong style={{ color: C.text }}> Основы/фиксаторы = LUXVISAGE</strong> (10M).
+              <strong style={{ color: C.text }}> Контур для глаз = Vivienne Sabo</strong> (7M).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>PRE MORE и RoRoBell в тональных</h3>
+
+            <p style={sP}>Верно — PRE MORE (#2, 51M) был лидером ранее. RoRoBell (#1, 72M) <strong style={{ color: C.text }}>вытеснил его только в последние месяцы</strong> (появился в мае 2025, рекорд в феврале 2026).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Sen Sulu / The Yeon BB в тональных</h3>
+
+            <p style={sP}>Sen Sulu = <strong style={{ color: C.text }}>#7 в тональных (18M)</strong>. Это значительно меньше RoRoBell (72M) и PRE MORE (51M). Ваше наблюдение верно: <strong style={{ color: C.text }}>в онлайне продажи The Yeon BB скромные</strong>. Сила Sen Sulu / The Yeon — в <strong style={{ color: C.text }}>декоративке</strong> (пудры, корректоры, тени, помады), а не в тональных.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>BB MISSHA и BB MIZON — позиции в тональных</h3>
+
+            <DataTable headers={["Позиция", "Бренд", "Выручка (фев 2026)", "Продажи", "Топ-SKU", "Цена"]} rows={[
+              ["#1", "RoRoBell", "72M", "5 102 шт", "Bfadation крем 21", "13 160 ₸"],
+              ["#2", "PRE MORE", "51M", "5 574 шт", "Линейка тональных", "~3 000 ₸"],
+              ["#3", "Eveline Cosmetics", "36M", "11 376 шт", "—", "~1 500 ₸"],
+              ["#4", "LUXVISAGE", "31M", "15 331 шт", "—", "~1 000 ₸"],
+              ["#5", "Estee Lauder", "28M", "1 284 шт", "Double Wear", "~15 000 ₸"],
+              ["#6", "Henlics", "24M", "9 093 шт", "—", "~1 500 ₸"],
+              ["#7", "Sen Sulu", "18M", "2 906 шт", "The Yeon BB SPF36", "6 026 ₸"],
+              ["#8", "Influence", "18M", "4 802 шт", "—", "~2 000 ₸"],
+              ["#9", "MISSHA", "18M", "7 686 шт", "Perfect Cover BB 21", "1 099 ₸"],
+              ["#10", "Loreal Paris", "13M", "1 692 шт", "—", "~3 000 ₸"],
+            ]} />
+
+            <p style={sP}><strong style={{ color: C.text }}>MISSHA BB = #9</strong> (18M, 7 686 шт). По количеству штук MISSHA — #3 среди всех (после LUXVISAGE 15 331 и Eveline 11 376).</p>
+
+            <p style={sP}><strong style={{ color: C.text }}>MIZON BB = за пределами топ-10 тональных</strong> (порог = 13M). Выручка MIZON BB = ~1M, ~117 продаж за февраль 2026. Это примерно <strong style={{ color: C.text }}>позиция ~30-40</strong> среди 170 брендов тональных. Продукт присутствует, но объёмы минимальные в онлайне.</p>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Лидеры по нишам (февраль 2026): <strong style={{ color: C.text }}>тональные = RoRoBell</strong> (72M), <strong style={{ color: C.text }}>помады = Sen Sulu</strong> (26M), <strong style={{ color: C.text }}>румяна = HOURGLASS</strong> (30M), <strong style={{ color: C.text }}>тушь = Loreal Paris</strong> (23M), <strong style={{ color: C.text }}>пудры = Sen Sulu</strong> (24M), <strong style={{ color: C.text }}>тени = Sen Sulu</strong> (18M), <strong style={{ color: C.text }}>корректоры = Sen Sulu</strong> (30M), <strong style={{ color: C.text }}>основы = LUXVISAGE</strong> (10M), <strong style={{ color: C.text }}>контур = Vivienne Sabo</strong> (7M). MISSHA BB = <strong style={{ color: C.text }}>#9</strong> (18M). MIZON BB = <strong style={{ color: C.text }}>~позиция 30-40</strong> (~1M, ~117 шт).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
