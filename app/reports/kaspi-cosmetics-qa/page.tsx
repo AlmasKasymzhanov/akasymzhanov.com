@@ -1215,6 +1215,94 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 13 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 13</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «По тональным средствам тоже период непонятен. Мне интересна коллаборация The Yeon с Sen Sulu — сколько продано на Kaspi и за какой период. RoRoBell — количественно и за какой период. И BB Mizon — его продажи, на каком месте он среди тональных? У RoRoBell есть тональный и кушон — что именно больше продаётся?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры ниже = <strong style={{ color: C.text }}>один месяц — февраль 2026</strong>. Только <strong style={{ color: C.text }}>Kaspi.kz онлайн</strong>. Источник: RedStat.kz.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Sen Sulu / The Yeon — BB-кремы на Kaspi</h3>
+
+            <p style={sP}>BB-кремы The Yeon Cover Fit продаются на Kaspi под двумя брендами: <strong style={{ color: C.text }}>Sen Sulu</strong> (основной) и <strong style={{ color: C.text }}>The YEON</strong> (дополнительный).</p>
+
+            <DataTable headers={["#", "Товар", "Бренд на Kaspi", "Розница", "Выручка (фев 2026)", "Продажи (фев 2026)", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "The Yeon Cover Fit SPF36 BB крем 01 Light Beige 50 мл", "Sen Sulu", "6 026 ₸", "10.3M", "1 691 шт", "828", "4.9"],
+              ["2", "The Yeon Cover Fit SPF36 BB крем 02 Neutral Beige 50 мл", "Sen Sulu", "6 016 ₸", "6.2M", "998 шт", "522", "4.9"],
+              ["—", "Итого The Yeon BB (под Sen Sulu)", "—", "~6 000 ₸", "16.5M", "2 689 шт", "1 350", "4.9"],
+            ]} highlight={2} />
+
+            <p style={sP}>Суммарно: <strong style={{ color: C.text }}>16.5M KZT выручки, 2 689 штук продано за февраль 2026</strong>. Два оттенка: 01 Light Beige (лидер) и 02 Neutral Beige.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>RoRoBell — тональный vs кушон</h3>
+
+            <DataTable headers={["#", "Товар", "Тип", "Розница", "Выручка (фев 2026)", "Продажи (фев 2026)", "Отзывы"]} rows={[
+              ["1", "Bfadation тональный крем 21", "Тональный крем", "13 160 ₸", "30M", "2 139 шт", "590"],
+              ["2", "Bfadation тональный крем 23", "Тональный крем", "13 213 ₸", "21M", "1 537 шт", "545"],
+              ["3", "Bfadation тональный крем 19", "Тональный крем", "15 500 ₸", "16M", "1 046 шт", "85"],
+              ["4", "Bfadation тональный крем 25", "Тональный крем", "14 498 ₸", "2M", "161 шт", "49"],
+              ["5", "Bfadation тональный крем 21 (др. продавец)", "Тональный крем", "15 500 ₸", "2M", "136 шт", "61"],
+              ["—", "Итого RoRoBell", "Все = тональный крем", "13 160–15 500 ₸", "71M", "5 019 шт", "1 330"],
+            ]} highlight={5} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Тональный vs Кушон: </strong>У RoRoBell на Kaspi <strong style={{ color: C.text }}>кушонов нет — только тональный крем</strong> (Bfadation). Все 5 SKU = тональный крем в разных оттенках (19, 21, 23, 25). Кушон RoRoBell в данных Kaspi не обнаружен.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>MISSHA BB — позиция среди тональных</h3>
+
+            <DataTable headers={["#", "Товар", "Розница", "Выручка (фев 2026)", "Продажи (фев 2026)", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Perfect Cover BB крем 21 (50 мл)", "1 099 ₸", "4.4M", "3 020 шт", "3 298", "4.8"],
+              ["2", "Perfect Cover BB крем 13 (50 мл)", "1 099 ₸", "2.6M", "1 623 шт", "1 373", "4.8"],
+              ["3", "Perfect Cover BB крем 23 (50 мл)", "2 183 ₸", "1.8M", "541 шт", "544", "4.8"],
+              ["4", "Sunset BB крем 21 (50 мл)", "1 300 ₸", "1.4M", "460 шт", "202", "4.8"],
+              ["5", "Magic Cushion Moist Up кушон 21 (15 г)", "1 099 ₸", "0.9M", "476 шт", "1 113", "4.8"],
+              ["—", "Итого MISSHA тональные", "—", "~18M", "~7 686 шт", "~8 000+", "4.8"],
+            ]} highlight={5} />
+
+            <p style={sP}>MISSHA = <strong style={{ color: C.text }}>#9 в тональных (18M в феврале 2026)</strong>. По количеству продаж (7 686 шт) — <strong style={{ color: C.text }}>#3 среди всех брендов</strong> (после LUXVISAGE 15 331 и Eveline 11 376). Высокий объём при низкой цене (1 099 ₸).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>MIZON BB — позиция</h3>
+
+            <DataTable headers={["Товар", "Розница", "Выручка (фев 2026)", "Продажи (фев 2026)", "Отзывы"]} rows={[
+              ["BB-крем Snail Repair Intensive с муцином улитки", "8 389 ₸", "~1M", "~117 шт", "—"],
+            ]} />
+
+            <p style={sP}>MIZON BB-крем = <strong style={{ color: C.text }}>~1M KZT/мес, ~117 продаж</strong>. Это далеко за пределами топ-10 тональных (порог ~13M). Продукт присутствует, но объёмы минимальные. Цена 8 389 ₸ — выше MISSHA (1 099 ₸), ниже RoRoBell (13 160 ₸).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.green, margin: "32px 0 16px", borderTop: `1px solid ${C.border}`, paddingTop: 24 }}>Сравнительная таблица: все три бренда</h3>
+
+            <DataTable headers={["Метрика", "RoRoBell", "Sen Sulu / The Yeon BB", "MISSHA BB", "MIZON BB"]} rows={[
+              ["Выручка (фев 2026)", "71M", "16.5M", "18M (все BB+кушон)", "~1M"],
+              ["Продажи штук", "5 019 шт", "2 689 шт", "7 686 шт", "~117 шт"],
+              ["Средняя цена", "13 160–15 500 ₸", "6 016–6 026 ₸", "1 099–2 183 ₸", "8 389 ₸"],
+              ["Позиция в тональных", "#1 по выручке", "#7 по выручке", "#9 по выручке (но #3 по штукам!)", "За пределами топ-20"],
+              ["Количество оттенков", "4 (19, 21, 23, 25)", "2 (01 Light, 02 Neutral)", "4+ (13, 21, 23 + Sunset)", "1"],
+              ["Есть кушон?", "Нет на Kaspi", "Нет", "Да (Magic Cushion 1 099 ₸, 476 шт)", "Нет"],
+              ["Рейтинг", "4.9", "4.9", "4.8", "—"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Период = <strong style={{ color: C.text }}>февраль 2026</strong>. <strong style={{ color: C.text }}>RoRoBell</strong> = 71M, 5 019 шт, только тональный крем (кушонов нет на Kaspi). <strong style={{ color: C.text }}>Sen Sulu / The Yeon BB</strong> = 16.5M, 2 689 шт, 2 оттенка, цена ~6 000 ₸. <strong style={{ color: C.text }}>MISSHA BB</strong> = 18M, 7 686 шт (по количеству = #3 среди всех!), цена 1 099 ₸, есть и кушон (Magic Cushion, 476 шт). <strong style={{ color: C.text }}>MIZON BB</strong> = ~1M, ~117 шт — минимальные продажи, за пределами топ-20.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
