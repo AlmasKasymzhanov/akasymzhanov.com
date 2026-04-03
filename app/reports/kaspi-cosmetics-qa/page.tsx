@@ -1988,6 +1988,92 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 23 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 23</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Сейчас сезон SPF. Вы когда категорию ухода расписывали, парфюмы включили, а про SPF вообще ни слова. Промониторьте рынок SPF: кто лидеры, аналогично с прошлым годом, из всех моих брендов — с каким товаром. Вы пишете, что у Celimax надо создать SPF — у Celimax уже ЕСТЬ SPF из линейки Dual Barrier, он просто не популярный. Кто были лидеры в прошлом году, кто сейчас — сезон только начинается.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных и важная особенность</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>Выручка = <strong style={{ color: C.text }}>февраль 2026</strong>. На Kaspi <strong style={{ color: C.text }}>нет отдельной категории «SPF / Солнцезащита»</strong> — SPF-кремы размещены внутри «Кремы и сыворотки», «Тональные средства» и «Основы и фиксаторы». Мы собрали все SPF-продукты вручную через поиск по ключевым словам (SPF, солнцезащитный, sun). Февраль — начало сезона, пик будет в мае-июле.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Топ-15 SPF-продуктов для лица на Kaspi (февраль 2026)</h3>
+
+            <DataTable headers={["#", "Бренд", "Товар", "SPF", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Round Lab", "Birch Juice Moisturizing SPF50", "SPF50", "858 ₸", "9.4M", "3 074 шт", "3 683", "4.8"],
+              ["2", "Skin1004", "Hyalu-Cica Water-Fit Sun SPF50", "SPF50", "1 335 ₸", "6.3M", "1 820 шт", "1 863", "4.8"],
+              ["3", "Sugarlife", "SPF 50+ PA+++ для лица", "SPF50+", "2 500 ₸", "5.0M", "2 024 шт", "2 088", "4.9"],
+              ["4", "Beauty of Joseon", "Relief Sun Rice Probiotics SPF50", "SPF50", "1 751 ₸", "4.6M", "983 шт", "1 930", "4.8"],
+              ["5", "La Roche-Posay", "ANTHELIOS UVMUNE 400 SPF50+", "SPF50+", "10 999 ₸", "4.1M", "542 шт", "428", "4.8"],
+              ["6", "Heimish", "Artless Glow Base SPF50", "SPF50", "6 393 ₸", "4.3M", "696 шт", "1 002", "4.9"],
+              ["7", "LAGOM", "Cellus Sun Gel Plus SPF50+ PA++++", "SPF50+", "5 925 ₸", "3.2M", "482 шт", "—", "—"],
+              ["8", "Celimax", "Pore+ Dark Spot Brightening Care SPF50", "SPF50+", "1 699 ₸", "2.0M", "425 шт", "116", "—"],
+              ["9", "CeraVe", "Увлажняющий уход SPF30", "SPF30", "2 700 ₸", "1.5M", "437 шт", "—", "—"],
+              ["10", "Round Lab", "Birch Juice Moisturizing Sunscreen", "SPF50", "1 202 ₸", "1.0M", "166 шт", "120", "—"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Лидер SPF на Kaspi: Round Lab Birch Juice SPF50</strong> (858 ₸, 9.4M, 3 074 продажи, 3 683 отзыва). #2 = Skin1004 Hyalu-Cica SPF50 (1 335 ₸, 6.3M). Оба — бюджетный сегмент (менее 1 500 ₸).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>SPF-продукты из вашего портфеля (21 бренд)</h3>
+
+            <DataTable headers={["Бренд", "SPF-продукт", "SPF", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Статус"]} rows={[
+              ["Round Lab", "Birch Juice Moisturizing SPF50", "SPF50", "858 ₸", "9.4M", "3 074 шт", "3 683", "ЛИДЕР #1"],
+              ["Skin1004", "Hyalu-Cica Water-Fit Sun SPF50", "SPF50", "1 335 ₸", "6.3M", "1 820 шт", "1 863", "ЛИДЕР #2"],
+              ["Celimax", "Pore+ Dark Spot Brightening Care SPF50", "SPF50+", "1 699 ₸", "2.0M", "425 шт", "116", "Присутствует, слабый"],
+              ["Celimax", "Солнцезащитный крем SPF50+ (другой SKU)", "SPF50+", "1 463 ₸", "0.2M", "37 шт", "16", "Минимальный"],
+              ["Beplain", "Sunmuse Moisture Sunscreen SPF50", "SPF50", "8 000 ₸", "0.1M", "8 шт", "18", "Начальный"],
+              ["Beplain", "Sunmuse Mineral Sunscreen SPF50", "SPF50", "8 088 ₸", "~0M", "3 шт", "3", "Начальный"],
+              ["Bohicare", "LightAIR Veggie SPF50+ PA++++", "SPF50+", "9 468 ₸", "0.3M", "33 шт", "84", "Начальный"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.amber}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.amber }}>По Celimax SPF: </strong>Вы правы — <strong style={{ color: C.text }}>Celimax SPF уже существует на Kaspi</strong> (Pore+ Dark Spot Brightening Care SPF50+ за 1 699 ₸). Но продажи слабые: 425 шт и 116 отзывов в феврале 2026. Для сравнения: Round Lab SPF50 = 3 074 шт и 3 683 отзыва. Наша рекомендация в отчёте была неточной — не «создать», а <strong style={{ color: C.text }}>«усилить маркетинг существующего SPF»</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Ценовые сегменты SPF-кремов</h3>
+
+            <DataTable headers={["Сегмент", "Бренды", "Цена", "Типичные продажи"]} rows={[
+              ["Бюджетный", "Round Lab (858₸), Skin1004 (1 335₸), Celimax (1 699₸)", "858–1 700 ₸", "1 800–3 000 шт/мес"],
+              ["Средний", "Sugarlife (2 500₸), Beauty of Joseon (1 751₸), CeraVe (2 700₸)", "1 750–3 000 ₸", "400–2 000 шт/мес"],
+              ["Дорогой", "LAGOM (5 925₸), Heimish (6 393₸)", "5 000–7 000 ₸", "400–700 шт/мес"],
+              ["Премиум", "Beplain (8 000₸), Bohicare (9 468₸), La Roche-Posay (10 999₸)", "8 000–14 000 ₸", "30–500 шт/мес"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>SPF-рынок на Kaspi = бюджетный сегмент доминирует.</strong> Round Lab (858 ₸) и Skin1004 (1 335 ₸) — лидеры с огромным отрывом. Это отличается от уходовой косметики (где средний сегмент 6-10K доминирует). В SPF покупатели выбирают <strong style={{ color: C.text }}>дёшево + много отзывов</strong>, а не премиум.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Конкуренты вне портфеля</h3>
+
+            <DataTable headers={["Бренд", "SPF-продукт", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["Sugarlife", "SPF 50+ PA+++ (локальный КЗ)", "2 500 ₸", "5.0M", "2 024 шт"],
+              ["Beauty of Joseon", "Relief Sun Rice Probiotics SPF50", "1 751 ₸", "4.6M", "983 шт"],
+              ["La Roche-Posay", "ANTHELIOS UVMUNE 400 SPF50+", "10 999 ₸", "4.1M", "542 шт"],
+              ["Heimish", "Artless Glow Base SPF50", "6 393 ₸", "4.3M", "696 шт"],
+              ["LAGOM", "Cellus Sun Gel Plus SPF50+", "5 925 ₸", "3.2M", "482 шт"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              SPF-рынок на Kaspi (февраль 2026, начало сезона): <strong style={{ color: C.text }}>#1 = Round Lab Birch Juice SPF50 (858 ₸, 9.4M, 3 074 шт)</strong>, <strong style={{ color: C.text }}>#2 = Skin1004 Hyalu-Cica SPF50 (1 335 ₸, 6.3M, 1 820 шт)</strong>. Celimax SPF существует (Pore+ Dark Spot SPF50+ за 1 699 ₸) — но слабый (425 шт, 116 отзывов). Из портфеля: Beplain Sunmuse SPF (8 000 ₸, 8 продаж), Bohicare SPF (9 468 ₸, 33 продажи) — начальный этап. Рынок SPF = <strong style={{ color: C.text }}>бюджетный сегмент (858–1 700 ₸)</strong>, в отличие от уходовой косметики (6-10K). Сезон только начинается — пик будет в мае-июле. Данные за февраль = предсезонные, летние цифры будут в 3-5 раз выше.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
