@@ -1820,6 +1820,84 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 21 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 21</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Вы пишете, что Dr. Althea вытеснил Bioderma с #1. Но основной хит Bioderma — мицеллярная вода, она в категории очищающих средств. Там Bioderma #1, Round Lab #2. А Dr. Althea в очищающих — на 8 месте. Почему тогда Althea вытеснил Bioderma? По логике, если кто и вытесняет Bioderma, то Round Lab — он #2 в очищающих. Как Dr. Althea со своим кремом вытеснил Bioderma и стоит на 8 месте в очищающих? Не связывается.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong> и помесячно <strong style={{ color: C.text }}>ноябрь 2024 — февраль 2026</strong>.</div>
+            </div>
+
+            <p style={sP}>Ваше замечание логически обоснованно. Давайте разберём по фактам.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Суть: это РАЗНЫЕ категории</h3>
+
+            <p style={sP}>На Kaspi «Кремы и сыворотки» и «Средства для умывания» — это <strong style={{ color: C.text }}>две отдельные категории</strong>. Формулировка в отчёте «Dr. Althea обогнал Bioderma» относилась к категории <strong style={{ color: C.text }}>«Кремы и сыворотки» (1 712M)</strong> — крупнейшей нише уходовой косметики. Не к умыванию.</p>
+
+            <p style={sP}>Вот позиции обоих брендов <strong style={{ color: C.text }}>в каждой категории отдельно</strong>:</p>
+
+            <DataTable headers={["Категория", "Bioderma", "Dr. Althea", "Кто лидирует"]} rows={[
+              ["Кремы и сыворотки (1 712M)", "#2 — 96M", "#1 — 142M", "Dr. Althea"],
+              ["Средства для умывания (517M)", "#1 — 49M", "#8 — 15M", "Bioderma"],
+              ["Снятие макияжа (84M)", "#1 — 27M", "—", "Bioderma"],
+              ["Кремы для тела (400M)", "#6 — 10M", "—", "Другие лидеры"],
+              ["Средства для душа (159M)", "#1 — 16M", "—", "Bioderma"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Bioderma</strong> — сильна в <strong style={{ color: C.text }}>умывании (#1, 49M)</strong>, снятии макияжа (#1, 27M), душе (#1, 16M). Основной хит — мицеллярная вода (умывание + снятие макияжа). Суммарно: <strong style={{ color: C.text }}>~198M по всем категориям</strong>.<br/><br/>
+              <strong style={{ color: C.blue }}>Dr. Althea</strong> — сильна в <strong style={{ color: C.text }}>кремах (#1, 142M)</strong>. В умывании — действительно #8 (15M). Суммарно: <strong style={{ color: C.text }}>~171M по всем категориям</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>История: кто был #1 в кремах раньше?</h3>
+
+            <p style={sP}>Проверили помесячно — вот как менялся топ-3 в <strong style={{ color: C.text }}>категории «Кремы и сыворотки»</strong>:</p>
+
+            <DataTable headers={["Месяц", "#1 в кремах", "#2 в кремах", "#3 в кремах"]} rows={[
+              ["Ноябрь 2024", "MEDI-PEEL (43M)", "La Roche-Posay (37M)", "AXIS-Y (37M)"],
+              ["Май 2025", "Round Lab (85M)", "Celimax (84M)", "Skin1004 (80M)"],
+              ["Ноябрь 2025", "Dr. Althea (140M)", "Celimax (106M)", "Bioderma (76M)"],
+              ["Февраль 2026", "Dr. Althea (142M)", "Bioderma (96M)", "Celimax (89M)"],
+            ]} highlight={3} />
+
+            <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px", marginTop: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Уточнение формулировки</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+                Формулировка «Dr. Althea сместил Bioderma с #1» была <strong style={{ color: C.text }}>неточной</strong>. По данным: в ноябре 2024 Bioderma не была #1 в кремах — #1 был MEDI-PEEL (43M). Bioderma вышла на #2 в кремах только в феврале 2026 (96M). Dr. Althea стал #1 с ноября 2025 (140M), обогнав Celimax и другие бренды.<br/><br/>
+                Более точная формулировка: <strong style={{ color: C.text }}>«Dr. Althea вырос с 36M до 142M за 16 месяцев и стал безоговорочным #1 в кремах. Bioderma — стабильный #2 (96M), но с иной специализацией (мицеллярная вода + умывание).»</strong>
+              </div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Ваш вопрос про Round Lab и умывание</h3>
+
+            <p style={sP}>Вы абсолютно правы: <strong style={{ color: C.text }}>в умывании конкурент Bioderma — это Round Lab (#2, 36M)</strong>, не Dr. Althea (#8, 15M). Dr. Althea и Bioderma конкурируют <strong style={{ color: C.text }}>в кремах</strong>, а не в умывании.</p>
+
+            <DataTable headers={["Категория", "Главная конкурентная пара"]} rows={[
+              ["Кремы и сыворотки", "Dr. Althea (#1, 142M) vs Bioderma (#2, 96M)"],
+              ["Умывание", "Bioderma (#1, 49M) vs Round Lab (#2, 36M)"],
+              ["Тоники", "Celimax (#1, 61M) — без сильного конкурента"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Ваше замечание верное — <strong style={{ color: C.text }}>Dr. Althea и Bioderma конкурируют в категории «Кремы и сыворотки»</strong>, не в умывании. В кремах: Dr. Althea #1 (142M), Bioderma #2 (96M). В умывании: Bioderma #1 (49M), Round Lab #2 (36M), Dr. Althea #8 (15M). Формулировка «вытеснил Bioderma с #1» была неточной — Bioderma не была #1 в кремах раньше (были MEDI-PEEL, Round Lab, Celimax). Dr. Althea стал #1 в кремах с ноября 2025, обогнав всех. <strong style={{ color: C.text }}>Bioderma — мультикатегорийный бренд</strong> (кремы + умывание + снятие макияжа + тело + душ = суммарно ~198M), тогда как Dr. Althea сконцентрирован в одной нише (кремы 142M).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
