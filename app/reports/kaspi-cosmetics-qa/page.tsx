@@ -2074,6 +2074,101 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 24 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 24</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Самый главный момент — кто лидеры магазинов на Kaspi? Именно топ-10 магазинов, которые продают нишу «Красота и косметика». Кто эти топы — первый Алмаз, второй Осель, третий Айдана Бьюти Шоп? И также на Wildberries.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период и метод</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+                <strong style={{ color: C.text }}>Wildberries:</strong> данные за год (апрель 2025 — март 2026) из MPStats Insight. Выручка и продажи по 21 бренду портфеля — 3 364 уникальных продавца идентифицированы.<br/>
+                <strong style={{ color: C.text }}>Kaspi:</strong> данные за февраль 2026. На Kaspi аналитическая система показывает продавцов на уровне <strong style={{ color: C.text }}>конкретного SKU</strong> (кто продаёт этот товар), а не рейтинг продавцов по всей категории. Ниже — крупнейшие продавцы, выявленные через топ-SKU beauty.
+              </div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Wildberries — Топ-20 продавцов beauty-портфеля (год, апр 2025 — мар 2026)</h3>
+
+            <p style={sP}>Продавцы, торгующие брендами из портфеля (21 бренд). Ранжировано по выручке за год.</p>
+
+            <DataTable headers={["#", "Продавец", "Выручка/год (RUB)", "Продажи/год", "SKU", "Кол-во брендов"]} rows={[
+              ["1", "ООО Лайфкосм", "682M", "482 025", "61", "1 (Celimax)"],
+              ["2", "ООО Крем ШОП", "524M", "353 566", "577", "8"],
+              ["3", "LC", "164M", "106 593", "43", "1"],
+              ["4", "ООО КО Экспо", "155M", "90 802", "266", "7"],
+              ["5", "ИП Лысенок К.Л.", "134M", "93 833", "236", "8"],
+              ["6", "ИП Сорокин А.И.", "128M", "89 330", "158", "13"],
+              ["7", "ИП Коншина К.В.", "106M", "61 326", "42", "7"],
+              ["8", "ИП I Like", "97M", "67 830", "169", "8"],
+              ["9", "ИП Ботов Н.В.", "93M", "64 663", "168", "13"],
+              ["10", "ООО Амрус", "74M", "48 187", "141", "8"],
+              ["11", "Bebeauty", "69M", "29 948", "106", "4"],
+              ["12", "MD Shop", "67M", "61 791", "68", "5"],
+              ["13", "Flatrent", "59M", "46 925", "79", "12"],
+              ["14", "ИП Камбаралиев", "58M", "39 465", "42", "7"],
+              ["15", "ИП Роман", "56M", "46 759", "143", "9"],
+              ["16", "ИП Женишбекова А.Ж.", "55M", "44 432", "108", "10"],
+              ["17", "ИП Сухарина А.С.", "52M", "42 189", "21", "5"],
+              ["18", "ИП Лигай Л.Г.", "45M", "32 270", "77", "7"],
+              ["19", "ИП Ksc", "39M", "30 959", "195", "10"],
+              ["20", "ООО Табер Трейд", "37M", "27 724", "381", "7"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Лидер WB: ООО Лайфкосм</strong> — 682M RUB/год, торгует <strong style={{ color: C.text }}>только Celimax</strong> (61 SKU). Это эксклюзивный дистрибьютор Celimax на WB. #2: ООО Крем ШОП — 524M, мультибрендовый (8 брендов, 577 SKU). Всего 3 364 уникальных продавца торгуют портфелем из 21 бренда на WB.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Kaspi — Крупнейшие продавцы beauty</h3>
+
+            <p style={sP}>На Kaspi рейтинг продавцов по всей категории не предоставляется аналитической системой. Но через анализ <strong style={{ color: C.text }}>топ-SKU</strong> (Dr. Althea 345, Celimax Toner, Round Lab Dokdo — крупнейшие beauty-товары) выявлены наиболее активные продавцы:</p>
+
+            <DataTable headers={["#", "Магазин", "Встречается в товарах", "Рейтинг", "Отзывов", "Статус Kaspi"]} rows={[
+              ["1", "LUXE COSMETICS", "Dr. Althea, COSRX и др.", "4.9", "4 726", "TOP"],
+              ["2", "KIWANO", "Celimax, Skin1004, AXIS-Y", "4.8", "1 811", "TOP"],
+              ["3", "ELCOREE", "Dr. Althea, Celimax", "4.8", "1 757", "TOP"],
+              ["4", "Ideal_skinmart", "Dr. Althea, Round Lab", "4.9", "915", "TOP"],
+              ["5", "Skin Soul", "Dr. Althea и др.", "4.9", "563", "TOP"],
+              ["6", "Tami Skin", "Dr. Althea, Celimax", "4.9", "488", "TOP"],
+              ["7", "Beautycode", "Dr. Althea", "4.8", "205", "TOP"],
+              ["8", "Lagom", "Dr. Althea, Celimax", "4.8", "296", "STANDARD"],
+              ["9", "- SHINE -", "Round Lab, Skin1004", "5.0", "185", "TOP"],
+              ["10", "ADDEE", "Celimax, Round Lab", "4.9", "81", "TOP"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.amber}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.amber }}>Важно: </strong>Это не рейтинг по суммарной выручке магазина (таких данных нет), а <strong style={{ color: C.text }}>наиболее активные продавцы beauty-товаров</strong>, выявленные через присутствие в топ-SKU. LUXE COSMETICS (4 726 отзывов, рейтинг 4.9, статус TOP) — крупнейший мультибрендовый beauty-магазин на Kaspi из тех, что удалось идентифицировать. KIWANO (1 811 отзывов) — специализируется на K-beauty (Celimax, Skin1004, AXIS-Y).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Количество продавцов по категориям beauty на Kaspi (февраль 2026)</h3>
+
+            <DataTable headers={["Категория", "Кол-во продавцов (фев 2026)", "Рост за год"]} rows={[
+              ["Кремы и сыворотки", "864", "+57% (с 549)"],
+              ["Средства для умывания", "493", "+47%"],
+              ["Тоники", "334", "+37%"],
+              ["Тональные средства", "339", "+47%"],
+              ["Наборы косметики", "388", "+72%"],
+              ["Шампуни", "597", "+49%"],
+              ["Кремы для тела", "616", "+67%"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              <strong style={{ color: C.text }}>Wildberries:</strong> #1 продавец = ООО Лайфкосм (682M RUB/год, Celimax), #2 = ООО Крем ШОП (524M, мультибренд), всего 3 364 продавца по портфелю. Полный топ-20 выше. <strong style={{ color: C.text }}>Kaspi:</strong> через анализ топ-SKU выявлены ключевые beauty-магазины — LUXE COSMETICS (4 726 отзывов, TOP), KIWANO (1 811, TOP, K-beauty), ELCOREE (1 757, TOP). Полного рейтинга продавцов по категории Kaspi-аналитика не предоставляет — только через привязку к конкретным товарам.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
