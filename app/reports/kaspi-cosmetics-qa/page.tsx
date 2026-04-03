@@ -984,6 +984,88 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 10 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 10</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Тут тоже я вижу средства для умывания, и тоже непонятно — это за один месяц или как. Вижу Round Lab на второй позиции. Тогда какая именно позиция? Я думаю, что это пенка Dokdo, потому что она у нас больше всех по продажам идёт. Тоже надо указать, что именно. Bioderma — я видела, что вы указали их мицеллярку. Round Lab — вы все пенки взяли, но конкретно какая именно? Я думаю, Dokdo. Десятая позиция Sugarlife меня очень удивил, потому что это OEM, сделанный в Китае. Предприниматель деньги влил и создал дешёвый продукт.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Таблица = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>, только <strong style={{ color: C.text }}>Kaspi.kz онлайн</strong>. Основной отчёт также обновлён — заголовки таблиц теперь содержат «(фев 2026)».</div>
+            </div>
+
+            <p style={sP}>Разбираем каждый бренд из топ-10 умывания — с конкретными позициями.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Каждый бренд из топ-10 — с какой именно позицией</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Главный SKU — конкретный товар", "Цена SKU", "Выручка SKU", "Продажи SKU"]} rows={[
+              ["1", "Bioderma", "49M", "Sensibio гель для умывания 500 мл", "8 999 ₸", "14M", "1 351 шт"],
+              ["2", "Round Lab", "36M", "1025 Dokdo пенка 150 мл", "1 188 ₸", "19M", "7 711 шт"],
+              ["3", "Celimax", "35M", "Dual Barrier Mild гель-пенка 200 мл", "4 430 ₸", "9M", "1 468 шт"],
+              ["4", "Skin1004", "25M", "Madagascar Centella Ampoule пенка 125 мл", "~1 200 ₸", "9M", "3 587 шт"],
+              ["5", "La Roche-Posay", "21M", "Toleriane пенка / гель", "~4 000 ₸", "—", "1 894 шт"],
+              ["6", "CeraVe", "20M", "Очищающий гель для норм./жирной кожи 236 мл", "3 998 ₸", "6M", "1 914 шт"],
+              ["7", "ANGIOPHARM", "15M", "Линейка очищающих средств", "~3 000 ₸", "—", "1 681 шт"],
+              ["8", "Dr. Althea", "15M", "Пенки и гели для умывания", "~1 500 ₸", "—", "2 662 шт"],
+              ["9", "LAGOM", "13M", "Cellup Gel to Water Cleanser", "~3 000 ₸", "—", "3 095 шт"],
+              ["10", "Sugarlife", "12M", "Niacinamide пенка 150 мл", "2 100 ₸", "6M", "2 947 шт"],
+            ]} highlight={1} />
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Round Lab — разбивка по пенкам</h3>
+
+            <p style={sP}>Да, <strong style={{ color: C.text }}>Dokdo — абсолютный лидер Round Lab</strong>. Вот все пенки бренда:</p>
+
+            <DataTable headers={["#", "Пенка", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Доля от 36M"]} rows={[
+              ["1", "1025 Dokdo пенка 150 мл", "1 188 ₸", "19M", "7 711 шт", "6 918", "53%"],
+              ["2", "Birch Juice Moisturizing пенка 150 мл", "1 300 ₸", "4M", "1 572 шт", "1 221", "11%"],
+              ["3", "Mugwort Calming пенка 150 мл", "3 690 ₸", "3M", "788 шт", "712", "9%"],
+              ["—", "Другие позиции (масло, тонер и т.д.)", "—", "~10M", "—", "—", "27%"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Подтверждение: </strong>Ваша интуиция верна — <strong style={{ color: C.text }}>Dokdo = 53% выручки Round Lab в умывании</strong> (19M из 36M). Это основной драйвер бренда. Birch Juice (#2) и Mugwort (#3) — дополнительные линейки.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Bioderma — не мицеллярка, а гель</h3>
+
+            <p style={sP}>Уточнение: в категории <strong style={{ color: C.text }}>«Средства для умывания»</strong> лидер Bioderma — это <strong style={{ color: C.text }}>Sensibio гель (8 999 ₸, 14M)</strong>, а не мицеллярная вода. Мицеллярная вода Bioderma — в другой категории («Снятие макияжа», отдельная ниша).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Sugarlife (#10, 12M) — почему в топ-10?</h3>
+
+            <p style={sP}>Sugarlife — локальный казахстанский OEM-бренд. В категории умывания у него:</p>
+
+            <DataTable headers={["#", "Товар", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Niacinamide пенка 150 мл", "2 100 ₸", "6M", "2 947 шт", "2 689", "4.9"],
+              ["2", "Mineral Rich гидрофильный щербет 50 мл", "2 300 ₸", "4M", "1 542 шт", "1 058", "4.9"],
+            ]} />
+
+            <div style={{ fontSize: 13, lineHeight: 1.8, color: "#ccc", marginBottom: 16 }}>
+              <div><strong style={{ color: C.text }}>Чем взял Sugarlife:</strong></div>
+              <div style={{ paddingLeft: 16 }}>— Низкая цена: 2 100 ₸ (vs Bioderma 8 999 ₸, Round Lab 1 188 ₸, CeraVe 3 998 ₸)</div>
+              <div style={{ paddingLeft: 16 }}>— Высокий объём отзывов: 2 689 на пенку — <strong style={{ color: C.text }}>больше, чем у Bioderma и CeraVe</strong></div>
+              <div style={{ paddingLeft: 16 }}>— Рейтинг 4.9 стабильно</div>
+              <div style={{ paddingLeft: 16 }}>— Продавец один (закрытый бренд) — контролирует цену и карточку</div>
+              <div style={{ paddingLeft: 16 }}>— Суммарно Sugarlife на Kaspi шире: наборы (11M), кремы SPF (5M), тонер (5M), маски (6M) — ~50M+ по всем категориям</div>
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Период = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>. Round Lab #2 (36M) — да, это прежде всего <strong style={{ color: C.text }}>пенка 1025 Dokdo за 1 188 ₸</strong> (19M = 53% выручки бренда в умывании, 7 711 продаж, 6 918 отзывов). Bioderma #1 (49M) — <strong style={{ color: C.text }}>гель Sensibio за 8 999 ₸</strong> (14M), не мицеллярка. Sugarlife #10 (12M) — <strong style={{ color: C.text }}>Niacinamide пенка за 2 100 ₸</strong> (6M, 2 947 продаж, 2 689 отзывов). Да, это OEM-бренд, но с 2 689 отзывами и рейтингом 4.9 — покупатели доверяют. Модель: низкая цена + объём отзывов + закрытый бренд (1 продавец).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
