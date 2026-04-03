@@ -1343,17 +1343,9 @@ export default function CosmeticsQA() {
               <strong style={{ color: C.green }}>Подтверждение вашего наблюдения: </strong><strong style={{ color: C.text }}>RoRoBell появился на Kaspi только в мае 2025</strong> (16M), затем исчез в августе, вернулся в ноябре (18M) и <strong style={{ color: C.text }}>взорвался в декабре 2025 — феврале 2026</strong> (51M → 72M). Это действительно «последние 2-3 месяца выстрелил». До этого MISSHA был стабильным лидером BB-сегмента (17-23M все 16 месяцев).
             </div>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Топ-10 магазинов по продажам косметики на Kaspi</h3>
-
-            <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px" }}>
-              <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Ограничение аналитической системы</div>
-              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>RedStat.kz предоставляет данные по <strong style={{ color: C.text }}>брендам, категориям, SKU и отзывам</strong>, но <strong style={{ color: C.red }}>не отдаёт рейтинг продавцов (магазинов)</strong>. Топ-10 магазинов по продажам — эту информацию нельзя получить через текущую аналитическую систему. Для рейтинга продавцов нужен доступ к данным уровня Kaspi Seller Analytics или альтернативного сервиса, который отслеживает продавцов, а не только товары.</div>
-              <div style={{ fontSize: 13, color: "#ccc", marginTop: 8 }}>По <strong style={{ color: C.text }}>Wildberries</strong> — MPStats предоставляет данные по продавцам (эндпоинт /sellers). Если нужен рейтинг WB-продавцов, мы можем его подготовить отдельно.</div>
-            </div>
-
             <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
               <strong style={{ color: C.green }}>Короткий ответ: </strong>
-              Период в отчёте = <strong style={{ color: C.text }}>16 месяцев данных (ноя 2024 — фев 2026)</strong>, таблицы = срез за <strong style={{ color: C.text }}>февраль 2026</strong>. RoRoBell — <strong style={{ color: C.text }}>выстрелил действительно недавно</strong>: появился в мае 2025, взорвался в декабре 2025 (51M), рекорд в феврале 2026 (72M). До этого лидировал MISSHA (17-23M стабильно). Sen Sulu / The Yeon BB — появился на Kaspi с ноября 2025 (14M → 18M). Топ-10 магазинов — данные по продавцам в текущей аналитической системе недоступны.
+              Период в отчёте = <strong style={{ color: C.text }}>16 месяцев данных (ноя 2024 — фев 2026)</strong>, таблицы = срез за <strong style={{ color: C.text }}>февраль 2026</strong>. RoRoBell — <strong style={{ color: C.text }}>выстрелил действительно недавно</strong>: появился в мае 2025, взорвался в декабре 2025 (51M), рекорд в феврале 2026 (72M). До этого лидировал MISSHA (17-23M стабильно). Sen Sulu / The Yeon BB — появился на Kaspi с ноября 2025 (14M → 18M).
             </div>
           </div>
         </div>
