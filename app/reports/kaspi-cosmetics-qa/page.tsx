@@ -1914,7 +1914,7 @@ export default function CosmeticsQA() {
               <span style={sBadge(C.green)}>Ответ</span>
             </div>
 
-            <p style={sP}>Конечно, проведём обучение. А пока — вот пошаговая инструкция с основными моментами, которые чаще всего вызывают затруднения.</p>
+            <p style={sP}>Вот пошаговая инструкция с основными моментами, которые чаще всего вызывают затруднения.</p>
 
             <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Частая проблема: «ничего не показывает»</h3>
 
@@ -1983,7 +1983,7 @@ export default function CosmeticsQA() {
 
             <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
               <strong style={{ color: C.green }}>Короткий ответ: </strong>
-              Основная причина «ничего не показывает» — <strong style={{ color: C.text }}>регистр и написание бренда</strong>. На Kaspi бренды записаны по-разному: «MIZON» (не «Mizon»), «Dr. Althea» (с точкой), «AXIS-Y» (с дефисом). Если бренд не находится — вбивайте <strong style={{ color: C.text }}>название товара</strong> вместо бренда. Мы готовы провести обучение — покажем на экране, как искать каждый из ваших 21 бренда.
+              Основная причина «ничего не показывает» — <strong style={{ color: C.text }}>регистр и написание бренда</strong>. На Kaspi бренды записаны по-разному: «MIZON» (не «Mizon»), «Dr. Althea» (с точкой), «AXIS-Y» (с дефисом). Если бренд не находится — вбивайте <strong style={{ color: C.text }}>название товара</strong> вместо бренда. Выше — шпаргалка с точным написанием каждого из 21 бренда для поиска.
             </div>
           </div>
         </div>
