@@ -892,7 +892,7 @@ export default function CosmeticsQA() {
               <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Важное уточнение по периоду</div>
               <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
                 <div>Все цифры в отчёте = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>, <strong style={{ color: C.text }}>только Kaspi.kz онлайн</strong>. Офлайн-продажи (магазины, аптеки, дрогери) в данные не входят.</div>
-                <div style={{ marginTop: 8 }}>Замечание принято — <strong style={{ color: C.text }}>основной отчёт обновлён</strong>: все заголовки таблиц теперь содержат явное указание периода. Пример как сейчас выглядит:</div>
+                <div style={{ marginTop: 8 }}><strong style={{ color: C.text }}>Основной отчёт также обновлён</strong> — все таблицы содержат явное указание периода, чтобы было удобно при повторном просмотре. Пример:</div>
               </div>
               <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "SKU", "Продавцов", "Заказов (фев 2026)"]} rows={[
                 ["1", "Dr. Althea", "142M KZT", "62", "67", "28 901"],
