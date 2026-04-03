@@ -1066,6 +1066,78 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 11 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 11</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Тут тоже не указан период — это один месяц, я так понимаю. Но какой именно месяц? Выручка чего — марта этого года или за год? Теперь вот Celimax — я думаю, это тонер Dual Barrier. С какой именно позицией он лидер? AXIS-Y тоже, какая именно? Я думаю, у AXIS-Y это тонер-мист/спрей. Round Lab — я так думаю, Dokdo тонер, но могу ошибаться. Также и Dr. Althea. Вы выписали бренды, но не выписали, с какой именно позицией они лидируют. По кремам тоже — MEDI-PEEL на 4 месте, с какой позицией?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все таблицы = <strong style={{ color: C.text }}>один месяц — февраль 2026</strong>. Не март, не год — именно <strong style={{ color: C.text }}>февраль 2026</strong> (последний полный месяц на момент подготовки отчёта). Только Kaspi.kz онлайн. Основной отчёт обновлён — период теперь указан в заголовках: <a href="/reports/kaspi-cosmetics" style={{ color: C.accent, textDecoration: "none" }}>открыть обновлённый отчёт →</a></div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Тоники — каждый бренд с конкретной позицией</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Лидирующий SKU — конкретный товар", "Розница", "Продажи", "Отзывы"]} rows={[
+              ["1", "Celimax", "61M (21%)", "Dual Barrier Toner 150 мл", "1 977 ₸", "6 513 шт", "3 243"],
+              ["2", "BIDALLI", "14M (5%)", "Vegan 10% Mandelic Acid сыворотка 30 мл*", "11 226 ₸", "603 шт", "—"],
+              ["3", "Paula's Choice", "12M (4%)", "2% BHA Liquid Exfoliant тоник-эксфолиант 30 мл", "9 250 ₸", "701 шт", "—"],
+              ["4", "AXIS-Y", "12M (4%)", "Dark Spot Correcting Glow тонер 125 мл", "1 874 ₸", "2 552 шт", "893"],
+              ["5", "Round Lab", "10M (3%)", "1025 Dokdo тонер 200 мл", "1 500 ₸", "1 129 шт", "—"],
+              ["6", "Dr. Althea", "10M (3%)", "345 Relief Cream Mist (мист-тонер) 120 мл", "6 049 ₸", "927 шт", "139"],
+              ["7", "MEDI-PEEL", "10M (3%)", "Peptide 9 Aqua Essence тонер 250 мл", "~4 500 ₸", "1 755 шт", "1 374"],
+              ["8", "Skin1004", "10M (3%)", "Madagascar Centella тонер", "~2 500 ₸", "2 753 шт", "—"],
+              ["9", "ANGIOPHARM", "9M (3%)", "Линейка тонеров", "~3 000 ₸", "1 026 шт", "—"],
+              ["10", "Sugarlife", "6M (2%)", "Кремовый тонер с пептидным комплексом 150 мл", "3 200 ₸", "1 729 шт", "803"],
+            ]} highlight={0} />
+
+            <p style={{ ...sP, fontSize: 11, color: C.dim }}>* BIDALLI: в категории тоников 14M, но топ-SKU бренда — сыворотка (11 226 ₸). Тонеры BIDALLI = тонер-пэды.</p>
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ваша интуиция: </strong>
+              <strong style={{ color: C.green }}>Celimax = Dual Barrier тонер</strong> — верно.
+              <strong style={{ color: C.green }}> AXIS-Y = тонер Dark Spot Correcting</strong> (не мист/спрей, а именно тонер 125 мл).
+              <strong style={{ color: C.green }}> Round Lab = Dokdo тонер</strong> — верно.
+              <strong style={{ color: C.text }}> Dr. Althea = 345 Relief Cream Mist</strong> — это мист-тонер (спрей), вы были правы.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Кремы — каждый бренд с конкретной позицией</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Лидирующий SKU — конкретный товар", "Розница", "Продажи"]} rows={[
+              ["1", "Dr. Althea", "142M", "345 Relief Cream (крем с центеллой) 50 мл", "898 ₸", "11 360 шт"],
+              ["2", "Bioderma", "96M", "Sensibio Defensive крем для чувствительной кожи", "~5 000 ₸", "11 523 шт"],
+              ["3", "Celimax", "89M", "Dual Barrier Skin Wearable Cream 50 мл", "1 304 ₸", "3 182 шт"],
+              ["4", "MEDI-PEEL", "63M", "Peptide 9 Aqua Essence эмульсия 250 мл", "4 416 ₸", "3 814 шт"],
+              ["5", "Skin1004", "55M", "Madagascar Centella Ampoule (сыворотка-ампула)", "~1 200 ₸", "~3 000 шт"],
+              ["6", "La Roche-Posay", "55M", "Toleriane / Effaclar линейка", "~4 000 ₸", "4 652 шт"],
+              ["7", "ANGIOPHARM", "51M", "Профессиональная линейка", "~3 500 ₸", "3 571 шт"],
+              ["8", "AXIS-Y", "47M", "Dark Spot Correcting Glow Serum 50 мл", "853 ₸", "8 373 шт"],
+              ["9", "Round Lab", "39M", "Birch Juice Moisturizing SPF50 крем 50 мл", "858 ₸", "3 074 шт"],
+              ["10", "Без бренда", "39M", "Сборные позиции (133 SKU, 111 продавцов)", "разный", "11 997 шт"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>MEDI-PEEL (#4, 63M): </strong>Лидирующая позиция — <strong style={{ color: C.text }}>Peptide 9 Aqua Essence эмульсия за 4 416 ₸</strong> (19M выручки, 3 814 продаж). Это эмульсия с пептидами, не крем в классическом смысле, но входит в категорию «Кремы и сыворотки» на Kaspi. Второй SKU: Пептидный крем от морщин (4 820 ₸, 4M).
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Период = <strong style={{ color: C.text }}>февраль 2026</strong> (один месяц, только Kaspi онлайн). По тоникам: Celimax = <strong style={{ color: C.text }}>Dual Barrier Toner 1 977 ₸</strong> (верно), AXIS-Y = <strong style={{ color: C.text }}>Dark Spot тонер 1 874 ₸</strong> (не мист, а тонер), Round Lab = <strong style={{ color: C.text }}>Dokdo тонер 1 500 ₸</strong> (верно), Dr. Althea = <strong style={{ color: C.text }}>345 Relief Mist 6 049 ₸</strong> (мист-спрей, верно). По кремам: MEDI-PEEL #4 (63M) = <strong style={{ color: C.text }}>Peptide 9 эмульсия 4 416 ₸</strong> (19M, 3 814 продаж).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
