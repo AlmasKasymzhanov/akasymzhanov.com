@@ -41,8 +41,8 @@ export default function CosmeticsQA() {
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span style={sBadge(C.amber)}>Вопрос 1</span>
             </div>
-            <p style={{ fontSize: 16, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.6 }}>
-              Рынок косметики растёт, уходовый в том числе. Что именно прям в лидерах? Это пенка, это тонер или что конкретно? И какого конкретного бренда?
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Я пока покидаю голосовые, возможно, вы где-то расписали, но я пока не дошла. Но пока не забыла, что озвучу, вдруг, если где-то не сделано. Вот смотрите, рынок косметики растёт, уходовый в том числе. Что именно прям в лидерах? Это пенка, это тонер или что конкретно? И какого конкретно бренда?»
             </p>
           </div>
 
@@ -51,11 +51,15 @@ export default function CosmeticsQA() {
               <span style={sBadge(C.green)}>Ответ</span>
             </div>
 
-            <p style={sP}>Уходовая косметика на Kaspi.kz — это 6 основных ниш. Ниже — по каждой: что это за продукт, какой объём рынка, кто лидер и какой конкретный товар продаётся больше всего. Все данные — <strong style={{ color: C.text }}>февраль 2026</strong>, проверены напрямую.</p>
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры ниже — за <strong style={{ color: C.text }}>февраль 2026</strong> (последний полный месяц в аналитической системе). Источник: RedStat.kz. Данные верифицированы повторно в апреле 2026.</div>
+            </div>
+            <p style={sP}>Уходовая косметика на Kaspi.kz — это 6 основных ниш. Ниже — по каждой: что это за продукт, какой объём рынка, кто лидер и какой конкретный товар продаётся больше всего.</p>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>1. Кремы и сыворотки — крупнейшая ниша (1 712M KZT/мес)</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>1. Кремы и сыворотки — крупнейшая ниша (1 712M KZT в феврале 2026)</h3>
             <p style={sP}>Это <strong style={{ color: C.text }}>59% всего уходового рынка</strong>. Сюда входят: увлажняющие кремы, антивозрастные кремы, сыворотки (серумы), SPF-кремы, ночные кремы.</p>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "SKU", "Заказов/мес", "Продавцов"]} rows={[
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "SKU", "Заказов (фев 2026)", "Продавцов"]} rows={[
               ["1", "Dr. Althea", "142M KZT", "62", "28 901", "67"],
               ["2", "Bioderma", "96M", "60", "11 523", "31"],
               ["3", "Celimax", "89M", "74", "20 542", "68"],
@@ -72,9 +76,9 @@ export default function CosmeticsQA() {
               </div>
             </div>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>2. Средства для умывания — #2 ниша (517M KZT/мес)</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>2. Средства для умывания — #2 ниша (517M KZT в феврале 2026)</h3>
             <p style={sP}>Пенки для умывания, гели, мицеллярная вода, гидрофильные масла.</p>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "Заказов/мес"]} rows={[
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)"]} rows={[
               ["1", "Bioderma", "49M", "7 030"],
               ["2", "Round Lab", "36M", "12 330"],
               ["3", "Celimax", "35M", "8 876"],
@@ -92,9 +96,9 @@ export default function CosmeticsQA() {
               <p style={{ ...sP, fontSize: 12, marginTop: 8, color: C.dim }}>Примечание: Bioderma (#1 по выручке в умывании) лидирует за счёт мицеллярной воды, а не пенки. Round Lab (#2) — лидер именно среди пенок.</p>
             </div>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>3. Тоники и тонеры — #3 ниша (290M KZT/мес)</h3>
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>3. Тоники и тонеры — #3 ниша (290M KZT в феврале 2026)</h3>
             <p style={sP}>Тоники, тонеры, термальная вода, эссенции.</p>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "Доля ниши", "Заказов/мес"]} rows={[
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Доля ниши", "Заказов (фев 2026)"]} rows={[
               ["1", "Celimax", "61M", "21%", "11 016"],
               ["2", "BIDALLI", "14M", "5%", "1 265"],
               ["3", "Paula's Choice", "12M", "4%", "959"],
@@ -112,24 +116,24 @@ export default function CosmeticsQA() {
               <p style={{ ...sP, fontSize: 12, marginTop: 8, color: C.dim }}>Celimax владеет 21% ниши тоников — больше, чем #2 + #3 + #4 вместе взятые.</p>
             </div>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>4. Маски для лица — #4 ниша (122M KZT/мес)</h3>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "Заказов/мес"]} rows={[
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>4. Маски для лица — #4 ниша (122M KZT в феврале 2026)</h3>
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)"]} rows={[
               ["1", "Gegemoon", "13M", "12 950"],
               ["2", "AXIS-Y", "7M", "1 137"],
               ["3", "Skin1004", "6M", "2 488"],
             ]} />
             <p style={sP}>В масках #1 = Gegemoon (китайский бренд). Из портфеля клиента: AXIS-Y (#2) и Skin1004 (#3).</p>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>5. Скрабы и пилинги — #5 ниша (64M KZT/мес)</h3>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "Заказов/мес"]} rows={[
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>5. Скрабы и пилинги — #5 ниша (64M KZT в феврале 2026)</h3>
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)"]} rows={[
               ["1", "Celimax", "13M", "2 698"],
               ["2", "Sugarlife", "4M", "1 731"],
               ["3", "MANYO", "4M", "967"],
             ]} />
             <p style={sP}>Celimax лидирует и в скрабах/пилингах.</p>
 
-            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>6. Патчи — самая быстрорастущая ниша (45M KZT/мес, +114% YoY)</h3>
-            <DataTable headers={["#", "Бренд", "Выручка/мес", "Заказов/мес"]} rows={[
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>6. Патчи — самая быстрорастущая ниша (45M KZT в феврале 2026, +114% YoY)</h3>
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)"]} rows={[
               ["1", "SADOER", "6M", "7 306"],
               ["2", "MeyRim", "4M", "3 216"],
               ["3", "COSRX", "4M", "2 337"],
@@ -138,7 +142,7 @@ export default function CosmeticsQA() {
 
             <h3 style={{ fontSize: 16, fontWeight: 700, color: C.green, margin: "32px 0 16px", borderTop: `1px solid ${C.border}`, paddingTop: 24 }}>Итого: что конкретно в лидерах</h3>
 
-            <DataTable headers={["Что", "Выручка ниши", "Лидер-бренд", "Бестселлер-SKU", "Выручка SKU", "Отзывы"]} rows={[
+            <DataTable headers={["Что", "Выручка ниши (фев 2026)", "Лидер-бренд", "Бестселлер-SKU", "Выручка SKU (фев 2026)", "Отзывы"]} rows={[
               ["Кремы и сыворотки", "1 712M", "Dr. Althea", "345 Relief Cream 50мл", "38.5M/мес", "4 642"],
               ["Пенки для умывания", "517M", "Bioderma / Round Lab", "1025 Dokdo Cleanser 150мл", "19M/мес", "6 918"],
               ["Тоники и тонеры", "290M", "Celimax", "Dual Barrier Toner 150мл", "31.4M/мес", "3 243"],
@@ -160,8 +164,8 @@ export default function CosmeticsQA() {
             <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
               <span style={sBadge(C.amber)}>Вопрос 2</span>
             </div>
-            <p style={{ fontSize: 16, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.6 }}>
-              По декоративной косметике: рынок растёт, цифры есть. А из декоративки что именно в пике? Это тушь — тогда какого бренда? Или румяна — тогда какого бренда?
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Также по декоративной косметике. Рынок, например, прирост есть, вот вы мне цифры там есть, что вот, например, там сколько-то тысячи заказов. А из декоративки, например, что именно прям вот в пике, это тушь, то тогда какого именно бренда? Или, например, румяна, то тут какого именно бренда?»
             </p>
           </div>
 
@@ -170,11 +174,15 @@ export default function CosmeticsQA() {
               <span style={sBadge(C.green)}>Ответ</span>
             </div>
 
-            <p style={sP}>Декоративная косметика на Kaspi = <strong style={{ color: C.text }}>1 716M KZT/мес</strong> (759 тысяч заказов). Состоит из 9 ниш. Ниже — каждая ниша с лидером-брендом, ростом YoY и конкретной разбивкой.</p>
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Выручка и заказы — за <strong style={{ color: C.text }}>февраль 2026</strong>. YoY рост — сравнение суммы за <strong style={{ color: C.text }}>ноябрь 2024 — февраль 2025</strong> vs <strong style={{ color: C.text }}>ноябрь 2025 — февраль 2026</strong> (4 пересекающихся месяца). Источник: RedStat.kz.</div>
+            </div>
+            <p style={sP}>Декоративная косметика на Kaspi = <strong style={{ color: C.text }}>1 716M KZT/мес</strong> (759 тысяч заказов в феврале 2026). Состоит из 9 ниш. Ниже — каждая ниша с лидером-брендом, ростом YoY и конкретной разбивкой.</p>
 
             <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Полная картина: 9 ниш декоративной косметики</h3>
 
-            <DataTable headers={["#", "Ниша", "Выручка/мес", "Заказов", "YoY рост", "#1 бренд", "Выручка #1"]} rows={[
+            <DataTable headers={["#", "Ниша", "Выручка (фев 2026)", "Заказов (фев 2026)", "YoY (нояб-фев)", "#1 бренд", "Выручка #1"]} rows={[
               ["1", "Тональные средства", "536M", "124 525", "+5%", "RoRoBell", "72M"],
               ["2", "Помады, блески, контуры", "209M", "143 228", "+26%", "Sen Sulu", "26M"],
               ["3", "Румяна, бронзеры", "203M", "56 530", "+66%", "HOURGLASS", "30M"],
