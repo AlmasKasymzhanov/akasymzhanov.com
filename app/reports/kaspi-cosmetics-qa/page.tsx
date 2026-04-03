@@ -1138,6 +1138,83 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 12 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 12</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «MEDI-PEEL на четвёртом-пятом месте. Хотя лет 5 назад он был номером один. Сейчас он выдувается, многие магазины офлайна его вывели из матрицы. Но последние 2-3 месяца я вижу динамику по MEDI-PEEL — и только по двум-трём позициям. Это эмульсия и крем. Две позиции резко выстрелили, хотя никакого маркетинга не было. Белая-серая упаковка. Бортокс, что ли, называется.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Помесячная динамика: <strong style={{ color: C.text }}>ноябрь 2024 — февраль 2026</strong> (16 точек). SKU-данные: <strong style={{ color: C.text }}>февраль 2026</strong>. Только Kaspi.kz онлайн. Источник: RedStat.kz.</div>
+            </div>
+
+            <p style={sP}>Ваше наблюдение <strong style={{ color: C.green }}>точно подтверждается данными</strong>. MEDI-PEEL стагнировал, затем резко вырос — и именно за счёт двух позиций.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Помесячная динамика MEDI-PEEL в кремах</h3>
+
+            <DataTable headers={["Месяц", "Выручка", "Заказов", "SKU", "Комментарий"]} rows={[
+              ["Ноябрь 2024", "43M", "9 109", "58", "Базовый уровень"],
+              ["Февраль 2025", "47M", "9 142", "64", "Стабильно"],
+              ["Май 2025", "44M", "8 818", "68", "Стагнация"],
+              ["Август 2025", "44M", "8 306", "68", "Стагнация (как вы говорите — «выдувается»)"],
+              ["Ноябрь 2025", "63M", "10 940", "78", "ВСПЛЕСК +43% за 3 мес!"],
+              ["Декабрь 2025", "74M", "13 785", "79", "ПИК (новогодние продажи)"],
+              ["Январь 2026", "68M", "12 486", "76", "Коррекция после НГ"],
+              ["Февраль 2026", "63M", "11 701", "82", "Высокий уровень сохраняется"],
+            ]} highlight={4} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Подтверждение: </strong>Данные показывают: <strong style={{ color: C.text }}>май-август 2025 = стагнация (44M)</strong>, затем <strong style={{ color: C.text }}>ноябрь 2025 = резкий рост до 63M (+43%)</strong>, декабрь = пик 74M. Ваше наблюдение «последние 2-3 месяца стреляет» — точно совпадает с данными.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Какие именно позиции «выстрелили»</h3>
+
+            <p style={sP}>Вы правы — это линейка <strong style={{ color: C.text }}>Peptide 9</strong> (белая-серая упаковка). «Бортокс» — это, вероятно, <strong style={{ color: C.text }}>Peptide-Tox / Volume Tox</strong> (пептидная линейка с эффектом ботокса). Вот все позиции MEDI-PEEL, от лидера к наименьшему:</p>
+
+            <DataTable headers={["#", "Товар", "Линейка", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Aqua Essence Peptide 9 эмульсия 250 мл", "Peptide 9", "4 416 ₸", "19M", "3 814 шт", "4 245", "4.9"],
+              ["2", "Пептидный крем с матриксилом (от морщин)", "Peptide 9", "4 820 ₸", "4M", "830 шт", "812", "4.9"],
+              ["3", "Peptide 9 Aqua Essence Emulsion (другой SKU)", "Peptide 9", "4 507 ₸", "3M", "659 шт", "343", "5.0"],
+              ["4", "Retinol Collagen Lifting Ampoule сыворотка", "Retinol", "6 740 ₸", "3M", "499 шт", "140", "4.9"],
+              ["5", "Aqua Essence Peptide 9 тонер 250 мл", "Peptide 9", "4 379 ₸", "3M", "676 шт", "1 374", "4.9"],
+              ["6", "Peptide 9 Volume Tox Pro крем 50 мл", "Volume Tox", "4 546 ₸", "3M", "583 шт", "852", "4.9"],
+              ["7", "Algo-Tox Deep Clear гель-пенка 150 мл", "Algo-Tox", "4 199 ₸", "3M", "596 шт", "1 257", "4.8"],
+              ["8", "Micro Tea энзимная пудра 70 г", "Micro Tea", "4 492 ₸", "2M", "469 шт", "421", "4.9"],
+            ]} highlight={0} />
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Структура: что именно дало рост</h3>
+
+            <DataTable headers={["Линейка", "Позиции", "Суммарная выручка (фев 2026)", "Доля от 63M", "Ценовой диапазон"]} rows={[
+              ["Peptide 9 (эмульсия + крем + тонер)", "#1, #2, #3, #5, #6", "~32M", "~51%", "4 379–4 820 ₸"],
+              ["Retinol Collagen", "#4", "~3M", "~5%", "6 740 ₸"],
+              ["Algo-Tox + Micro Tea", "#7, #8", "~5M", "~8%", "4 199–4 492 ₸"],
+              ["Патчи + остальное", "—", "~23M", "~36%", "разный"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Два SKU-драйвера роста: </strong><br/>
+              1. <strong style={{ color: C.text }}>Peptide 9 Aqua Essence эмульсия (4 416 ₸)</strong> = 19M = 30% всей выручки бренда. 4 245 отзывов. Это именно та эмульсия в белой-серой упаковке.<br/>
+              2. <strong style={{ color: C.text }}>Peptide 9 Volume Tox Pro крем (4 546 ₸)</strong> = 3M, 852 отзыва. Это «бортокс» / Volume Tox — крем с ботулин-подобным пептидом.
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              MEDI-PEEL действительно стагнировал (44M в мае-августе 2025), затем <strong style={{ color: C.text }}>резко вырос до 63-74M</strong> (ноябрь-декабрь 2025). Два драйвера роста: <strong style={{ color: C.text }}>Peptide 9 Aqua Essence эмульсия за 4 416 ₸</strong> (19M, 3 814 продаж, 4 245 отзывов) и <strong style={{ color: C.text }}>Peptide 9 Volume Tox Pro крем за 4 546 ₸</strong> (3M, 583 продажи, 852 отзыва). Это белая-серая упаковка, линейка Peptide 9 / Volume Tox — то, что вы называете «бортокс». Рост произошёл без видимого маркетинга — <strong style={{ color: C.text }}>возможно, вирусное распространение через TikTok/Instagram или сарафанное радио</strong> (4 245 отзывов на эмульсию = мощная органическая тяга).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
