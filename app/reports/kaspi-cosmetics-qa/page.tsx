@@ -1745,6 +1745,81 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 20 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 20</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Скрабы — замедляющая ниша. Вы учли пилинги вместе или нет? Потому что последние 5 лет скрабы не актуальны — мелкие частицы травмируют кожу. Многие предлагают энзимные пудры или деликатные пилинги. Эту категорию вы обошли — нигде не указано. Либо энзимные пудры и пилинги входят в эту же категорию, но просто не котируются?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong>, только Kaspi.kz онлайн.</div>
+            </div>
+
+            <p style={sP}>Очень точное наблюдение. Вот как это устроено на Kaspi:</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Что входит в «Скрабы и пилинги» на Kaspi (64M)</h3>
+
+            <p style={sP}>Несмотря на название, в этой категории <strong style={{ color: C.text }}>классических скрабов с абразивными частицами практически нет</strong>. Топ-10 — это:</p>
+
+            <DataTable headers={["#", "Бренд", "Товар", "Тип продукта", "Розница", "Выручка (фев 2026)"]} rows={[
+              ["1", "Celimax", "Pore Dark Spot Brightening Pad 40 шт", "Пилинг-пэды (BHA кислоты)", "4 123 ₸", "5M"],
+              ["2", "Celimax", "Heartleaf BHA Peeling Pad 60 шт", "Пилинг-пэды (BHA)", "4 132 ₸", "4M"],
+              ["3", "Celimax", "Cica BHA Blemish пилинг 170 мл", "Жидкий кислотный пилинг", "5 999 ₸", "3M"],
+              ["4", "Sugarlife", "Centella Glycolic Acid пилинг 80 мл", "Жидкий кислотный пилинг", "2 500 ₸", "3M"],
+              ["5", "Dr. Althea", "2% Salicylic Acid Clear Pads 170 мл", "Пилинг-пэды (салициловая)", "6 318 ₸", "3M"],
+              ["6", "Алтея", "Кровавый кислотный пилинг", "Кислотный пилинг", "6 963 ₸", "3M"],
+              ["7", "MANYO", "Pure Aqua пилинг 120 мл", "Жидкий пилинг", "7 690 ₸", "1M"],
+              ["8", "MANYO", "Galactomy Enzyme пилинг 75 мл", "Энзимный пилинг (!)", "3 000 ₸", "1M"],
+              ["9", "The Ordinary", "AHA 30% + BHA 2% пилинг 30 мл", "Кислотный пилинг", "7 000 ₸", "1M"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Ваше наблюдение подтверждается: </strong>Категория «Скрабы и пилинги» на Kaspi де-факто = <strong style={{ color: C.text }}>пилинг-пэды и кислотные пилинги</strong>. Классических скрабов с абразивными частицами в топ-10 <strong style={{ color: C.text }}>нет вообще</strong>. Тренд «мягкое очищение» — реальность: <strong style={{ color: C.text }}>BHA/AHA пэды и жидкие пилинги полностью вытеснили</strong> абразивные скрабы.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>А где энзимные пудры?</h3>
+
+            <p style={sP}>Энзимные пудры на Kaspi — в <strong style={{ color: C.text }}>другой категории: «Средства для умывания»</strong> (517M), не в «Скрабах и пилингах». И они продаются хорошо:</p>
+
+            <DataTable headers={["#", "Бренд", "Товар", "Розница", "Выручка (фев 2026)", "Продажи", "Категория на Kaspi"]} rows={[
+              ["1", "Likato Professional", "Энзимная пудра для очищения", "1 490 ₸", "7M", "4 421 шт", "Средства для умывания"],
+              ["2", "MIXIT", "Vitamin C энзимная пудра 100 г", "3 100 ₸", "5M", "1 365 шт", "Средства для умывания"],
+              ["3", "By Wishtrend", "Green Tea энзимная пудра 110 г", "6 631 ₸", "4M", "613 шт", "Средства для умывания"],
+              ["4", "Likato Professional", "Vitamin C энзимная пудра 120 мл", "1 483 ₸", "3M", "1 897 шт", "Средства для умывания"],
+              ["5", "VOIS", "Энзимная пудра с папаином", "4 146 ₸", "3M", "659 шт", "Средства для умывания"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Энзимные пудры = ~22M+ выручки</strong> (только топ-5). Они включены в «Средства для умывания» (517M), а не в «Скрабы и пилинги» (64M). Это значит: общая ниша «мягкого очищения» (энзимы + кислоты) = значительно больше 64M, но распределена по двум категориям на Kaspi.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Итого: структура «очищения» на Kaspi</h3>
+
+            <DataTable headers={["Тип продукта", "Где на Kaspi", "Выручка (фев 2026)", "Тренд"]} rows={[
+              ["Пилинг-пэды (BHA/AHA)", "Скрабы и пилинги (01027)", "~30M+", "Растёт — Celimax доминирует"],
+              ["Жидкие кислотные пилинги", "Скрабы и пилинги (01027)", "~20M+", "Растёт"],
+              ["Энзимные пудры", "Средства для умывания (05369)", "~22M+", "Растёт — Likato, MIXIT, VOIS"],
+              ["Классические скрабы (абразив)", "Скрабы и пилинги (01027)", "минимально", "Умирает (как вы и говорите)"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              <strong style={{ color: C.text }}>Да, пилинги входят в категорию</strong> «Скрабы и пилинги» (64M). И де-факто это = <strong style={{ color: C.text }}>пилинг-пэды и кислотные пилинги</strong>, классических скрабов в топ-10 нет. Ваше наблюдение о тренде на мягкое очищение — подтверждается данными на 100%. <strong style={{ color: C.text }}>Энзимные пудры</strong> на Kaspi классифицированы в «Средствах для умывания» (не в скрабах), и они продаются хорошо (~22M+). Рост категории +18% YoY — за счёт пэдов и кислот, не за счёт абразивных скрабов. Celimax (#1 в скрабах/пилингах, 13M) — лидирует именно с <strong style={{ color: C.text }}>BHA пилинг-пэдами</strong>, а не скрабами.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
