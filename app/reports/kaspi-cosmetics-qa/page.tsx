@@ -419,6 +419,112 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 4 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 4</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Подделки я даже рассматривать не буду, я знаю, что вечно их хейтят. Теперь смотрите, категория патчи, вы говорите, что бешеный прирост. Если патчи, вы даже вывели его лидера, это китайский бренд, тогда вот китайский бренд, чем он взял, почему вроде бы Китай? Для нас Китай это вообще потёмки, он не котируется. Вот этот бренд вы вывели по патчам, тогда сегмент его ценовой барьер какой? Там 2000 тенге, вот этот бренд, его ценовая политика патчей, он стоит 2000 тенге и он прям лидер. Сколько штук было продано, и какая именно, потому что патчи есть разные — улиточные, или с каким концентратом? Именно с каким активом патчи прям в топе вот этого бренда? Но у него же не одна позиция, а там 5-6 выбор есть. И именно, допустим, с коллагеном патчи по цене 2500 тенге — это лидер. И он занял, например, 5 миллионов штук продано за год.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Выручка и продажи — за <strong style={{ color: C.text }}>февраль 2026</strong>. История ниши — помесячно за <strong style={{ color: C.text }}>ноябрь 2024 — февраль 2026</strong> (16 точек). Отзывы — все накопленные на момент среза. Источник: RedStat.kz.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Ниша «Патчи» — полный разбор</h3>
+
+            <p style={sP}>Патчи — самая быстрорастущая ниша в beauty на Kaspi. Вот точные цифры:</p>
+
+            <DataTable headers={["Метрика", "Ноябрь 2024", "Февраль 2026", "Рост"]} rows={[
+              ["Выручка", "21M KZT", "45M KZT", "+114% за 15 мес"],
+              ["Заказов", "9 619", "24 721", "+157%"],
+              ["Продавцов", "59", "99", "+68%"],
+              ["Брендов", "42", "62", "+48%"],
+              ["SKU", "—", "182", "—"],
+            ]} />
+
+            <p style={sP}>Рост стабильный, без провалов — каждый месяц больше предыдущего. Пик — декабрь 2025 (43M, 28 578 заказов — новогодние подарки).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Кто лидер? Все бренды патчей (февраль 2026)</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "SKU", "Заказов (фев 2026)", "Продавцов"]} rows={[
+              ["1", "SADOER", "6M", "39", "7 306", "21"],
+              ["2", "MeyRim", "4M", "6", "3 216", "1"],
+              ["3", "COSRX", "4M", "4", "2 337", "10"],
+              ["4", "DOBRAVA beauty", "3M", "6", "735", "1"],
+              ["5", "MEDI-PEEL", "2M", "8", "885", "10"],
+              ["6", "VOIS", "2M", "6", "483", "7"],
+              ["7", "LIMONI", "2M", "10", "569", "1"],
+              ["8", "APOLLONIA", "2M", "5", "652", "2"],
+              ["9", "FRESH LOOK", "2M", "5", "645", "1"],
+              ["10", "Beauty Assistant", "2M", "3", "525", "1"],
+            ]} highlight={0} />
+
+            <p style={sP}>SADOER (#1) лидирует по выручке (6M) и по заказам (7 306). Но разрыв с #2 и #3 — небольшой. Рынок патчей фрагментирован: <strong style={{ color: C.text }}>лидер = 13% ниши</strong> (не монополия).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>SADOER — какие именно патчи и за сколько?</h3>
+
+            <p style={sP}>У SADOER в категории патчей <strong style={{ color: C.text }}>3 позиции</strong> (не 5-6). Вот каждая:</p>
+
+            <DataTable headers={["#", "Полное название", "Актив/состав", "Кол-во", "Розница", "Продажи (фев 2026)", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "SADOER Aloe Vera Collagen Soothing", "Алоэ вера + коллаген", "60 шт", "782 ₸", "1 409 шт", "534", "4.9"],
+              ["2", "SADOER Starry Bamboo Charcoal", "Бамбуковый уголь", "60 шт", "675 ₸", "996 шт", "263", "4.9"],
+              ["3", "SADOER Damask Rose", "Дамасская роза (омолаживающие)", "60 шт", "625 ₸", "925 шт", "233", "4.9"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика SADOER патчей: </strong>Все три позиции — <strong style={{ color: C.text }}>625–782 ₸ за 60 штук</strong>. Это <strong style={{ color: C.text }}>ультра-бюджетный сегмент</strong>: ~10–13 ₸ за один патч. Для сравнения: COSRX Acne Pimple Master = 1 243 ₸ за 24 шт (52 ₸/патч), MEDI-PEEL = 1 512 ₸ за комплект. SADOER дешевле в 4-5 раз за штуку.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Чем взял SADOER? Почему китайский бренд — #1?</h3>
+
+            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc", marginBottom: 16 }}>
+              <div>1. <strong style={{ color: C.text }}>Цена:</strong> 625–782 ₸ за 60 шт = самые дешёвые патчи на рынке. Для покупателя, пробующего патчи впервые — низкий порог входа.</div>
+              <div>2. <strong style={{ color: C.text }}>Количество:</strong> 60 штук в упаковке (COSRX = 24 шт, Mediheal = точечные). За ту же цену — в 2.5 раза больше.</div>
+              <div>3. <strong style={{ color: C.text }}>Ассортимент:</strong> 3 варианта под разные задачи (увлажнение/очищение/омоложение) — покупатель выбирает.</div>
+              <div>4. <strong style={{ color: C.text }}>Отзывы:</strong> 534 отзыва на топ-SKU, рейтинг 4.9 — высокое доверие.</div>
+              <div>5. <strong style={{ color: C.text }}>Объём продаж:</strong> 3 330 штук проданных упаковок за февраль 2026 (3 позиции суммарно).</div>
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Что говорят покупатели? (отзывы SADOER патчи)</h3>
+            <p style={{ ...sP, fontSize: 12, color: C.dim }}>SADOER Aloe Vera Collagen: 560 отзывов, 549 позитивных, 11 негативных (2%)</p>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb" }}><span style={sBadge(C.green)}>5/5</span> «Отличное качество. Заметный эффект сразу. Спасибо за быструю доставку.»</div>
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb" }}><span style={sBadge(C.green)}>5/5</span> «Первый раз такие попались, результат виден сразу!»</div>
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb" }}><span style={sBadge(C.green)}>5/5</span> «Второй раз заказываю. Мне очень понравилось.»</div>
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb" }}><span style={sBadge(C.red)}>1/5</span> «Сползают страшно. Быстро высыхают. Жёсткие на ощупь.»</div>
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#bbb" }}><span style={sBadge(C.red)}>1/5</span> «Мешки не ушли, наоборот выделились. Пустая трата денег.»</div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>А что с конкурентами? Топ-10 конкретных SKU патчей на Kaspi</h3>
+
+            <DataTable headers={["#", "Бренд", "Товар", "Состав/тип", "Розница", "Продажи (фев 2026)", "Отзывы"]} rows={[
+              ["1", "COSRX", "Acne Pimple Master Patch", "Точечные от прыщей (гидроколлоид)", "1 243 ₸ / 24 шт", "1 672 шт", "747"],
+              ["2", "COSRX", "Acne Pimple Master Patch (набор)", "Точечные от прыщей", "1 722 ₸ / 24 шт", "909 шт", "198"],
+              ["3", "Mediheal", "Derma Clear Teatree Trouble", "Точечные с чайным деревом", "2 300 ₸", "620 шт", "155"],
+              ["4", "MeyRim", "ACNE PATCH", "Точечные от прыщей", "1 580 ₸", "799 шт", "180"],
+              ["5", "SADOER", "Aloe Vera Collagen Soothing", "Гидрогелевые, алоэ+коллаген", "782 ₸ / 60 шт", "1 409 шт", "534"],
+              ["6", "MEDI-PEEL", "Hyaluron Cica Peptide 9", "Гидрогелевые, пептиды+гиалурон", "1 512 ₸", "558 шт", "435"],
+              ["7", "Beauty Assistant", "С лифтинг-эффектом", "Гидрогелевые, лифтинг", "3 200 ₸", "345 шт", "496"],
+              ["8", "DOBRAVA beauty", "Depuff and Brighten 1+1", "Гидрогелевые, осветляющие", "4 990 ₸", "191 шт", "165"],
+              ["9", "SKIN&LAB", "Clean and Easy Blemish Spot", "Точечные от прыщей", "3 583 ₸", "258 шт", "236"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              SADOER — #1 в патчах (6M выручки, 7 306 заказов в феврале 2026). У него <strong style={{ color: C.text }}>3 позиции</strong> патчей: с <strong style={{ color: C.text }}>алоэ+коллагеном (782 ₸)</strong>, с <strong style={{ color: C.text }}>бамбуковым углём (675 ₸)</strong>, с <strong style={{ color: C.text }}>дамасской розой (625 ₸)</strong> — все по 60 шт в упаковке. Лидер среди трёх = <strong style={{ color: C.text }}>Aloe Vera Collagen за 782 ₸</strong> (1 409 продаж, 534 отзыва, 4.9). Чем взял: <strong style={{ color: C.text }}>ультра-низкая цена</strong> (в 4-5 раз дешевле COSRX и MEDI-PEEL за штуку), <strong style={{ color: C.text }}>60 шт в упаковке</strong> (у конкурентов 24), <strong style={{ color: C.text }}>хорошие отзывы</strong> (98% позитивных). Но: COSRX (#3 в нише, 4M) конкурирует с принципиально другим продуктом — точечные патчи от прыщей (гидроколлоид), а не гидрогелевые под глаза. Это <strong style={{ color: C.text }}>разные подкатегории</strong> внутри одной ниши.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
