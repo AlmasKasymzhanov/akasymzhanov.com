@@ -1586,6 +1586,93 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 18 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 18</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Кремы для тела — очень большой рост YoY. С чем это связано? Какой ценовой барьер? Какой бренд очень хорошо идёт? Если конкретно бренд назовёте — можно посмотреть, что они делали: маркетинг проводили или просто люди начали не только за лицом ухаживать? Может, категорию кто-то из блогеров рекламировал? Тональные — роста нет, это понятно, женщины как шпаклевали себя, так и шпаклюют. А кремы для тела — за счёт чего рост?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Выручка = <strong style={{ color: C.text }}>февраль 2026</strong>. История = помесячно <strong style={{ color: C.text }}>ноябрь 2024 — февраль 2026</strong>. Только Kaspi.kz онлайн.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Помесячная динамика: как росли кремы для тела</h3>
+
+            <DataTable headers={["Месяц", "Выручка", "Заказов", "Продавцов", "Брендов", "Комментарий"]} rows={[
+              ["Ноя 2024", "210M", "64 322", "368", "248", "Базовый уровень"],
+              ["Дек 2024", "160M", "61 561", "306", "173", "Спад (НГ → наборы)"],
+              ["Фев 2025", "266M", "95 069", "442", "287", "Рост к 8 марта"],
+              ["Мар 2025", "281M", "99 829", "442", "284", "Пик 8 марта"],
+              ["Июн 2025", "320M", "100 611", "513", "316", "Летний уход"],
+              ["Окт 2025", "341M", "123 917", "542", "336", "Осенний рост"],
+              ["Ноя 2025", "376M", "137 999", "548", "353", "Kaspi Жума"],
+              ["Дек 2025", "432M", "188 752", "603", "369", "ПИК (НГ + подарки)"],
+              ["Фев 2026", "400M", "142 182", "616", "380", "Текущий уровень"],
+            ]} highlight={7} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Характер роста: </strong>Не один бренд «выстрелил». Рост <strong style={{ color: C.text }}>системный</strong>: количество продавцов выросло с 368 до 616 (+67%), брендов с 248 до 380 (+53%). Это значит — <strong style={{ color: C.text }}>в нишу массово заходят новые игроки</strong>, и категория расширяется за счёт предложения.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Кто лидирует? Топ-10 брендов (февраль 2026)</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)", "SKU", "Тип", "Ценовой сегмент"]} rows={[
+              ["1", "La Roche-Posay", "26M", "2 482", "8", "Аптечный (Франция)", "5 800–17 077 ₸"],
+              ["2", "ERSAG", "23M", "7 747", "13", "Сетевой (Турция)", "2 030–2 889 ₸"],
+              ["3", "Без бренда", "21M", "9 828", "93", "Разные", "разный"],
+              ["4", "APOLLONIA", "13M", "3 802", "16", "Парфюм-крем (локальный)", "2 790–4 890 ₸"],
+              ["5", "La Sultane de Saba", "10M", "448", "6", "Люкс (Франция)", "22 980 ₸"],
+              ["6", "Bioderma", "10M", "1 059", "12", "Аптечный (Франция)", "~5 000 ₸"],
+              ["7", "The Act", "10M", "2 658", "15", "Локальный КЗ", "3 000–3 600 ₸"],
+              ["8", "Hempz", "9M", "651", "13", "Натуральный (США)", "~6 000 ₸"],
+              ["9", "TOPICREM", "8M", "588", "6", "Аптечный (Франция)", "~5 000 ₸"],
+              ["10", "Weleda", "8M", "774", "5", "Натуральный (Германия)", "8 990 ₸"],
+            ]} />
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Топ-SKU: что конкретно продаётся</h3>
+
+            <DataTable headers={["#", "Бренд", "Товар", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["1", "ERSAG", "Cleanball массажный крем 200 мл", "2 889 ₸", "16M", "5 386 шт"],
+              ["2", "La Roche-Posay", "LIPIKAR AP+M Липидовосполняющий бальзам", "17 077 ₸", "12M", "718 шт"],
+              ["3", "ERSAG", "Cleanball masaj kremi 200 мл", "2 284 ₸", "6M", "2 153 шт"],
+              ["4", "La Roche-Posay", "LIPIKAR AP+M бальзам (маленький)", "5 800 ₸", "6M", "1 181 шт"],
+              ["5", "La Sultane de Saba", "Amber Vanilla Patchouli лосьон", "22 980 ₸", "6M", "257 шт"],
+              ["6", "ERSAG", "Cleanball массажный 100 мл", "2 030 ₸", "6M", "2 847 шт"],
+              ["7", "Weleda", "Perineum Oil масло 50 мл", "8 990 ₸", "5M", "652 шт"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>ERSAG (#2, 23M): </strong>Турецкий бренд, сетевой маркетинг (MLM). Продукт — <strong style={{ color: C.text }}>Cleanball массажный крем за 2 030–2 889 ₸</strong>. 10 386 продаж за февраль — по объёму это #1. Рост, вероятно, за счёт сети дистрибьюторов, а не блогеров.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Ценовые сегменты кремов для тела</h3>
+
+            <DataTable headers={["Сегмент", "Медиана цены", "Выручка (фев 2026)", "Доля"]} rows={[
+              ["Низкий", "1 000 ₸", "30M", "8%"],
+              ["Бюджетный", "2 000 ₸", "42M", "11%"],
+              ["Средний", "3 000 ₸", "66M", "17%"],
+              ["Дорогой", "5 000 ₸", "101M", "25%"],
+              ["Премиум", "12 000 ₸", "160M", "40%"],
+            ]} highlight={4} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Рост кремов для тела (+101% YoY: 796M → 1 603M) — <strong style={{ color: C.text }}>системный, а не за счёт одного бренда</strong>. Количество продавцов выросло +67%, брендов +53% — в нишу массово заходят новые игроки. Лидеры: <strong style={{ color: C.text }}>La Roche-Posay (26M, аптечный, Lipikar бальзам 5 800–17 077 ₸)</strong>, <strong style={{ color: C.text }}>ERSAG (23M, сетевой/MLM, Cleanball массажный крем 2 030–2 889 ₸)</strong>, <strong style={{ color: C.text }}>APOLLONIA (13M, парфюмированные кремы 2 790 ₸)</strong>. Ценовой тренд: <strong style={{ color: C.text }}>дорогой + премиум = 65% рынка</strong> (медиана 5 000–12 000 ₸). Люди платят за body care как за уход за лицом. Рост связан не с одним блогером, а с <strong style={{ color: C.text }}>общим трендом «уход за телом = новая норма»</strong> + расширение предложения на Kaspi. По тональным (+5%) — вы правы: категория зрелая, все кто пользовался — продолжают, прирост минимальный.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
