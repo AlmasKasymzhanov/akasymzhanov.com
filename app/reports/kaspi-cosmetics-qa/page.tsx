@@ -281,6 +281,144 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 3 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 3</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «И ценовой сегмент того или иного товара. То есть, вот допустим, если это уходовая, например, я вижу, что вы по уходке отметили Dr. Althea в лидерах, окей, например, категории сыворотки/крема — если Dr. Althea, окей, вот он лидер, но с какой именно позицией? То есть это витамин С, так как название, или какая ценовая политика у него? И также, вот например, декоративная косметика — вот лидер, это допустим тушь, тушь Maybelline, или там это румяна, допустим, бренда Sen Sulu — и какой ценовой барьер у него, значит, там розница у него 8 500, типа такого.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цены и выручка — за <strong style={{ color: C.text }}>февраль 2026</strong>. Цены = розничная цена на Kaspi.kz на момент среза данных. Источник: RedStat.kz, верифицировано повторно в апреле 2026.</div>
+            </div>
+
+            <p style={sP}>Ниже — по каждому бренду-лидеру: <strong style={{ color: C.text }}>конкретное название товара</strong>, <strong style={{ color: C.text }}>объём/формат</strong>, <strong style={{ color: C.text }}>розничная цена</strong>, выручка и количество продаж.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>УХОДОВАЯ КОСМЕТИКА — лидеры с ценами</h3>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "20px 0 12px" }}>Dr. Althea — #1 в кремах и сыворотках (142M в феврале 2026)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["345 Relief Cream", "крем, 50 мл", "898 ₸", "39M", "11 360", "4 642"],
+              ["345 Relief Cream (другой продавец)", "крем, 50 мл", "898 ₸", "13M", "3 339", "2 353"],
+              ["345 Cream", "крем, 50 мл", "2 315 ₸", "9M", "1 318", "281"],
+              ["147 Barrier Cream", "крем, 50 мл", "4 999 ₸", "8M", "2 544", "901"],
+              ["345 Relief с ресвератролом", "крем, 50 мл", "941 ₸", "7M", "1 630", "1 625"],
+              ["345 Relief Mist", "мист-спрей, 120 мл", "6 049 ₸", "6M", "927", "139"],
+            ]} highlight={0} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика Dr. Althea: </strong>Основной бестселлер <strong style={{ color: C.text }}>345 Relief = 898–941 ₸</strong> (ультра-бюджетный сегмент). Это восстанавливающий крем с центеллой, не витамин С. Линейка 147 Barrier = 4 999 ₸ (средний сегмент). Мист = 6 049 ₸. Диапазон бренда: <strong style={{ color: C.text }}>898 – 6 049 ₸</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Celimax — #1 в тониках (61M), #3 в кремах (89M)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["Dual Barrier Toner", "тонер, 150 мл", "1 977 ₸", "32M", "6 513"],
+              ["Dual Barrier набор", "набор 4-5 средств", "26 706 ₸", "23M", "825"],
+              ["Dual Barrier Cream", "крем, 50 мл", "1 304 ₸", "15M", "3 182"],
+              ["VitaA Retinol Shot Serum", "сыворотка, 30 мл", "949 ₸", "14M", "3 634"],
+              ["Dual Barrier Toner (другой продавец)", "тонер, 150 мл", "1 948 ₸", "9M", "1 848"],
+              ["Dual Barrier Mild пенка", "пенка, 200 мл", "4 430 ₸", "9M", "1 468"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика Celimax: </strong>Основная линейка Dual Barrier: тонер <strong style={{ color: C.text }}>1 948–1 977 ₸</strong>, крем <strong style={{ color: C.text }}>1 304 ₸</strong>, пенка <strong style={{ color: C.text }}>4 430 ₸</strong>. Ретинол-сыворотка = <strong style={{ color: C.text }}>949 ₸</strong>. Набор = <strong style={{ color: C.text }}>26 706 ₸</strong>. Диапазон: <strong style={{ color: C.text }}>949 – 26 706 ₸</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Round Lab — #2 в умывании (36M)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["1025 Dokdo Cleanser", "пенка, 150 мл", "1 188 ₸", "19M", "7 711"],
+              ["Birch Juice SPF50", "крем SPF, 50 мл", "858 ₸", "9M", "3 074"],
+              ["Birch Juice Cleanser", "пенка, 150 мл", "1 300 ₸", "4M", "1 572"],
+              ["Birch Juice Cream", "крем, 80 мл", "997 ₸", "4M", "1 138"],
+              ["Mugwort Calming Cleanser", "пенка, 150 мл", "3 690 ₸", "3M", "788"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика Round Lab: </strong>Dokdo пенка = <strong style={{ color: C.text }}>1 188 ₸</strong>, Birch Juice SPF = <strong style={{ color: C.text }}>858 ₸</strong>, Birch Juice крем = <strong style={{ color: C.text }}>997 ₸</strong>. Премиум-линейка Mugwort = <strong style={{ color: C.text }}>3 690 ₸</strong>. Диапазон: <strong style={{ color: C.text }}>858 – 3 690 ₸</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>AXIS-Y — #2 в масках, #4 в тониках</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["Dark Spot Correcting Glow Serum", "сыворотка, 50 мл", "853 ₸", "17M", "8 408"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика AXIS-Y: </strong>Бестселлер Dark Spot = <strong style={{ color: C.text }}>853 ₸</strong> (осветляющая сыворотка с ниацинамидом). Ультра-бюджетный сегмент.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "32px 0 16px", borderTop: `1px solid ${C.border}`, paddingTop: 24 }}>ДЕКОРАТИВНАЯ КОСМЕТИКА — лидеры с ценами</h3>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "20px 0 12px" }}>RoRoBell — #1 в тональных (72M в феврале 2026)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["Bfadation тональный крем 21", "тональный крем, 30 мл", "13 160 ₸", "30M", "2 139", "590"],
+              ["Bfadation тональный крем 23", "тональный крем, 30 мл", "13 213 ₸", "21M", "1 537", "545"],
+              ["Bfadation тональный крем 19", "тональный крем, 30 мл", "15 500 ₸", "16M", "1 046", "85"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика RoRoBell: </strong>Один продукт (Bfadation) в 3 оттенках: 21, 23, 19. Цена <strong style={{ color: C.text }}>13 160 – 15 500 ₸</strong>. Дорогой сегмент (медиана тональных = 10K). Суммарно 3 SKU = 67M.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Sen Sulu — #1 в помадах, пудрах, тенях, корректорах</h3>
+            <DataTable headers={["Товар", "Категория", "Розница", "Выручка (фев 2026)", "Продажи"]} rows={[
+              ["Бокс Sen Sulu (полный набор)", "Наборы", "57 899 ₸", "18M", "240"],
+              ["Минеральная пудра V1", "Пудры", "4 799 ₸", "17M", "3 270"],
+              ["Полный набор косметики", "Наборы", "53 000 ₸", "16M", "254"],
+              ["Консилер 01 milk beige", "Корректоры", "3 000 ₸", "11M", "2 861"],
+              ["Консилер 02 light beige", "Корректоры", "3 000 ₸", "11M", "3 296"],
+              ["The Yeon Cover Fit BB SPF36 (01)", "Тональные", "6 026 ₸", "10M", "1 691"],
+              ["Eyebrow Shaper Wax гель", "Брови", "4 300 ₸", "8M", "1 751"],
+              ["Спонж капля", "Аксессуары", "1 284 ₸", "8M", "4 866"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика Sen Sulu: </strong>Консилеры = <strong style={{ color: C.text }}>3 000 ₸</strong>, пудра = <strong style={{ color: C.text }}>4 799 ₸</strong>, BB-крем = <strong style={{ color: C.text }}>6 026 ₸</strong>, гель для бровей = <strong style={{ color: C.text }}>4 300 ₸</strong>. Наборы: <strong style={{ color: C.text }}>53 000 – 57 899 ₸</strong> (премиум). Диапазон: <strong style={{ color: C.text }}>1 284 – 57 899 ₸</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>HOURGLASS — #1 в румянах (30M в феврале 2026)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["Ambient Lighting Edit Unlocked", "палетка (румяна+бронзер+пудра)", "89 900 ₸", "15M", "214", "37"],
+              ["Ambient Lighting Edit Unlocked", "палетка (другой продавец)", "75 000 ₸", "9M", "127", "49"],
+              ["Ambient Lighting Edit Palette", "палетка", "184 500 ₸", "9M", "95", "29"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика HOURGLASS: </strong>Ультра-премиум: <strong style={{ color: C.text }}>75 000 – 184 500 ₸</strong>. Это палетки (румяна + бронзер + пудра в одном). 30M выручки при всего 436 продажах = средний чек <strong style={{ color: C.text }}>~69 000 ₸</strong>. По количеству продаж HOURGLASS = маленький бренд, но #1 по выручке за счёт цены.
+            </div>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Loreal Paris — #1 в туши (23M в феврале 2026)</h3>
+            <DataTable headers={["Товар", "Формат", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["Telescopic Explosion (объём+удлинение)", "тушь", "4 188 ₸", "10M", "2 051", "3 199"],
+              ["Volume Million Lashes Panorama (объём)", "тушь", "5 710 ₸", "3M", "427", "206"],
+              ["Volume Million Lashes Panorama all night", "тушь", "6 037 ₸", "2M", "371", "403"],
+            ]} />
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "8px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовая политика Loreal Paris тушь: </strong>Бестселлер Telescopic Explosion = <strong style={{ color: C.text }}>4 188 ₸</strong> (3 199 отзывов!). Panorama = <strong style={{ color: C.text }}>5 710 – 6 037 ₸</strong>. Диапазон: <strong style={{ color: C.text }}>4 188 – 6 037 ₸</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.green, margin: "32px 0 16px", borderTop: `1px solid ${C.border}`, paddingTop: 24 }}>Сводка: ценовые диапазоны лидеров</h3>
+
+            <DataTable headers={["Бренд", "Категория", "Бестселлер", "Цена бестселлера", "Ценовой диапазон бренда", "Сегмент"]} rows={[
+              ["Dr. Althea", "Кремы #1", "345 Relief Cream 50мл", "898 ₸", "898 – 6 049 ₸", "Бюджетный"],
+              ["Celimax", "Тоники #1", "Dual Barrier Toner 150мл", "1 977 ₸", "949 – 26 706 ₸", "Бюджетный → Набор"],
+              ["Round Lab", "Умывание #2", "1025 Dokdo Cleanser 150мл", "1 188 ₸", "858 – 3 690 ₸", "Бюджетный"],
+              ["AXIS-Y", "Кремы #8", "Dark Spot Serum 50мл", "853 ₸", "853 ₸+", "Бюджетный"],
+              ["RoRoBell", "Тональные #1", "Bfadation крем 30мл", "13 160 ₸", "13 160 – 15 500 ₸", "Дорогой"],
+              ["Sen Sulu", "Декор #1 (5 ниш)", "Консилер 01", "3 000 ₸", "1 284 – 57 899 ₸", "Средний → Премиум"],
+              ["HOURGLASS", "Румяна #1", "Ambient Lighting палетка", "89 900 ₸", "75 000 – 184 500 ₸", "Ультра-премиум"],
+              ["Loreal Paris", "Тушь #1", "Telescopic Explosion", "4 188 ₸", "4 188 – 6 037 ₸", "Средний"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              В уходовой косметике лидеры работают в <strong style={{ color: C.text }}>бюджетном сегменте (853–1 977 ₸)</strong> — Dr. Althea 345 Relief за 898 ₸, Celimax тонер за 1 977 ₸, Round Lab пенка за 1 188 ₸. В декоративке разброс шире: Sen Sulu (консилеры <strong style={{ color: C.text }}>3 000 ₸</strong>, пудра <strong style={{ color: C.text }}>4 799 ₸</strong>), Loreal тушь <strong style={{ color: C.text }}>4 188 ₸</strong>, RoRoBell тональный <strong style={{ color: C.text }}>13 160 ₸</strong>, HOURGLASS румяна <strong style={{ color: C.text }}>75 000–184 500 ₸</strong>.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
