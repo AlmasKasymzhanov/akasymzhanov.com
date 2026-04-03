@@ -1487,6 +1487,105 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 17 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 17</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Дезодоранты — есть медицинские корейские дезодоранты. Из 196M какую долю занимают корейские? Средства для душа — сколько корейские (Round Lab гель)? Скрабы для тела — кто лидер и какая доля корейских? The Act стоит 1500 тенге — это дешёвый сегмент? Динамика раскрывается, люди потребляют дороже и качественнее? Или всё-таки дешёвый сегмент доминирует?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong>, только Kaspi.kz онлайн.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Дезодоранты (196M) — корейских брендов нет в топ-15</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)", "Тип"]} rows={[
+              ["1", "Vichy", "25M", "2 715", "Медицинский/аптечный (Франция)"],
+              ["2", "Dry Dry", "12M", "1 485", "Медицинский"],
+              ["3", "Just", "11M", "1 268", "Натуральный"],
+              ["4", "Old Spice", "9M", "4 768", "Масс-маркет (P&G)"],
+              ["5", "Rexona", "8M", "5 190", "Масс-маркет (Unilever)"],
+              ["6", "NIVEA", "8M", "5 045", "Масс-маркет"],
+              ["7", "Sinsin", "8M", "6 284", "Локальный КЗ"],
+              ["8", "Excelsior", "7M", "1 041", "Медицинский"],
+              ["9", "Без бренда", "6M", "1 706", "—"],
+              ["10", "ECO DRY", "6M", "2 641", "Медицинский"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.red }}>Корейских дезодорантов в топ-15 нет.</strong> Ниша полностью занята медицинскими/аптечными (Vichy, Dry Dry, ECO DRY) и масс-маркет глобальными (Old Spice, Rexona, NIVEA). Корейские дезодоранты на Kaspi — ниже порога видимости (&lt;5M).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Средства для душа (159M) — корейских в топ-10 тоже нет</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)", "Тип"]} rows={[
+              ["1", "Bioderma", "16M", "1 184", "Аптечный (Франция)"],
+              ["2", "La Roche-Posay", "8M", "640", "Аптечный (Франция)"],
+              ["3", "Cafe Mimi", "6M", "4 397", "Масс-маркет"],
+              ["4", "Old Spice", "6M", "2 258", "Масс-маркет (P&G)"],
+              ["5", "Avon", "5M", "3 159", "Масс-маркет"],
+              ["6", "Tesori d'Oriente", "4M", "1 131", "Средний (Италия)"],
+              ["7", "Без бренда", "4M", "1 328", "—"],
+              ["8", "URIAGE", "3M", "366", "Аптечный (Франция)"],
+              ["9", "NIVEA", "3M", "1 658", "Масс-маркет"],
+              ["10", "Cosmex", "3M", "1 115", "Локальный"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.red }}>Корейских гелей для душа в топ-10 нет.</strong> Территория аптечных (Bioderma, La Roche-Posay, URIAGE) и масс-маркета (Old Spice, NIVEA, Avon). Round Lab, Celimax и другие корейские бренды — гели для душа на Kaspi не представлены или ниже порога видимости.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Скрабы для тела (36M) — The Act лидирует</h3>
+
+            <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "Заказов (фев 2026)", "Ценовой диапазон", "Тип"]} rows={[
+              ["1", "The Act", "10M", "2 212", "3 000–7 000 ₸", "Локальный КЗ"],
+              ["2", "MIXIT", "3M", "821", "~2 000 ₸", "Российский"],
+              ["3", "WOKALI", "2M", "1 951", "~500 ₸", "Китай (масс-маркет)"],
+              ["4", "Collistar", "2M", "101", "~12 000 ₸", "Италия (премиум)"],
+              ["5", "Cosmavera", "2M", "212", "~3 000 ₸", "Локальный"],
+              ["6", "Compliment", "1M", "650", "~1 000 ₸", "Российский"],
+              ["7", "Sugarlife", "1M", "490", "~1 500 ₸", "Локальный КЗ (OEM)"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.red }}>Корейских скрабов для тела в топ-10 тоже нет.</strong> The Act (#1, 10M) — казахстанский бренд. Бестселлер: набор Грейпфрут + Кокос за 7 000 ₸ (835 продаж).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Ценовой вопрос: дешёвый или дорогой сегмент?</h3>
+
+            <p style={sP}>По скрабам для тела — <strong style={{ color: C.text }}>ценовые сегменты (февраль 2026)</strong>:</p>
+
+            <DataTable headers={["Сегмент", "Медиана цены", "Выручка (фев 2026)", "Доля"]} rows={[
+              ["Низкий", "1 000 ₸", "5M", "15%"],
+              ["Бюджетный", "2 000 ₸", "4M", "11%"],
+              ["Средний", "2 000 ₸", "5M", "13%"],
+              ["Дорогой", "3 000 ₸", "8M", "23%"],
+              ["Премиум", "8 000 ₸", "14M", "39%"],
+            ]} highlight={4} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Ответ на ваш вопрос о динамике: </strong>
+              <strong style={{ color: C.text }}>Да, люди потребляют дороже.</strong> В скрабах для тела: <strong style={{ color: C.text }}>премиум (8 000 ₸+) = 39% выручки</strong> — крупнейший сегмент. Дорогой (3 000 ₸) = 23%. Итого: дорогой + премиум = <strong style={{ color: C.text }}>62% рынка</strong>. Бюджетный (1-2K) = всего 26%. The Act (#1) продаёт наборы за 7 000 ₸ — это не «дешёвый за 1 500 ₸», а средне-дорогой сегмент. Тренд тот же, что и в уходовой косметике: <strong style={{ color: C.text }}>рынок смещается к среднему и дорогому сегменту</strong>.
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              В категориях «уход за телом» (дезодоранты, гели для душа, скрабы) <strong style={{ color: C.text }}>корейских брендов в топ-10 нет ни в одной нише</strong>. Дезодоранты = медицинские (Vichy, Dry Dry) + масс-маркет (Old Spice, Rexona). Гели для душа = аптечные (Bioderma, La Roche-Posay) + масс-маркет. Скрабы = The Act (#1, КЗ). Но ценовая динамика = <strong style={{ color: C.text }}>дорогой + премиум = 62% скрабов</strong>. Люди платят больше. Корейские бренды по телу — это <strong style={{ color: C.text }}>белое пятно на Kaspi</strong>, потенциально интересная ниша при правильном позиционировании.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
