@@ -1673,6 +1673,78 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 19 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 19</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Маски для лица — китайский бренд в лидерах. Какая именно маска — тканевая, гидрогелевая, в баночке? Какой ценовой диапазон? Как товар выглядит? Если это Китай, значит дешёвой ценой берут? Или может быть дорогой и качественный? Можно же сделать аналог и вывести корейский бренд вместо них. По La Roche-Posay для тела — какая именно позиция, что она делает, почему лидер? Наборы — я так понимаю, это Sen Sulu с декоративкой.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong>, только Kaspi.kz онлайн.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Gegemoon (#1 в масках, 13M) — что именно за маска</h3>
+
+            <p style={sP}>Gegemoon — это <strong style={{ color: C.text }}>тканевые маски в пакетиках</strong>, продаются <strong style={{ color: C.text }}>наборами по 10-30 штук</strong>. Ни баночки, ни тюбика, ни гидрогеля — именно классические тканевые sheet masks.</p>
+
+            <DataTable headers={["#", "Товар Gegemoon", "Тип", "Кол-во", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Набор тканевых масок", "Тканевая sheet mask", "10 шт", "828 ₸", "7.6M", "9 284 шт", "1 899", "4.9"],
+              ["2", "New Year Essence маски", "Тканевая", "10 шт", "1 330 ₸", "1.8M", "1 335 шт", "229", "4.9"],
+              ["3", "Gm-1141 маски", "Тканевая", "20 шт", "1 936 ₸", "1.0M", "531 шт", "141", "5.0"],
+              ["4", "Moisturising facial mask", "Тканевая", "10 шт", "829 ₸", "1.0M", "1 075 шт", "184", "5.0"],
+              ["5", "Набор тканевых масок", "Тканевая", "30 шт", "2 695 ₸", "0.4M", "155 шт", "30", "5.0"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Ценовой диапазон: </strong>
+              <strong style={{ color: C.text }}>828–2 695 ₸ за набор 10-30 масок</strong>. Одна маска = <strong style={{ color: C.text }}>83–90 ₸</strong>. Это <strong style={{ color: C.red }}>ультра-бюджетный сегмент</strong>. Для сравнения: одна тканевая маска Mediheal стоит ~500-1 000 ₸. Gegemoon — в 5-10 раз дешевле за штуку.
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Чем берёт Gegemoon: </strong>
+              Цена (83 ₸/маска), количество (10-30 шт в наборе), объём продаж (9 284 шт топ-SKU). Отзывы: 1 959, из них 32 негативных (1.6%). Негатив: «аллергия», «маска порвалась». Позитив: «маски тоньше обычного, но геля больше», «цена супер».
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Возможность: </strong>
+              Вы правы — <strong style={{ color: C.text }}>можно вывести корейскую альтернативу</strong>. Ниша масок = 122M, Gegemoon (#1) = 13M (11%). Остальные 89% = фрагментированы. Корейские тканевые маски (Mediheal, Innisfree) — бренды узнаваемы, продукт проверен. При цене 500–1 000 ₸/маска (средний сегмент vs 83 ₸ Gegemoon) — другое позиционирование: <strong style={{ color: C.text }}>качество и ингредиенты vs массовый объём</strong>.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>La Roche-Posay (#1 в кремах для тела, 26M) — конкретный продукт</h3>
+
+            <DataTable headers={["#", "Товар", "Что делает", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["1", "LIPIKAR AP+M Липидовосполняющий бальзам 400 мл", "Для сухой, атопичной, раздражённой кожи. Восстановление липидного барьера.", "17 077 ₸", "12M", "718 шт", "578"],
+              ["2", "LIPIKAR AP+M бальзам 200 мл", "То же — для сухой/атопичной кожи", "5 800 ₸", "6M", "1 181 шт", "638"],
+              ["3", "LIPIKAR HUILE LAVANTE масло для душа", "Смягчающее очищающее масло для сухой кожи", "12 899 ₸", "3M", "286 шт", "179"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Почему LIPIKAR = лидер: </strong>
+              Это <strong style={{ color: C.text }}>дерматологический бальзам для сухой и атопичной кожи</strong> — не косметический крем, а медицинский уход. Назначается дерматологами. Цена 5 800–17 077 ₸ = аптечный премиум. Не от угрей — от сухости, шелушения, атопического дерматита. Лидирует за счёт <strong style={{ color: C.text }}>рекомендаций врачей + доверия к аптечному бренду</strong>, а не блогеров.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Наборы «Без бренда» (106M) — что это?</h3>
+
+            <p style={sP}>Верно — <strong style={{ color: C.text }}>Sen Sulu = #1 в наборах (127M)</strong> с декоративными боксами. «Без бренда» (106M, #2) — это сборные наборы от разных продавцов (107 SKU, 65 продавцов). Самый продаваемый: <strong style={{ color: C.text }}>душевой набор DRAWSHE 4в1 за 9 900 ₸</strong> (32M, 3 148 продаж). Это не конкретный бренд, а множество продавцов с небрендированными наборами — подарочные на 8 марта и НГ.</p>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Gegemoon = <strong style={{ color: C.text }}>тканевые маски (sheet masks) наборами 10-30 шт за 828–2 695 ₸</strong> (83-90 ₸/шт — ультра-дешёвый). Берёт ценой и объёмом. Корейские маски (Mediheal, 500-1 000 ₸/шт) = другой сегмент, можно конкурировать качеством. La Roche-Posay тело = <strong style={{ color: C.text }}>LIPIKAR AP+M бальзам для атопичной кожи (5 800–17 077 ₸)</strong>, лидирует за счёт врачебных рекомендаций. Наборы = <strong style={{ color: C.text }}>Sen Sulu #1 (127M)</strong>, «Без бренда» #2 (106M) = сборные подарочные наборы.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
