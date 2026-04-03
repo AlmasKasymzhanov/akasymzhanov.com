@@ -1898,6 +1898,96 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 22 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 22</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Вы говорите мониторинг через RedStat. Я заходила, забиваю бренд — он вообще ничего не показывает. Не понимаю, как в вашей системе делать мониторинг. Может, регистрацию какую-то надо пройти, или галочки какие-то ставить. Нам надо сесть и вы должны научить, как заходить и делать анализ.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <p style={sP}>Конечно, проведём обучение. А пока — вот пошаговая инструкция с основными моментами, которые чаще всего вызывают затруднения.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Частая проблема: «ничего не показывает»</h3>
+
+            <div style={{ ...sCard, background: `${C.red}08`, border: `1px solid ${C.red}30`, padding: "16px 20px" }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.red, marginBottom: 8 }}>Причина #1: Регистр поиска</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
+                <div>RedStat чувствителен к регистру. Если вбить <strong style={{ color: C.red }}>«celimax»</strong> (маленькими буквами) — результатов может не быть. Нужно вбивать <strong style={{ color: C.green }}>«Celimax»</strong> (первая буква заглавная) или <strong style={{ color: C.green }}>«CELIMAX»</strong> — так, как бренд записан в карточке товара на Kaspi.</div>
+              </div>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px" }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Причина #2: Бренд записан иначе, чем вы ищете</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
+                <div>Примеры расхождений, которые мы выявили в процессе работы:</div>
+                <div style={{ marginTop: 4, paddingLeft: 16 }}>— <strong style={{ color: C.red }}>«Dr. Althea»</strong> → на Kaspi записан как <strong style={{ color: C.green }}>«Dr. Althea»</strong> (с точкой и пробелом)</div>
+                <div style={{ paddingLeft: 16 }}>— <strong style={{ color: C.red }}>«Mizon»</strong> → на Kaspi есть <strong style={{ color: C.green }}>«MIZON»</strong> (заглавные) и «Mizone» (ноутбуки — другой бренд!)</div>
+                <div style={{ paddingLeft: 16 }}>— <strong style={{ color: C.red }}>«AXIS-Y»</strong> → иногда записан как <strong style={{ color: C.green }}>«AXIS-Y»</strong> (с дефисом), иногда «AXIS»</div>
+                <div style={{ paddingLeft: 16 }}>— <strong style={{ color: C.red }}>«The Yeon»</strong> → продаётся под <strong style={{ color: C.green }}>«Sen Sulu»</strong> и <strong style={{ color: C.green }}>«The YEON»</strong> — два разных бренда на площадке</div>
+                <div style={{ paddingLeft: 16 }}>— <strong style={{ color: C.red }}>«Healthy Place»</strong> → записан как <strong style={{ color: C.green }}>«Без бренда»</strong> в карточке (поле бренда не заполнено)</div>
+                <div style={{ marginTop: 8 }}>Если бренд не находится — попробуйте вбить <strong style={{ color: C.text }}>название конкретного товара</strong> (например, «345 Relief» вместо «Dr. Althea»).</div>
+              </div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Пошаговая инструкция: как найти бренд на RedStat</h3>
+
+            <div style={{ ...sCard, padding: "20px 24px" }}>
+              <div style={{ fontSize: 14, lineHeight: 2.2, color: "#ccc" }}>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 1.</span> Зайдите на <a href="https://redstat.kz" target="_blank" rel="noopener noreferrer" style={{ color: C.accent, textDecoration: "none" }}>redstat.kz</a> и авторизуйтесь (нужна активная подписка).</div>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 2.</span> В разделе поиска — <strong style={{ color: C.text }}>начните с категории</strong>, а не с бренда. Выберите: «Красота и здоровье» → «Уход за лицом» → «Кремы и сыворотки».</div>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 3.</span> Внутри категории — отсортируйте по выручке (от большего к меньшему). Вы увидите топ-бренды.</div>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 4.</span> Для поиска конкретного бренда — вбивайте <strong style={{ color: C.text }}>точное название с правильным регистром</strong>:</div>
+                <div style={{ paddingLeft: 24 }}>— <strong style={{ color: C.green }}>Celimax</strong> (не celimax, не CELIMAX)</div>
+                <div style={{ paddingLeft: 24 }}>— <strong style={{ color: C.green }}>Dr. Althea</strong> (с точкой и пробелом)</div>
+                <div style={{ paddingLeft: 24 }}>— <strong style={{ color: C.green }}>Round Lab</strong> (два слова, маленькие буквы кроме R и L)</div>
+                <div style={{ paddingLeft: 24 }}>— <strong style={{ color: C.green }}>AXIS-Y</strong> (заглавные, с дефисом)</div>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 5.</span> Если бренд не находится — попробуйте <strong style={{ color: C.text }}>поиск по товару</strong>: вбейте название продукта (например, «Dual Barrier Toner» или «345 Relief»).</div>
+                <div><span style={{ color: C.accent, fontWeight: 700 }}>Шаг 6.</span> Выберите период данных — последний доступный месяц (обычно с задержкой 1-2 мес).</div>
+              </div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Шпаргалка: как искать бренды из вашего портфеля</h3>
+
+            <DataTable headers={["Бренд", "Как вбивать в поиск", "Примечание"]} rows={[
+              ["Dr. Althea", "Dr. Althea", "С точкой и пробелом"],
+              ["Celimax", "Celimax", "Первая заглавная"],
+              ["Skin1004", "Skin1004", "Без пробелов"],
+              ["Round Lab", "Round Lab", "Два слова"],
+              ["AXIS-Y", "AXIS-Y", "Заглавные, с дефисом"],
+              ["Anua", "Anua", ""],
+              ["VT Cosmetics", "VT Cosmetics", "VT через пробел"],
+              ["COSRX", "COSRX", "Всё заглавные"],
+              ["Mediheal", "Mediheal", ""],
+              ["Sen Sulu / The Yeon", "Sen Sulu или The Yeon", "Два разных бренда на Kaspi!"],
+              ["MEDI-PEEL", "MEDI-PEEL", "С дефисом, заглавные"],
+              ["Bueno", "Bueno", "Не путать с KINDER Bueno — ищите по товару: Pure Moonlight"],
+              ["Bohicare", "Bohicare", "Маленькими (как в карточке)"],
+              ["TFIT", "TFIT", "Заглавные"],
+              ["Mizon", "MIZON", "Заглавные (не Mizon — это ноутбуки)"],
+              ["Beplain", "Beplain", "Первая заглавная"],
+              ["Skinfood", "Skinfood", "Слитно"],
+              ["Treecell", "Treecell", ""],
+              ["Moda Moda", "Moda Moda", "Два слова"],
+              ["Healthy Place", "Поиск по товару: Healthy Place стик", "Бренд записан как «Без бренда»"],
+              ["DR.PLINUS", "DR.PLINUS", "Заглавные, с точкой"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Основная причина «ничего не показывает» — <strong style={{ color: C.text }}>регистр и написание бренда</strong>. На Kaspi бренды записаны по-разному: «MIZON» (не «Mizon»), «Dr. Althea» (с точкой), «AXIS-Y» (с дефисом). Если бренд не находится — вбивайте <strong style={{ color: C.text }}>название товара</strong> вместо бренда. Мы готовы провести обучение — покажем на экране, как искать каждый из ваших 21 бренда.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
