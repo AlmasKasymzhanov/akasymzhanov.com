@@ -906,6 +906,84 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 9 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 9</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Есть ещё один бренд — DR.PLINUS. Вы его не вывели на Kaspi, но я знаю, что в офлайне он сейчас неплохо качает. Но на Kaspi, раз вы не вывели в топ-10, значит он там не качает. Дайте мне выборку по DR.PLINUS. Сколько у него оборотка и с какой именно позиции он лидер в своих продажах? У них есть, кажется, пенка, тонер и крем. И что именно у него больше продаётся?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры — за <strong style={{ color: C.text }}>февраль 2026</strong>, только <strong style={{ color: C.text }}>Kaspi.kz онлайн</strong>. Источник: RedStat.kz.</div>
+            </div>
+
+            <p style={sP}>DR.PLINUS на Kaspi присутствует и продаётся — просто не попал в топ-10 отдельных категорий (кремы, тоники, умывание), потому что его выручка распределена по нескольким категориям. Вот полная картина.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>DR.PLINUS — общие показатели на Kaspi (февраль 2026)</h3>
+
+            <div style={{ display: "flex", gap: 12, flexWrap: "wrap", marginBottom: 16 }}>
+              <div style={{ ...sCard, padding: "14px 18px", flex: 1, minWidth: 130 }}><div style={{ fontSize: 11, color: C.dim }}>Суммарная выручка</div><div style={{ fontSize: 20, fontWeight: 700, color: C.green }}>55M KZT</div><div style={{ fontSize: 11, color: C.dim }}>в феврале 2026</div></div>
+              <div style={{ ...sCard, padding: "14px 18px", flex: 1, minWidth: 130 }}><div style={{ fontSize: 11, color: C.dim }}>Продажи</div><div style={{ fontSize: 20, fontWeight: 700 }}>4 614 шт</div><div style={{ fontSize: 11, color: C.dim }}>в феврале 2026</div></div>
+              <div style={{ ...sCard, padding: "14px 18px", flex: 1, minWidth: 130 }}><div style={{ fontSize: 11, color: C.dim }}>Уникальных SKU</div><div style={{ fontSize: 20, fontWeight: 700 }}>9</div><div style={{ fontSize: 11, color: C.dim }}>позиций</div></div>
+              <div style={{ ...sCard, padding: "14px 18px", flex: 1, minWidth: 130 }}><div style={{ fontSize: 11, color: C.dim }}>Средний рейтинг</div><div style={{ fontSize: 20, fontWeight: 700, color: C.green }}>4.9</div><div style={{ fontSize: 11, color: C.dim }}>все позиции</div></div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Все 9 позиций DR.PLINUS — от лидера к наименьшему</h3>
+
+            <DataTable headers={["#", "Товар", "Тип", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["1", "Z Cure Cream", "крем, 50 мл", "12 499 ₸", "31M", "3 168 шт", "941", "4.9"],
+              ["2", "Z набор (тонер+крем+пенка)", "набор 3в1", "35 000 ₸", "12M", "465 шт", "125", "4.9"],
+              ["3", "Набор тонер+крем", "набор 2в1", "31 951 ₸", "4M", "207 шт", "38", "5.0"],
+              ["4", "Z Pore Toner", "тонер, 200 мл", "10 378 ₸", "4M", "379 шт", "131", "4.9"],
+              ["5", "Z Acne Cleanser", "гель-пенка, 150 мл", "6 499 ₸", "2M", "259 шт", "90", "4.9"],
+              ["6", "Z Cure Cream (другой продавец)", "крем, 50 мл", "9 300 ₸", "1M", "90 шт", "87", "4.9"],
+              ["7", "Z Pore Toner (другой продавец)", "тонер, 200 мл", "27 000 ₸", "0.2M", "22 шт", "6", "4.9"],
+              ["8", "Z Acne Cleanser (другой продавец)", "пенка, 150 мл", "6 819 ₸", "0.2M", "20 шт", "3", "4.9"],
+              ["9", "Комплексный набор", "набор полный", "47 998 ₸", "0.1M", "4 шт", "1", "5.0"],
+            ]} highlight={0} />
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Структура продаж DR.PLINUS</h3>
+
+            <DataTable headers={["Тип продукта", "Выручка (фев 2026)", "Доля", "Продажи", "Ценовой диапазон"]} rows={[
+              ["Z Cure Cream (крем)", "32M", "57%", "3 258 шт", "9 300–12 499 ₸"],
+              ["Наборы (2в1, 3в1, полный)", "17M", "30%", "676 шт", "31 951–47 998 ₸"],
+              ["Z Pore Toner (тонер)", "4M", "7%", "401 шт", "10 378–27 000 ₸"],
+              ["Z Acne Cleanser (пенка)", "2M", "4%", "279 шт", "6 499–6 819 ₸"],
+              ["ИТОГО", "55M", "100%", "4 614 шт", "6 499–47 998 ₸"],
+            ]} highlight={0} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Лидер: </strong><strong style={{ color: C.text }}>Z Cure Cream за 12 499 ₸ = 57% выручки бренда</strong> (31M из 55M). Это многофункциональный восстанавливающий крем для лица и зоны вокруг глаз. 941 отзыв, рейтинг 4.9. Второй драйвер — наборы (30%): набор 3в1 за 35 000 ₸ (12M). Тонер (10 378 ₸, 4M) и пенка (6 499 ₸, 2M) — дополнительные позиции.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Где DR.PLINUS в общем рейтинге?</h3>
+
+            <p style={sP}>55M суммарно — это уровень <strong style={{ color: C.text }}>Skin1004 (55M в кремах)</strong> и <strong style={{ color: C.text }}>La Roche-Posay (55M в кремах)</strong>. Но DR.PLINUS не попадает в топ-10 ни одной отдельной категории, потому что его 55M распределены по 3 категориям (кремы + наборы + тоники + умывание), а не сконцентрированы в одной.</p>
+
+            <DataTable headers={["Для сравнения", "Выручка (фев 2026)", "Количество категорий"]} rows={[
+              ["Dr. Althea (кремы)", "142M", "1 доминантная (кремы)"],
+              ["Celimax (тоники)", "61M", "1 доминантная (тоники)"],
+              ["DR.PLINUS", "55M", "4 категории (крем 32M + наборы 17M + тонер 4M + пенка 2M)"],
+              ["Skin1004 (кремы)", "55M", "1 доминантная (кремы)"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              DR.PLINUS на Kaspi = <strong style={{ color: C.text }}>55M KZT/мес</strong> (февраль 2026), 9 SKU, 4 614 продаж. Лидер — <strong style={{ color: C.text }}>Z Cure Cream за 12 499 ₸</strong> (31M = 57% выручки, 3 168 продаж, 941 отзыв, 4.9). Второй — <strong style={{ color: C.text }}>набор 3в1 за 35 000 ₸</strong> (12M = 22%). Тонер Z Pore (10 378 ₸, 4M = 7%) и пенка Z Acne Cleanser (6 499 ₸, 2M = 4%) — дополнительные. Бренд не попал в топ-10 отдельных категорий, потому что выручка распределена по 4 категориям. Но суммарно 55M — это уровень Skin1004 и La Roche-Posay. Ценовой сегмент: <strong style={{ color: C.text }}>6 499–47 998 ₸</strong> (средний-премиум).
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
