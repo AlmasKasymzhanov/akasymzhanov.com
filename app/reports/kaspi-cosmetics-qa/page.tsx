@@ -890,7 +890,18 @@ export default function CosmeticsQA() {
 
             <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px", marginTop: 16 }}>
               <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Важное уточнение по периоду</div>
-              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>Все цифры в отчёте = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>, <strong style={{ color: C.text }}>только Kaspi.kz онлайн</strong>. Мы приняли замечание — в обновлённом отчёте и на странице Q&A все таблицы теперь содержат явное указание периода в заголовках: «Выручка (фев 2026)», «Заказы (фев 2026)». Офлайн-продажи (магазины, аптеки, дрогери) в данные RedStat не входят.</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
+                <div>Все цифры в отчёте = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>, <strong style={{ color: C.text }}>только Kaspi.kz онлайн</strong>. Офлайн-продажи (магазины, аптеки, дрогери) в данные не входят.</div>
+                <div style={{ marginTop: 8 }}>Замечание принято — <strong style={{ color: C.text }}>основной отчёт обновлён</strong>: все заголовки таблиц теперь содержат явное указание периода. Пример как сейчас выглядит:</div>
+              </div>
+              <DataTable headers={["#", "Бренд", "Выручка (фев 2026)", "SKU", "Продавцов", "Заказов (фев 2026)"]} rows={[
+                ["1", "Dr. Althea", "142M KZT", "62", "67", "28 901"],
+                ["2", "Bioderma", "96M", "60", "31", "11 523"],
+                ["3", "Celimax", "89M", "74", "68", "20 542"],
+              ]} />
+              <div style={{ fontSize: 13, color: "#ccc", marginTop: 8 }}>
+                Обновлённый отчёт: <a href="/reports/kaspi-cosmetics" style={{ color: C.accent, textDecoration: "none", fontWeight: 600 }}>Рынок «Красота и здоровье» на Kaspi.kz →</a>
+              </div>
             </div>
           </div>
         </div>
