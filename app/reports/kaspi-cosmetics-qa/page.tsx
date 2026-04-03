@@ -1428,6 +1428,65 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 16 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 16</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Категория шампуней — посмотрите Embrace. Вы указываете Элин номер один, а Embrace тогда на каком месте? Потому что в офлайне Embrace лидирующие позиции занимает.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Все цифры = <strong style={{ color: C.text }}>февраль 2026</strong>, только Kaspi.kz онлайн.</div>
+            </div>
+
+            <p style={sP}>Этот вопрос подробно разобран в <strong style={{ color: C.text }}>Вопросе 5</strong> выше — здесь краткая сводка с позицией Embrace.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>Embrace в рейтинге шампуней на Kaspi (февраль 2026)</h3>
+
+            <DataTable headers={["Позиция", "Бренд", "Выручка (фев 2026)", "SKU", "Заказов (фев 2026)", "Цена шампуня"]} rows={[
+              ["#1", "elline", "103M", "1", "6 820", "18 000 ₸"],
+              ["#2", "Vichy", "32M", "15", "2 861", "3 000–8 000 ₸"],
+              ["#3", "VOIS", "18M", "4", "1 569", "4 000–7 000 ₸"],
+              ["#4", "KeraSys", "16M", "43", "5 595", "1 000–3 000 ₸"],
+              ["#5", "Без бренда", "15M", "36", "6 267", "разный"],
+              ["#6", "DUCRAY", "14M", "16", "1 686", "4 000–7 000 ₸"],
+              ["#7", "Concept", "14M", "28", "3 345", "1 000–3 000 ₸"],
+              ["#8", "ESTEL", "13M", "40", "2 157", "1 000–3 000 ₸"],
+              ["#9", "Tashe", "13M", "19", "4 328", "2 000–5 000 ₸"],
+              ["#10", "Ederra Lab", "11M", "11", "761", "13 000–21 000 ₸"],
+              ["—", "...", "...", "", "", ""],
+              ["~#11-12", "Embrace", "~10M", "8", "~660", "12 100–18 300 ₸"],
+            ]} highlight={11} />
+
+            <p style={sP}><strong style={{ color: C.text }}>Embrace = ~#11-12 в шампунях на Kaspi</strong> (~10M, за пределами топ-10). Для попадания в топ-10 нужно ~11M+.</p>
+
+            <DataTable headers={["Товар Embrace", "Формат", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Рейтинг"]} rows={[
+              ["Voluminaire шампунь", "550 мл", "18 300 ₸", "2M", "143 шт", "92", "4.9"],
+              ["Revital шампунь", "550 мл", "18 300 ₸", "1M", "81 шт", "77", "4.8"],
+              ["Voluminaire шампунь (мини)", "250 мл", "12 100 ₸", "1M", "64 шт", "91", "4.6"],
+              ["Кондиционер Voluminaire", "550 мл", "20 100 ₸", "2M", "84 шт", "44", "4.9"],
+              ["Silkglow сыворотка", "220 мл", "11 500 ₸", "1M", "86 шт", "62", "4.8"],
+              ["DUO набор", "набор", "25 300 ₸", "1M", "32 шт", "10", "5.0"],
+              ["Shinerestore масло", "50 мл", "8 600 ₸", "1M", "89 шт", "79", "4.9"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              <strong style={{ color: C.text }}>Embrace = ~#11-12 в шампунях на Kaspi</strong> (~10M в феврале 2026, ~660 продаж). Ценовой сегмент 12 100–18 300 ₸ (премиум, как elline и Ederra Lab). В онлайне — значительно слабее, чем в офлайне. Рейтинги хорошие (4.6–4.9), но мало отзывов (max 92 на топ-SKU) — это ограничивает конверсию на Kaspi.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
