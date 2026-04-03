@@ -700,6 +700,107 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 7 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 7</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Касательно наборов — меня тоже интересует. Я видела, вы выборку сделали, но дорогого сегмента — вы указали, что 43 процента выручки. А что именно в дорогом сегменте? Вы указали Sen Sulu — я знаю, что на Новый год у них был ажиотаж по новогодним боксам, весенние боксы их тоже шли, но не в такой мере. Я даже знаю, какое количество было произведено на Казахстан. Тогда кто в этом люкс-сегменте? Кто это — допустим, это может быть Charlotte Tilbury наборы, или что именно конкретно?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Выручка, продажи, цены — за <strong style={{ color: C.text }}>февраль 2026</strong>. Ценовые сегменты — за <strong style={{ color: C.text }}>февраль 2026</strong>. Источник: RedStat.kz.</div>
+            </div>
+
+            <p style={sP}>Разберём подробно, что составляет эти 43% (371M KZT) в премиум-сегменте наборов.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "24px 0 16px" }}>Ценовые сегменты наборов (февраль 2026)</h3>
+
+            <DataTable headers={["Сегмент", "Ценовой диапазон", "Медиана", "Выручка (фев 2026)", "Доля", "SKU"]} rows={[
+              ["Низкий", "0–23K ₸", "2K ₸", "64M", "7%", "1 003"],
+              ["Бюджетный", "2–19K ₸", "5K ₸", "87M", "10%", "975"],
+              ["Средний", "3–33K ₸", "9K ₸", "167M", "19%", "964"],
+              ["Дорогой", "3–53K ₸", "15K ₸", "172M", "20%", "948"],
+              ["Премиум", "11–499K ₸", "34K ₸", "371M", "43%", "982"],
+            ]} highlight={4} />
+
+            <p style={sP}><strong style={{ color: C.text }}>Премиум (от 11K до 499K ₸, медиана 34K) = 371M из 862M</strong> — действительно 43%. Теперь — кто конкретно формирует эти 371M.</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Топ-20 конкретных наборов на Kaspi по выручке</h3>
+
+            <DataTable headers={["#", "Бренд", "Набор", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы"]} rows={[
+              ["1", "Без бренда", "Душевой набор DRAWSHE 4в1", "9 900 ₸", "32M", "3 148 шт", "1 080"],
+              ["2", "Celimax", "Dual Barrier набор (уход за лицом)", "26 706 ₸", "23M", "825 шт", "609"],
+              ["3", "Sen Sulu", "Бокс Sen Sulu (декор. косметика)", "57 899 ₸", "18M", "240 шт", "33"],
+              ["4", "Skin1004", "Madagascar Centella Set (уход)", "8 999 ₸", "17M", "1 142 шт", "911"],
+              ["5", "Sen Sulu", "Полный набор косметики", "53 000 ₸", "16M", "254 шт", "40"],
+              ["6", "Amennissa", "01 полный набор декор. косметики", "23 000 ₸", "15M", "673 шт", "69"],
+              ["7", "DR.PLINUS", "DR.PLINUS Z набор (уход за лицом)", "35 000 ₸", "12M", "465 шт", "125"],
+              ["8", "Sugarlife", "Карбокситерапия 3 этапа (уход)", "7 900 ₸", "11M", "1 873 шт", "1 032"],
+              ["9", "Sen Sulu", "Лимитированный maxi бокс", "57 882 ₸", "7M", "96 шт", "12"],
+              ["10", "Sen Sulu", "Beauty box (декор.)", "42 000 ₸", "7M", "157 шт", "85"],
+              ["11", "Sen Sulu", "Полный набор (декор.)", "53 708 ₸", "7M", "121 шт", "14"],
+              ["12", "Sen Sulu", "Бьюти-бокс (декор.)", "49 700 ₸", "7M", "128 шт", "46"],
+              ["13", "Sen Sulu", "Beauty box (другой формат)", "43 999 ₸", "7M", "158 шт", "33"],
+              ["14", "HOSH", "For All Skin Types (уход)", "29 900 ₸", "6M", "250 шт", "191"],
+              ["15", "Celimax", "Retinol Shot набор (уход)", "4 999 ₸", "6M", "564 шт", "209"],
+            ]} />
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.pink, margin: "28px 0 16px" }}>Кто формирует премиум-сегмент наборов (43%)?</h3>
+
+            <div style={{ fontSize: 13, lineHeight: 2, color: "#ccc", marginBottom: 16 }}>
+              <div><strong style={{ color: C.text }}>1. Sen Sulu — главный игрок:</strong> 7 SKU наборов в топ-15 (боксы 42 000–57 899 ₸). Суммарно ~127M в категории наборов = <strong style={{ color: C.text }}>15% всех наборов</strong>. Как вы правильно отметили — новогодние боксы = основной драйвер.</div>
+              <div><strong style={{ color: C.text }}>2. «Без бренда»:</strong> 106M (набор DRAWSHE 4в1 за 9 900 ₸ = 32M только один SKU). Это сборные наборы от разных продавцов.</div>
+              <div><strong style={{ color: C.text }}>3. Celimax:</strong> 41M (Dual Barrier набор 26 706 ₸ = 23M). Уходовые наборы.</div>
+              <div><strong style={{ color: C.text }}>4. Skin1004:</strong> 40M (Madagascar Set 8 999 ₸ = 17M). Уходовые наборы.</div>
+              <div><strong style={{ color: C.text }}>5. Amennissa:</strong> 29M (набор декор. косметики 23 000 ₸)</div>
+              <div><strong style={{ color: C.text }}>6. Ederra Lab:</strong> 28M (наборы hair care 13 000–21 000 ₸)</div>
+              <div><strong style={{ color: C.text }}>7. DR.PLINUS:</strong> 12M (уходовый набор 35 000 ₸)</div>
+              <div><strong style={{ color: C.text }}>8. HOSH:</strong> 6M (уходовый набор 29 900 ₸)</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.amber, margin: "28px 0 16px" }}>А где люкс-бренды? Charlotte Tilbury, Dior, CHANEL?</h3>
+
+            <DataTable headers={["Люкс-бренд", "Наборы на Kaspi", "Выручка наборов (фев 2026)", "Позиция в рейтинге наборов"]} rows={[
+              ["Charlotte Tilbury", "Pillow Talk Dreams Come True — 259 983 ₸", "~3M", "Не в топ-20"],
+              ["Dior", "Не найдены в категории наборов", "0", "—"],
+              ["CHANEL", "Не найдены в категории наборов", "0", "—"],
+              ["Estee Lauder", "Не найдены в категории наборов", "0", "—"],
+              ["Lancome", "Не найдены в категории наборов", "0", "—"],
+              ["MAC", "Не найдены в категории наборов", "0", "—"],
+              ["Clinique", "Не найдены в категории наборов", "0", "—"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.amber}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.amber }}>Важно: </strong>Люкс-бренды (Charlotte Tilbury, Dior, CHANEL) <strong style={{ color: C.text }}>практически не представлены в категории наборов на Kaspi</strong>. Charlotte Tilbury есть один набор за 260K ₸ (~3M выручки, 11 продаж за месяц). Остальные люксовые дома — наборов на Kaspi нет вообще. Люкс-наборы продаются преимущественно <strong style={{ color: C.text }}>в офлайне</strong> (бутики, duty free, дрогери), а не на маркетплейсе.
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Итого: структура премиум-наборов на Kaspi</h3>
+
+            <DataTable headers={["Тип наборов", "Бренды", "Ценовой диапазон", "Доля в премиуме"]} rows={[
+              ["Декоративные боксы", "Sen Sulu, Amennissa", "23 000–58 000 ₸", "Основная часть (~60%)"],
+              ["Уходовые наборы", "Celimax, Skin1004, DR.PLINUS, HOSH", "5 000–35 000 ₸", "~25%"],
+              ["Hair care наборы", "Ederra Lab", "13 000–21 000 ₸", "~10%"],
+              ["Сборные наборы", "Без бренда, разные продавцы", "5 000–15 000 ₸", "~5%"],
+              ["Люкс", "Charlotte Tilbury (единственный)", "260 000 ₸", "< 1%"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              43% премиум-наборов (371M) — это <strong style={{ color: C.text }}>не люкс-бренды</strong>. Это: <strong style={{ color: C.text }}>Sen Sulu декоративные боксы</strong> (42–58K ₸, ~70M суммарно), <strong style={{ color: C.text }}>Celimax уходовые наборы</strong> (27K, 23M), <strong style={{ color: C.text }}>Amennissa декоративные наборы</strong> (23K, 15M), <strong style={{ color: C.text }}>DR.PLINUS</strong> (35K, 12M), <strong style={{ color: C.text }}>Ederra Lab hair care</strong> (13–21K, 28M). Charlotte Tilbury — единственный люксовый бренд в наборах на Kaspi (1 набор за 260K ₸, ~3M = менее 1% премиум-сегмента). Dior, CHANEL, Estee Lauder, Lancome, MAC, Clinique — <strong style={{ color: C.text }}>наборов на Kaspi не размещают</strong>. Люкс-наборы продаются офлайн.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
