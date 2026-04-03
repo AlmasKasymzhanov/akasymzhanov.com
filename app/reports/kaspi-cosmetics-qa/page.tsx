@@ -801,6 +801,100 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 8 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 8</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Я вижу тут аналитику — тут не написано, это продажа одного месяца или двух, конкретизации нету. Вижу Dr. Althea 142 миллиона, сколько продавцов и заказов. Но за какой это период — непонятно. Если Dr. Althea лидер — с какой именно позицией? Крем 345? Тогда в этих 142M крем 345 на какую сумму? Вы указываете AXIS-Y, потом Round Lab. Мы дистрибьюторы AXIS-Y и Round Lab. Если учитывать, что вы показываете, что AXIS-Y больше продаётся на Kaspi, а Round Lab меньше, то фактически если брать общие продажи — офлайн, онлайн, всего по Казахстану — у нас, наоборот, Round Lab в лидерах. У Round Lab SKU очень много. У AXIS-Y — средний, у Dr. Althea только одна-две позиции топ-лидера, остальное по чуть-чуть. У них 345-й стреляет, его много магазинов продают.»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Период данных</div>
+              <div style={{ fontSize: 13, color: "#ccc" }}>Таблица из скриншота — за <strong style={{ color: C.text }}>1 месяц (февраль 2026)</strong>. 142M = выручка Dr. Althea за один месяц в категории «Кремы и сыворотки» на Kaspi.kz. <strong style={{ color: C.text }}>Только онлайн-продажи Kaspi</strong>, без офлайна. Источник: RedStat.kz. Мы обновили отчёт — период теперь указан явно в заголовках таблиц.</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>1. Dr. Althea 142M — разбивка по позициям</h3>
+
+            <p style={sP}>Из 142M выручки Dr. Althea в кремах за февраль 2026 — вот сколько приходится на каждую позицию:</p>
+
+            <DataTable headers={["#", "Позиция", "Тип товара", "Розница", "Выручка (фев 2026)", "Продажи", "Отзывы", "Доля от 142M"]} rows={[
+              ["1", "345 Relief Cream", "крем с центеллой, 50 мл", "898 ₸", "39M", "11 360 шт", "4 642", "27%"],
+              ["2", "345 Relief Cream (др. продавец)", "крем с центеллой, 50 мл", "898 ₸", "13M", "3 339 шт", "2 353", "9%"],
+              ["3", "345 Cream", "крем, 50 мл", "2 315 ₸", "9M", "1 318 шт", "281", "6%"],
+              ["4", "345 с ресвератролом", "крем, 50 мл", "941 ₸", "7M", "1 630 шт", "1 625", "5%"],
+              ["5", "345 Relief Cream Mist", "мист-спрей, 120 мл", "6 049 ₸", "6M", "927 шт", "139", "4%"],
+              ["6", "345 Relief Cream Mist 60ml", "мист, 60 мл", "3 989 ₸", "6M", "1 376 шт", "—", "4%"],
+              ["7", "345 Resveratrol Intensive Repair", "крем, 50 мл", "3 690 ₸", "6M", "1 553 шт", "—", "4%"],
+              ["—", "Итого линейка 345", "—", "—", "85M", "~21 500 шт", "—", "60%"],
+              ["8", "147 Barrier Cream", "крем, 50 мл", "4 999 ₸", "8M", "2 544 шт", "901", "6%"],
+              ["—", "Остальные SKU", "—", "—", "~49M", "—", "—", "34%"],
+            ]} highlight={7} />
+
+            <div style={{ borderLeft: `3px solid ${C.blue}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.blue }}>Подтверждение: </strong>Ваше наблюдение <strong style={{ color: C.text }}>абсолютно верное</strong>: 345-й крем = <strong style={{ color: C.text }}>85M из 142M (60%)</strong> выручки Dr. Althea. Одна позиция (345 Relief за 898 ₸) = 39M сама по себе. Это действительно «одна-две позиции топ-лидера, остальное по чуть-чуть».
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>2. AXIS-Y vs Round Lab — детальное сравнение на Kaspi</h3>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "20px 0 12px" }}>AXIS-Y — 8 уникальных SKU на Kaspi (февраль 2026)</h3>
+            <DataTable headers={["#", "Позиция", "Розница", "Выручка (фев 2026)", "Продажи", "Категория"]} rows={[
+              ["1", "Dark Spot Correcting Glow Serum 50мл", "853 ₸", "18M", "8 373 шт", "Кремы и сыворотки"],
+              ["2", "Dark Spot Correcting Toner 125мл", "1 874 ₸", "7M", "2 212 шт", "Тоники"],
+              ["3", "Mugwort Pore Clarifying глиняная маска", "5 969 ₸", "6M", "943 шт", "Маски для лица"],
+              ["4", "TXA 2.5% Brightening Cream", "6 484 ₸", "6M", "837 шт", "Кремы и сыворотки"],
+              ["5", "Vegan Collagen Eye Serum", "1 300 ₸", "5M", "2 128 шт", "Кремы и сыворотки"],
+              ["6", "Dark Spot Correcting набор", "28 500 ₸", "4M", "138 шт", "Наборы"],
+              ["7", "Dark Spot Correcting набор (мини)", "9 706 ₸", "4M", "197 шт", "Наборы"],
+              ["8", "Dark Spot Serum (другой продавец)", "879 ₸", "4M", "2 558 шт", "Кремы и сыворотки"],
+            ]} />
+            <p style={sP}>Итого: <strong style={{ color: C.text }}>8 уникальных SKU</strong>, суммарно ~55M (через SKU-суммирование). Основной драйвер — <strong style={{ color: C.text }}>Dark Spot Serum (18M = 33%)</strong> — одна позиция, как и у Dr. Althea.</p>
+
+            <h3 style={{ fontSize: 15, fontWeight: 700, color: C.text, margin: "24px 0 12px" }}>Round Lab — 8+ уникальных SKU на Kaspi (февраль 2026)</h3>
+            <DataTable headers={["#", "Позиция", "Розница", "Выручка (фев 2026)", "Продажи", "Категория"]} rows={[
+              ["1", "1025 Dokdo Cleanser 150мл (пенка)", "1 188 ₸", "19M", "7 711 шт", "Умывание"],
+              ["2", "Birch Juice SPF50 крем", "858 ₸", "9M", "3 074 шт", "Кремы и сыворотки"],
+              ["3", "Birch Juice Cleanser 150мл (пенка)", "1 300 ₸", "4M", "1 572 шт", "Умывание"],
+              ["4", "Birch Juice Cream 80мл", "997 ₸", "4M", "1 138 шт", "Кремы и сыворотки"],
+              ["5", "Mugwort Calming Cleanser 150мл", "3 690 ₸", "3M", "788 шт", "Умывание"],
+              ["6", "1025 Dokdo тонер 200мл", "1 500 ₸", "3M", "1 129 шт", "Тоники"],
+              ["7", "1025 Dokdo гидрофильное масло 200мл", "2 499 ₸", "2M", "555 шт", "Умывание"],
+              ["8", "Soybean Panthenol крем 80мл", "6 263 ₸", "2M", "257 шт", "Кремы и сыворотки"],
+            ]} />
+            <p style={sP}>Итого: <strong style={{ color: C.text }}>8+ уникальных SKU</strong>, суммарно ~46M (через SKU-суммирование). Ассортимент <strong style={{ color: C.text }}>шире</strong>: 3 линейки (Dokdo, Birch Juice, Mugwort), 4 категории (умывание, кремы, тоники, масла).</p>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Сравнительная таблица</h3>
+
+            <DataTable headers={["Метрика", "Dr. Althea", "AXIS-Y", "Round Lab"]} rows={[
+              ["Выручка на Kaspi (фев 2026)", "142M (кремы)", "78M (все категории)", "86M (все категории)"],
+              ["Уникальных SKU (топ)", "7-8", "8", "8+"],
+              ["Концентрация на 1 SKU", "345 Relief = 60% выручки", "Dark Spot = 33%", "Dokdo = 22%"],
+              ["Количество линеек", "2 (345, 147)", "3 (Dark Spot, Mugwort, TXA)", "3 (Dokdo, Birch Juice, Mugwort)"],
+              ["Категории присутствия", "Кремы (доминант)", "Кремы, тоники, маски, наборы", "Умывание, кремы, тоники, масла"],
+              ["Ценовой диапазон", "898–6 049 ₸", "853–28 500 ₸", "858–6 263 ₸"],
+              ["Средний чек бестселлера", "898 ₸", "853 ₸", "1 188 ₸"],
+            ]} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Подтверждение вашего наблюдения: </strong>
+              <strong style={{ color: C.text }}>Round Lab действительно имеет более широкий ассортимент</strong> (Dokdo = 22% выручки vs Dark Spot AXIS-Y = 33% vs 345 Relief Dr. Althea = 60%). То есть <strong style={{ color: C.text }}>Round Lab менее зависим от одного хита</strong> — продажи распределены по линейкам. На Kaspi AXIS-Y чуть опережает Round Lab (78M vs 86M — разница 10%), но <strong style={{ color: C.text }}>Round Lab шире и стабильнее</strong>. А с учётом офлайна (который не входит в наши данные) — ваше наблюдение о лидерстве Round Lab в общих продажах по Казахстану полностью логично.
+            </div>
+
+            <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px", marginTop: 16 }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Важное уточнение по периоду</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>Все цифры в отчёте = <strong style={{ color: C.text }}>один месяц (февраль 2026)</strong>, <strong style={{ color: C.text }}>только Kaspi.kz онлайн</strong>. Мы приняли замечание — в обновлённом отчёте и на странице Q&A все таблицы теперь содержат явное указание периода в заголовках: «Выручка (фев 2026)», «Заказы (фев 2026)». Офлайн-продажи (магазины, аптеки, дрогери) в данные RedStat не входят.</div>
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
