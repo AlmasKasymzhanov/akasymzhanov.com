@@ -1303,6 +1303,61 @@ export default function CosmeticsQA() {
           </div>
         </div>
 
+        {/* ═══ ВОПРОС 14 ═══ */}
+        <div style={{ marginBottom: 56 }}>
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.amber}`, background: `${C.amber}08` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.amber)}>Вопрос 14</span>
+            </div>
+            <p style={{ fontSize: 15, fontWeight: 600, color: C.text, margin: 0, lineHeight: 1.7 }}>
+              «Вы указали период ноябрь-февраль — это за 4 месяца? RoRoBell лидировал все эти полгода или выстрелил только последние два месяца? Потому что по общей аналитике я вижу, что он выстрелил только последние два месяца. The Yeon — я знаю количественно, сколько зашло в Казахстан. BB Mizon тоже знаю. И ещё — кто топ-10 магазинов по продажам косметики на Kaspi? Какие именно магазины (ИП или названия)?»
+            </p>
+          </div>
+
+          <div style={{ ...sCard, borderLeft: `4px solid ${C.green}` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 16 }}>
+              <span style={sBadge(C.green)}>Ответ</span>
+            </div>
+
+            <div style={{ ...sCard, background: `${C.blue}08`, border: `1px solid ${C.blue}30`, padding: "14px 18px", marginBottom: 16 }}>
+              <div style={{ fontSize: 12, color: C.blue, fontWeight: 600, marginBottom: 4 }}>Уточнение по периоду</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>«Ноябрь 2024 — Февраль 2026» в шапке отчёта = <strong style={{ color: C.text }}>полный диапазон данных (16 месяцев)</strong>, а не 4. Это значит: у нас есть помесячные данные за <strong style={{ color: C.text }}>каждый месяц</strong> с ноября 2024 по февраль 2026. Таблицы в отчёте = срез за <strong style={{ color: C.text }}>один месяц — февраль 2026</strong>. YoY-сравнение = сумма за ноя-фев 2024/25 vs ноя-фев 2025/26 (4+4 месяца).</div>
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "20px 0 16px" }}>RoRoBell — помесячная динамика в тональных</h3>
+
+            <p style={sP}>Вы <strong style={{ color: C.green }}>абсолютно правы</strong> — RoRoBell выстрелил недавно:</p>
+
+            <DataTable headers={["Месяц", "RoRoBell", "MISSHA", "Sen Sulu / The Yeon", "Комментарий"]} rows={[
+              ["Ноябрь 2024", "0 (нет данных)", "17M", "0 (нет данных)", "RoRoBell и Sen Sulu ещё нет на Kaspi"],
+              ["Февраль 2025", "0", "17M", "0", ""],
+              ["Май 2025", "16M (появление!)", "19M", "0", "RoRoBell выходит на Kaspi, 2 SKU"],
+              ["Август 2025", "0*", "23M", "0", "*Возможно, временный спад/перезапуск"],
+              ["Ноябрь 2025", "18M", "20M", "14M (появление!)", "Оба бренда активны, Sen Sulu тоже выходит"],
+              ["Декабрь 2025", "51M (НГ пик!)", "—", "—", "RoRoBell взрывной рост x2.8 за месяц"],
+              ["Январь 2026", "35M", "—", "—", "Коррекция после НГ"],
+              ["Февраль 2026", "72M (рекорд!)", "18M", "18M", "RoRoBell = #1, MISSHA и Sen Sulu стабильны"],
+            ]} highlight={7} />
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "16px 0", fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Подтверждение вашего наблюдения: </strong><strong style={{ color: C.text }}>RoRoBell появился на Kaspi только в мае 2025</strong> (16M), затем исчез в августе, вернулся в ноябре (18M) и <strong style={{ color: C.text }}>взорвался в декабре 2025 — феврале 2026</strong> (51M → 72M). Это действительно «последние 2-3 месяца выстрелил». До этого MISSHA был стабильным лидером BB-сегмента (17-23M все 16 месяцев).
+            </div>
+
+            <h3 style={{ fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" }}>Топ-10 магазинов по продажам косметики на Kaspi</h3>
+
+            <div style={{ ...sCard, background: `${C.amber}08`, border: `1px solid ${C.amber}30`, padding: "16px 20px" }}>
+              <div style={{ fontSize: 13, fontWeight: 600, color: C.amber, marginBottom: 8 }}>Ограничение аналитической системы</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>RedStat.kz предоставляет данные по <strong style={{ color: C.text }}>брендам, категориям, SKU и отзывам</strong>, но <strong style={{ color: C.red }}>не отдаёт рейтинг продавцов (магазинов)</strong>. Топ-10 магазинов по продажам — эту информацию нельзя получить через текущую аналитическую систему. Для рейтинга продавцов нужен доступ к данным уровня Kaspi Seller Analytics или альтернативного сервиса, который отслеживает продавцов, а не только товары.</div>
+              <div style={{ fontSize: 13, color: "#ccc", marginTop: 8 }}>По <strong style={{ color: C.text }}>Wildberries</strong> — MPStats предоставляет данные по продавцам (эндпоинт /sellers). Если нужен рейтинг WB-продавцов, мы можем его подготовить отдельно.</div>
+            </div>
+
+            <div style={{ borderLeft: `3px solid ${C.green}`, paddingLeft: 14, margin: "20px 0", fontSize: 14, color: "#ccc", lineHeight: 1.6 }}>
+              <strong style={{ color: C.green }}>Короткий ответ: </strong>
+              Период в отчёте = <strong style={{ color: C.text }}>16 месяцев данных (ноя 2024 — фев 2026)</strong>, таблицы = срез за <strong style={{ color: C.text }}>февраль 2026</strong>. RoRoBell — <strong style={{ color: C.text }}>выстрелил действительно недавно</strong>: появился в мае 2025, взорвался в декабре 2025 (51M), рекорд в феврале 2026 (72M). До этого лидировал MISSHA (17-23M стабильно). Sen Sulu / The Yeon BB — появился на Kaspi с ноября 2025 (14M → 18M). Топ-10 магазинов — данные по продавцам в текущей аналитической системе недоступны.
+            </div>
+          </div>
+        </div>
+
         {/* ═══ FOOTER ═══ */}
         <div style={{ padding: "20px 24px", background: `${C.accent}08`, borderRadius: 12, border: `1px solid ${C.accent}30` }}>
           <p style={{ ...sP, margin: "0 0 8px", fontSize: 13, color: C.dim }}>
