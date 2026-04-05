@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reports/bg-optic",
     "/reports/optics-guide",
     "/reports/trend-hunting",
+    "/reports/kaspi-3-niches",
   ];
 
   return staticRoutes.map((route) => ({
