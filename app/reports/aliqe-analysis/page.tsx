@@ -624,7 +624,7 @@ export default function AliqeAnalysisPage() {
             Анализ подготовлен по данным RedStat API за февраль 2026 (последний доступный срез) и истории 16 месяцев (ноябрь 2024 – февраль 2026). Все цифры проверены по артикулам, указанным в исходном каталоге A-LIQE.
           </p>
           <p style={{ ...sP, margin: 0, fontSize: 13, color: C.dim }}>
-            Связанные материалы: <a href="/reports/creative-hunting-guide" style={{ color: C.accent }}>гайд по поиску трендовых креативов</a>, <a href="/reports/kaspi-preorder-guide" style={{ color: C.accent }}>гайд по предзаказу на Kaspi</a>.
+            Источник данных: <strong style={{ color: "#ccc" }}>RedStat.kz</strong> — аналитическая платформа по Kaspi.kz.
           </p>
         </div>
 
