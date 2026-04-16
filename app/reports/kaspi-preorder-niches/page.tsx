@@ -1,0 +1,656 @@
+"use client";
+
+const C = {
+  bg: "#0a0a0f", surface: "#111119", border: "#1e1e30",
+  accent: "#6c5ce7", green: "#00d2a0", text: "#e8e8f0",
+  dim: "#999", red: "#f87171", amber: "#f59e0b",
+  blue: "#60a5fa", pink: "#f472b6", cyan: "#22d3ee",
+  kaspi: "#f14635",
+};
+
+const sP: React.CSSProperties = { fontSize: 14, lineHeight: 1.75, color: "#ccc", margin: "0 0 12px" };
+const sCard: React.CSSProperties = { background: C.surface, border: `1px solid ${C.border}`, borderRadius: 12, padding: "24px", marginBottom: 16 };
+const sBadge = (color: string): React.CSSProperties => ({ display: "inline-block", padding: "3px 10px", borderRadius: 20, background: `${color}18`, color, fontSize: 11, fontWeight: 600, letterSpacing: "0.03em" });
+const sH3: React.CSSProperties = { fontSize: 16, fontWeight: 700, color: C.accent, margin: "28px 0 16px" };
+
+function DataTable({ headers, rows, highlight }: { headers: string[]; rows: (string | number)[][]; highlight?: number }) {
+  return (
+    <div style={{ overflowX: "auto", marginBottom: 16 }}>
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 12 }}>
+        <thead>
+          <tr>{headers.map((h, i) => (
+            <th key={i} style={{ padding: "10px 12px", textAlign: "left", color: C.dim, fontWeight: 600, borderBottom: `1px solid ${C.border}`, whiteSpace: "nowrap", fontSize: 11 }}>{h}</th>
+          ))}</tr>
+        </thead>
+        <tbody>
+          {rows.map((row, ri) => (
+            <tr key={ri} style={{ background: highlight !== undefined && ri === highlight ? `${C.accent}12` : "transparent" }}>
+              {row.map((cell, ci) => (
+                <td key={ci} style={{ padding: "10px 12px", textAlign: "left", color: ci === 0 ? C.text : "#ccc", borderBottom: `1px solid ${C.border}20`, fontWeight: ci === 0 ? 500 : 400, whiteSpace: ci === 0 ? "nowrap" : "normal" }}>{cell}</td>
+              ))}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
+function Section({ id, num, title, children }: { id: string; num: string; title: string; children: React.ReactNode }) {
+  return (
+    <div id={id} style={{ marginBottom: 56 }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 14, marginBottom: 24, paddingBottom: 12, borderBottom: `1px solid ${C.border}` }}>
+        <div style={{ width: 44, height: 44, borderRadius: 10, background: `${C.accent}15`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 16, fontWeight: 800, color: C.accent, flexShrink: 0 }}>{num}</div>
+        <h2 style={{ fontSize: 22, fontWeight: 800, color: C.text, margin: 0, letterSpacing: "-0.01em", lineHeight: 1.2 }}>{title}</h2>
+      </div>
+      {children}
+    </div>
+  );
+}
+
+function NicheCard({ slug, title, subtitle, metrics, brandSplit, verdict, verdictColor }: {
+  slug: string;
+  title: string;
+  subtitle: string;
+  metrics: [string, string][];
+  brandSplit: string;
+  verdict: string;
+  verdictColor: string;
+}) {
+  return (
+    <div id={slug} style={sCard}>
+      <div style={{ marginBottom: 14 }}>
+        <div style={{ fontSize: 11, color: C.dim, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 4 }}>{subtitle}</div>
+        <h3 style={{ fontSize: 18, fontWeight: 700, color: C.text, margin: 0 }}>{title}</h3>
+      </div>
+      <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(160px, 1fr))", gap: 12, marginBottom: 16 }}>
+        {metrics.map(([k, v], i) => (
+          <div key={i} style={{ padding: "10px 12px", background: `${C.bg}`, border: `1px solid ${C.border}`, borderRadius: 8 }}>
+            <div style={{ fontSize: 10, color: C.dim, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>{k}</div>
+            <div style={{ fontSize: 14, color: C.text, fontWeight: 700 }}>{v}</div>
+          </div>
+        ))}
+      </div>
+      <div style={{ fontSize: 12, color: "#ccc", lineHeight: 1.7, marginBottom: 14 }}>
+        {brandSplit}
+      </div>
+      <div style={{ padding: "12px 14px", background: `${verdictColor}10`, borderLeft: `3px solid ${verdictColor}`, borderRadius: 6 }}>
+        <div style={{ fontSize: 11, fontWeight: 700, color: verdictColor, textTransform: "uppercase", letterSpacing: "0.05em", marginBottom: 4 }}>Вердикт для Предзаказа</div>
+        <div style={{ fontSize: 13, color: C.text, lineHeight: 1.6 }}>{verdict}</div>
+      </div>
+    </div>
+  );
+}
+
+export default function KaspiPreorderNichesPage() {
+  return (
+    <div style={{ minHeight: "100vh", background: C.bg, color: C.text, fontFamily: "'Inter', -apple-system, sans-serif" }}>
+      <div style={{ maxWidth: 920, margin: "0 auto", padding: "48px 24px 80px" }}>
+
+        {/* HEADER */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{ display: "flex", gap: 8, marginBottom: 16, flexWrap: "wrap" }}>
+            <span style={sBadge(C.kaspi)}>Kaspi.kz</span>
+            <span style={sBadge(C.amber)}>Предзаказ</span>
+            <span style={sBadge(C.accent)}>Enterprise-анализ</span>
+            <span style={sBadge(C.green)}>RedStat + live</span>
+          </div>
+          <h1 style={{ fontSize: 32, fontWeight: 800, margin: "0 0 16px", letterSpacing: "-0.02em", lineHeight: 1.15 }}>
+            Enterprise-анализ 28 SKU для запуска по Предзаказу
+          </h1>
+          <p style={{ fontSize: 16, color: C.dim, margin: 0, lineHeight: 1.6 }}>
+            Разбор 28 реальных товаров с Kaspi.kz через линзу модели Предзаказа: анализ 6 ниш в RedStat, вердикт по каждому SKU, топ-2 кандидата на немедленный запуск, чек-лист действий.
+          </p>
+          <div style={{ fontSize: 12, color: C.dim, marginTop: 12 }}>
+            Дата публикации: 16 апреля 2026 · Срез данных: 1 февраля 2026 · Источники: RedStat Backend API (16 мес), live Kaspi, Kaspi Гид, vc.ru, habr
+          </div>
+        </div>
+
+        {/* TOC */}
+        <div style={{ ...sCard, borderLeft: `4px solid ${C.accent}` }}>
+          <h3 style={{ fontSize: 14, fontWeight: 700, color: C.accent, margin: "0 0 12px", textTransform: "uppercase", letterSpacing: "0.05em" }}>Содержание</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))", gap: 8 }}>
+            {[
+              ["0", "Executive Summary"],
+              ["1", "Механика Предзаказа 2026 (актуализация)"],
+              ["2", "Анализ 6 ниш"],
+              ["3", "Оценка 28 SKU"],
+              ["4", "Топ-2 кандидата на запуск"],
+              ["5", "Что НЕ делать"],
+              ["6", "Риски"],
+              ["7", "Чек-лист запуска"],
+              ["8", "Следующий шаг — 1688"],
+            ].map(([n, t]) => (
+              <div key={n} style={{ display: "flex", gap: 10, fontSize: 13, color: "#ccc", padding: "6px 0" }}>
+                <span style={{ color: C.accent, fontWeight: 700, minWidth: 20 }}>{n}.</span>
+                <a href={`#s${n}`} style={{ color: "#ccc", textDecoration: "none" }}>{t}</a>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* ═══ 0. EXEC SUMMARY ═══ */}
+        <Section id="s0" num="0" title="Executive Summary">
+          <p style={sP}>
+            Проанализирован 91 скрин с детальными страницами RedStat, извлечены <strong style={{ color: C.text }}>28 уникальных SKU</strong> из 17 разных ниш маркетплейса Kaspi.kz. Каждый товар пропущен через фильтр модели Предзаказа 2026: 30-дневный лимит доставки, габариты ≤ 5 кг, комиссия 12.5–13% с НДС, маржа ≥ 50%, минимум демпинга.
+          </p>
+
+          <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 12, marginBottom: 20 }}>
+            {[
+              { label: "✅ Идеально подходят", count: "2", pct: "7%", color: C.green },
+              { label: "⚠ С оговорками", count: "6", pct: "21%", color: C.amber },
+              { label: "❌ Не подходят", count: "20", pct: "72%", color: C.red },
+            ].map((v, i) => (
+              <div key={i} style={{ padding: 16, background: `${v.color}10`, border: `1px solid ${v.color}30`, borderRadius: 10 }}>
+                <div style={{ fontSize: 11, color: v.color, fontWeight: 700, marginBottom: 6 }}>{v.label}</div>
+                <div style={{ fontSize: 28, fontWeight: 800, color: C.text, lineHeight: 1 }}>{v.count}</div>
+                <div style={{ fontSize: 12, color: C.dim, marginTop: 2 }}>{v.pct} из 28</div>
+              </div>
+            ))}
+          </div>
+
+          <div style={{ ...sCard, background: `${C.green}06`, border: `1px solid ${C.green}30` }}>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: C.green, margin: "0 0 12px" }}>Топ-2 кандидата на немедленный запуск</h3>
+            <div style={{ display: "flex", flexDirection: "column", gap: 12 }}>
+              <div style={{ padding: "12px 14px", background: C.bg, borderRadius: 8 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 4 }}>#1 Ортопедическая подушка для беременных 60×150 см</div>
+                <div style={{ fontSize: 12, color: "#ccc", lineHeight: 1.6 }}>
+                  Розница 5 000 ₸, +93% MoM, 3 продавца, лёгкая (1–2 кг), текстиль из Китая с маржой 300–500%. Ниша фрагментирована (No-brand держит 21% выручки категории).
+                </div>
+              </div>
+              <div style={{ padding: "12px 14px", background: C.bg, borderRadius: 8 }}>
+                <div style={{ fontSize: 14, fontWeight: 700, color: C.text, marginBottom: 4 }}>#2 Блендер погружной PRO2942</div>
+                <div style={{ fontSize: 12, color: "#ccc", lineHeight: 1.6 }}>
+                  Розница 35 000 ₸, <strong style={{ color: C.green }}>всего 1 продавец на карточке</strong>, +400% MoM, компактный, новичок. Окно для второго продавца — 2–3 месяца.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ borderLeft: `3px solid ${C.red}`, paddingLeft: 14, margin: "20px 0", fontSize: 13, color: "#ccc", lineHeight: 1.7 }}>
+            <strong style={{ color: C.red }}>Ключевой риск 2026: </strong>
+            «штрафные дни» от Kaspi вместо денежных штрафов — опоздание передачи заказа в ПВЗ увеличивает срок доставки в карточке, позиция в выдаче рушится. Для предзаказа это критично: 30-дневный лимит не оставляет буфера.
+          </div>
+        </Section>
+
+        {/* ═══ 1. MECHANICS UPDATE ═══ */}
+        <Section id="s1" num="1" title="Механика Предзаказа 2026 — актуализация">
+          <p style={sP}>
+            За последний месяц проверены официальный Kaspi Гид для партнёров (q3346, q3349, q4467), vc.ru, habr, skymetric.kz, finratings.kz, aww.kz. Ниже — что изменилось относительно предыдущего гайда по предзаказу.
+          </p>
+
+          <DataTable
+            headers={["Параметр", "Старая формулировка", "Актуально на 16 апр 2026", "Статус"]}
+            rows={[
+              ["Макс. срок предзаказа", "«30 дней, в отдельных до 45»", "30 календарных дней (Kaspi Гид q3346)", "🔴 Исправить"],
+              ["Комиссия с 05.01.2026", "6.4–13.5% без НДС", "Подтверждено, +НДС 16% отдельной строкой", "✅"],
+              ["Kaspi Pay", "0.95%", "Подтверждено", "✅"],
+              ["Штрафные дни", "Упомянуто как лайфхак", "Основной механизм давления в 2026", "🟡 Усилить"],
+              ["Запрет общения вне Kaspi", "Не было", "НОВОЕ: блокировка за Telegram/WhatsApp", "🟡 Добавить"],
+              ["Ограниченные категории", "Кратко", "Расширен список (детская литература, ортопедия, оптика, шугаринг)", "🟡 Добавить"],
+            ]}
+          />
+
+          <h3 style={sH3}>Базовые критерии «товар пригоден для Предзаказа»</h3>
+
+          <DataTable
+            headers={["№", "Критерий", "Детали"]}
+            rows={[
+              ["1", "Закупка 1–15 тыс / розница 4–40 тыс ₸", "Sweet spot 10–30 тыс. Ниже — маржа не помещается; выше — риск отказов за 30 дней ожидания"],
+              ["2", "До 5 кг, компактный короб", "Средний Kaspi PVZ box. Крупногабарит = рост брака + спецлогистика"],
+              ["3", "Lead-time от 1688 ≤ 14 дней", "Укладывается в 30-дневный лимит с буфером 16 дней"],
+              ["4", "Маржа ≥ 50%, в идеале 100%+", "После всех комиссий Kaspi (12.5–13% с НДС) + Kaspi Pay 0.95%"],
+              ["5", "Конкуренция 1–5 продавцов в карточке", "Больше — демпинг съест маржу. Идеально — 1 продавец (закрытая карточка)"],
+              ["6", "Растущий или сезонный тренд", "YoY > 0%, MoM > 0%, kaspi_juma_index в плюсе"],
+              ["7", "Без сертификационных заморочек", "Не аптека, не БАДы, не медтехника, не оптика — они требуют разрешений до старта"],
+            ]}
+          />
+        </Section>
+
+        {/* ═══ 2. 6 NICHES ═══ */}
+        <Section id="s2" num="2" title="Анализ 6 ключевых ниш (RedStat срез 2026-02-01)">
+          <p style={sP}>
+            Для каждой ниши выгружены с backend: детали, 16-месячная история, прогноз с сезонностью, распределение по 5 ценовым сегментам, топ брендов и топ-20 SKU. Данные агрегированы на срез 1 февраля 2026.
+          </p>
+
+          <NicheCard
+            slug="n-steppers"
+            subtitle="Спорт, туризм > Тренажёры > Степперы · leaf 00898"
+            title="Степперы"
+            metrics={[
+              ["Выручка/мес", "335,7 млн ₸"],
+              ["YoY рост", "+954,6% 🚀"],
+              ["SKU", "75"],
+              ["Продавцов", "51"],
+              ["Пик сезона", "Январь"],
+              ["No-brand доля", "16,2%"],
+            ]}
+            brandSplit="Ниша-дуополия: GENAU (3 SKU, 1 продавец, 56М ₸, 50,8% лифа) vs «Без бренда» (9 SKU, 13 продавцов, 54М ₸, 49,2%). №1 SKU лифа — наш 120861000 «Степпер 120кг балансировочный» (Без бренда, 35,9М ₸, 2 566 продаж, 20 продавцов). Прогноз: mar 210M → apr 115M → may 101M → jun 267M (Juma)."
+            verdict="❌ для нашего Степпера 120кг через ПЗ: 15–20 кг, не помещается в короб, 20 продавцов = демпинг. Категория интересна для обычной продажи со складом или контейнером — рост огромный."
+            verdictColor={C.red}
+          />
+
+          <NicheCard
+            slug="n-treadmills"
+            subtitle="Спорт, туризм > Тренажёры > Беговые дорожки · leaf 00767"
+            title="Беговые дорожки"
+            metrics={[
+              ["Выручка/мес", "1,33 млрд ₸"],
+              ["YoY рост", "+50,4%"],
+              ["SKU", "79"],
+              ["Продавцов", "27"],
+              ["Пик сезона", "Февраль"],
+              ["No-brand доля", "8,2%"],
+            ]}
+            brandSplit="Жёсткая монополия GENAU — 786М ₸ = 70,2% лифа (21 SKU, 1 продавец, карточки закрыты). Остальные 30% делят Без бренда, UNIQKID, LUKOSPORT, Xiaomi. Сегмент Премиум 22% / 354 тыс ₸ медиана — для no-brand не пройти."
+            verdict="❌ для ПЗ: беговые 70–200 тыс ₸, 25+ кг, GENAU закрыл карточки. Если делать — только белое через контейнер + собственный бренд. Для ПЗ не подходит."
+            verdictColor={C.red}
+          />
+
+          <NicheCard
+            slug="n-chairs"
+            subtitle="Мебель > Кухня > Стулья · leaf 05342"
+            title="Стулья"
+            metrics={[
+              ["Выручка/мес", "850,4 млн ₸"],
+              ["YoY рост", "+41,5%"],
+              ["SKU", "308"],
+              ["Продавцов", "158"],
+              ["Пик сезона", "Ноябрь (Juma)"],
+              ["No-brand доля", "47,1% 🎯"],
+            ]}
+            brandSplit="Наиболее фрагментированная ниша из 6. «Без бренда» держит 400М (47,1%) через 124 SKU у 89 продавцов. Топ-SKU: Стул Чили (30,9М, 24 продавца), Стул Oleandro (27,5М, 20 продавцов — наш 1477960827), JASA QAZ (24,5М, 1 продавец). Прогноз: 700М–1B/мес плато."
+            verdict="⚠ с оговорками: стул в разобранном виде ~5–8 кг, коробка 60×60×20 см — помещается в короб. Наш OleandroW +610% рост. Закупка на август–октябрь, вход к Juma (ноябрь). Риск — логистика хрупкого/деревянного."
+            verdictColor={C.amber}
+          />
+
+          <NicheCard
+            slug="n-pillows"
+            subtitle="Товары для дома > Домашний текстиль > Подушки · leaf 02598"
+            title="Подушки (включая ортопедические и для беременных)"
+            metrics={[
+              ["Выручка/мес", "257,8 млн ₸"],
+              ["YoY рост", "+30,8%"],
+              ["SKU", "436"],
+              ["Продавцов", "240"],
+              ["Пик сезона", "Декабрь"],
+              ["No-brand доля", "20,9%"],
+            ]}
+            brandSplit="«Без бренда» №1 (54М ₸, 150 SKU, 127 продавцов), NikStory №2 (47М, 31 SKU, 1 продавец — закрытый бренд = модель для подражания). Подниши: memory-foam, для беременных (CEMILE 75×140 — 2,8М ₸, 181 продажа), бамбук, микрофибра. Прогноз: mar 241М → apr 209М → may 229М → jun 291М (Juma)."
+            verdict="✅✅✅ идеально для ПЗ. Средний чек 4,5 тыс ₸, текстиль из Китая — лёгкий, компактный, себестоимость 100–300 ₸/единица, маржа 500%+. Фрагментированная ниша, NikStory-модель закрытого бренда доказана."
+            verdictColor={C.green}
+          />
+
+          <NicheCard
+            slug="n-airfryers"
+            subtitle="Бытовая техника > Мелкая кухонная > Печи и грили > Аэрогрили · leaf 09318"
+            title="Аэрогрили"
+            metrics={[
+              ["Выручка/мес", "920,1 млн ₸"],
+              ["MoM Feb/Jan", "+25,4%"],
+              ["SKU", "202"],
+              ["Продавцов", "150"],
+              ["Пик сезона", "Декабрь"],
+              ["No-brand доля", "6,8%"],
+            ]}
+            brandSplit="Брендовая ниша: Xiaomi, Braun, Tefal, DEMIAND держат топ-5. No-brand отнимает всего 6,8%. Премиум 39% / 102 тыс ₸ (139 SKU, 96% branded), Дорогой 27% / 56 тыс. Наш AIR 12л (58 тыс, 2 продавца) — в сегменте Дорогой но без бренда. EL-8L (18 тыс, 21 продавец) — адский демпинг."
+            verdict="⚠ только через собственный закрытый бренд в Бюджетном (10–25 тыс) или Среднем (25–40 тыс) сегменте. Как просто ещё один no-brand SKU — не зайти, рынок забит."
+            verdictColor={C.amber}
+          />
+
+          <NicheCard
+            slug="n-wax"
+            subtitle="Бытовая техника > Мелкая кухонная > Прочая > Электрические мармиты · leaf 03691"
+            title="WAX-нагреватели для депиляции"
+            metrics={[
+              ["Выручка/мес", "31 млн ₸"],
+              ["YoY рост", "+249,8%"],
+              ["MoM Feb/Jan", "+272,8%"],
+              ["SKU", "7"],
+              ["Продавцов", "6"],
+              ["No-brand доля", "64,9%"],
+            ]}
+            brandSplit="Tiny niche: всего 7 SKU. №1 AS1038829 (10,1М ₸, 9 продавцов — наш 1165279527), №2 OEM Aiberry WAX (9,0М, 7 продавцов — наш 114238909), №3 Air WAX-5002 (4,2М). Топ-3 = 77% лифа. Прогноз резко затухает: mar 18,8М → apr 6,7М → may 7М → jun 5М — схлопывание в 6 раз."
+            verdict="⚠ строго сезонное окно Январь–Март (готовятся к «пляжному» сезону). В апреле 2026 окно уже закрыто. Повторный заход — октябрь 2026 через контейнер, старт продаж январь 2027."
+            verdictColor={C.amber}
+          />
+        </Section>
+
+        {/* ═══ 3. 28 SKU VERDICT ═══ */}
+        <Section id="s3" num="3" title="Оценка 28 SKU — вердикт по каждому">
+          <p style={sP}>
+            Для каждого SKU применён чек-лист: цена в sweet spot (10–30 тыс), вес/габарит, конкуренция (≤5 продавцов = ок), YoY рост, сезонность. Итог — три группы.
+          </p>
+
+          <h3 style={{ ...sH3, color: C.green }}>✅ Идеально подходят (2 SKU)</h3>
+          <DataTable
+            headers={["SKU", "Ниша", "Цена", "Продавцы", "YoY", "Ключ"]}
+            rows={[
+              ["Подушка беременных 1485454911", "Подушки", "5 тыс", "3", "+93%", "Лёгкая, малая конкуренция, фрагментированная ниша"],
+              ["Блендер PRO2942 153890149", "Блендеры", "35 тыс", "1", "+400%", "Монополия, компактно, взрывной рост"],
+            ]}
+          />
+
+          <h3 style={{ ...sH3, color: C.amber }}>⚠ С оговорками (6 SKU)</h3>
+          <DataTable
+            headers={["SKU", "Ниша", "Цена", "Продавцы", "YoY", "Оговорка"]}
+            rows={[
+              ["Стул OleandroW 1477960827", "Стулья", "20 тыс", "10", "+610%", "Габарит на пределе; Juma-сезонность (окно авг-окт для запуска)"],
+              ["Костюм повседневный 1572614157", "Одежда", "15 тыс", "4", "n/a", "Размерный ряд = много SKU на модель"],
+              ["AS1038829 (WAX) 1165279527", "Мармиты", "19 тыс", "9", "+114%", "Сезонное окно закрылось до янв-2027"],
+              ["OEM Aiberry WAX 114238909", "Мармиты", "25 тыс", "7", "+447%", "Сезонное окно закрылось до янв-2027"],
+              ["Степпер 438490658 145396407", "Степперы", "55 тыс", "7", "+154%", "Тяжёлый 10+ кг, но мало конкурентов"],
+              ["Камера TTG 129573671", "Подводные камеры", "19 тыс", "17", "+43%", "Демпинг из 17 продавцов, рост замедляется"],
+            ]}
+          />
+
+          <h3 style={{ ...sH3, color: C.red }}>❌ Не подходят для ПЗ (20 SKU)</h3>
+          <DataTable
+            headers={["SKU", "Ниша", "Цена", "Продавцы", "YoY", "Причина"]}
+            rows={[
+              ["Аэрогриль AIR 12л 1556137340", "Аэрогрили", "58 тыс", "2", "новичок", "Цена выше sweet spot, ниша брендовая"],
+              ["Кресло-кровать CX-XKY-65", "Кресла", "38 тыс", "1", "−36%", "Габарит + падение"],
+              ["Настольная плита PN-02", "Плиты", "9 тыс", "3", "−22%", "Падение"],
+              ["Кофемашина P-6807", "Кофемашины", "100 тыс", "1", "+331%", "Цена, риск отказа за 30 дней ожидания"],
+              ["Пароочиститель SE8620", "Пароочист.", "37 тыс", "10", "−2,7%", "Стагнация + демпинг"],
+              ["Очиститель Rafwatt", "Очистители", "75 тыс", "1", "−38%", "Падение + дорого"],
+              ["КМ-218", "Настольные печи", "17 тыс", "5", "−42%", "Сильное падение"],
+              ["Аэрогриль EL-8L", "Аэрогрили", "18 тыс", "21", "стагн.", "21 продавец = демпинг"],
+              ["Тестомес WW-SM-1510X", "Тестомесы", "31 тыс", "10", "−8%", "Стагнация, тяжёлый"],
+              ["Отпариватель SK-4010", "Отпариватели", "11 тыс", "15", "−9%", "15 продавцов = демпинг"],
+              ["Степпер 120кг 120861000", "Степперы", "15 тыс", "20", "−3%", "Вес 15+ кг, демпинг"],
+              ["Палатка Nad400300", "Палатки", "170 тыс", "8", "+389%", "Цена + габарит"],
+              ["Беговая SF-TM-002", "Беговые", "70 тыс", "6", "+100%", "Вес 25+ кг"],
+              ["Беговая DI-HOGO-K308", "Беговые", "200 тыс", "2", "+185%", "Цена + вес"],
+              ["Кухонная мойка 60x45", "Мойки", "11 тыс", "17", "−2,6%", "Габарит + демпинг"],
+              ["Растущий комплект GD", "Детская мебель", "23 тыс", "13", "−20%", "Габарит + падение"],
+              ["Сушилка многоярусная", "Посуда", "6 тыс", "12", "−5,8%", "Малая маржа в абсолюте"],
+              ["Виброплатформа", "Виброплатф.", "29 тыс", "6", "−9%", "Вес 15+ кг, падение"],
+              ["Fish-001", "Подв. камеры", "18 тыс", "14", "−19%", "Демпинг + падение"],
+              ["Перевёртыш 3в1", "Турники", "19 тыс", "21", "+13%", "Демпинг из 21 продавцов"],
+            ]}
+          />
+        </Section>
+
+        {/* ═══ 4. TOP CANDIDATES ═══ */}
+        <Section id="s4" num="4" title="Топ-2 кандидата — детальный план запуска">
+
+          <div style={{ ...sCard, background: `${C.green}06`, border: `1px solid ${C.green}30` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.green)}>Кандидат #1</span>
+              <span style={sBadge(C.accent)}>Запустить в апреле</span>
+            </div>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: C.text, margin: "0 0 12px" }}>
+              Ортопедическая подушка для беременных 60×150 см
+            </h3>
+
+            <DataTable
+              headers={["Параметр", "Значение"]}
+              rows={[
+                ["Закупка 1688 (FOB)", "30–80 юаней / $4–11 = 2 500–5 500 ₸"],
+                ["С доставкой до Алматы", "3 500–6 500 ₸ за единицу (авиа, 10–14 дней)"],
+                ["Розница на Kaspi (медиана SKU)", "4 710 ₸ (текущая цена выборки)"],
+                ["Целевая розница для маржи", "6 000–8 000 ₸ (премиум-версия memory-foam + съёмный чехол)"],
+                ["Маржа при 8 000 ₸ / закупке 3 500 ₸", "4 500 ₸ минус комиссия ~13% = 3 460 ₸ (43% от розницы)"],
+                ["Маржа при партии 500+ шт (FOB 1 500 ₸)", "85%+ от розницы"],
+                ["Конкурент-ориентир", "NikStory: 47М ₸/мес через 1 продавца, 31 SKU (закрытый бренд)"],
+                ["Сертификация", "ТР ТС 017/2011 (текстиль, детские/для беременных) — декларация через лабораторию Алматы"],
+                ["Срок предзаказа в прайсе", "preorder = 14 дней"],
+                ["MOQ у поставщика", "20–50 шт для начала"],
+              ]}
+            />
+          </div>
+
+          <div style={{ ...sCard, background: `${C.blue}06`, border: `1px solid ${C.blue}30` }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 12 }}>
+              <span style={sBadge(C.blue)}>Кандидат #2</span>
+              <span style={sBadge(C.amber)}>Окно 2–3 месяца</span>
+            </div>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: C.text, margin: "0 0 12px" }}>
+              Блендер погружной PRO2942 (или аналог no-name)
+            </h3>
+
+            <DataTable
+              headers={["Параметр", "Значение"]}
+              rows={[
+                ["Закупка 1688 (FOB)", "$6–15 = 3 100–7 800 ₸"],
+                ["С доставкой до Алматы", "4 500–9 500 ₸ за единицу"],
+                ["Текущая цена на карточке", "35 000 ₸ (но единственный продавец RAF.Official выставил 200 000 ₸ — карточка на удержании)"],
+                ["Целевая розница", "15–25 тыс ₸"],
+                ["Маржа при 20 000 ₸ / закупке 7 000 ₸", "13 000 ₸ минус комиссия ~13% = 10 400 ₸ (52% от розницы)"],
+                ["Сигнал", "+400% MoM + 1 продавец = карточка в начале жизненного цикла"],
+                ["Окно для второго продавца", "2–3 месяца до появления 5+ конкурентов"],
+                ["Сертификация", "ТР ТС 004/2011 (электротехника) + 020/2011 (ЭМС)"],
+                ["Срок предзаказа", "preorder = 10 дней"],
+                ["MOQ", "10–20 шт (малый старт для проверки)"],
+              ]}
+            />
+          </div>
+
+          <div style={{ borderLeft: `3px solid ${C.accent}`, paddingLeft: 14, margin: "20px 0", fontSize: 13, color: "#ccc", lineHeight: 1.7 }}>
+            <strong style={{ color: C.accent }}>Что делать с 6 условно-годными SKU: </strong>
+            Стул OleandroW — закупка на август-октябрь, вход к Juma. Костюм женский — только если уже есть опыт в одежде. WAX-нагреватели (2 SKU) — заморозить до октября 2026. Степпер 438490658 — мониторить. Камера TTG — не запускать.
+          </div>
+        </Section>
+
+        {/* ═══ 5. WHAT NOT TO DO ═══ */}
+        <Section id="s5" num="5" title="Что точно НЕ делать">
+
+          <div style={{ display: "flex", flexDirection: "column", gap: 10 }}>
+            {[
+              { title: "Крупногабаритные тренажёры через ПЗ", text: "Беговые дорожки, виброплатформы, степперы 15+ кг — физически не укладываются в логистику Kaspi PVZ + риск повреждений при международной доставке" },
+              { title: "Крупная мебель через ПЗ", text: "Кресло-кровать, растущий комплект, мойки 60×45 — габарит не для короба, длинный lead-time на разобранные комплектующие, высокий брак" },
+              { title: "Дорогую электронику (чек 100+ тыс ₸)", text: "Кофемашина 100 тыс, беговая 200 тыс: 30-дневный лимит + большой чек = высокий % отказов, пока клиент ждёт" },
+              { title: "Товары с 15+ продавцами в карточке", text: "Аэрогриль EL-8L (21), отпариватель SK-4010 (15), перевёртыш 3в1 (21), мойка (17), Fish-001 (14) — демпинг съест маржу до нуля" },
+              { title: "Падающие ниши (YoY −20% и хуже)", text: "КМ-218 −42%, Настольная плита −22%, Растущий комплект −20% — схлопывающийся рынок, позднее новичку не зайти" },
+              { title: "Карточки закрытого моно-бренда с доминированием", text: "GENAU держит 70% лифа беговых — no-brand не пробьётся. NikStory в подушках — модель для подражания, не для конкуренции" },
+              { title: "Сезонные окна, которые уже закрылись", text: "WAX-нагреватели (пик январь–февраль, апрель-май схлопывается в 6 раз) — ждать следующего января" },
+            ].map((v, i) => (
+              <div key={i} style={{ display: "flex", gap: 14, padding: "14px 16px", background: C.surface, border: `1px solid ${C.red}30`, borderRadius: 10 }}>
+                <div style={{ width: 28, height: 28, borderRadius: "50%", background: `${C.red}20`, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 14, color: C.red, flexShrink: 0 }}>✕</div>
+                <div>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: C.text, marginBottom: 4 }}>{v.title}</div>
+                  <div style={{ fontSize: 12, color: "#ccc", lineHeight: 1.6 }}>{v.text}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* ═══ 6. RISKS ═══ */}
+        <Section id="s6" num="6" title="Риски">
+
+          <h3 style={sH3}>6.1 Механика Kaspi</h3>
+          <DataTable
+            headers={["Риск", "Вероятность", "Последствие"]}
+            rows={[
+              ["«Штрафные дни» за опоздание в ПВЗ", "Средняя", "Позиция в выдаче ↓, срок доставки в карточке ↑ на 2 недели"],
+              ["Автоотмена без нажатия «Прибыл»", "Высокая для новичка", "% отмен растёт, под 3% = блокировка"],
+              ["Запрет коммуникации вне Kaspi (2026)", "Низкая", "Блокировка магазина"],
+              ["Демпинг через подстыковку к карточке", "Высокая", "Маржа схлопывается"],
+              ["Жалоба правообладателя (контрафакт)", "Средняя", "Мгновенная блокировка магазина"],
+            ]}
+          />
+
+          <h3 style={sH3}>6.2 Логистика Китай → Казахстан</h3>
+          <DataTable
+            headers={["Риск", "Митигация"]}
+            rows={[
+              ["Курсовой риск (юань ↔ тенге)", "Закладывать 10–15% буфер в цене закупки"],
+              ["Задержки на таможне (3–7 дней)", "preorder = 14 дней (а не 10), оставляет запас до 30-дневного лимита"],
+              ["Брак/недовложение 2–5% партии", "Закладывать буфер в unit-экономике, заказывать на 5% больше"],
+              ["Сертификация (ТР ТС, СТ РК)", "Оформить до старта продаж — иначе риск блокировки"],
+            ]}
+          />
+
+          <h3 style={sH3}>6.3 Продукт / Маркет</h3>
+          <DataTable
+            headers={["Риск", "Митигация"]}
+            rows={[
+              ["Карточка-клон с лучшим контентом", "Инвестировать в профессиональные фото + видео + инфографику"],
+              ["Сезонный обвал", "Использовать RedStat forecast, выходить из ниши до спада"],
+              ["«Забитая» карточка (10+ продавцов за 2 мес)", "Перейти на закрытый бренд (свой артикул, свой штрихкод)"],
+            ]}
+          />
+        </Section>
+
+        {/* ═══ 7. CHECKLIST ═══ */}
+        <Section id="s7" num="7" title="Чек-лист запуска по предзаказу">
+
+          {[
+            {
+              phase: "Фаза 0 — Подготовка магазина",
+              duration: "1–2 недели",
+              color: C.accent,
+              items: [
+                "ИП / ТОО + расчётный счёт",
+                "Подключить Kaspi Pay, активно принимать платежи ≥ 20 дней за последние 2 мес",
+                "Подать заявку на Kaspi Магазин",
+                "Получить доступ к кабинету, изучить XML-прайс формат (поле preorder)",
+              ],
+            },
+            {
+              phase: "Фаза 1 — Выбор SKU",
+              duration: "1 неделя",
+              color: C.blue,
+              items: [
+                "Проверить по RedStat: ниша растёт, доля Без бренда ≥ 20%, в карточке ≤ 5 продавцов",
+                "Проверить цену на Kaspi (live): медиана, разброс, state продавцов",
+                "Посчитать unit-экономику: закупка 1688 (с курсом +15%) + доставка + сертификат + комиссия Kaspi (10.9–13% с НДС) + Kaspi Pay 0.95%",
+                "Маржа должна быть ≥ 50% на финальном розничном чеке",
+              ],
+            },
+            {
+              phase: "Фаза 2 — Поставщик 1688",
+              duration: "1–2 недели",
+              color: C.amber,
+              items: [
+                "Отобрать 3–5 поставщиков по искомому SKU",
+                "Запросить образцы (paid sample, ~$30 с курьером)",
+                "Сравнить качество, упаковку, скорость отгрузки",
+                "Согласовать: MOQ (20–50 шт), срок производства ≤ 5 дней, предоплата 30% или T/T после отгрузки, индивидуальная упаковка с нейтральным штрихкодом",
+              ],
+            },
+            {
+              phase: "Фаза 3 — Сертификация (параллельно)",
+              duration: "1–3 недели",
+              color: C.cyan,
+              items: [
+                "Определить, нужен ли сертификат (электротехника ТР ТС 004, детские 017, текстиль 017)",
+                "Через аккредитованную лабораторию в Алматы оформить декларацию или сертификат",
+                "Получить СТ РК если требуется",
+              ],
+            },
+            {
+              phase: "Фаза 4 — Карточка и прайс",
+              duration: "3–5 дней",
+              color: C.pink,
+              items: [
+                "Сгенерировать XML-прайс: preorder = lead-time + 4 дня буфера",
+                "Фото минимум 6 ракурсов, инфографика первым слайдом",
+                "Название SKU — ключевые запросы первыми словами",
+                "Описание — характеристики таблицей, УТП в первых 2 абзацах",
+                "Загрузить прайс в кабинет, дождаться модерации",
+              ],
+            },
+            {
+              phase: "Фаза 5 — Первые 30 дней",
+              duration: "1 месяц",
+              color: C.green,
+              items: [
+                "Ежедневно мониторить заказы",
+                "При первом заказе — моментально отправить предоплату поставщику",
+                "После отгрузки поставщиком — ежедневно отслеживать трек",
+                "В день получения товара — сразу нажать «Прибыл»",
+                "Передать в ПВЗ строго в день, указанный в заказе (иначе штрафные дни!)",
+                "Собирать обратную связь от первых 10 клиентов, корректировать карточку",
+              ],
+            },
+            {
+              phase: "Фаза 6 — Масштабирование",
+              duration: "После 20–30 продаж",
+              color: C.kaspi,
+              items: [
+                "Проверить соотношение отмен / возвратов (< 3% / < 2%)",
+                "При положительном LTV — перейти на партионную закупку (контейнер)",
+                "Подключить второй-третий SKU в той же нише (параллельные карточки)",
+                "Начать формировать собственный бренд (регистрация, упаковка, сертификат, закрытая карточка)",
+              ],
+            },
+          ].map((p, i) => (
+            <div key={i} style={{ ...sCard, borderLeft: `4px solid ${p.color}` }}>
+              <div style={{ display: "flex", alignItems: "center", gap: 10, marginBottom: 14 }}>
+                <h3 style={{ fontSize: 16, fontWeight: 700, color: p.color, margin: 0 }}>{p.phase}</h3>
+                <span style={{ fontSize: 11, color: C.dim, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em" }}>{p.duration}</span>
+              </div>
+              <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+                {p.items.map((item, j) => (
+                  <div key={j} style={{ display: "flex", gap: 10, fontSize: 13, color: "#ccc", lineHeight: 1.6 }}>
+                    <span style={{ color: p.color, fontWeight: 700, flexShrink: 0 }}>☐</span>
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </Section>
+
+        {/* ═══ 8. NEXT STEP ═══ */}
+        <Section id="s8" num="8" title="Следующий шаг — выход на поставщиков 1688">
+
+          <p style={sP}>
+            По топ-2 SKU (Подушка для беременных + Блендер погружной) — написать поставщикам на 1688 с одним и тем же шаблоном запроса.
+          </p>
+
+          <div style={{ ...sCard, background: `${C.green}06`, border: `1px solid ${C.green}30` }}>
+            <h3 style={{ fontSize: 14, fontWeight: 700, color: C.green, margin: "0 0 12px" }}>Что запросить у поставщика</h3>
+            <DataTable
+              headers={["№", "Запрос"]}
+              rows={[
+                ["1", "FOB цена за единицу при MOQ 10 / 50 / 100 шт"],
+                ["2", "Срок производства + отгрузки (ждём ≤ 5 дней производство, ≤ 14 дней до Алматы)"],
+                ["3", "Фото/видео готового товара (не рендеры, живые снимки)"],
+                ["4", "Paid sample (образец с курьерской доставкой, ~$30)"],
+                ["5", "Возможность OEM-упаковки (свой бренд/логотип на коробке)"],
+                ["6", "Сертификаты поставщика — нужны для сертификации в КЗ через лабораторию"],
+                ["7", "Условия оплаты — предпочтительно T/T 30% предоплата + 70% после отгрузки"],
+              ]}
+            />
+          </div>
+
+          <h3 style={sH3}>Параллельно</h3>
+          <div style={sCard}>
+            {[
+              "Запросить декларацию ТР ТС у лаборатории в Алматы (текстиль 017 для подушки, электротехника 004 + 020 для блендера)",
+              "Посчитать финальную unit-экономику с учётом 1688 FOB + доставка + сертификация + Kaspi комиссия 10.9–13% с НДС + Kaspi Pay 0.95%",
+              "Проверить живую конкуренцию на Kaspi ещё раз на день старта — ниша быстро меняется",
+              "Подготовить XML-прайс с полем preorder и тестовую карточку",
+            ].map((item, i) => (
+              <div key={i} style={{ display: "flex", gap: 10, fontSize: 13, color: "#ccc", lineHeight: 1.7, marginBottom: 8 }}>
+                <span style={{ color: C.accent, fontWeight: 700, flexShrink: 0 }}>→</span>
+                <span>{item}</span>
+              </div>
+            ))}
+          </div>
+        </Section>
+
+        {/* FOOTER */}
+        <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${C.border}`, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
+          <div style={{ marginBottom: 10 }}>
+            <strong style={{ color: C.text }}>Методология:</strong> 91 скрин RedStat разобран вручную → 28 уникальных SKU → backend-выгрузка RedStat API (детали SKU, история 16 мес, прогноз, сегменты, топ брендов) → live Kaspi продавцы для топ-3 кандидатов → фильтр через критерии модели Предзаказа 2026.
+          </div>
+          <div style={{ marginBottom: 10 }}>
+            <strong style={{ color: C.text }}>Источники:</strong> RedStat Backend API, Kaspi Гид для партнёров (q3346, q3349, q4467, q3904, q2224), vc.ru, habr.com, skymetric.kz, finratings.kz, aww.kz, kaspi.fix.kz, moysklad.kz, algatop.kz.
+          </div>
+          <div>
+            <strong style={{ color: C.text }}>Связанные отчёты:</strong>{" "}
+            <a href="/reports/kaspi-preorder-guide" style={{ color: C.accent, textDecoration: "none" }}>Гайд по предзаказу (механика 2026)</a>
+            {" · "}
+            <a href="/reports/kaspi-3-niches" style={{ color: C.accent, textDecoration: "none" }}>Enterprise-ниши апрель 2026</a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  );
+}
