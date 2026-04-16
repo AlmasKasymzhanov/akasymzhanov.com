@@ -634,22 +634,6 @@ export default function KaspiPreorderNichesPage() {
           </div>
         </Section>
 
-        {/* FOOTER */}
-        <div style={{ marginTop: 48, paddingTop: 32, borderTop: `1px solid ${C.border}`, fontSize: 12, color: C.dim, lineHeight: 1.8 }}>
-          <div style={{ marginBottom: 10 }}>
-            <strong style={{ color: C.text }}>Методология:</strong> 91 скрин RedStat разобран вручную → 28 уникальных SKU → backend-выгрузка RedStat API (детали SKU, история 16 мес, прогноз, сегменты, топ брендов) → live Kaspi продавцы для топ-3 кандидатов → фильтр через критерии модели Предзаказа 2026.
-          </div>
-          <div style={{ marginBottom: 10 }}>
-            <strong style={{ color: C.text }}>Источники:</strong> RedStat Backend API, Kaspi Гид для партнёров (q3346, q3349, q4467, q3904, q2224), vc.ru, habr.com, skymetric.kz, finratings.kz, aww.kz, kaspi.fix.kz, moysklad.kz, algatop.kz.
-          </div>
-          <div>
-            <strong style={{ color: C.text }}>Связанные отчёты:</strong>{" "}
-            <a href="/reports/kaspi-preorder-guide" style={{ color: C.accent, textDecoration: "none" }}>Гайд по предзаказу (механика 2026)</a>
-            {" · "}
-            <a href="/reports/kaspi-3-niches" style={{ color: C.accent, textDecoration: "none" }}>Enterprise-ниши апрель 2026</a>
-          </div>
-        </div>
-
       </div>
     </div>
   );
