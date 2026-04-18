@@ -23,6 +23,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reports/kaspi-preorder-guide",
     "/reports/kaspi-preorder-niches",
     "/reports/foot-stretcher-analysis",
+    "/reports/towel-warmer-analysis",
   ];
 
   return staticRoutes.map((route) => ({
