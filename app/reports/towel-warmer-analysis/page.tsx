@@ -513,7 +513,33 @@ export default function TowelWarmerAnalysisPage() {
             ]}
           />
 
-          <div style={{ ...sCard, background: `${C.accent}08`, border: `1px solid ${C.accent}30`, marginTop: 20 }}>
+          <h3 style={sH3}>Варианты логистики для тестового запуска</h3>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 20 }}>
+            <div style={{ ...sCard, borderTop: `3px solid ${C.blue}`, marginBottom: 0 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: C.blue, marginBottom: 8 }}>ВАРИАНТ А — FBS из Алматы (Акент)</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.7 }}>
+                <p style={{ margin: "0 0 8px" }}>Отгрузка каждого заказа напрямую из Алматы через FBS. Товар хранится у себя, отправляется при заказе.</p>
+                <div style={{ fontSize: 12, color: C.dim }}>
+                  <div style={{ marginBottom: 4 }}><strong style={{ color: C.text }}>Плюсы:</strong> минимальный риск, нет предоплаты за хранение WB, полный контроль остатков</div>
+                  <div style={{ marginBottom: 4 }}><strong style={{ color: C.text }}>Минусы:</strong> дольше доставка до покупателя (5–8 дней до Москвы), ниже ранжирование в выдаче</div>
+                  <div><strong style={{ color: C.text }}>Для кого:</strong> тестовый запуск первых 20–50 шт, проверка спроса</div>
+                </div>
+              </div>
+            </div>
+            <div style={{ ...sCard, borderTop: `3px solid ${C.green}`, marginBottom: 0 }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: C.green, marginBottom: 8 }}>ВАРИАНТ Б — FBO/FBW со склада Актобе</div>
+              <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.7 }}>
+                <p style={{ margin: "0 0 8px" }}>Отгрузка на склад WB в Актобе (FBW). Оттуда до Казани — 4 дня, хорошее ранжирование на ПФО и Урал.</p>
+                <div style={{ fontSize: 12, color: C.dim }}>
+                  <div style={{ marginBottom: 4 }}><strong style={{ color: C.text }}>Плюсы:</strong> быстрая доставка в ПФО/Урал (4 дня до Казани), лучше ранжирование чем FBS, WB берёт логистику на себя</div>
+                  <div style={{ marginBottom: 4 }}><strong style={{ color: C.text }}>Минусы:</strong> нужно отправить партию на склад WB, хранение за счёт продавца</div>
+                  <div><strong style={{ color: C.text }}>Для кого:</strong> масштабирование после теста FBS, до выхода на центральные склады (Подольск)</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div style={{ ...sCard, background: `${C.accent}08`, border: `1px solid ${C.accent}30` }}>
             <div style={{ fontSize: 15, fontWeight: 700, color: C.accent, marginBottom: 10 }}>Итоговый вердикт</div>
             <div style={{ fontSize: 13, color: "#ccc", lineHeight: 1.8 }}>
               <p style={{ margin: "0 0 10px" }}>
@@ -522,8 +548,11 @@ export default function TowelWarmerAnalysisPage() {
               <p style={{ margin: "0 0 10px" }}>
                 <strong style={{ color: C.red }}>❌ Модель 2 (100×15, 33 000 ₸) — отложить.</strong> Маржа тонкая, габарит сложный, спрос не доказан (47 шт/год у аналога). Запускать как расширение линейки после успеха Модели 1.
               </p>
+              <p style={{ margin: "0 0 10px" }}>
+                <strong style={{ color: C.blue }}>Рекомендуемый путь:</strong> Тест через FBS Алматы (20–50 шт, минимальный риск) → при 15+ продаж/мес перевести на FBW Актобе (покрытие ПФО/Урал за 4 дня) → при 50+ продаж/мес отгрузить на центральный склад Подольск (полное покрытие РФ).
+              </p>
               <p style={{ margin: 0 }}>
-                <strong style={{ color: C.accent }}>Стартовый бюджет:</strong> ~750 000 ₸ (50 шт + логистика) + 30 000–50 000 ₽ на рекламу = вход с минимальным риском. При успехе — масштабирование до 3,6–9 М ₽/год выручки.
+                <strong style={{ color: C.accent }}>Стартовый бюджет (FBS тест):</strong> 20–50 шт × 12 000 ₸ = 240 000–600 000 ₸ (товар) + 30 000–50 000 ₽ на рекламу. Без риска заморозки на складе WB.
               </p>
             </div>
           </div>
