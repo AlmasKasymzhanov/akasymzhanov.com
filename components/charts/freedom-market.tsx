@@ -195,7 +195,7 @@ export function Grafik1() {
     if (ev.pairWithNext && i + 1 < TIMELINE.length) {
       rows.push(
         <div key={`pair-${i}`} className="relative border border-dashed border-[var(--brock-accent)]/50 rounded-[3px] px-3 pt-4 -mx-3 mb-2">
-          <span className="absolute -top-2 left-2 px-1.5 bg-[var(--color-surface)] font-mono text-[9px] uppercase tracking-[0.12em] text-[var(--brock-accent)]">
+          <span className="absolute -top-2 left-2 px-1.5 bg-[var(--color-surface)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--brock-accent)]">
             один день - два жанра
           </span>
           <TimelineRow ev={ev} visible={visible} delay={i * 70} />
@@ -593,9 +593,11 @@ function JourneyLane({
                 aria-hidden
                 className="mt-0.5 inline-flex w-4 h-4 shrink-0 items-center justify-center rounded-full font-mono text-[9px] border"
                 style={{
-                  borderColor: on ? (accent ? "var(--brock-accent)" : "var(--brock-neutral)") : "var(--color-border)",
-                  background: on ? (accent ? "var(--brock-accent)" : "var(--brock-neutral)") : "transparent",
-                  color: on ? "#fff" : "var(--color-dim)",
+                  /* Non-accent active circles are text-on-bg inverted (not the
+                   * neutral bar grey): the grey fails contrast on light. */
+                  borderColor: on ? (accent ? "var(--brock-accent)" : "var(--color-text)") : "var(--color-border)",
+                  background: on ? (accent ? "var(--brock-accent)" : "var(--color-text)") : "transparent",
+                  color: on ? (accent ? "#fff" : "var(--color-bg)") : "var(--color-dim)",
                 }}
               >
                 {i + 1}
