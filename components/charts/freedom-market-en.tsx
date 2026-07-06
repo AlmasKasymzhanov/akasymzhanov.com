@@ -461,7 +461,7 @@ export function Grafik5() {
           { color: NEUTRAL, label: "all other categories in one mass" },
         ]}
       />
-      <p className="mt-2 font-mono text-[10px] italic leading-relaxed text-[var(--color-dim)]/70">
+      <p className="mt-2 font-mono text-[11.5px] italic leading-relaxed text-[var(--color-dim)]">
         WB - full year, orders; Kaspi - monthly snapshot of top-15 categories; a comparison of structures, not absolutes.
       </p>
     </div>
@@ -664,7 +664,7 @@ export function TengeJourney() {
         <div className="mt-3 h-1 rounded-full bg-[var(--color-border)]/50 overflow-hidden" aria-hidden>
           <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: ACCENT }} />
         </div>
-        <p className="mt-3 font-mono text-[10px] italic leading-relaxed text-[var(--color-dim)]/70 border-l-2 border-[var(--color-border)] pl-3">
+        <p className="mt-3 font-mono text-[11.5px] italic leading-relaxed text-[var(--color-dim)] border-l-2 border-[var(--color-border)] pl-3">
           The &ldquo;Freedom&rdquo; track is the author&rsquo;s model built on public precedents (Mercado Fondo, eToro, Shopify Balance) - not an announced Freedom product.
         </p>
       </div>

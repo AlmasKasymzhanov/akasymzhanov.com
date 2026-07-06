@@ -473,7 +473,7 @@ export function Grafik5() {
           { color: NEUTRAL, label: "остальные категории одной массой" },
         ]}
       />
-      <p className="mt-2 font-mono text-[10px] italic leading-relaxed text-[var(--color-dim)]/70">
+      <p className="mt-2 font-mono text-[11.5px] italic leading-relaxed text-[var(--color-dim)]">
         WB - год, заказы; Kaspi - месячный срез топ-15 категорий; сопоставление структур, не абсолютов.
       </p>
     </div>
@@ -531,8 +531,8 @@ export function Grafik6() {
       />
       <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
         Мода при этом живёт на складе круглый год:{" "}
-        <Term tip="FBW - Fulfillment by Wildberries: товар заранее лежит на складе WB, площадка сама собирает и везёт заказ.">FBW</Term>
-        -доля одежды не опускается ниже 76%.
+        <Term tip="FBW - Fulfillment by Wildberries: товар заранее лежит на складе WB, площадка сама собирает и везёт заказ.">FBW-доля</Term>{" "}
+        одежды не опускается ниже 76%.
       </p>
     </div>
   );
@@ -685,7 +685,7 @@ export function TengeJourney() {
         <div className="mt-3 h-1 rounded-full bg-[var(--color-border)]/50 overflow-hidden" aria-hidden>
           <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: ACCENT }} />
         </div>
-        <p className="mt-3 font-mono text-[10px] italic leading-relaxed text-[var(--color-dim)]/70 border-l-2 border-[var(--color-border)] pl-3">
+        <p className="mt-3 font-mono text-[11.5px] italic leading-relaxed text-[var(--color-dim)] border-l-2 border-[var(--color-border)] pl-3">
           Дорожка «Freedom» - авторская модель на основе публичных прецедентов (Mercado Fondo, eToro, Shopify Balance), а не анонсированный продукт Freedom.
         </p>
       </div>

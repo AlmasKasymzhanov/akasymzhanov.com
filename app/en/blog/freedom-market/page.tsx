@@ -64,7 +64,7 @@ function ChartSlot({
       </figcaption>
       <div data-chart-canvas>{children}</div>
       {note && (
-        <p className="font-mono text-[10px] italic text-[var(--color-dim)]/70 mt-3 leading-relaxed">{note}</p>
+        <p className="font-mono text-[11.5px] italic text-[var(--color-dim)] mt-3 leading-relaxed">{note}</p>
       )}
       <p className="font-mono text-[11px] text-[var(--color-dim)] mt-2 leading-relaxed">
         {caption}
@@ -125,7 +125,7 @@ export default function FreedomMarketArticleEn() {
 
             {/* ─── Lead ─── */}
             <div className="mb-12">
-              <p className="font-mono text-[11px] italic text-[var(--color-dim)]/80 mb-6">
+              <p className="font-mono text-[11.5px] italic text-[var(--color-dim)] mb-6">
                 Key figures are given in Kazakhstani tenge (₸) and Russian rubles (₽); at publication, $1 ≈ ₸500 ≈ ₽80.
               </p>
               <P className="mb-5">
@@ -719,16 +719,6 @@ export default function FreedomMarketArticleEn() {
               <P>
                 The clock is already running.
               </P>
-            </div>
-
-            <hr className="border-[var(--color-border)] mb-12" />
-
-            {/* ─── Disclosure ─── */}
-            <div className="mb-12">
-              {/* [UPDATE BEFORE PUBLISHING: Freedom Holding response status] */}
-              <p className="text-[13px] italic text-[var(--color-dim)] leading-[1.8] border-l-2 border-[var(--color-border)] pl-4">
-                The author is a co-founder of Redstat, a marketplace analytics service. A request for comment on the partner terms, the status of the deal and the ownership of fmarket.kz has been sent to Freedom Holding; no response had been received at the time of publication. This article is for informational purposes only and is not investment advice.
-              </p>
             </div>
 
             <hr className="border-[var(--color-border)] mb-12" />
