@@ -13,7 +13,10 @@
   /* Brand accent — mint-teal in dark (RoW uses #9EE9DF), blue in light */
   --color-brand: #46d9b8;
   --font-sans: var(--font-geist), system-ui, -apple-system, sans-serif;
-  --font-mono: var(--font-hack), var(--font-menlo), Menlo, Monaco, Consolas, monospace;
+  /* "ruble-overlay" (see @font-face below) covers ONLY U+20BD so the ruble
+     sign renders at a matched optical size; every other glyph falls through
+     to Hack as before. */
+  --font-mono: "ruble-overlay", var(--font-hack), var(--font-menlo), Menlo, Monaco, Consolas, monospace;
   --font-pixel: var(--font-departure), var(--font-hack), Menlo, monospace;
 }
 
@@ -67,6 +70,17 @@ html.light {
      still subordinate so the orange accent stays the pop-out (FT: minimize
      distraction, maximize contrast). */
   --brock-neutral: #a6a6a6;
+}
+
+/* The ruble sign (U+20BD) is missing from Hack, so it falls through to
+   next/font's size-adjusted fallback (Arial scaled up to Hack's wide advance
+   width) and renders ~40% oversized next to ₸. A dedicated overlay family
+   sits FIRST in the mono stack and covers only that codepoint from an
+   unadjusted local sans, so ₽ sits on the same optical size as ₸. */
+@font-face {
+  font-family: "ruble-overlay";
+  src: local("Segoe UI"), local("Roboto"), local("Helvetica Neue"), local("Arial");
+  unicode-range: U+20BD;
 }
 
 body {

@@ -35,7 +35,8 @@ export type ArticleHeaderProps = {
   slug: string;
   date: string;
   readMin: number;
-  hero: { src: string; alt: string; credit: string; width?: number; height?: number };
+  /** Hero illustration. Optional: articles may launch text-first and add art later. */
+  hero?: { src: string; alt: string; credit: string; width?: number; height?: number };
   locale?: Locale;
 };
 
@@ -71,20 +72,22 @@ export function ArticleHeader({ kicker, title, subtitle, slug, date, readMin, he
         </div>
       </header>
 
-      {/* Hero illustration */}
-      <figure className="mb-12">
-        <div className="border border-[var(--color-border)] overflow-hidden">
-          <Image
-            src={hero.src}
-            alt={hero.alt}
-            width={hero.width ?? 1200}
-            height={hero.height ?? 800}
-            priority
-            className="w-full h-auto"
-          />
-        </div>
-        <figcaption className="text-left text-[11px] text-[var(--color-dim)] mt-2">{hero.credit}</figcaption>
-      </figure>
+      {/* Hero illustration (optional — some articles launch text-first) */}
+      {hero && (
+        <figure className="mb-12">
+          <div className="border border-[var(--color-border)] overflow-hidden">
+            <Image
+              src={hero.src}
+              alt={hero.alt}
+              width={hero.width ?? 1200}
+              height={hero.height ?? 800}
+              priority
+              className="w-full h-auto"
+            />
+          </div>
+          <figcaption className="text-left text-[11px] text-[var(--color-dim)] mt-2">{hero.credit}</figcaption>
+        </figure>
+      )}
     </>
   );
 }
