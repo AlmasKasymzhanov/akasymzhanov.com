@@ -14,8 +14,8 @@ import {
   Grafik4,
   Grafik5,
   Grafik6,
-  TengeJourney,
 } from "@/components/charts/freedom-market-en";
+import { TengeJourney } from "@/components/charts/tenge-journey";
 
 /* Monochrome link for captions / sources (canon: links never carry accent). */
 function Src({ href, children }: { href: string; children: React.ReactNode }) {
@@ -615,7 +615,7 @@ export default function FreedomMarketArticleEn() {
                 <Fn n={38} tip="MELI Letters to Shareholders — Mercado Fondo AUM dynamics; $18.8B as of Q4 2025." />
                 , and its Chinese progenitor{" "}
                 <Term tip="The money-market fund inside Alipay; at its peak, the world's largest.">Yu&rsquo;e Bao</Term>{" "}
-                held $267 billion at its peak - until the regulator cut the limits. Kaspi has assembled the marketplace and merchant deposits - two-thirds of the loop. But the triple link - a marketplace, yield on sellers&rsquo; money, and rewards in securities through one&rsquo;s own broker - has, as far as public disclosures allow one to judge, never been assembled by anyone in the world
+                held $267 billion at its peak - until the regulator cut the limits. Kaspi has assembled the marketplace and merchant deposits - two-thirds of the loop. Deposits Kaspi does have - retail ones and a Business Deposit for merchants; what it lacks is yield by default on every working tenge, and the floor above the deposit: securities. But the triple link - a marketplace, yield on sellers&rsquo; money, and rewards in securities through one&rsquo;s own broker - has, as far as public disclosures allow one to judge, never been assembled by anyone in the world
                 <Fn n={39} tip="Author's prior-art survey of public disclosures and product announcements (Shopify, Amazon, MercadoLibre, eToro, Robinhood, Trade Republic, Grab, Kaspi, et al.), June–July 2026." />
                 . It requires a triple license stack: marketplace operator, bank and{" "}
                 <Term tip="A licensed securities intermediary.">broker-dealer</Term>{" "}
@@ -636,15 +636,7 @@ export default function FreedomMarketArticleEn() {
                 Kaspi&rsquo;s imperial metric is frequency: 77 touches a month. The only metric that can answer it is the lifespan of a tenge inside the system. Kaspi owns its users&rsquo; time. Freedom could own their capital.
               </P>
 
-              <ChartSlot
-                n="interactive"
-                type="scroll interactive"
-                title="The Journey of One Tenge: two loops, two counters"
-                caption={<>Model: the author&rsquo;s assumptions and calculations <Dot /> precedents: Mercado Fondo, eToro, Shopify Balance</>}
-                brock="Interactive"
-              >
-                <TengeJourney />
-              </ChartSlot>
+              <TengeJourney locale="en" />
 
               <P>
                 In fairness: the pioneers of this mechanic are dead.{" "}
