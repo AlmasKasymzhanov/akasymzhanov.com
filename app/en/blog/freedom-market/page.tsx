@@ -237,7 +237,7 @@ export default function FreedomMarketArticleEn() {
                 brock="Timeline"
                 title="The Teez timeline: promises vs. dates"
                 caption={<>Source: Forbes Kazakhstan <Dot /> Exclusive.kz <Dot /> Orda.kz <Dot /> Kapital.kz <Dot /> <Term tip="WHOIS - the public registry of domain records (registration date, registrar, owner); KazNIC administers the national .kz zone.">KazNIC WHOIS</Term> <Dot /> <Term tip="Certificate Transparency - public logs of every SSL certificate ever issued; they show when a certificate was issued and which subdomains it covers.">Certificate Transparency</Term></>}
-                note="September 2024 - July 2026. In orange - the events nobody announced: the May 9 registration of fmarket.kz and the May 13 SSL certificate."
+                note="September 2024 - July 2026. In green (Freedom's colour) - the events nobody announced: the May 9 registration of fmarket.kz and the May 13 SSL certificate."
               >
                 <Grafik1 />
               </ChartSlot>
@@ -563,7 +563,7 @@ export default function FreedomMarketArticleEn() {
                 type="line, 12 months"
                 title="The seasonal fulfillment wave on WB: 24% in summer, 50% in December"
                 caption={<>Source: MPSTATS, twelve monthly windows <Dot /> author&rsquo;s calculations</>}
-                note="Peak season cannot be survived without a warehouse: WB's market-wide fulfillment share doubles into December."
+                note="In % of WB turnover, monthly. Peak season cannot be survived without a warehouse: the market-wide fulfillment share doubles into December."
               >
                 <Grafik6 />
               </ChartSlot>

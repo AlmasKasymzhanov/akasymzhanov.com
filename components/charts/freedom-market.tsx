@@ -4,9 +4,11 @@
  * Brock UI charts for «Маркетплейс умер. Он вам позвонит» (freedom-market).
  * Spec: brock-ui-charts-spec.md v2 (Downloads). Bloomberg Businessweek / FT
  * canon: flat fills, generous air, thin axes, no gradients/shadows/3D; ONE warm
- * accent (--brock-accent) for the signal, graphite (--brock-neutral) for
- * context. Headlines are theses (in the page's ChartSlot), sources in captions,
- * hyphens with spaces instead of dashes (canon of this material).
+ * Colour = entity (Datawrapper style-guide canon, one entity - one colour
+ * everywhere): Kaspi red, Freedom teal-green, WB magenta, Ozon blue, Uzum
+ * violet (--viz-* tokens, theme-aware); graphite (--brock-neutral) for
+ * context. Headlines are theses (in the page's ChartSlot), sources in
+ * captions, hyphens with spaces instead of dashes (canon of this material).
  *
  * Г1 timeline · Г2 Uzum/Teez cards · Г3 small multiples · Г4 fee ladder ·
  * Г5 fashion share stacked bars · Г6 FBW seasonal wave. The tenge-journey
@@ -19,7 +21,6 @@ import { LineChart } from "@/components/charts/line-chart";
 import { Term } from "@/components/canon/term";
 
 const num = (v: number) => v.toLocaleString("ru-RU");
-const ACCENT = "var(--brock-accent)";
 const NEUTRAL = "var(--brock-neutral)";
 
 /* Reveal-on-scroll: returns [ref, visible]. Fires once when the element enters
@@ -142,7 +143,7 @@ function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boole
         isPromise
           ? "text-[var(--color-dim)] border-[var(--color-border)]"
           : ev.accent
-            ? "text-[var(--brock-accent)] border-[var(--brock-accent)]"
+            ? "text-[var(--viz-freedom)] border-[var(--viz-freedom)]"
             : "text-[var(--color-text)] border-[var(--color-border)] bg-[var(--color-border)]/30"
       }`}
     >
@@ -152,7 +153,7 @@ function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boole
   const body = (
     <div className={`min-w-0 ${isPromise ? "md:text-right" : ""}`}>
       <p className="font-mono text-[11px] text-[var(--color-dim)] tabular-nums mb-1">{ev.date}</p>
-      <p className={`text-[13px] leading-snug mb-1.5 ${ev.accent ? "text-[var(--brock-accent)] font-semibold" : isPromise ? "text-[var(--color-dim)] italic" : "text-[var(--color-text)]"}`}>
+      <p className={`text-[13px] leading-snug mb-1.5 ${ev.accent ? "text-[var(--viz-freedom)] font-semibold" : isPromise ? "text-[var(--color-dim)] italic" : "text-[var(--color-text)]"}`}>
         {ev.text}
       </p>
       {badge}
@@ -172,8 +173,8 @@ function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boole
           aria-hidden
           className="relative mt-1 inline-block w-2.5 h-2.5 rounded-full border-2"
           style={{
-            borderColor: ev.accent ? "var(--brock-accent)" : "var(--brock-neutral)",
-            background: isPromise ? "var(--color-bg)" : ev.accent ? "var(--brock-accent)" : "var(--brock-neutral)",
+            borderColor: ev.accent ? "var(--viz-freedom)" : "var(--brock-neutral)",
+            background: isPromise ? "var(--color-bg)" : ev.accent ? "var(--viz-freedom)" : "var(--brock-neutral)",
           }}
         />
       </div>
@@ -195,8 +196,8 @@ export function Grafik1() {
     const ev = TIMELINE[i];
     if (ev.pairWithNext && i + 1 < TIMELINE.length) {
       rows.push(
-        <div key={`pair-${i}`} className="relative border border-dashed border-[var(--brock-accent)]/50 rounded-[3px] px-3 pt-4 -mx-3 mb-2">
-          <span className="absolute -top-2 left-2 px-1.5 bg-[var(--color-surface)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--brock-accent)]">
+        <div key={`pair-${i}`} className="relative border border-dashed border-[var(--color-dim)]/60 rounded-[3px] px-3 pt-4 -mx-3 mb-2">
+          <span className="absolute -top-2 left-2 px-1.5 bg-[var(--color-surface)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-text)]">
             один день - два жанра
           </span>
           <TimelineRow ev={ev} visible={visible} delay={i * 70} />
@@ -217,12 +218,12 @@ export function Grafik1() {
         <SubLabel>Что происходило</SubLabel>
       </div>
       <div>{rows}</div>
-      <p className="mt-2 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--brock-accent)] pl-3">
+      <p className="mt-2 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         Пресс-релиза о сделке нет до сих пор. Отдел продаж уже работает.
       </p>
       <Legend
         items={[
-          { color: ACCENT, label: "события, которых никто не анонсировал (домен и почта)" },
+          { color: "var(--viz-freedom)", label: "события, которых никто не анонсировал (домен и почта)" },
           { color: NEUTRAL, label: "хроника по публикациям и реестрам" },
         ]}
       />
@@ -239,7 +240,7 @@ function MiniBar({ pct, accent, visible }: { pct: number; accent?: boolean; visi
     <div className="mt-1 h-1.5 rounded-full bg-[var(--color-border)]/40 overflow-hidden" aria-hidden>
       <div
         className="h-full rounded-full transition-[width] duration-700 ease-out"
-        style={{ width: visible ? `${pct}%` : "0%", background: accent ? ACCENT : NEUTRAL }}
+        style={{ width: visible ? `${pct}%` : "0%", background: accent ? "var(--viz-uzum)" : NEUTRAL }}
       />
     </div>
   );
@@ -282,7 +283,7 @@ export function Grafik2() {
     <div ref={ref}>
       <div className="grid grid-cols-2 md:grid-cols-2">
         <div className="pr-3 pb-2">
-          <p className="text-[15px] font-bold text-[var(--brock-accent)]">Uzum</p>
+          <p className="text-[15px] font-bold text-[var(--viz-uzum)]">Uzum</p>
           <p className="font-mono text-[10px] text-[var(--color-dim)]">Узбекистан</p>
         </div>
         <div className="pl-3 pb-2 border-l border-[var(--color-border)]">
@@ -309,7 +310,7 @@ export function Grafik2() {
           teez={<>Продажа с долгами перед продавцами (2026)</>}
         />
       </div>
-      <p className="mt-4 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--brock-accent)] pl-3">
+      <p className="mt-4 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         Вся разница - в одном продукте, включённом на год раньше.
       </p>
     </div>
@@ -324,20 +325,25 @@ export function Grafik3() {
         <div>
           <div className="flex items-baseline justify-between gap-3">
             <SubLabel>Ozon · финтех-выручка, млрд ₽</SubLabel>
-            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--brock-accent)" }}>+120%</span>
+            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--viz-ozon)" }}>+120%</span>
           </div>
-          <ColumnChart
-            height={190}
-            barRadius={2}
-            data={[
-              { label: "2023", value: 93.3, color: NEUTRAL },
-              { label: "2024", value: 195.2 },
-            ]}
-            yAxis={{ max: 210, hideTicks: true }}
-            slots={{ tooltip: () => null }}
-            dataLabels={{ show: true, format: (v: number) => num(v) }}
-            formatValue={(v: number) => `${num(v)} млрд ₽`}
-          />
+          {/* FT column canon: columns ≈70% of the band, capped — never full-bleed slabs. */}
+          <div className="max-w-[190px]">
+            <ColumnChart
+              height={190}
+              barRadius={2}
+              gap={18}
+              accent="var(--viz-ozon)"
+              data={[
+                { label: "2023", value: 93.3, color: NEUTRAL },
+                { label: "2024", value: 195.2 },
+              ]}
+              yAxis={{ max: 210, hideTicks: true }}
+              slots={{ tooltip: () => null }}
+              dataLabels={{ show: true, format: (v: number) => num(v) }}
+              formatValue={(v: number) => `${num(v)} млрд ₽`}
+            />
+          </div>
           <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
             финтех даёт &gt;80%{" "}
             <Term tip="Прибыль до вычета процентов, налогов и амортизации; показатель операционной прибыльности.">EBITDA</Term>{" "}
@@ -347,27 +353,31 @@ export function Grafik3() {
         <div>
           <div className="flex items-baseline justify-between gap-3">
             <SubLabel>СберМегаМаркет · млрд ₽</SubLabel>
-            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--brock-accent)" }}>−93%</span>
+            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--viz-negative)" }}>−93%</span>
           </div>
-          <ColumnChart
-            height={190}
-            barRadius={2}
-            data={[
-              { label: "2023", value: 312, color: NEUTRAL },
-              { label: "2024", value: 342.6, color: NEUTRAL },
-              { label: "2025", value: 24.5 },
-            ]}
-            yAxis={{ max: 380, hideTicks: true }}
-            slots={{ tooltip: () => null }}
-            dataLabels={{ show: true, format: (v: number) => num(v) }}
-            formatValue={(v: number) => `${num(v)} млрд ₽`}
-          />
+          <div className="max-w-[270px]">
+            <ColumnChart
+              height={190}
+              barRadius={2}
+              gap={18}
+              accent="var(--viz-negative)"
+              data={[
+                { label: "2023", value: 312, color: NEUTRAL },
+                { label: "2024", value: 342.6, color: NEUTRAL },
+                { label: "2025", value: 24.5 },
+              ]}
+              yAxis={{ max: 380, hideTicks: true }}
+              slots={{ tooltip: () => null }}
+              dataLabels={{ show: true, format: (v: number) => num(v) }}
+              formatValue={(v: number) => `${num(v)} млрд ₽`}
+            />
+          </div>
           <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
             за 2025-й: с 4-го на 38-е место среди онлайн-ритейлеров
           </p>
         </div>
       </div>
-      <p className="mt-4 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--brock-accent)] pl-3">
+      <p className="mt-4 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         У Сбера было больше денег и данных. У Ozon банк был внутри витрины.
       </p>
     </div>
@@ -379,24 +389,29 @@ export function Grafik4() {
   const pct = (v: number) => `${v.toLocaleString("ru-RU")}%`;
   return (
     <div>
-      <ColumnChart
-        height={250}
-        barRadius={2}
-        data={[
-          { label: "Карта", value: 5, color: NEUTRAL },
-          { label: "Кредит", value: 5, color: NEUTRAL },
-          { label: "3 мес", value: 6, color: NEUTRAL },
-          { label: "6 мес", value: 8, color: NEUTRAL },
-          { label: "9 мес", value: 11, color: NEUTRAL },
-          { label: "12 мес", value: 13, color: NEUTRAL },
-          { label: "24 мес", value: 14 },
-        ]}
-        yAxis={{ max: 16, hideTicks: true }}
-        slots={{ tooltip: () => null }}
-        dataLabels={{ show: true, format: pct }}
-        formatValue={pct}
-      />
-      <p className="mt-3 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--brock-accent)] pl-3">
+      {/* FT column canon: cap the plot width so 7 columns stay columns. */}
+      <div className="max-w-[480px]">
+        <ColumnChart
+          height={250}
+          barRadius={2}
+          gap={10}
+          accent="var(--viz-freedom)"
+          data={[
+            { label: "Карта", value: 5, color: NEUTRAL },
+            { label: "Кредит", value: 5, color: NEUTRAL },
+            { label: "3 мес", value: 6, color: NEUTRAL },
+            { label: "6 мес", value: 8, color: NEUTRAL },
+            { label: "9 мес", value: 11, color: NEUTRAL },
+            { label: "12 мес", value: 13, color: NEUTRAL },
+            { label: "24 мес", value: 14 },
+          ]}
+          yAxis={{ max: 16, hideTicks: true }}
+          slots={{ tooltip: () => null }}
+          dataLabels={{ show: true, format: pct }}
+          formatValue={pct}
+        />
+      </div>
+      <p className="mt-3 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         +9{" "}
         <Term tip="Процентные пункты - разница между двумя процентными значениями: 14% против 5% - это 9 п.п.">п.п.</Term>{" "}
         - цена двух лет рассрочки для продавца.
@@ -409,7 +424,7 @@ export function Grafik4() {
       <Legend
         items={[
           { color: NEUTRAL, label: "оплата картой, кредитом и короткие рассрочки" },
-          { color: ACCENT, label: "24 месяца - самая дорогая клетка прейскуранта" },
+          { color: "var(--viz-freedom)", label: "24 месяца - самая дорогая клетка прейскуранта" },
         ]}
       />
     </div>
@@ -421,25 +436,28 @@ function ShareBar({
   label,
   share,
   detail,
+  color,
   visible,
 }: {
   label: string;
   share: number;
   detail: string;
+  /** Entity colour (Datawrapper canon: one entity = one colour everywhere). */
+  color: string;
   visible: boolean;
 }) {
   return (
     <div>
       <div className="flex items-baseline justify-between gap-3 mb-1.5">
         <span className="font-mono text-[12.5px] text-[var(--color-text)]">{label}</span>
-        <span className="font-mono text-[13px] font-bold tabular-nums" style={{ color: "var(--brock-accent)" }}>
+        <span className="font-mono text-[13px] font-bold tabular-nums" style={{ color }}>
           {share.toLocaleString("ru-RU", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%
         </span>
       </div>
       <div className="h-6 rounded-[2px] overflow-hidden flex bg-[var(--color-border)]/40" role="img" aria-label={`${label}: одежда и обувь ${share}% оборота`}>
         <div
           className="h-full shrink-0 transition-[width] duration-700 ease-out"
-          style={{ width: visible ? `${share}%` : "0%", background: ACCENT }}
+          style={{ width: visible ? `${share}%` : "0%", background: color }}
         />
       </div>
       <p className="mt-1 font-mono text-[11px] text-[var(--color-dim)]">{detail}</p>
@@ -456,21 +474,24 @@ export function Grafik5() {
           label="Wildberries"
           share={24.7}
           detail="5,7 из 23,2 трлн ₽ заказов · июль 2025 - июнь 2026"
+          color="var(--viz-wb)"
           visible={visible}
         />
-        <p className="text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--brock-accent)] pl-3">
+        <p className="text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
           ×3,6 - недопредставленность моды на Kaspi
         </p>
         <ShareBar
           label="Kaspi"
           share={6.8}
           detail="11,6 из 168,8 млрд ₸ · апрель 2026, топ-15 категорий · электроника на Kaspi - 27,4%"
+          color="var(--viz-kaspi)"
           visible={visible}
         />
       </div>
       <Legend
         items={[
-          { color: ACCENT, label: "одежда и обувь - доля в обороте площадки" },
+          { color: "var(--viz-wb)", label: "Wildberries - доля одежды и обуви" },
+          { color: "var(--viz-kaspi)", label: "Kaspi - доля одежды и обуви" },
           { color: NEUTRAL, label: "остальные категории одной массой" },
         ]}
       />
@@ -487,9 +508,10 @@ export function Grafik6() {
     <div>
       <LineChart
         height={230}
-        lineWidth={2.5}
+        lineWidth={3}
         markers="always"
         directLabels={false}
+        accent="var(--viz-wb)"
         xScale="point"
         x={["Июл", "Авг", "Сен", "Окт", "Ноя", "Дек", "Янв", "Фев", "Мар", "Апр", "Май", "Июн"]}
         data={[
@@ -521,12 +543,12 @@ export function Grafik6() {
           },
         ]}
         events={[{ x: "Дек", label: "пик 50,3%" }]}
-        yAxis={{ min: 0, max: 60, title: "% оборота" }}
+        yAxis={{ min: 0, max: 60 }}
         formatValue={(v: number) => `${v.toLocaleString("ru-RU", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`}
       />
       <Legend
         items={[
-          { color: ACCENT, label: "декабрь - 50,3%: в пик сезона половина оборота WB идёт со складов площадки" },
+          { color: "var(--viz-wb)", label: "декабрь - 50,3%: в пик сезона половина оборота WB идёт со складов площадки" },
           { color: NEUTRAL, label: "апрель (34,0%) - аномалия данных источника" },
         ]}
       />

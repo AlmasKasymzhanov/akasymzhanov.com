@@ -229,7 +229,7 @@ export default function FreedomMarketArticle() {
                 brock="Timeline"
                 title="Хроника Teez: обещания против дат"
                 caption={<>Источник: Forbes Kazakhstan <Dot /> Exclusive.kz <Dot /> Orda.kz <Dot /> Kapital.kz <Dot /> <Term tip="WHOIS - публичный реестр данных о доменах (дата регистрации, регистратор, владелец); KazNIC - администратор национальной зоны .kz.">WHOIS KazNIC</Term> <Dot /> <Term tip="Certificate Transparency - публичные журналы всех выпущенных SSL-сертификатов; по ним видно, когда и на какие поддомены выпускался сертификат.">Certificate Transparency</Term></>}
-                note="Сентябрь 2024 - июль 2026. Оранжевым - события, которых никто не анонсировал: регистрация fmarket.kz 9 мая и SSL-сертификат 13 мая."
+                note="Сентябрь 2024 - июль 2026. Зелёным (цвет Freedom) - события, которых никто не анонсировал: регистрация fmarket.kz 9 мая и SSL-сертификат 13 мая."
               >
                 <Grafik1 />
               </ChartSlot>
@@ -540,7 +540,7 @@ export default function FreedomMarketArticle() {
                 type="линейный, 12 месяцев"
                 title="Сезонная волна фулфилмента на WB: 24% летом, 50% в декабре"
                 caption={<>Источник: MPSTATS, 12 месячных окон <Dot /> расчёты автора</>}
-                note="Высокий сезон не переживается без склада: FBW-доля рынка WB удваивается к декабрю."
+                note="В % оборота WB, помесячно. Высокий сезон не переживается без склада: FBW-доля рынка удваивается к декабрю."
               >
                 <Grafik6 />
               </ChartSlot>

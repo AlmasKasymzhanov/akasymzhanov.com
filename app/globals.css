@@ -63,6 +63,18 @@ html.light {
   --brock-accent: #f54900;
   /* Graphite context bars — dark-theme value (legible on #171717). */
   --brock-neutral: #6e6e6e;
+  /* Entity colours for data-vis (Datawrapper style-guide canon: one entity =
+     one colour across every chart of a piece). Dark-theme values; the light
+     theme remaps them below, contrast-preserving. The Freedom green sits at
+     hue ~165° (teal side) per Muth: avoid pure green and red-green pairs.
+     --viz-negative shares the red family for binary encoding (blue-positive /
+     red-negative). */
+  --viz-kaspi: #ff5c54;
+  --viz-freedom: #2bbd90;
+  --viz-wb: #e360c9;
+  --viz-ozon: #4f9dff;
+  --viz-uzum: #a78bfa;
+  --viz-negative: #ff5c54;
 }
 
 html.light {
@@ -70,6 +82,14 @@ html.light {
      still subordinate so the orange accent stays the pop-out (FT: minimize
      distraction, maximize contrast). */
   --brock-neutral: #a6a6a6;
+  /* Entity colours, light-theme: darker/deeper so contrast on white matches
+     the dark-theme contrast (Datawrapper dark-mode principle in reverse). */
+  --viz-kaspi: #c8281e;
+  --viz-freedom: #0d8a66;
+  --viz-wb: #a90d8e;
+  --viz-ozon: #0059d6;
+  --viz-uzum: #6d28d9;
+  --viz-negative: #c8281e;
 }
 
 /* The ruble sign (U+20BD) is missing from Hack, so it falls through to

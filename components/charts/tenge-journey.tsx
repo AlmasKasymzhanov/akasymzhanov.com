@@ -31,6 +31,8 @@ const STAGE = {
   text: "#ececec",
   dim: "#9b9b9b",
 };
+/* The coin's own gold doubles as the stage accent — one hero, one colour. */
+const GOLD = "#F8B916";
 
 type Step = { n: string; title: string; detail: string };
 
@@ -144,7 +146,7 @@ function Coin({ dead, size = 56 }: { dead: boolean; size?: number }) {
 /* A tiny chess clock: two faces; one hand ticks (CSS anim) or stands. */
 function Clock({ running, label }: { running: boolean; label: string }) {
   return (
-    <span className="inline-flex items-center gap-1.5 font-mono text-[10px]" style={{ color: running ? "var(--brock-accent)" : STAGE.dim }}>
+    <span className="inline-flex items-center gap-1.5 font-mono text-[10px]" style={{ color: running ? STAGE.text : STAGE.dim }}>
       <svg viewBox="0 0 20 20" width="13" height="13" aria-hidden>
         <circle cx="10" cy="10" r="8.4" fill="none" stroke="currentColor" strokeWidth="1.6" />
         <line
@@ -190,7 +192,7 @@ function Rank({
               minHeight: vertical ? 84 : 118,
             }}
           >
-            <p className="font-mono text-[10px]" style={{ color: i === coinAt ? "var(--brock-accent)" : STAGE.dim }}>{s.n}</p>
+            <p className="font-mono text-[10px]" style={{ color: i === coinAt ? STAGE.text : STAGE.dim }}>{s.n}</p>
             <p className="text-[12.5px] font-semibold leading-snug mt-0.5" style={{ color: STAGE.text }}>{s.title}</p>
             <p className="text-[11px] leading-snug mt-0.5" style={{ color: STAGE.dim }}>{s.detail}</p>
           </div>
@@ -217,7 +219,6 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
   const [freedomDays, setFreedomDays] = useState(0);
-  const [loopPos, setLoopPos] = useState(3);
   const [reduced, setReduced] = useState(false);
   const [pinned, setPinned] = useState(true);
 
@@ -264,18 +265,10 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
   }, []);
 
   const step = Math.min(3, Math.floor(progress * 4.4));
-  const kaspiDead = progress > 0.82;
-  const freedomLooping = progress > 0.82 && !reduced;
-
-  // Freedom endgame: the coin keeps cycling its rank; the counter ramps → ∞.
-  useEffect(() => {
-    if (!freedomLooping) {
-      setLoopPos(step);
-      return;
-    }
-    const id = window.setInterval(() => setLoopPos((p) => (p + 1) % 4), 1100);
-    return () => window.clearInterval(id);
-  }, [freedomLooping, step]);
+  // The Kaspi coin dies the moment it LANDS on "account, 0%": tied to the
+  // step (works identically in pinned and unpinned modes), not to a raw
+  // progress threshold. All coin movement is scroll-driven — no idle loops.
+  const kaspiDead = step >= 3;
 
   useEffect(() => {
     if (reduced) return;
@@ -335,12 +328,13 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
                 </div>
                 <div className={vertical ? "" : "grid grid-cols-[1fr_auto] gap-4 items-start"}>
                   <Rank steps={c.kaspiSteps} coinAt={step} coinDead={kaspiDead} vertical={vertical} />
-                  {/* The diagonal deposit square - one move aside, made by hand. */}
+                  {/* The diagonal deposit square - one move aside (down-right,
+                   * clear of the header row), made by hand. */}
                   <div
-                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[168px] -translate-y-6"}`}
-                    style={{ borderColor: step >= 3 ? "var(--brock-accent)" : STAGE.line }}
+                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[176px] translate-y-10"}`}
+                    style={{ borderColor: step >= 3 ? STAGE.dim : STAGE.line }}
                   >
-                    <p className="font-mono text-[10px]" style={{ color: step >= 3 ? "var(--brock-accent)" : STAGE.dim }}>4…♟?</p>
+                    <p className="font-mono text-[10px]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>4…♟?</p>
                     <p className="text-[12px] font-semibold leading-snug mt-0.5" style={{ color: STAGE.text }}>{c.depositTitle}</p>
                     <p className="text-[10.5px] leading-snug mt-1" style={{ color: STAGE.dim }}>{c.depositNote}</p>
                   </div>
@@ -355,25 +349,25 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
                     <Clock running={step >= 3 && !reduced} label={step >= 3 ? c.freedomClockRunning : "…"} />
                     <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
                       {c.counterLabel}:{" "}
-                      <b className="text-[13px] tabular-nums" style={{ color: "var(--brock-accent)" }}>{freedomDisplay}</b>
+                      <b className="text-[13px] tabular-nums" style={{ color: GOLD }}>{freedomDisplay}</b>
                     </span>
                   </span>
                 </div>
-                <Rank steps={c.freedomSteps} coinAt={freedomLooping ? loopPos : step} coinDead={false} vertical={vertical} />
+                <Rank steps={c.freedomSteps} coinAt={step} coinDead={false} vertical={vertical} />
                 {/* Loop-back arrow: the rank closes into a circle. */}
                 <div className="mt-2 flex items-center gap-2" aria-hidden>
                   <svg viewBox="0 0 120 14" width="120" height="14" className="shrink-0">
-                    <path d="M116 3 H12" fill="none" stroke={step >= 3 ? "var(--brock-accent)" : STAGE.line} strokeWidth="1.5" strokeDasharray="4 3" />
-                    <path d="M16 0 L9 3.5 L16 7 Z" fill={step >= 3 ? "var(--brock-accent)" : STAGE.line} />
+                    <path d="M116 3 H12" fill="none" stroke={step >= 3 ? GOLD : STAGE.line} strokeWidth="1.5" strokeDasharray="4 3" />
+                    <path d="M16 0 L9 3.5 L16 7 Z" fill={step >= 3 ? GOLD : STAGE.line} />
                   </svg>
-                  <span className="font-mono text-[10px]" style={{ color: step >= 3 ? "var(--brock-accent)" : STAGE.dim }}>{c.loopLabel}</span>
+                  <span className="font-mono text-[10px]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>{c.loopLabel}</span>
                 </div>
               </div>
             </div>
 
             {/* Progress rail */}
             <div className="mt-6 h-1 rounded-full overflow-hidden" style={{ background: STAGE.line }} aria-hidden>
-              <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: "var(--brock-accent)" }} />
+              <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: GOLD }} />
             </div>
 
             {/* Methodology plaque */}
