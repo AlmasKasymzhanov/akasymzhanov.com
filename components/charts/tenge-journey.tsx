@@ -43,8 +43,6 @@ type Copy = {
   freedomName: string;
   counterLabel: string;
   kaspiCounterFinal: string;
-  kaspiClockStopped: string;
-  freedomClockRunning: string;
   kaspiSteps: Step[];
   freedomSteps: Step[];
   depositTitle: string;
@@ -57,13 +55,11 @@ type Copy = {
 
 const RU: Copy = {
   title: "Путешествие одного тенге",
-  dek: "Две партии одной монеты. Ходы - по нотации; часы - как в конце статьи.",
+  dek: "Две партии одной монеты. Ходы - по нотации, как в конце статьи.",
   kaspiName: "Партия Kaspi",
   freedomName: "Партия Freedom (модель)",
   counterLabel: "дней тенге работает",
   kaspiCounterFinal: "0 - пока не донесёшь",
-  kaspiClockStopped: "часы стоят",
-  freedomClockRunning: "часы тикают",
   kaspiSteps: [
     { n: "1.", title: "Покупка", detail: "покупатель платит в приложении" },
     { n: "2.", title: "Кешбэк баллами", detail: "бонусы, которые можно только потратить" },
@@ -87,13 +83,11 @@ const RU: Copy = {
 
 const EN: Copy = {
   title: "The Journey of One Tenge",
-  dek: "Two games, one coin. Moves in notation; clocks - as at the end of the piece.",
+  dek: "Two games, one coin. Moves in notation, as at the end of the piece.",
   kaspiName: "The Kaspi game",
   freedomName: "The Freedom game (a model)",
   counterLabel: "days the tenge works",
   kaspiCounterFinal: "0 - until you carry it",
-  kaspiClockStopped: "clock stopped",
-  freedomClockRunning: "clock running",
   kaspiSteps: [
     { n: "1.", title: "Purchase", detail: "the buyer pays in the app" },
     { n: "2.", title: "Cashback as points", detail: "bonuses that can only be spent" },
@@ -143,28 +137,6 @@ function Coin({ dead, size = 56 }: { dead: boolean; size?: number }) {
   );
 }
 
-/* A tiny chess clock: two faces; one hand ticks (CSS anim) or stands. */
-function Clock({ running, label }: { running: boolean; label: string }) {
-  return (
-    <span className="inline-flex items-center gap-1.5 font-mono text-[10px]" style={{ color: running ? STAGE.text : STAGE.dim }}>
-      <svg viewBox="0 0 20 20" width="13" height="13" aria-hidden>
-        <circle cx="10" cy="10" r="8.4" fill="none" stroke="currentColor" strokeWidth="1.6" />
-        <line
-          x1="10"
-          y1="10"
-          x2="10"
-          y2="4.6"
-          stroke="currentColor"
-          strokeWidth="1.6"
-          strokeLinecap="round"
-          style={running ? { transformOrigin: "10px 10px", animation: "tj-tick 2s linear infinite" } : { transformOrigin: "10px 10px", transform: "rotate(140deg)" }}
-        />
-      </svg>
-      {label}
-    </span>
-  );
-}
-
 /* One board rank: alternating graphite squares with notation labels. */
 function Rank({
   steps,
@@ -204,8 +176,8 @@ function Rank({
         className="absolute pointer-events-none transition-[left,top,transform] duration-700 ease-in-out"
         style={
           vertical
-            ? { left: "auto", right: 6, top: `calc(${coinAt} * 25% + 12.5% - 22px)`, transform: `rotate(${coinAt * 180}deg)` }
-            : { top: -24, left: `calc(${coinAt} * 25% + 12.5% - 28px)`, transform: `rotate(${coinAt * 180}deg)` }
+            ? { left: "auto", right: 6, top: `calc(${coinAt} * 25% + 12.5% - 22px)`, transform: `rotate(${coinAt * 360}deg)` }
+            : { top: -24, left: `calc(${coinAt} * 25% + 12.5% - 28px)`, transform: `rotate(${coinAt * 360}deg)` }
         }
       >
         <Coin dead={coinDead} size={vertical ? 44 : 56} />
@@ -299,8 +271,6 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
       data-chart-type="chessboard scrolly"
       className="my-10 lg:w-[min(1060px,calc(100vw-3rem))] lg:relative lg:left-1/2 lg:-translate-x-1/2"
     >
-      {/* Keyframes for the ticking clock hand. */}
-      <style>{`@keyframes tj-tick { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }`}</style>
       <div ref={trackRef} style={{ height: pinned && !reduced ? "280vh" : "auto" }} className="relative">
         <div className={pinned && !reduced ? "sticky top-[56px]" : ""}>
           <div className="rounded-[4px] px-5 py-6 md:px-9 md:py-8" style={{ background: STAGE.bg, border: `1px solid ${STAGE.line}` }}>
@@ -318,12 +288,9 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
               <div>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
                   <p className="text-[14px] font-bold" style={{ color: STAGE.text }}>{c.kaspiName}</p>
-                  <span className="inline-flex items-center gap-3">
-                    <Clock running={false} label={step >= 3 ? c.kaspiClockStopped : "…"} />
-                    <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
-                      {c.counterLabel}:{" "}
-                      <b className="text-[13px] tabular-nums" style={{ color: STAGE.text }}>{kaspiCounter}</b>
-                    </span>
+                  <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
+                    {c.counterLabel}:{" "}
+                    <b className="text-[13px] tabular-nums" style={{ color: STAGE.text }}>{kaspiCounter}</b>
                   </span>
                 </div>
                 <div className={vertical ? "" : "grid grid-cols-[1fr_auto] gap-4 items-start"}>
@@ -331,7 +298,7 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
                   {/* The diagonal deposit square - one move aside (down-right,
                    * clear of the header row), made by hand. */}
                   <div
-                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[176px] translate-y-10"}`}
+                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[176px]"}`}
                     style={{ borderColor: step >= 3 ? STAGE.dim : STAGE.line }}
                   >
                     <p className="font-mono text-[10px]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>4…♟?</p>
@@ -345,12 +312,9 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
               <div>
                 <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
                   <p className="text-[14px] font-bold" style={{ color: STAGE.text }}>{c.freedomName}</p>
-                  <span className="inline-flex items-center gap-3">
-                    <Clock running={step >= 3 && !reduced} label={step >= 3 ? c.freedomClockRunning : "…"} />
-                    <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
-                      {c.counterLabel}:{" "}
-                      <b className="text-[13px] tabular-nums" style={{ color: GOLD }}>{freedomDisplay}</b>
-                    </span>
+                  <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
+                    {c.counterLabel}:{" "}
+                    <b className="text-[13px] tabular-nums" style={{ color: GOLD }}>{freedomDisplay}</b>
                   </span>
                 </div>
                 <Rank steps={c.freedomSteps} coinAt={step} coinDead={false} vertical={vertical} />
