@@ -389,9 +389,12 @@ export function Grafik3() {
               barRadius={2}
               gap={18}
               accent="var(--viz-ozon)"
+              /* Ozon IR, FY2025: fintech revenue ₽88.8B (2024, comparable
+               * base) → ₽195.2B (2025), +120% y/y. The draft spec mislabelled
+               * the years (93.3 was 2024-as-originally-reported, not 2023). */
               data={[
-                { label: "2023", value: 93.3, color: NEUTRAL },
-                { label: "2024", value: 195.2 },
+                { label: "2024", value: 88.8, color: NEUTRAL },
+                { label: "2025", value: 195.2 },
               ]}
               yAxis={{ max: 210, hideTicks: true }}
               slots={{ tooltip: () => null }}

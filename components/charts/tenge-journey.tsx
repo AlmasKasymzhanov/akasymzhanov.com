@@ -55,23 +55,26 @@ const RU: Copy = {
   dek: "Что происходит с одним тенге выручки селлера после продажи. Скрольте - монета пройдёт оба пути: в Kaspi она доходит до расчётного счёта и останавливается, в модели Freedom - продолжает работать каждый день.",
   kaspiName: "Kaspi: путь тенге обрывается",
   freedomName: "Freedom (модель): путь замыкается в круг",
+  /* Both lanes follow strictly the SELLER's tenge, cell for cell — the buyer's
+   * cashback (points vs shares) is a different party's game and lives in the
+   * article body, not here. */
   kaspiSteps: [
-    { n: "1.", title: "Покупка", detail: "покупатель платит в приложении" },
-    { n: "2.", title: "Кешбэк баллами", detail: "бонусы, которые можно только потратить" },
-    { n: "3.", title: "Выплата день в день", detail: "деньги приходят на расчётный счёт" },
-    { n: "4.", title: "Счёт: доход 0%", detail: "это счёт, не депозит - монета гаснет" },
+    { n: "1.", title: "Продажа", detail: "товар продан, деньги пока у площадки" },
+    { n: "2.", title: "Выплата день в день", detail: "деньги приходят на расчётный счёт" },
+    { n: "3.", title: "Счёт: доход 0%", detail: "это счёт, не депозит" },
+    { n: "4.", title: "Монета гаснет", detail: "тенге лежит без дохода" },
   ],
   freedomSteps: [
-    { n: "1.", title: "Покупка", detail: "покупатель платит в приложении" },
-    { n: "2.", title: "Кешбэк бумагами", detail: "дробные акции - в портфель" },
-    { n: "3.", title: "Счёт с ежедневным доходом", detail: "инструменты денежного рынка" },
+    { n: "1.", title: "Продажа", detail: "товар продан, деньги пока у площадки" },
+    { n: "2.", title: "Выплата", detail: "на счёт с ежедневным доходом" },
+    { n: "3.", title: "Доход каждый день", detail: "инструменты денежного рынка" },
     { n: "4.", title: "Фондирует рассрочку", detail: "тенге остаётся в контуре" },
   ],
   depositTitle: "Депозит - если донести самому",
   depositNote: "ход в сторону, который селлер делает рукой: отдельный продукт и отдельное действие",
   plaque:
-    "Партия «Freedom» - авторская модель на основе публичных прецедентов (Mercado Fondo, eToro, Shopify Balance), а не анонсированный продукт Freedom. Партия Kaspi упрощена до поведения по умолчанию: депозиты у Kaspi есть - включая Business Deposit для предпринимателей, - но требуют отдельного действия. Потухшая монета - образ простоя денег при нулевом доходе, не расчёт покупательной способности.",
-  caption: "Модель: расчёты и допущения автора · прецеденты: Mercado Fondo, eToro, Shopify Balance",
+    "Партия «Freedom» - авторская модель на основе публичных прецедентов (Mercado Fondo, Shopify Balance), а не анонсированный продукт Freedom. Партия Kaspi упрощена до поведения по умолчанию: депозиты у Kaspi есть - включая Business Deposit для предпринимателей, - но требуют отдельного действия. Потухшая монета - образ простоя денег при нулевом доходе, не расчёт покупательной способности.",
+  caption: "Модель: расчёты и допущения автора · прецеденты: Mercado Fondo, Shopify Balance",
   interactiveKicker: "Интерактив",
 };
 
@@ -81,22 +84,22 @@ const EN: Copy = {
   kaspiName: "Kaspi: the tenge's path ends",
   freedomName: "Freedom (a model): the path closes into a loop",
   kaspiSteps: [
-    { n: "1.", title: "Purchase", detail: "the buyer pays in the app" },
-    { n: "2.", title: "Cashback as points", detail: "bonuses that can only be spent" },
-    { n: "3.", title: "Same-day payout", detail: "money lands on the settlement account" },
-    { n: "4.", title: "Account: 0% yield", detail: "an account, not a deposit - the coin goes out" },
+    { n: "1.", title: "Sale", detail: "the item is sold; the money sits with the platform" },
+    { n: "2.", title: "Same-day payout", detail: "money lands on the settlement account" },
+    { n: "3.", title: "Account: 0% yield", detail: "an account, not a deposit" },
+    { n: "4.", title: "The coin goes dark", detail: "the tenge sits earning nothing" },
   ],
   freedomSteps: [
-    { n: "1.", title: "Purchase", detail: "the buyer pays in the app" },
-    { n: "2.", title: "Cashback as shares", detail: "fractional stock into a portfolio" },
-    { n: "3.", title: "Daily-yield account", detail: "money-market instruments" },
+    { n: "1.", title: "Sale", detail: "the item is sold; the money sits with the platform" },
+    { n: "2.", title: "Payout", detail: "onto a daily-yield account" },
+    { n: "3.", title: "Yield every day", detail: "money-market instruments" },
     { n: "4.", title: "Funds the next installment", detail: "the tenge stays in the loop" },
   ],
   depositTitle: "A deposit - if you carry it yourself",
   depositNote: "a move aside the seller makes by hand: a separate product and a separate action",
   plaque:
-    "The “Freedom” game is the author's model built on public precedents (Mercado Fondo, eToro, Shopify Balance) - not an announced Freedom product. The Kaspi game is simplified to default behaviour: Kaspi does offer deposits - including a Business Deposit for merchants - but they require a separate action. The extinguished coin depicts idle money at zero yield, not a purchasing-power calculation.",
-  caption: "Model: the author's assumptions and calculations · precedents: Mercado Fondo, eToro, Shopify Balance",
+    "The “Freedom” game is the author's model built on public precedents (Mercado Fondo, Shopify Balance) - not an announced Freedom product. The Kaspi game is simplified to default behaviour: Kaspi does offer deposits - including a Business Deposit for merchants - but they require a separate action. The extinguished coin depicts idle money at zero yield, not a purchasing-power calculation.",
+  caption: "Model: the author's assumptions and calculations · precedents: Mercado Fondo, Shopify Balance",
   interactiveKicker: "Interactive",
 };
 
