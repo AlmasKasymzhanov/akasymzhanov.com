@@ -22,17 +22,17 @@
 
 import { useEffect, useRef, useState } from "react";
 
-/* Fixed dark stage tokens (special-project licence; identical in both themes). */
+/* Theme-aware stage tokens: the board lives on the site palette, so the
+ * special project follows light/dark like every other figure. The coin's own
+ * gold is the only saturated object. */
 const STAGE = {
-  bg: "#141414",
-  cellA: "#1d1d1d",
-  cellB: "#262626",
-  line: "#303030",
-  text: "#ececec",
-  dim: "#9b9b9b",
+  bg: "var(--color-surface)",
+  cellA: "color-mix(in srgb, var(--color-border) 22%, var(--color-surface))",
+  cellB: "color-mix(in srgb, var(--color-border) 48%, var(--color-surface))",
+  line: "var(--color-border)",
+  text: "var(--color-text)",
+  dim: "var(--color-dim)",
 };
-/* The coin's own gold doubles as the stage accent — one hero, one colour. */
-const GOLD = "#F8B916";
 
 type Step = { n: string; title: string; detail: string };
 
@@ -41,13 +41,10 @@ type Copy = {
   dek: string;
   kaspiName: string;
   freedomName: string;
-  counterLabel: string;
-  kaspiCounterFinal: string;
   kaspiSteps: Step[];
   freedomSteps: Step[];
   depositTitle: string;
   depositNote: string;
-  loopLabel: string;
   plaque: string;
   caption: string;
   interactiveKicker: string;
@@ -55,11 +52,9 @@ type Copy = {
 
 const RU: Copy = {
   title: "Путешествие одного тенге",
-  dek: "Две партии одной монеты. Ходы - по нотации, как в конце статьи.",
-  kaspiName: "Партия Kaspi",
-  freedomName: "Партия Freedom (модель)",
-  counterLabel: "дней тенге работает",
-  kaspiCounterFinal: "0 - пока не донесёшь",
+  dek: "Что происходит с одним тенге выручки селлера после продажи. Скрольте - монета пройдёт оба пути: в Kaspi она доходит до расчётного счёта и останавливается, в модели Freedom - продолжает работать каждый день.",
+  kaspiName: "Kaspi: путь тенге обрывается",
+  freedomName: "Freedom (модель): путь замыкается в круг",
   kaspiSteps: [
     { n: "1.", title: "Покупка", detail: "покупатель платит в приложении" },
     { n: "2.", title: "Кешбэк баллами", detail: "бонусы, которые можно только потратить" },
@@ -74,7 +69,6 @@ const RU: Copy = {
   ],
   depositTitle: "Депозит - если донести самому",
   depositNote: "ход в сторону, который селлер делает рукой: отдельный продукт и отдельное действие",
-  loopLabel: "и снова первый ход - круг замкнут",
   plaque:
     "Партия «Freedom» - авторская модель на основе публичных прецедентов (Mercado Fondo, eToro, Shopify Balance), а не анонсированный продукт Freedom. Партия Kaspi упрощена до поведения по умолчанию: депозиты у Kaspi есть - включая Business Deposit для предпринимателей, - но требуют отдельного действия. Потухшая монета - образ простоя денег при нулевом доходе, не расчёт покупательной способности.",
   caption: "Модель: расчёты и допущения автора · прецеденты: Mercado Fondo, eToro, Shopify Balance",
@@ -83,11 +77,9 @@ const RU: Copy = {
 
 const EN: Copy = {
   title: "The Journey of One Tenge",
-  dek: "Two games, one coin. Moves in notation, as at the end of the piece.",
-  kaspiName: "The Kaspi game",
-  freedomName: "The Freedom game (a model)",
-  counterLabel: "days the tenge works",
-  kaspiCounterFinal: "0 - until you carry it",
+  dek: "What happens to one tenge of a seller's revenue after the sale. Scroll - the coin walks both paths: at Kaspi it reaches the settlement account and stops; in the Freedom model it keeps working every day.",
+  kaspiName: "Kaspi: the tenge's path ends",
+  freedomName: "Freedom (a model): the path closes into a loop",
   kaspiSteps: [
     { n: "1.", title: "Purchase", detail: "the buyer pays in the app" },
     { n: "2.", title: "Cashback as points", detail: "bonuses that can only be spent" },
@@ -102,7 +94,6 @@ const EN: Copy = {
   ],
   depositTitle: "A deposit - if you carry it yourself",
   depositNote: "a move aside the seller makes by hand: a separate product and a separate action",
-  loopLabel: "back to move one - the loop is closed",
   plaque:
     "The “Freedom” game is the author's model built on public precedents (Mercado Fondo, eToro, Shopify Balance) - not an announced Freedom product. The Kaspi game is simplified to default behaviour: Kaspi does offer deposits - including a Business Deposit for merchants - but they require a separate action. The extinguished coin depicts idle money at zero yield, not a purchasing-power calculation.",
   caption: "Model: the author's assumptions and calculations · precedents: Mercado Fondo, eToro, Shopify Balance",
@@ -190,7 +181,6 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
   const c = locale === "en" ? EN : RU;
   const trackRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
-  const [freedomDays, setFreedomDays] = useState(0);
   const [reduced, setReduced] = useState(false);
   const [pinned, setPinned] = useState(true);
 
@@ -198,7 +188,6 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setReduced(true);
       setProgress(1);
-      setFreedomDays(-1); // → ∞
       return;
     }
     const mq = window.matchMedia("(min-width: 768px)");
@@ -241,28 +230,6 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
   // step (works identically in pinned and unpinned modes), not to a raw
   // progress threshold. All coin movement is scroll-driven — no idle loops.
   const kaspiDead = step >= 3;
-
-  useEffect(() => {
-    if (reduced) return;
-    if (step < 3) {
-      setFreedomDays(0);
-      return;
-    }
-    const id = window.setInterval(() => {
-      setFreedomDays((d) => {
-        if (d < 0) return d;
-        if (d >= 48) {
-          window.clearInterval(id);
-          return -1;
-        }
-        return d + 3;
-      });
-    }, 80);
-    return () => window.clearInterval(id);
-  }, [step, reduced]);
-
-  const freedomDisplay = step >= 3 ? (freedomDays < 0 ? "∞" : `${freedomDays}…`) : "0";
-  const kaspiCounter = step >= 3 ? c.kaspiCounterFinal : "0";
   const vertical = !pinned;
 
   return (
@@ -273,7 +240,7 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
     >
       <div ref={trackRef} style={{ height: pinned && !reduced ? "280vh" : "auto" }} className="relative">
         <div className={pinned && !reduced ? "sticky top-[56px]" : ""}>
-          <div className="rounded-[4px] px-5 py-6 md:px-9 md:py-8" style={{ background: STAGE.bg, border: `1px solid ${STAGE.line}` }}>
+          <div className="rounded-[4px] px-5 py-7 md:px-10 md:py-10" style={{ background: STAGE.bg, border: `1px solid ${STAGE.line}` }}>
             {/* Header */}
             <p className="font-mono text-[10px] uppercase tracking-[0.16em] mb-2" style={{ color: "var(--brock-accent)" }}>
               {c.interactiveKicker}
@@ -283,16 +250,10 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
             </h3>
             <p className="mt-1.5 text-[13px]" style={{ color: STAGE.dim }}>{c.dek}</p>
 
-            <div className={`mt-7 grid grid-cols-1 gap-7 ${vertical ? "" : ""}`}>
+            <div className={`mt-8 grid grid-cols-1 gap-9 ${vertical ? "" : ""}`}>
               {/* ── Kaspi game ── */}
               <div>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
-                  <p className="text-[14px] font-bold" style={{ color: STAGE.text }}>{c.kaspiName}</p>
-                  <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
-                    {c.counterLabel}:{" "}
-                    <b className="text-[13px] tabular-nums" style={{ color: STAGE.text }}>{kaspiCounter}</b>
-                  </span>
-                </div>
+                <p className="text-[14px] font-bold mb-4" style={{ color: STAGE.text }}>{c.kaspiName}</p>
                 <div className={vertical ? "" : "grid grid-cols-[1fr_auto] gap-4 items-start"}>
                   <Rank steps={c.kaspiSteps} coinAt={step} coinDead={kaspiDead} vertical={vertical} />
                   {/* The diagonal deposit square - one move aside (down-right,
@@ -310,28 +271,14 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
 
               {/* ── Freedom game ── */}
               <div>
-                <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 mb-4">
-                  <p className="text-[14px] font-bold" style={{ color: STAGE.text }}>{c.freedomName}</p>
-                  <span className="font-mono text-[10px]" style={{ color: STAGE.dim }}>
-                    {c.counterLabel}:{" "}
-                    <b className="text-[13px] tabular-nums" style={{ color: GOLD }}>{freedomDisplay}</b>
-                  </span>
-                </div>
+                <p className="text-[14px] font-bold mb-4" style={{ color: STAGE.text }}>{c.freedomName}</p>
                 <Rank steps={c.freedomSteps} coinAt={step} coinDead={false} vertical={vertical} />
-                {/* Loop-back arrow: the rank closes into a circle. */}
-                <div className="mt-2 flex items-center gap-2" aria-hidden>
-                  <svg viewBox="0 0 120 14" width="120" height="14" className="shrink-0">
-                    <path d="M116 3 H12" fill="none" stroke={step >= 3 ? GOLD : STAGE.line} strokeWidth="1.5" strokeDasharray="4 3" />
-                    <path d="M16 0 L9 3.5 L16 7 Z" fill={step >= 3 ? GOLD : STAGE.line} />
-                  </svg>
-                  <span className="font-mono text-[10px]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>{c.loopLabel}</span>
-                </div>
               </div>
             </div>
 
             {/* Progress rail */}
             <div className="mt-6 h-1 rounded-full overflow-hidden" style={{ background: STAGE.line }} aria-hidden>
-              <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: GOLD }} />
+              <div className="h-full rounded-full transition-[width] duration-150" style={{ width: `${Math.round(progress * 100)}%`, background: STAGE.dim }} />
             </div>
 
             {/* Methodology plaque */}

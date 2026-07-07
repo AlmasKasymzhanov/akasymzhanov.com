@@ -135,7 +135,21 @@ const TIMELINE: TimelineEvent[] = [
   { date: "05.07.2026", side: "fact", text: <>Звонок и письмо селлерам от «Freedom Market (ранее Teez)»</> },
 ];
 
-function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boolean; delay: number }) {
+function TimelineRow({
+  ev,
+  visible,
+  delay,
+  lit,
+  current,
+}: {
+  ev: TimelineEvent;
+  visible: boolean;
+  delay: number;
+  /** The scroll "runner" has passed this row: its spine segment is coloured. */
+  lit: boolean;
+  /** The runner is ON this row: its dot pulses. */
+  current: boolean;
+}) {
   const isPromise = ev.side === "promise";
   const badge = (
     <span
@@ -161,19 +175,33 @@ function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boole
   );
   return (
     <div
+      data-tl-row
       className="grid grid-cols-[14px_minmax(0,1fr)] md:grid-cols-[minmax(0,1fr)_14px_minmax(0,1fr)] gap-x-3 md:gap-x-4 transition-[opacity,transform] duration-500 ease-out"
       style={{ opacity: visible ? 1 : 0, transform: visible ? "none" : "translateY(10px)", transitionDelay: `${delay}ms` }}
     >
       {/* Desktop: promise column (left) */}
       <div className="hidden md:block">{isPromise ? body : null}</div>
-      {/* Spine dot */}
+      {/* Spine dot + the scroll runner: the segment fills with colour as the
+       * reader passes it, the current dot pulses (motion-reduce: static). */}
       <div className="relative flex justify-center">
         <span className="absolute top-0 bottom-0 w-px bg-[var(--color-border)]" aria-hidden />
         <span
           aria-hidden
-          className="relative mt-1 inline-block w-2.5 h-2.5 rounded-full border-2"
+          className="absolute top-0 w-px transition-[height] duration-500 ease-out"
+          style={{ height: lit ? "100%" : "0%", background: "var(--viz-freedom)" }}
+        />
+        {current && (
+          <span
+            aria-hidden
+            className="absolute mt-1 w-2.5 h-2.5 rounded-full animate-ping motion-reduce:hidden"
+            style={{ background: "var(--viz-freedom)", opacity: 0.5 }}
+          />
+        )}
+        <span
+          aria-hidden
+          className="relative mt-1 inline-block w-2.5 h-2.5 rounded-full border-2 transition-colors duration-300"
           style={{
-            borderColor: ev.accent ? "var(--viz-freedom)" : "var(--brock-neutral)",
+            borderColor: ev.accent || lit ? "var(--viz-freedom)" : "var(--brock-neutral)",
             background: isPromise ? "var(--color-bg)" : ev.accent ? "var(--viz-freedom)" : "var(--brock-neutral)",
           }}
         />
@@ -189,8 +217,41 @@ function TimelineRow({ ev, visible, delay }: { ev: TimelineEvent; visible: boole
 
 export function Grafik1() {
   const [ref, visible] = useReveal<HTMLDivElement>();
+  /* The scroll runner: rows whose top has crossed ~55% of the viewport are
+   * "lit" — their spine segments fill with the Freedom colour, the last lit
+   * dot pulses. Reduced motion lights everything statically. */
+  const [litCount, setLitCount] = useState(0);
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setLitCount(TIMELINE.length);
+      return;
+    }
+    let raf = 0;
+    const onScroll = () => {
+      cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(() => {
+        const trigger = window.innerHeight * 0.55;
+        let n = 0;
+        el.querySelectorAll("[data-tl-row]").forEach((r) => {
+          if (r.getBoundingClientRect().top < trigger) n++;
+        });
+        setLitCount(n);
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", onScroll);
+    return () => {
+      cancelAnimationFrame(raf);
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [ref]);
+
   /* Group the 19.02 promise/fact pair (the spec's key visual conflict) into a
-   * dashed accent frame; everything else renders as plain rows. */
+   * dashed frame; everything else renders as plain rows. */
   const rows: React.ReactNode[] = [];
   for (let i = 0; i < TIMELINE.length; i++) {
     const ev = TIMELINE[i];
@@ -200,13 +261,15 @@ export function Grafik1() {
           <span className="absolute -top-2 left-2 px-1.5 bg-[var(--color-surface)] font-mono text-[10px] uppercase tracking-[0.12em] text-[var(--color-text)]">
             один день - два жанра
           </span>
-          <TimelineRow ev={ev} visible={visible} delay={i * 70} />
-          <TimelineRow ev={TIMELINE[i + 1]} visible={visible} delay={(i + 1) * 70} />
+          <TimelineRow ev={ev} visible={visible} delay={i * 70} lit={i < litCount} current={i === litCount - 1} />
+          <TimelineRow ev={TIMELINE[i + 1]} visible={visible} delay={(i + 1) * 70} lit={i + 1 < litCount} current={i + 1 === litCount - 1} />
         </div>,
       );
       i++;
     } else {
-      rows.push(<TimelineRow key={`${ev.date}-${i}`} ev={ev} visible={visible} delay={i * 70} />);
+      rows.push(
+        <TimelineRow key={`${ev.date}-${i}`} ev={ev} visible={visible} delay={i * 70} lit={i < litCount} current={i === litCount - 1} />,
+      );
     }
   }
   return (
@@ -321,12 +384,15 @@ export function Grafik2() {
 export function Grafik3() {
   return (
     <div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-7">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-8">
         <div>
-          <div className="flex items-baseline justify-between gap-3">
-            <SubLabel>Ozon · финтех-выручка, млрд ₽</SubLabel>
-            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--viz-ozon)" }}>+120%</span>
-          </div>
+          {/* FT annotation canon: the headline figure sits in the panel header
+           * (label → number → chart, one Z-line), not floated to the corner. */}
+          <SubLabel>Ozon · финтех-выручка, млрд ₽</SubLabel>
+          <p className="mt-1.5 mb-3 font-mono tabular-nums leading-none">
+            <span className="text-[21px] font-bold" style={{ color: "var(--viz-ozon)" }}>+120%</span>
+            <span className="ml-2 text-[11px] text-[var(--color-dim)]">за год</span>
+          </p>
           {/* FT column canon: columns ≈70% of the band, capped — never full-bleed slabs. */}
           <div className="max-w-[190px]">
             <ColumnChart
@@ -344,17 +410,18 @@ export function Grafik3() {
               formatValue={(v: number) => `${num(v)} млрд ₽`}
             />
           </div>
-          <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
+          <p className="mt-3 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
             финтех даёт &gt;80%{" "}
             <Term tip="Прибыль до вычета процентов, налогов и амортизации; показатель операционной прибыльности.">EBITDA</Term>{" "}
             группы (2024)
           </p>
         </div>
         <div>
-          <div className="flex items-baseline justify-between gap-3">
-            <SubLabel>СберМегаМаркет · млрд ₽</SubLabel>
-            <span className="font-mono text-[17px] font-bold tabular-nums" style={{ color: "var(--viz-negative)" }}>−93%</span>
-          </div>
+          <SubLabel>СберМегаМаркет · млрд ₽</SubLabel>
+          <p className="mt-1.5 mb-3 font-mono tabular-nums leading-none">
+            <span className="text-[21px] font-bold" style={{ color: "var(--viz-negative)" }}>−93%</span>
+            <span className="ml-2 text-[11px] text-[var(--color-dim)]">за год</span>
+          </p>
           <div className="max-w-[270px]">
             <ColumnChart
               height={190}
@@ -372,12 +439,12 @@ export function Grafik3() {
               formatValue={(v: number) => `${num(v)} млрд ₽`}
             />
           </div>
-          <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
+          <p className="mt-3 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
             за 2025-й: с 4-го на 38-е место среди онлайн-ритейлеров
           </p>
         </div>
       </div>
-      <p className="mt-4 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
+      <p className="mt-6 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         У Сбера было больше денег и данных. У Ozon банк был внутри витрины.
       </p>
     </div>
@@ -411,15 +478,14 @@ export function Grafik4() {
           formatValue={pct}
         />
       </div>
-      <p className="mt-3 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
+      <p className="mt-5 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
         +9{" "}
         <Term tip="Процентные пункты - разница между двумя процентными значениями: 14% против 5% - это 9 п.п.">п.п.</Term>{" "}
         - цена двух лет рассрочки для продавца.
       </p>
-      <p className="mt-2 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
-        *{" "}
-        <Term tip="Фондирование - привлечение банком денег, из которых он выдаёт кредиты; чем дешевле фондирование, тем дешевле кредит.">фондирование</Term>{" "}
-        двух лет по депозитным ставкам стоит банку в ~1,5 раза дороже этих 9 пунктов
+      <p className="mt-3 font-mono text-[11.5px] leading-snug italic text-[var(--color-dim)]">
+        <Term tip="Фондирование - привлечение банком денег, из которых он выдаёт кредиты; чем дешевле фондирование, тем дешевле кредит.">Фондирование</Term>{" "}
+        двух лет по депозитным ставкам стоит банку в ~1,5 раза дороже этих 9 пунктов.
       </p>
       <Legend
         items={[
@@ -542,7 +608,9 @@ export function Grafik6() {
             color: NEUTRAL,
           },
         ]}
-        events={[{ x: "Дек", label: "пик 50,3%" }]}
+        /* Peak marker: bare rule, no rotated label (it clipped) — the legend's
+         * first entry carries the «декабрь - 50,3%» reading. */
+        events={[{ x: "Дек" }]}
         yAxis={{ min: 0, max: 60 }}
         formatValue={(v: number) => `${v.toLocaleString("ru-RU", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`}
       />

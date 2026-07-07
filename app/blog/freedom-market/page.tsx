@@ -57,16 +57,16 @@ function ChartSlot({
       id={`grafik-${n}`}
       data-chart-slot={n}
       data-chart-type={type}
-      className="my-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[3px] p-5"
+      className="my-8 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[3px] p-5 md:p-7"
     >
-      <figcaption className="mb-4">
+      <figcaption className="mb-5">
         <span className="block text-[15px] font-bold text-[var(--color-text)] leading-snug">{title}</span>
       </figcaption>
       <div data-chart-canvas>{children}</div>
       {note && (
-        <p className="font-mono text-[11.5px] italic text-[var(--color-dim)] mt-3 leading-relaxed">{note}</p>
+        <p className="font-mono text-[11.5px] italic text-[var(--color-dim)] mt-4 leading-relaxed">{note}</p>
       )}
-      <p className="font-mono text-[11px] text-[var(--color-dim)] mt-2 leading-relaxed">
+      <p className="font-mono text-[11px] text-[var(--color-dim)] mt-2.5 leading-relaxed">
         {caption}
         <span className="text-[var(--color-border)] mx-1.5">·</span>
         {brock}:{" "}
