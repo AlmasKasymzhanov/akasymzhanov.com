@@ -380,7 +380,7 @@ export function Grafik3() {
           <SubLabel>Ozon · fintech revenue, ₽B</SubLabel>
           <p className="mt-1.5 mb-3 font-mono tabular-nums leading-none">
             <span className="text-[21px] font-bold" style={{ color: "var(--viz-ozon)" }}>+120%</span>
-            <span className="ml-2 text-[11px] text-[var(--color-dim)]">in a year</span>
+            <span className="ml-2 text-[11px] text-[var(--color-dim)]">in 2025</span>
           </p>
           {/* FT column canon: columns ≈70% of the band, capped — never full-bleed slabs. */}
           <div className="max-w-[190px]">
@@ -412,7 +412,7 @@ export function Grafik3() {
           <SubLabel>SberMegaMarket · sales, ₽B</SubLabel>
           <p className="mt-1.5 mb-3 font-mono tabular-nums leading-none">
             <span className="text-[21px] font-bold" style={{ color: "var(--viz-negative)" }}>−93%</span>
-            <span className="ml-2 text-[11px] text-[var(--color-dim)]">in a year</span>
+            <span className="ml-2 text-[11px] text-[var(--color-dim)]">in 2025</span>
           </p>
           <div className="max-w-[270px]">
             <ColumnChart
@@ -432,7 +432,7 @@ export function Grafik3() {
             />
           </div>
           <p className="mt-3 font-mono text-[11px] leading-snug text-[var(--color-dim)]">
-            in 2025: from 4th to 38th place among online retailers
+            the toll: from 4th to 38th place among online retailers
           </p>
         </div>
       </div>

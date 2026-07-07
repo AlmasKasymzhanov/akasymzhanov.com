@@ -620,8 +620,8 @@ export default function FreedomMarketArticle() {
               <P>
                 Честности ради: первые продукты этой механики мертвы.{" "}
                 <Term tip="Американский стартап, платил кешбэк акциями; закрылся в 2023 году.">Bumped</Term>{" "}
-                сжёг 32 миллиона долларов инвестиций и был продан за 580 тысяч - стартапу пришлось строить и брокера, и аудиторию с нуля
-                <Fn n={41} tip="Bakkt filings, февраль 2023 — Bakkt приобрёл Bumped Financial за $0,58 млн; стартап привлёк ~$32 млн инвестиций." />
+                сжёг 32 миллиона долларов инвестиций и был продан за 631 тысячу - стартапу пришлось строить и брокера, и аудиторию с нуля
+                <Fn n={41} tip="Bakkt 10-Q/10-K (SEC): 08.02.2023 Bakkt приобрёл 100% Bumped Financial за $631 тыс. деньгами; стартап привлёк ~$32 млн инвестиций." />
                 .{" "}
                 <Term tip="Сингапурский суперапп: такси, доставка, платежи.">Grab</Term>{" "}
                 закрыл автоинвестирование в перебанкованном Сингапуре, где доходность 1,8% годовых никого не грела. Оба продукта умерли от отсутствия того, что у Freedom уже есть: брокера как ядра бизнеса и двузначных ставок, при которых доходность на остаток видна невооружённым глазом. Редкий случай, когда идею, похоронившую стартапы, может поднять только{" "}
@@ -743,7 +743,7 @@ export default function FreedomMarketArticle() {
                 <li>MercadoLibre: динамика AUM Mercado Fondo - <Src href="https://api.mziq.com/mzfilemanager/v2/d/098a2d95-0ea8-4ed5-a340-d9ef6a2b0053/2ff0f141-ac16-6c7d-f47e-c9ff03c0da9e?origin=1">MELI Letters to Shareholders</Src>.</li>
                 <li>Prior-art-обзор автора по публичным раскрытиям и продуктовым анонсам платформ, июнь–июль 2026. Методология и реестр источников доступны по запросу.</li>
                 <li>Medina, Mittal. NBER Working Paper №28479 (2021): brand stock ownership and consumer spending - <Src href="https://www.nber.org/papers/w28479">NBER</Src>.</li>
-                <li>Bakkt acquires Bumped Financial for $0.58M - <Src href="https://www.sec.gov/Archives/edgar/data/0001820302/000182030223000056/exhibit991q12023.htm">Bakkt filings (SEC)</Src>, февраль 2023.</li>
+                <li>Bakkt acquires Bumped Financial for $0.63M (08.02.2023, cash) - <Src href="https://www.sec.gov/Archives/edgar/data/1820302/000182030224000070/bakkt10-k2023ars.pdf">Bakkt 10-K 2023 (SEC)</Src>.</li>
                 <li>WHOIS KazNIC (05.07.2026): fmarket.kz создан 09.05.2026, PS Internet Company, владелец скрыт; ftel.kz - тот же регистратор, «Freedom Telecom Operations»; ffin.kz - владелец скрыт. Certificate Transparency (CertSpotter): 13.05.2026 - сертификат Let&rsquo;s Encrypt на fmarket.kz, www и mail; набор поддоменов может соответствовать автоматической конфигурации хостинг-панели. Совпадение регистратора не является доказательством принадлежности.</li>
                 <li>Billionaire Kazakh brokerage CEO got SEC enforcement warning - <Src href="https://www.bloomberg.com/news/articles/2026-06-02/billionaire-kazakh-brokerage-ceo-gets-sec-enforcement-warning">Bloomberg</Src>, 02.06.2026; <Src href="https://kz.kursiv.media/en/2026-06-03/engk-tank-timur-turlov-completion-of-sec-investigation-will-pave-the-way-for-capital-raising/">Kursiv</Src>, 03.06.2026.</li>
                 <li>Публичные заявления руководства страны о переориентации банков на кредитование бизнеса, 2023–2026.</li>
