@@ -254,8 +254,8 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 Look at the survivors. At Kaspi,{" "}
                 <Term tip="Buy now, pay later: the purchase is split into equal payments, typically at 0% to the buyer; the financing cost is carried by the seller and the platform's bank.">installment purchases</Term>{" "}
-                account for 41% of total payment and lending volume, and fintech brings in ₸1.54 of the company&rsquo;s ₸4.05 trillion in revenue
-                <Fn n={13} tip="Kaspi.kz IR, 4Q & FY 2025: BNPL at 41% of TFV; fintech revenue ₸1.54T of ₸4.05T; 77 average monthly transactions per active consumer." />
+                are its biggest lending product - 41% of everything the fintech platform originates - and fintech brings in ₸1.54 of the company&rsquo;s ₸4.05 trillion in revenue
+                <Fn n={13} tip="Kaspi.kz IR, 4Q & FY 2025: BNPL - 41% of TFV (fintech platform origination volume, ₸11.7T in 2025); fintech revenue ₸1.54T of ₸4.05T; 77 monthly transactions per active consumer." />
                 . At{" "}
                 <Term tip="Latin America's largest marketplace; market capitalization above $100 billion.">MercadoLibre</Term>{" "}
                 - a Latin American Kaspi the size of a continent - the{" "}
@@ -372,7 +372,7 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 The experiment was called{" "}
                 <Term tip="Russia's largest bank (Sber) and its now-collapsed marketplace venture.">SberMegaMarket</Term>
-                . Sber had everything Teez lacked: a bottomless balance sheet, half of Russia on its payroll cards, its own delivery network. It lacked one thing - a reason for people to open the marketplace app every day: the bank and the storefront lived in separate apps, connected by little more than loyalty points. Sber bought growth with cashback, multiplying sales fivefold over 2023 - and then got tired of paying, cutting first the subsidies, then its own logistics. The result in 2025: minus 93%, from ₽342.6 billion to ₽24.5 billion, a slide from 4th to 38th place among Russian online retailers
+                . Sber had everything Teez lacked: a bottomless balance sheet, half of Russia on its payroll cards, its own delivery network. It lacked one thing - a reason for people to open the marketplace app every day: the bank and the storefront lived in different apps, linked by SberSpasibo bonus points, a shared Sber ID and a SberPay button - but the purchase and the money never met on one screen. Sber bought growth with cashback, multiplying sales fivefold over 2023 - and then got tired of paying, cutting first the subsidies, then its own logistics. The result in 2025: minus 93%, from ₽342.6 billion to ₽24.5 billion, a slide from 4th to 38th place among Russian online retailers
                 <Fn n={21} tip="Data Insight: MegaMarket's 2023 turnover grew 5x to ₽312B (RBC, 29.01.2024); Data Insight (via Investing.com, RB.ru) — MegaMarket's 2025 sales: −93%, from ₽342.6B to ₽24.5B; from 4th to 38th place." />
                 . Sber&rsquo;s loss from non-core activities in 2024 - the last year MegaMarket ran at full steam - was ₽284 billion; how much of that fell on the marketplace, the bank never disclosed
                 <Fn n={22} tip="Interfax — Sber posts a ₽284B loss from non-core activities in 2024 (all non-core businesses combined, no per-asset breakdown)." />
@@ -462,10 +462,10 @@ export default function FreedomMarketArticleEn() {
             <div className="mb-12">
               <H2>The Arsenal</H2>
               <P className="mb-5">
-                What actually stands behind the letter. Freedom Holding closed its fiscal year with $2.19 billion in revenue and net income doubled to $153 million; assets grew by a third to $13.2 billion. Monthly{" "}
+                What actually stands behind the letter. Freedom Holding closed its fiscal year with record revenue of $2.19 billion and net income doubled to $153 million - doubled, in fairness, off a dismal prior year: two years ago the holding earned $379 million. Assets grew by a third to $13.2 billion. Monthly{" "}
                 <Term tip="One application bundling many services: payments, shopping, tickets, government services.">super-app</Term>{" "}
-                audience tripled over the year to nearly 2.6 million; bank customers reached 5 million, brokerage clients 858 thousand
-                <Fn n={27} tip="Nasdaq/FRHC, 31.05.2026 — Freedom Holding FY2026: $2.19B revenue, net income $153M (×2), assets $13.2B; super-app MAU ~2.6M, 5M bank customers, 858K brokerage clients." />
+                audience grew two-and-a-half-fold over the year to almost 2.6 million; bank customers reached 5 million, brokerage accounts 858 thousand
+                <Fn n={27} tip="FRHC FY2026 (year to 31.03.2026), press release 02.06.2026 and 10-K: revenue $2.19B; net income $153.3M vs $76.2M in FY2025 (+101%) and $378.5M in FY2024; assets $13.2B; super-app MAU 2.59M vs 1.02M a year earlier; 5.03M banking clients; 858K brokerage accounts." />
                 . The &ldquo;five million already use Freedom&rdquo; line from the partner manager&rsquo;s script is not a marketing rounding. It&rsquo;s a number from the filings - with one clarification: the five million are bank clients; 2.6 million are active in the super-app.
               </P>
               <P className="mb-5">
@@ -476,7 +476,7 @@ export default function FreedomMarketArticleEn() {
                 <Fn n={28} tip="T-Bank eCommerce research, October 2024: average seller income on one platform - ₽53K/month; on two - ₽137K/month." />
                 . The scarce resource in this game is the buyer. Teez bought buyers with cashback, ads and influencers exactly as long as the money lasted: the campaigns were the first thing to stop, and their &ldquo;resumption&rdquo; featured as a separate line item in the new owners&rsquo; February promises
                 <Fn n={1} tip="Exclusive.kz, 19.02.2026 — «resumption of ad campaigns» as a separate line item in the February promises." />
-                . Between orders, a person had no reason to open the Teez app at all. Freedom has that reason ready-made: the super-app cashback millions already earn - on utilities, tickets, brokerage trades. Wire it up so that this cashback gets spent - or, better still, invested, more on which below - through the marketplace, and the storefront acquires what took Kaspi a decade to build: reasons to open the app with no intention of buying anything.
+                . Between orders, a person had no reason to open the Teez app at all. Freedom has that reason ready-made: the super-app&rsquo;s cashback, already used by millions - on utilities, flights, purchases across the holding&rsquo;s services. And it accrues not in money or points but in an exchange-traded note tied to the holding&rsquo;s own stock, straight into the client&rsquo;s brokerage account. Wire it up so that this cashback is spent and earned through the marketplace, and the storefront acquires what took Kaspi a decade to build: reasons to open the app with no intention of buying anything.
               </P>
               <P className="mb-5">
                 Plus the bank - and here it&rsquo;s worth examining the credit conveyor, because in Kazakhstan the conveyor, not the storefront, decides the outcome. Plenty of players &ldquo;have&rdquo; installment plans. They approve them very differently, and nobody publishes the numbers:{" "}
@@ -484,8 +484,8 @@ export default function FreedomMarketArticleEn() {
                 by bank are an officially blind spot - neither the regulator nor the credit bureaus track them publicly
                 <Fn n={29} tip="Survey of public lending data: ARDFM, NBK Bank Lending Survey, First Credit Bureau DataHub — bank-level approval rates are not published." />
                 . Only the market-wide background is known, and it is harsh: on average, 26–31% of loan applications get approved
-                <Fn n={30} tip="Market-wide approval estimate per AFK reviews and market analytics, 2024–2025." />
-                . Up to three out of four applicants are turned down - in a country where 8.1 million people carry active unsecured consumer loans
+                <Fn n={30} tip="AFK: market-average application approval 26.2-29.2% (2024); unsecured consumer loans 27.5-31.5% (9M2025). Finprom/NBK, Q4 2024: unsecured approval 29.5%." />
+                . Up to three out of four applications are turned down - in a country where 8.1 million people carry active unsecured consumer loans
                 <Fn n={31} tip="DataHub / First Credit Bureau — Kazakhstan's credit market, H1 2025: 8.1M people with active unsecured loans; issuance falling in real terms." />
                 . Kazakhstan is a country that lives on credit and gets turned down for it. Kaspi&rsquo;s own filings name instant automated credit decisioning as the core of the model
                 <Fn n={32} tip="Kaspi.kz Form 20-F — automated, centralized, big-data-driven proprietary loan approval process." />
@@ -539,7 +539,7 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 Clothing and footwear make up about 7% of Kaspi&rsquo;s category turnover - against a quarter of the market on Wildberries
                 <Fn n={36} tip="Author's calculations. Kaspi — Redstat, April 2026 (clothing & footwear ₸11.6B of ₸168.8B, 6.8%; electronics 27.4%). WB — MPSTATS, Jul 2025 - Jun 2026 (clothing & footwear ₽5.7T of ₽23.2T in orders, 24.7%). «Revenue» in MPSTATS data means orders, not completed purchases." />
-                . The category where the Kazakh shopper already votes with their wallet (WB.kz in Kazakhstan grows first and foremost on fashion) is nearly absent from the country&rsquo;s main marketplace. The money in Kazakhstan&rsquo;s wardrobe is currently leaving for a Russian platform - not because it is better, but because a local alternative with a warehouse and fitting rooms simply does not exist. Kaspi is an electronics store impersonating a country: electronics take 27% of its turnover, clothing sits in the tail of the table.
+                . The category where the Kazakh shopper already votes with their wallet (WB.kz in Kazakhstan grows first and foremost on fashion) is nearly absent from the country&rsquo;s main marketplace. The money in Kazakhstan&rsquo;s wardrobe is currently leaving for a Russian platform - not because it is better, but because a local alternative with a warehouse and fitting rooms simply does not exist. Kaspi is an electronics store the size of a country: electronics take 27% of its turnover, clothing sits in the tail of the table.
               </P>
 
               <ChartSlot
@@ -659,7 +659,7 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 First - the debts. There is still no official confirmation that Teez&rsquo;s obligations have been settled; the total size of the debt was never disclosed. The field signal is cautiously positive: the sellers Zeinullayev talks to got their money - &ldquo;there were delays, but no real problems&rdquo;
                 <Fn n={26} tip="From Zeinullayev's correspondence and calls with the Freedom Market team and fellow sellers, July 2026." />
-                . About the wages of former employees, not even that much is known. If the books are indeed closed, Freedom bought, along with the warehouse, the chance to quietly turn the worst page of its history. What remains is to say so out loud: here, silence works against the buyer.
+                . On former employees&rsquo; wages there is not even that much of a field signal. If the books are indeed closed, Freedom bought, along with the warehouse, the chance to quietly turn the worst page of its history. What remains is to say so out loud: here, silence works against the buyer.
               </P>
               <P className="mb-5">
                 Second - legal status. The deal is confirmed neither by a press release nor by a Nasdaq issuer&rsquo;s disclosure; a Freedom Market trademark is nowhere to be found in the open registries. A domain, however, is. fmarket.kz - the only name possible in the holding&rsquo;s nomenclature, where Freedom Finance lives at ffin.kz and Freedom Telecom at ftel.kz - was registered on May 9, 2026: two weeks after the Teez founders left management and three weeks before the Freedom brand unification. Registered through the same registrar that services ffin.kz and ftel.kz, with the same hidden owner as the flagship ffin.kz
@@ -670,10 +670,10 @@ export default function FreedomMarketArticleEn() {
                 <Fn n={42} tip="Certificate Transparency logs (CertSpotter): on 13.05.2026 a Let's Encrypt certificate was issued for fmarket.kz, covering fmarket.kz, www.fmarket.kz and mail.fmarket.kz; issuance requires active hosting and DNS control. The subdomain set may reflect a hosting panel's default configuration." />
                 . Domains bought for resale don&rsquo;t set up email. Whoever stands behind the purchase, the week of May 9–13 speaks for itself: someone was already building infrastructure under the name of a company that doesn&rsquo;t exist. The sales department is moving faster than the lawyers - normal for a launch, corrosive for sellers&rsquo; trust. Every promise from the partner manager so far exists in the same genre as Teez&rsquo;s promises in January: verbal, and pre-launch. A separate storyline is the{" "}
                 <Term tip="Securities and Exchange Commission - the US stock-market regulator.">SEC</Term>
-                : in March, Turlov received a{" "}
-                <Term tip="An SEC notification of intent to bring enforcement action; not a charge, but the last step before one.">Wells Notice</Term>
-                ; in June, the holding reported that the regulator&rsquo;s investigation had been concluded
-                <Fn n={43} tip="Bloomberg, 02.06.2026 — SEC enforcement warning; Kursiv, 03.06.2026 — Turlov on the completion of the SEC investigation." />
+                : in March, the company and Turlov personally received a{" "}
+                <Term tip="An SEC notification of intent to bring enforcement action; not a charge, but the last step before one.">Wells Notice</Term>{" "}
+                - after a five-year investigation, the SEC staff had reached a preliminary determination to recommend a civil enforcement action. In June Turlov framed it as good news - the investigative phase is over - but the company is contesting the SEC&rsquo;s findings, and the question of a lawsuit remains open
+                <Fn n={43} tip="FRHC 10-K: Wells Notice received 11.03.2026 by the company and Turlov; the SEC's 'preliminary determination' is being contested. Bloomberg, 02.06.2026; Kursiv, 03.06.2026 - Turlov on the completion of the five-year investigation." />
                 . The final terms of that denouement are still to be read by investors.
               </P>
               <P>
@@ -694,16 +694,16 @@ export default function FreedomMarketArticleEn() {
                 I asked Zeinullayev whether he himself would join Freedom Market. He answered without a pause: yes. &ldquo;Companies like Kaspi need competitors. Where there&rsquo;s competition, there&rsquo;s growth. And you&rsquo;re not dependent on a single sales channel.&rdquo; Since the letter, an entire team from the platform has been on calls with him - discussing strategy, trading questions. That, most likely, is how dozens of large Kaspi sellers are reasoning right now: an empty storefront is cheap visibility and a 5% commission, and even the warehouse of a company that owed people money four months ago stops being frightening - if the people it owed have been paid.
               </P>
               <P className="mb-5">
-                And while the sellers do their math, look at the whole board. Kaspi last year bought Istanbul -{" "}
-                <Term tip="One of Turkey's largest marketplaces; acquired by Kaspi.kz.">Hepsiburada</Term>{" "}
-                and a Turkish expansion
-                <Fn n={45} tip="Kaspi.kz IR — the Hepsiburada acquisition and Turkish strategy." />
-                . Freedom, this year, is buying Turkey - a bank, approved by the regulator in June
-                <Fn n={46} tip="24.kz, 30.06.2026 — the Turkish regulator approves Freedom Holding's bank acquisition." />
-                {" "}- while quietly entering Kaspi&rsquo;s home market through the Karaganda warehouse. Two grandmasters have started playing on each other&rsquo;s boards at once. In chess this is called a simultaneous exhibition - with one difference: a simul is usually given by a master against amateurs, and here both boards seat champions.
+                And while the sellers do their math, look at the whole board. Kaspi last year stepped onto the Turkish board, buying 65% of{" "}
+                <Term tip="Turkey's No. 2 marketplace after Trendyol, operating nationwide; the only Turkish e-commerce company on Nasdaq.">Hepsiburada</Term>{" "}
+                - the country&rsquo;s No. 2 marketplace
+                <Fn n={45} tip="Kaspi.kz IR, 29.01.2025 - closing of the acquisition of 65.41% of Hepsiburada, ~$1.1B; Turkish strategy." />
+                . Freedom this year answered on the same board: in June the Turkish regulator approved the holding&rsquo;s purchase of a bank
+                <Fn n={46} tip="Turkey's BRSA and competition authority approved the acquisition of 99.3% of Turkish Bank A.Ş.; the agreement was signed in February 2026, closing still ahead. 24.kz, 30.06.2026; FRHC release, 01.07.2026." />
+                {" "}- while quietly entering Kaspi&rsquo;s home market through the Karaganda warehouse. Two grandmasters have simultaneously started games on each other&rsquo;s boards. This is not a simultaneous exhibition, where a master walks past novices&rsquo; tables - these are two counter-games, and both boards seat champions.
               </P>
               <P className="mb-5">
-                The partner manager&rsquo;s letter asked what was missing from the existing marketplaces. My answer: for ten years, the market has been missing a second player. It appears the order has already been picked and packed - at that same warehouse in Karaganda. And from there, as we remember, they deliver in one day.
+                The partner manager&rsquo;s letter asked what was missing from the existing marketplaces. My answer: for ten years, the market has been missing a second player. Looks like exactly that order is being assembled right now - at that same warehouse in Karaganda. And from there, as we remember, they deliver in one day.
               </P>
               <P className="mb-5">
                 From here, the game can be recorded in notation. Next-day delivery - a move. A 5% commission - a move. Storefronts instead of a shared listing, open categories, next-day payouts - move, move, move. Kaspi has an answer to each: the champion has the conveyor, the frequency and a ten-year head start. But one piece on the board belongs to Freedom alone, and it cannot be bought with money - the broker. Play it the way described above, and it is no longer an exchange of pawns. It is check. Not mate: mate is far away, and nobody in the country defends better than the champion. But what is it like - to play against yourself for ten years and suddenly hear a piece being moved across the table?
@@ -752,7 +752,7 @@ export default function FreedomMarketArticleEn() {
                 <li>Freedom Holding Corp. FY2026 results - <Src href="https://www.nasdaq.com/press-release/freedom-holding-corp-more-doubles-net-income-and-reports-record-revenue-fiscal-2026">Nasdaq/FRHC</Src>, 31.05.2026.</li>
                 <li>T-Bank eCommerce research (October 2024): average seller income on one platform - ₽53K/month; on two - ₽137K/month - <Src href="https://www.tbank.ru/about/news/08102024-t-bank-ecommerce-and-t-data-released-a-study-on-the-marketplace-sellers-market-in-2024/">T-Bank</Src> (in Russian).</li>
                 <li>ARDFM, <Src href="https://nationalbank.kz/en/news/predydushchie-publikacii-opros">NBK Bank Lending Survey</Src>, <Src href="https://datahub.1cb.kz/ru/articles/53">FCB DataHub</Src> - bank-level approval rates are not published (in Russian).</li>
-                <li>Market-wide approval estimate - AFK reviews, 2024–2025; <Src href="https://kz.kursiv.media/2025-02-06/zhzh-creditbankafk/">Kursiv</Src> (in Russian).</li>
+                <li>Loan-application approval rates: AFK reviews for 2024 and 9M2025 - <Src href="https://forbes.kz/articles/afk-bezzalogovye-zaymy-v-kazahstane-padayut-zalogovye-segmenty-rastut-9cc40f">Forbes.kz</Src>; Finprom on NBK data - <Src href="https://tengrinews.kz/kazakhstan_news/potrebitelskie-kredityi-v-kazahstane-vsem-li-ih-odobryayut-566889/">Tengrinews</Src> (in Russian).</li>
                 <li>Kazakhstan&rsquo;s credit market: H1 2025 results - <Src href="https://datahub.1cb.kz/ru/articles/54">DataHub / First Credit Bureau</Src> (in Russian).</li>
                 <li>Kaspi.kz Form 20-F - <Src href="https://ir.kaspi.kz/media/Form_20-F_2025.pdf">automated loan approval process</Src>.</li>
                 <li>Kazakhstan&rsquo;s banking sector in June 2025 - <Src href="https://halykfinance.kz/download/files/analytics/banks_june2025.pdf">Halyk Finance</Src> (in Russian).</li>
@@ -767,8 +767,8 @@ export default function FreedomMarketArticleEn() {
                 <li>KazNIC WHOIS (05.07.2026): fmarket.kz created 09.05.2026, PS Internet Company, owner redacted; ftel.kz - same registrar, Freedom Telecom Operations; ffin.kz - owner likewise hidden. Certificate Transparency (CertSpotter): 13.05.2026 - a Let&rsquo;s Encrypt certificate for fmarket.kz, www and mail; the subdomain set may reflect a hosting panel&rsquo;s default configuration. A shared registrar is not by itself proof of ownership.</li>
                 <li>Billionaire Kazakh brokerage CEO got SEC enforcement warning - <Src href="https://www.bloomberg.com/news/articles/2026-06-02/billionaire-kazakh-brokerage-ceo-gets-sec-enforcement-warning">Bloomberg</Src>, 02.06.2026; <Src href="https://kz.kursiv.media/en/2026-06-03/engk-tank-timur-turlov-completion-of-sec-investigation-will-pave-the-way-for-capital-raising/">Kursiv</Src>, 03.06.2026.</li>
                 <li>Public statements by the country&rsquo;s leadership on pivoting banks to business lending, 2023–2026.</li>
-                <li>Kaspi.kz: the Hepsiburada acquisition and Turkish strategy - <Src href="https://ir.kaspi.kz/media/4Q__FY_2025_Financial_Results.pdf">Kaspi.kz IR</Src>.</li>
-                <li>Turkish regulator approves Freedom Holding&rsquo;s bank acquisition - <Src href="https://24.kz/ru/news/economyc/777746-regulyator-turtsii-odobril-sdelku-freedom-holding-corp-po-priobreteniyu-banka">24.kz</Src>, 30.06.2026 (in Russian).</li>
+                <li>Kaspi.kz completes acquisition of 65.41% of Hepsiburada (~$1.1B) - <Src href="https://www.globenewswire.com/news-release/2025/01/29/3016953/0/en/Kaspi-kz-Completes-Acquisition-of-Controlling-Interest-in-Hepsiburada.html">GlobeNewswire</Src>, 29.01.2025; Turkish strategy - <Src href="https://ir.kaspi.kz/media/4Q__FY_2025_Financial_Results.pdf">Kaspi.kz IR</Src>.</li>
+                <li>Turkish regulator approves Freedom Holding&rsquo;s acquisition of 99.3% of Turkish Bank A.Ş. - <Src href="https://24.kz/ru/news/economyc/777746-regulyator-turtsii-odobril-sdelku-freedom-holding-corp-po-priobreteniyu-banka">24.kz</Src>, 30.06.2026 (in Russian); <Src href="https://www.globenewswire.com/news-release/2026/07/01/3320869/0/en/Freedom-Holding-Corp-Receives-BRSA-Approval-to-Acquire-Turkish-Bank.html">FRHC release</Src>, 01.07.2026.</li>
               </ol>
             </div>
 

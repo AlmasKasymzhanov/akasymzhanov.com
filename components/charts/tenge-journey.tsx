@@ -45,6 +45,7 @@ type Copy = {
   freedomSteps: Step[];
   depositTitle: string;
   depositNote: string;
+  depositMark: string;
   plaque: string;
   caption: string;
   interactiveKicker: string;
@@ -72,9 +73,10 @@ const RU: Copy = {
   ],
   depositTitle: "Депозит - если донести самому",
   depositNote: "ход в сторону, который селлер делает рукой: отдельный продукт и отдельное действие",
+  depositMark: "вариант 4-го хода",
   plaque:
     "Партия «Freedom» - авторская модель на основе публичных прецедентов (Mercado Fondo, Shopify Balance), а не анонсированный продукт Freedom. Партия Kaspi упрощена до поведения по умолчанию: депозиты у Kaspi есть - включая Business Deposit для предпринимателей, - но требуют отдельного действия. Потухшая монета - образ простоя денег при нулевом доходе, не расчёт покупательной способности.",
-  caption: "Модель: расчёты и допущения автора · прецеденты: Mercado Fondo, Shopify Balance",
+  caption: "Прототип и расчёты: Алмас Касымжанов · прецеденты: Mercado Fondo, Shopify Balance",
   interactiveKicker: "Интерактив",
 };
 
@@ -97,9 +99,10 @@ const EN: Copy = {
   ],
   depositTitle: "A deposit - if you carry it yourself",
   depositNote: "a move aside the seller makes by hand: a separate product and a separate action",
+  depositMark: "move 4, a sideline",
   plaque:
     "The “Freedom” game is the author's model built on public precedents (Mercado Fondo, Shopify Balance) - not an announced Freedom product. The Kaspi game is simplified to default behaviour: Kaspi does offer deposits - including a Business Deposit for merchants - but they require a separate action. The extinguished coin depicts idle money at zero yield, not a purchasing-power calculation.",
-  caption: "Model: the author's assumptions and calculations · precedents: Mercado Fondo, Shopify Balance",
+  caption: "Prototype and analysis: Almas Kasymzhanov · precedents: Mercado Fondo, Shopify Balance",
   interactiveKicker: "Interactive",
 };
 
@@ -171,7 +174,7 @@ function Rank({
         style={
           vertical
             ? { left: "auto", right: 6, top: `calc(${coinAt} * 25% + 12.5% - 22px)`, transform: `rotate(${coinAt * 360}deg)` }
-            : { top: -24, left: `calc(${coinAt} * 25% + 12.5% - 28px)`, transform: `rotate(${coinAt * 360}deg)` }
+            : { top: -32, left: `calc(${coinAt} * 25% + 12.5% - 28px)`, transform: `rotate(${coinAt * 360}deg)` }
         }
       >
         <Coin dead={coinDead} size={vertical ? 44 : 56} />
@@ -256,16 +259,16 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
             <div className={`mt-8 grid grid-cols-1 gap-9 ${vertical ? "" : ""}`}>
               {/* ── Kaspi game ── */}
               <div>
-                <p className="text-[14px] font-bold mb-4" style={{ color: STAGE.text }}>{c.kaspiName}</p>
+                <p className="text-[14px] font-bold mb-6" style={{ color: STAGE.text }}>{c.kaspiName}</p>
                 <div className={vertical ? "" : "grid grid-cols-[1fr_auto] gap-4 items-start"}>
                   <Rank steps={c.kaspiSteps} coinAt={step} coinDead={kaspiDead} vertical={vertical} />
                   {/* The diagonal deposit square - one move aside (down-right,
                    * clear of the header row), made by hand. */}
                   <div
-                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[176px]"}`}
+                    className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[240px]"}`}
                     style={{ borderColor: step >= 3 ? STAGE.dim : STAGE.line }}
                   >
-                    <p className="font-mono text-[10px]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>4…♟?</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>{c.depositMark}</p>
                     <p className="text-[12px] font-semibold leading-snug mt-0.5" style={{ color: STAGE.text }}>{c.depositTitle}</p>
                     <p className="text-[10.5px] leading-snug mt-1" style={{ color: STAGE.dim }}>{c.depositNote}</p>
                   </div>
@@ -274,7 +277,7 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
 
               {/* ── Freedom game ── */}
               <div>
-                <p className="text-[14px] font-bold mb-4" style={{ color: STAGE.text }}>{c.freedomName}</p>
+                <p className="text-[14px] font-bold mb-6" style={{ color: STAGE.text }}>{c.freedomName}</p>
                 <Rank steps={c.freedomSteps} coinAt={step} coinDead={false} vertical={vertical} />
               </div>
             </div>
