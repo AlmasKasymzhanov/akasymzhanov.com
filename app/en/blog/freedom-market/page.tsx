@@ -711,9 +711,6 @@ export default function FreedomMarketArticleEn() {
               <P>
                 The clock is already running.
               </P>
-              <p className="mt-10 font-mono text-[11.5px] italic text-[var(--color-dim)] leading-relaxed border-l-2 border-[var(--color-border)] pl-3">
-                The author is a co-founder of Redstat, a marketplace-analytics service.
-              </p>
             </div>
 
             <hr className="border-[var(--color-border)] mb-12" />
