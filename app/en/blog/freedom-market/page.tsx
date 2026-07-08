@@ -712,7 +712,7 @@ export default function FreedomMarketArticleEn() {
                 The clock is already running.
               </P>
               <p className="mt-10 font-mono text-[11.5px] italic text-[var(--color-dim)] leading-relaxed border-l-2 border-[var(--color-border)] pl-3">
-                The author is a co-founder of Redstat, a marketplace-analytics service. A request for comment on the partner terms, the status of the deal and the ownership of fmarket.kz was sent to Freedom Holding; no response had been received at the time of publication.
+                The author is a co-founder of Redstat, a marketplace-analytics service.
               </p>
             </div>
 

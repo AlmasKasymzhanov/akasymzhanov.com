@@ -693,7 +693,7 @@ export default function FreedomMarketArticle() {
                 Часы включены.
               </P>
               <p className="mt-10 font-mono text-[11.5px] italic text-[var(--color-dim)] leading-relaxed border-l-2 border-[var(--color-border)] pl-3">
-                Автор - сооснователь сервиса аналитики маркетплейсов Redstat. Запрос с просьбой прокомментировать условия для партнёров, статус сделки и принадлежность домена fmarket.kz направлен в Freedom Holding; ответ на момент публикации не поступил.
+                Автор - сооснователь сервиса аналитики маркетплейсов Redstat.
               </p>
             </div>
 
