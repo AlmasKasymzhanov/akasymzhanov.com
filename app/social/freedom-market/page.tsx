@@ -5,7 +5,7 @@
  * BI/Bloomberg Instagram anatomy on our own design system: the site's
  * masthead, Hack mono, entity colours and real Brock UI charts. Each slide
  * is a fixed 1080×1350 (4:5) frame; Playwright screenshots the elements by
- * id (#slide-1 … #slide-18). The page pins itself to the dark theme.
+ * id (#slide-1 … #slide-20). The page pins itself to the dark theme.
  *
  * Data-storytelling rules baked in: every slide stands alone — the reader
  * only flips images, nobody narrates. Kicker = context, headline = takeaway,
@@ -158,7 +158,7 @@ function S2() {
 /* ── 3 · the timeline ── */
 function S3() {
   const rows: { d: string; t: string; accent?: boolean }[] = [
-    { d: "20.04", t: "Турлов на форуме: «партнёрство или своя платформа - ещё определяем»" },
+    { d: "20.04", t: "Турлов на форуме: «Будет это партнёрство или полностью своя платформа - мы ещё определяем»" },
     { d: "09.05", t: "Зарегистрирован домен fmarket.kz, владелец скрыт", accent: true },
     { d: "13.05", t: "На домене выпущен SSL-сертификат - сразу с почтовым поддоменом", accent: true },
     { d: "01.06", t: "Freedom объявляет единый бренд для всех сервисов холдинга" },
@@ -169,7 +169,7 @@ function S3() {
       id="slide-3"
       n={3}
       kicker="Хроника · 2026"
-      source="WHOIS KazNIC · Certificate Transparency · Forbes Kazakhstan. Принадлежность домена холдингу не установлена"
+      source="WHOIS KazNIC · Certificate Transparency · Forbes Kazakhstan · LS · переписка продавца. Принадлежность домена холдингу не установлена"
     >
       <H size={56}>
         Глава Freedom публично: «ещё определяем». Инфраструктура тем временем строилась.
@@ -203,7 +203,7 @@ function S4() {
       d: "против общей карточки Kaspi, где на одном iPhone сидят до 59 продавцов и режут друг другу маржу",
     },
     {
-      t: "Аналитика трафика и «оцифровка рекламных вложений»",
+      t: "Промокоды и «оцифровка рекламных вложений»",
       d: "против рекламы вслепую",
     },
     {
@@ -294,7 +294,7 @@ function S6() {
       id="slide-6"
       n={6}
       kicker="Эксклюзив 2/2"
-      source="Оценка автора: аннуитет 24 мес → средний долг ≈ 52% чека; 52% × 2 года × 15-18% годовых ≈ 16-19% от чека. Ставки - КФГД, 2026"
+      source="Оценка автора: аннуитет 24 мес → средний долг ≈ 52% чека; 52% × 2 года × 15–18% годовых ≈ 16–19% от чека, без учёта досрочных погашений. Ставки - КФГД, 2026"
     >
       <H size={60}>
         За два года рассрочки продавец доплатит 9% от чека. Банку эти два года стоят 16–19%.
@@ -403,7 +403,7 @@ function S8() {
         <div>
           <p className="text-[96px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-freedom)" }}>55%</p>
           <p className="text-[30px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
-            маржа брокерского сегмента Freedom Holding - против 15% у банковского. Брокеридж и кормит весь холдинг
+            доналоговая маржа брокерского сегмента Freedom Holding - против 15% у банковского. Самый маржинальный бизнес холдинга
           </p>
         </div>
         <div>
@@ -418,7 +418,7 @@ function S8() {
           Тройную связку - маркетплейс, доходность на деньги продавцов и вознаграждения бумагами через своего брокера - не собрал, судя по публичным раскрытиям, ещё никто в мире. Freedom может стать первым.
         </Takeaway>
       </div>
-      <Tease>Почему без этого умирают →</Tease>
+      <Tease>Что бывает с теми, кто собрал похожее, - и с теми, кто нет →</Tease>
     </Slide>
   );
 }
@@ -435,7 +435,7 @@ function S9() {
       id="slide-9"
       n={9}
       kicker="Доппельгангер"
-      source="Пресс-релиз Uzum, 02.2025 · TechCrunch, 08.2025 · Zakon.kz"
+      source="Пресс-релиз Uzum, 02.2025 · TechCrunch, 08.2025 · Forbes Kazakhstan"
     >
       <H size={60}>
         У Teez есть близнец. Он жив - и стоит $1,5 млрд.
@@ -466,13 +466,13 @@ function S9() {
 function S10() {
   const rows = [
     { name: "Teez", fate: "перестал платить продавцам - и замолчал" },
-    { name: "СберМегаМаркет", fate: "−93% продаж за 2025-й" },
+    { name: "СберМегаМаркет", fate: "−93% за 2025-й: банк был - но жил в соседнем приложении" },
     { name: "KazanExpress", fate: "поглощён «Магнитом», бренда больше нет" },
   ];
   return (
-    <Slide id="slide-10" n={10} kicker="Теорема" source="Data Insight · Exclusive.kz · Oborot.ru · Business-Gazeta">
+    <Slide id="slide-10" n={10} kicker="Теорема" source="Data Insight · Exclusive.kz · Oborot.ru · Реальное время">
       <H size={68}>Маркетплейс без банка умирает.</H>
-      <Dek mt={22}>Скорость и склад не спасают, если некому финансировать рассрочку. Три случая за три года:</Dek>
+      <Dek mt={22}>Скорость и склад не спасают, если рассрочка не живёт в том же клике, что покупка. Три случая за три года:</Dek>
       <div className="mt-12 space-y-10">
         {rows.map((r) => (
           <div key={r.name} className="border-l-4 pl-8" style={{ borderColor: "var(--viz-negative)" }}>
@@ -483,7 +483,7 @@ function S10() {
       </div>
       <div className="mt-12">
         <Takeaway>
-          Поворот: Teez и KazanExpress строил один человек - Линар Хуснуллин. И жалобы продавцов на задержки выплат были одинаковыми.
+          Поворот: Teez и KazanExpress строил один человек - Линар Хуснуллин. Продавцы обеих площадок жаловались на задержки выплат.
         </Takeaway>
       </div>
     </Slide>
@@ -544,7 +544,7 @@ function S11() {
                   { label: "2025", value: 195.2 },
                 ]}
                 xAxis={{ hideTicks: true }}
-                yAxis={{ max: 380, hideTicks: true }}
+                yAxis={{ max: 210, hideTicks: true }}
                 slots={{ tooltip: () => null }}
                 dataLabels={{ show: true, format: (v: number) => v.toLocaleString("ru-RU") }}
                 formatValue={(v: number) => `${v.toLocaleString("ru-RU")} млрд ₽`}
@@ -613,7 +613,7 @@ function S12() {
         <div>
           <p className="text-[96px] font-bold tabular-nums leading-none">26–31%</p>
           <p className="text-[30px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
-            кредитных заявок одобряется в среднем по стране: до трёх из четырёх получают отказ
+            заявок на кредиты одобряется в среднем по рынку - до трёх из четырёх получают отказ. Одобряемость на чекауте банки не раскрывают
           </p>
         </div>
       </div>
@@ -631,7 +631,7 @@ function S13() {
       id="slide-13"
       n={13}
       kicker="Первый удар 1/2"
-      source="MPSTATS, июль 2025 - июнь 2026 · Redstat, апрель 2026. Доли считаны по категорийным срезам"
+      source="MPSTATS, июль 2025 - июнь 2026 (WB: год, сумма заказов) · Redstat, апрель 2026 (Kaspi: месячный срез). Сопоставление структур, не абсолютов"
     >
       <H size={60}>Шкаф Казахстана уже уехал - на Wildberries.</H>
       <div className="mt-14 grid grid-cols-2 gap-12">
@@ -654,7 +654,7 @@ function S13() {
           одежды на WB продаётся со склада площадки (FBW), а не со склада продавца. Мода живёт на складе: примерки, возвраты, обмены
         </p>
       </div>
-      <Tease>Склад, готовый под это, в стране один →</Tease>
+      <Tease>Склад, готовый под это, у местных игроков один →</Tease>
     </Slide>
   );
 }
@@ -664,7 +664,7 @@ function S14() {
   const rows = [
     {
       t: "Склад - в Караганде, примерочные - в пунктах выдачи по стране",
-      d: "единственная в стране модель с центрального склада: доставка за день и ПВЗ с примерочными - наследство Teez, работавшего в 32 городах",
+      d: "единственная у местных игроков модель с центрального склада: доставка за день и ПВЗ с примерочными - наследство Teez, работавшего в 32 городах",
     },
     {
       t: "FBF (Fulfillment by Freedom): отгрузил на склад - остальное делает площадка",
@@ -680,7 +680,7 @@ function S14() {
       id="slide-14"
       n={14}
       kicker="Первый удар 2/2"
-      source="Forbes Kazakhstan, 2024 · письмо Freedom Market первым партнёрам, июль 2026"
+      source="Forbes Kazakhstan, 2024 · Zakon.kz, 2025 · письмо и созвоны с первыми партнёрами, июль 2026"
     >
       <H size={58}>Freedom может зайти именно отсюда - через шкаф.</H>
       <div className="mt-12 space-y-10">
@@ -755,11 +755,11 @@ function S16() {
           У Freedom всё может жить под одной крышей: счёт продавца, кредит под обороты, аналитика кабинета и рынка. Kaspi за десятилетие, по словам селлеров, не построил им даже внутреннюю аналитику.
         </p>
         <p>
-          Плюс открытый API, которого рынок ещё не видел, - и вокруг площадки вырастает экосистема сервисов, как вокруг Wildberries.
+          Плюс открытый API, которого рынок ещё не видел, - и вокруг площадки может вырасти экосистема сервисов, как вокруг Wildberries.
         </p>
       </div>
       <div className="mt-14">
-        <Takeaway>«Данные, деньги и управленческие решения должны жить вместе» - CEO банка «Точка».</Takeaway>
+        <Takeaway>Данные, деньги и управленческие решения должны жить вместе - так формулирует логику CEO банка «Точка».</Takeaway>
       </div>
     </Slide>
   );
@@ -779,7 +779,7 @@ function S17() {
         <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-negative)" }}>
           <p className="text-[32px] font-bold">Встречный ветер</p>
           <p className="text-[29px] leading-snug mt-2" style={{ color: "var(--color-dim)" }}>
-            потребкредитование охлаждают: лимиты долговой нагрузки, выдачи падают, отказов всё больше
+            потребкредитование охлаждают: лимиты долговой нагрузки, выдачи в реальном выражении снижаются, отказов всё больше
           </p>
         </div>
         <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-freedom)" }}>
@@ -800,7 +800,7 @@ function S17() {
 function S18() {
   const moves = [
     "Доставка за день - ход.",
-    "Комиссия 5% - ход.",
+    "Комиссия от 5% - ход.",
     "Свои магазины, открытые категории, выплаты назавтра - ход, ход, ход.",
   ];
   return (
@@ -824,7 +824,7 @@ function S18() {
       </Dek>
       <div className="mt-12">
         <Takeaway>
-          Но одна фигура есть только у Freedom - брокер, и за деньги она не покупается. Это ещё не мат. Но это уже сильный шах.
+          Но одна фигура есть только у Freedom - брокер, и за деньги она не покупается. Если её разыграть - это ещё не мат. Но это уже сильный шах.
         </Takeaway>
       </div>
     </Slide>
@@ -860,7 +860,7 @@ function S19() {
         <p>· Прейскурант целиком и его экономика</p>
         <p>· Интерактив: монета сама проходит оба пути</p>
         <p>· Три вопроса, на которые пока нет ответа</p>
-        <p>· 46 источников - каждая цифра со ссылкой</p>
+        <p>· 46 источников - каждая цифра с источником</p>
       </div>
       <p className="text-[64px] font-bold tracking-tight mt-16" style={{ color: "var(--color-brand)" }}>
         kasymzhanov.com

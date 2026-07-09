@@ -137,7 +137,7 @@ export default function FreedomMarketArticleEn() {
                 &rsquo;s larger sellers: a man who lives inside Kazakh e-commerce rather than admiring it through the shop window. People like him don&rsquo;t get called by accident.
               </P>
               <P className="mb-5">
-                The call was followed by a letter, polite and templated: &ldquo;My name is A., I represent the Freedom Market marketplace (formerly Teez).&rdquo; No website, no press release, no entry in the trademark registry. The company that doesn&rsquo;t exist already has a partner manager, a mailing template and a price list.
+                The call was followed by a letter, polite and templated: &ldquo;My name is A., I represent the Freedom Market marketplace (formerly Teez).&rdquo; No website, no press release, no entry in the trademark registry. The company that doesn&rsquo;t exist already has a partner manager, a mailing template and a commission rate card.
               </P>
               <P className="mb-5">
                 The word &ldquo;formerly&rdquo; sits in those brackets as calmly as it would in an obituary. As recently as February,{" "}
@@ -150,7 +150,7 @@ export default function FreedomMarketArticleEn() {
                 Further down, the letter asked the question the whole exercise was apparently built around: &ldquo;What, in your view, is missing from the existing marketplaces?&rdquo;
               </P>
               <P>
-                &ldquo;Existing,&rdquo; in Kazakhstan, honestly means one. And this entire text is an attempt to answer that question in earnest: what is missing, who has it - and why the message in Zeinullayev&rsquo;s phone is the opening move of the most interesting game ever played on the Kazakh market. A game that doesn&rsquo;t even have a press release yet.
+                Of the full-fledged &ldquo;existing&rdquo; ones, frankly, Kazakhstan has one. And this entire text is an attempt to answer that question in earnest: what is missing, who has it - and why the message in Zeinullayev&rsquo;s phone is the opening move of the most interesting game ever played on the Kazakh market. A game that doesn&rsquo;t even have a press release yet.
               </P>
             </div>
 
@@ -160,7 +160,7 @@ export default function FreedomMarketArticleEn() {
             <div className="mb-12">
               <H2>A Death With Ambitions</H2>
               <P className="mb-5">
-                The name Teez carries two words inside it: the Kazakh &ldquo;tez&rdquo; - fast - and the English &ldquo;tease.&rdquo; It started with the first one: a September 2024 launch, the country&rsquo;s only central-warehouse model based in{" "}
+                The name Teez carries two words inside it: the Kazakh &ldquo;tez&rdquo; - fast - and the English &ldquo;tease.&rdquo; It started with the first one: a September 2024 launch, the only central-warehouse model among local players based in{" "}
                 <Term tip="An industrial city in central Kazakhstan; site of the Teez fulfillment warehouse.">Karaganda</Term>
                 , free next-day delivery on any order, plans to reach &ldquo;50 countries in five years&rdquo;
                 <Fn n={2} tip="Forbes Kazakhstan, June 2024 — Teez: the first Kazakh marketplace with free next-day delivery." />
@@ -259,8 +259,8 @@ export default function FreedomMarketArticleEn() {
                 . At{" "}
                 <Term tip="Latin America's largest marketplace; market capitalization above $100 billion.">MercadoLibre</Term>{" "}
                 - a Latin American Kaspi the size of a continent - the{" "}
-                <Term tip="MercadoLibre's payments arm.">Mercado Pago</Term>{" "}
-                payments arm generates 41% of group revenue: $8.6 billion of $21 billion
+                <Term tip="MercadoLibre's fintech arm: payments and credit.">Mercado Pago</Term>{" "}
+                fintech arm generates 41% of group revenue: $8.6 billion of $21 billion
                 <Fn n={14} tip="GlobeNewswire, 20.02.2025 — MercadoLibre Q4 2024: $21B revenue, Mercado Pago $8.6B." />
                 . Russia&rsquo;s{" "}
                 <Term tip="Russia's second-largest marketplace; its fintech arm generates the bulk of group EBITDA.">Ozon</Term>{" "}
@@ -273,7 +273,7 @@ export default function FreedomMarketArticleEn() {
                 <Term tip="US marketplace for handmade and vintage goods.">Etsy</Term>{" "}
                 and{" "}
                 <Term tip="Europe's largest online fashion retailer.">Zalando</Term>{" "}
-                live without a banking license - but those are niche players in markets where every other external provider sells installment plans. In Kazakhstan, where the installment plan is a second currency, there are no plug-in providers: installments here are issued by banks inside their own ecosystems, not as a service for someone else&rsquo;s checkout. Here, asking a marketplace &ldquo;where is your bank&rdquo; is like asking an organism &ldquo;where is your heart.&rdquo;
+                live without a banking license - but those are niche players in markets where every other external provider sells installment plans. In Kazakhstan, where the installment plan is a second currency, there is no independent provider of the <Term tip="Swedish buy-now-pay-later service that plugs into any store's checkout as an external installment provider.">Klarna</Term> kind: installments are issued by the banks themselves - and none of them will hand its installment product to a rival marketplace&rsquo;s checkout. Here, asking a marketplace &ldquo;where is your bank&rdquo; is like asking an organism &ldquo;where is your heart.&rdquo;
               </P>
               <P className="mb-5">
                 Kaspi is the rarest of cases, where the theorem ran in reverse: the marketplace didn&rsquo;t grow itself a bank - a bank grew itself a marketplace all the way to market leadership. And it holds that marketplace not with assortment but with frequency: 77 transactions per active user per month
@@ -427,7 +427,7 @@ export default function FreedomMarketArticleEn() {
                 The ladder is more interesting than it looks. A loan costs the seller the same as a card payment, because the interest there is paid by the buyer. Installments get pricier with length because someone has to finance the buyer&rsquo;s &ldquo;zero percent&rdquo; - and that someone is the seller, through the elevated commission. Now the arithmetic. The seller&rsquo;s surcharge for a 24-month plan over a card payment is 9 percentage points of commission - that is, 9% of the receipt, paid once. But the bank has to source that money for two years: even{" "}
                 <Term tip="Funding: the price a bank pays to raise the money it lends out.">funded</Term>{" "}
                 at retail deposit rates, financing a two-year installment plan costs 1.7-2 times those 9 points
-                <Fn n={24} tip="Author's estimate: on a 24-month annuity schedule the average outstanding balance is ≈52% of the receipt; funded at retail tenge deposit rates (KDIF, 2026: term deposits ≈15-18% p.a.), two years cost ≈16-19% of the receipt - against the seller's 9 p.p. surcharge. Early repayments and the bank's adjacent income cheapen the estimate; credit risk makes it dearer." />
+                <Fn n={24} tip="Author's estimate: on a 24-month annuity schedule the average outstanding balance is ≈52% of the receipt; funded at retail tenge deposit rates (KDIF, 2026: term deposits ≈15-18% p.a.), two years cost ≈16-19% of the receipt - against the seller's 9 p.p. surcharge. The estimate is nominal and uses marginal (not blended) funding; discounted to present value the multiple is ~1.5-1.8 and the conclusion holds. Early repayments, adjacent income and the upfront commission cheapen it; credit-risk cost makes it dearer." />
                 . Either Freedom is deliberately subsidizing long installments to poach sellers, or it is counting on money cheaper than the market&rsquo;s. Below, I&rsquo;ll explain why I believe the second.
               </P>
               <P className="mb-5">
@@ -449,7 +449,7 @@ export default function FreedomMarketArticleEn() {
                 <Term tip="Goods are stored at the platform's warehouse in advance, and the platform picks, packs and delivers. At Wildberries this is FBW (Fulfillment by Wildberries); for Freedom Market - FBF, Fulfillment by Freedom.">FBF</Term>
                 , Fulfillment by Freedom
                 <Fn n={26} tip="From Zeinullayev's calls with the Freedom Market team: FBS + FBF, commissions identical for everyone, including the holding's own services." />
-                . Kaspi has no full-scale fulfillment - and for sellers from Russia, Uzbekistan and China this is an open door: load your goods into the warehouse and sell, without an office or a courier in the country. Commissions, according to the platform, will be identical for everyone - including the holding&rsquo;s own services such as{" "}
+                . Kaspi has no fulfillment of its own for third-party sellers as of publication - and for sellers from Russia, Uzbekistan and China this is an open door: load your goods into the warehouse and sell, without an office or a courier in the country. Commissions, according to the platform, will be identical for everyone - including the holding&rsquo;s own services such as{" "}
                 <Term tip="Kazakh online grocery service with perishables logistics; part of the Freedom ecosystem.">Arbuz</Term>
                 <Fn n={26} tip="From Zeinullayev's calls with the Freedom Market team, July 2026." />
                 : a level-playing-field pledge that is easy to make before launch and hard to keep after.
@@ -465,11 +465,11 @@ export default function FreedomMarketArticleEn() {
                 What actually stands behind the letter. Freedom Holding closed its fiscal year with record revenue of $2.19 billion and net income doubled to $153 million - doubled, in fairness, off a dismal prior year: two years ago the holding earned $379 million. Assets grew by a third to $13.2 billion. Monthly{" "}
                 <Term tip="One application bundling many services: payments, shopping, tickets, government services.">super-app</Term>{" "}
                 audience grew two-and-a-half-fold over the year to almost 2.6 million; bank customers reached 5 million, brokerage accounts 858 thousand
-                <Fn n={27} tip="FRHC FY2026 (year to 31.03.2026), press release 02.06.2026 and 10-K: revenue $2.19B; net income $153.3M vs $76.2M in FY2025 (+101%) and $378.5M in FY2024; assets $13.2B; super-app MAU 2.59M vs 1.02M a year earlier; 5.03M banking clients; 858K brokerage accounts." />
+                <Fn n={27} tip="FRHC FY2026 (year to 31.03.2026), press release 02.06.2026 and 10-K: revenue $2.19B; net income $153.3M vs $76.2M in FY2025 (+101%) and $378.5M in FY2024; assets $13.2B against $9.9B a year earlier; super-app MAU 2.59M vs 1.02M a year earlier; 5.03M banking clients; 858K brokerage accounts." />
                 . The &ldquo;five million already use Freedom&rdquo; line from the partner manager&rsquo;s script is not a marketing rounding. It&rsquo;s a number from the filings - with one clarification: the five million are bank clients; 2.6 million are active in the super-app.
               </P>
               <P className="mb-5">
-                Plus the Teez inheritance: the country&rsquo;s only central-warehouse logistics model capable of next-day delivery - the very line item Sber, tired of paying, cut at MegaMarket.
+                Plus the Teez inheritance: the only central-warehouse logistics model among local players, capable of next-day delivery - the very line item Sber, tired of paying, cut at MegaMarket.
               </P>
               <P className="mb-5">
                 Plus something Teez never had for a single day - an instrument for bringing people back. Sellers will come to a new storefront on their own: for a merchant, a second platform is a line in a spreadsheet, not a relocation, and Russian research shows sellers on two platforms earn multiples of what they earn on one
@@ -481,7 +481,7 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 Plus the bank - and here it&rsquo;s worth examining the credit conveyor, because in Kazakhstan the conveyor, not the storefront, decides the outcome. Plenty of players &ldquo;have&rdquo; installment plans. They approve them very differently, and nobody publishes the numbers:{" "}
                 <Term tip="The share of installment/loan applications approved at the moment of purchase; not publicly disclosed by any Kazakh bank.">checkout approval rates</Term>{" "}
-                by bank are an officially blind spot - neither the regulator nor the credit bureaus track them publicly
+                by bank are an officially blind spot - publicly, neither the regulator nor the credit bureaus track them
                 <Fn n={29} tip="Survey of public lending data: ARDFM, NBK Bank Lending Survey, First Credit Bureau DataHub — bank-level approval rates are not published." />
                 . Only the market-wide background is known, and it is harsh: on average, 26–31% of loan applications get approved
                 <Fn n={30} tip="AFK: market-average application approval 26.2-29.2% (2024); unsecured consumer loans 27.5-31.5% (9M2025). Finprom/NBK, Q4 2024: unsecured approval 29.5%." />
@@ -489,15 +489,15 @@ export default function FreedomMarketArticleEn() {
                 <Fn n={31} tip="DataHub / First Credit Bureau — Kazakhstan's credit market, H1 2025: 8.1M people with active unsecured loans; issuance falling in real terms." />
                 . Kazakhstan is a country that lives on credit and gets turned down for it. Kaspi&rsquo;s own filings name instant automated credit decisioning as the core of the model
                 <Fn n={32} tip="Kaspi.kz Form 20-F — automated, centralized, big-data-driven proprietary loan approval process." />
-                {" "}- and it pays for its generosity in delinquency: Kaspi Bank&rsquo;s{" "}
+                {" "}- and it pays for its risk appetite in delinquency: Kaspi Bank&rsquo;s{" "}
                 <Term tip="Non-performing loans: loans 90+ days overdue; the key credit-quality indicator.">non-performing loan</Term>{" "}
-                ratio is 5.2% against the sector&rsquo;s 3.4%
-                <Fn n={33} tip="Halyk Finance — Kazakhstan's banking sector, June 2025: Kaspi Bank NPL 5.2% vs. the sector's 3.4%." />
+                ratio is 5.2% against the sector-wide average of 3.4%, a mix that includes mortgages and corporate loans
+                <Fn n={33} tip="Halyk Finance - Kazakhstan's banking sector, June 2025: Kaspi Bank NPL90+ at 5.2% vs 3.4% sector-wide (a mix including lower-delinquency mortgages and corporate loans)." />
                 . Approval is not the{" "}
                 <Term tip="Automated borrower assessment: an algorithm approves or declines a loan in seconds.">scoring</Term>{" "}
                 engine&rsquo;s mercy; it is a business decision with a price tag, and Kaspi pays it deliberately. Tellingly,{" "}
                 <Term tip="A top-tier Kazakh commercial bank.">ForteBank</Term>{" "}
-                - whose installment approvals the market privately considers hard to pass - simply bought{" "}
+                - whose installment approvals the sellers we spoke to privately call hard to pass - simply bought{" "}
                 <Term tip="Consumer-lending specialist focused on point-of-sale loans; Kazakh unit acquired by ForteBank in 2025.">Home Credit Bank</Term>{" "}
                 in 2025, a specialist in{" "}
                 <Term tip="Credit issued right at the moment of purchase.">point-of-sale lending</Term>
@@ -538,7 +538,7 @@ export default function FreedomMarketArticleEn() {
               </P>
               <P className="mb-5">
                 Clothing and footwear make up about 7% of Kaspi&rsquo;s category turnover - against a quarter of the market on Wildberries
-                <Fn n={36} tip="Author's calculations. Kaspi — Redstat, April 2026 (clothing & footwear ₸11.6B of ₸168.8B, 6.8%; electronics 27.4%). WB — MPSTATS, Jul 2025 - Jun 2026 (clothing & footwear ₽5.7T of ₽23.2T in orders, 24.7%). «Revenue» in MPSTATS data means orders, not completed purchases." />
+                <Fn n={36} tip="Author's calculations. Kaspi — Redstat, April 2026 (clothing & footwear ₸11.6B of ₸168.8B, 6.8%; electronics 27.4%). WB — MPSTATS, Jul 2025 - Jun 2026 (clothing & footwear ₽5.7T of ₽23.2T in orders, 24.7%; shares computed on unrounded data). «Revenue» in MPSTATS data means orders, not completed purchases." />
                 . The category where the Kazakh shopper already votes with their wallet (WB.kz in Kazakhstan grows first and foremost on fashion) is nearly absent from the country&rsquo;s main marketplace. The money in Kazakhstan&rsquo;s wardrobe is currently leaving for a Russian platform - not because it is better, but because a local alternative with a warehouse and fitting rooms simply does not exist. Kaspi is an electronics store the size of a country: electronics take 27% of its turnover, clothing sits in the tail of the table.
               </P>
 
@@ -578,12 +578,12 @@ export default function FreedomMarketArticleEn() {
               <P className="mb-5">
                 The beachhead itself is not a hypothesis but a model proven next door: Wildberries began precisely with clothing, built the CIS&rsquo;s largest marketplace on it, and still holds a quarter of its turnover in the category - every number in this chapter is computed from its data. How to accelerate the category, though, is a lesson from{" "}
                 <Term tip="Chinese fast-fashion giant: micro-batches, instant demand response, customer content as marketing.">Shein</Term>
-                : the Chinese fast-fashion giant grew into one of the planet&rsquo;s largest fashion retailers without a single physical store - on micro-batches, instant demand response, and customer-generated content instead of advertising. For Freedom these are not two examples but a division of labor: Wildberries supplies the proof that fashion builds marketplaces; Shein supplies the acceleration playbook - and both halves assemble from parts Freedom already owns: a warehouse with fitting rooms, the UGC tools from the letter, the open FBF door for sellers from China - the very ones who carry fast fashion.
+                : the Chinese fast-fashion giant took off without a single physical store - on micro-batches, instant demand response, and customer-generated content instead of advertising. For Freedom these are not two examples but a division of labor: Wildberries supplies the proof that fashion builds marketplaces; Shein supplies the acceleration playbook - and both halves assemble from parts Freedom already owns: a warehouse with fitting rooms, the UGC tools from the letter, the open FBF door for sellers from China - the very ones who carry fast fashion.
               </P>
               <P className="mb-5">
                 The dress here is an image, not the whole plan. This is about fashion as a category: clothing, footwear, lingerie, accessories - a quarter of the neighboring market, surrendered in Kazakhstan without a fight. The second target of the first wave is visible in the same table: long-shelf-life groceries. Back in November 2024, the &ldquo;Food&rdquo; category on Kaspi did about ₸0.3 billion a month; now it does ₸6.6–7.8 billion - growth of twentyfold and change
                 <Fn n={36} tip="Redstat: monthly revenue of Kaspi's Food category - ₸0.31B in November 2024 versus ₸6.6-7.8B across January-April 2026; April snapshot - ₸6.6B with 234 sellers." />
-                . Yet entry to the category is open to barely more than two hundred sellers nationwide, and in April exactly three companies were selling vegetables - each with revenue approaching a quarter of a billion tenge
+                . Yet entry to the category is open to barely more than two hundred sellers nationwide, and in April exactly three companies were selling vegetables - with revenue averaging just under a quarter of a billion tenge per company
                 <Fn n={36} tip="Redstat, April 2026 — 234 sellers in «Food»; 3 sellers in «Vegetables» with ~₸721M in category revenue." />
                 . Translation: demand has been proven with Kaspi&rsquo;s own money, while supply is held back by a turnstile - a rare case where you can judge the length of the queue by how narrowly the door is cracked open. Freedom, meanwhile, already owns Arbuz with its perishables logistics - and the promise of &ldquo;open categories&rdquo; in that very letter.
               </P>
@@ -615,21 +615,23 @@ export default function FreedomMarketArticleEn() {
                 <Fn n={38} tip="MELI Letters to Shareholders — Mercado Fondo AUM dynamics; $18.8B as of Q4 2025." />
                 , and its Chinese progenitor{" "}
                 <Term tip="The money-market fund inside Alipay; at its peak, the world's largest.">Yu&rsquo;e Bao</Term>{" "}
-                held $267 billion at its peak - until the regulator cut the limits. Kaspi has assembled the marketplace and merchant deposits - two-thirds of the loop. Deposits Kaspi does have - retail ones and a Business Deposit for merchants; what it lacks is yield by default on every working tenge, and the floor above the deposit: securities. But the triple link - a marketplace, yield on sellers&rsquo; money, and rewards in securities through one&rsquo;s own broker - has, as far as public disclosures allow one to judge, never been assembled by anyone in the world
+                held $267 billion at its peak - until the regulator cut the limits. Kaspi has assembled the marketplace and merchant deposits - the storefront and the money, but not the loop. Deposits Kaspi does have - retail ones and a Business Deposit for merchants; what it lacks is yield by default on every working tenge, and the floor above the deposit: securities. But the triple link - a marketplace, yield on sellers&rsquo; money, and rewards in securities through one&rsquo;s own broker - has, as far as public disclosures allow one to judge, never been assembled by anyone in the world
                 <Fn n={39} tip="Author's prior-art survey of public disclosures and product announcements (Shopify, Amazon, MercadoLibre, eToro, Robinhood, Trade Republic, Grab, Kaspi, et al.), June–July 2026." />
-                . It requires a triple license stack: marketplace operator, bank and{" "}
+                . It requires a triple stack: a working marketplace plus a banking license and a{" "}
                 <Term tip="A licensed securities intermediary.">broker-dealer</Term>{" "}
-                at once. Freedom, after the Teez deal, holds all three in one vault - and it is the only player whose brokerage is the core of the business, not an appendage to a bank.
+                license at once. Freedom - if the Teez deal has closed - holds all three in one vault - and it is the only player whose brokerage is the core of the business, not an appendage to a bank.
               </P>
               <P className="mb-5">
-                What it means in practice. A seller&rsquo;s revenue lands, by default, on an account that accrues interest daily. This is not a brokerage account with stocks: a seller needs safety and instant access, so the mechanics differ - balances are parked in short, safe{" "}
+                What it means in practice. A seller&rsquo;s revenue lands, by default, on an account that accrues interest daily. This is not a brokerage account with stocks: a seller needs safety and instant access, so the mechanics differ - the rate on the balance is tied to short, safe{" "}
                 <Term tip="Short-term, low-risk placements (overnight deposits, government paper) with daily accrual and near-instant access.">money-market instruments</Term>
                 , and the yield drips in daily, visible in the app. That is exactly how Yu&rsquo;e Bao works inside{" "}
                 <Term tip="China's largest payment platform, part of the Alibaba ecosystem.">Alipay</Term>{" "}
-                and Mercado Fondo inside MercadoLibre; at Kazakh interest rates, that &ldquo;+X tenge today&rdquo; line becomes visible to the naked eye. Money can be withdrawn instantly and free - but every day it sits, it earns. &ldquo;Unprofitable to withdraw&rdquo; means precisely this: nobody forbids the seller anything; the account is simply built so that keeping money inside is the rational choice, not a constraint. And for the platform, those voluntarily parked balances are the cheapest fuel there is: on-demand balances, even with daily interest paid to the seller, cost a bank less than term deposits or market debt - and they fund the next buyer&rsquo;s installment plan. Which is, incidentally, where the economics of that suspiciously generous commission ladder may come from. Securities enter the construction on the other side of the counter - with the buyer: their cashback doesn&rsquo;t expire as points but settles into a portfolio as fractional shares via the holding&rsquo;s broker. Behavioral studies have shown that recipients of a brand&rsquo;s stock increased their spending by double-digit percentages
+                and Mercado Fondo inside MercadoLibre; at Kazakh interest rates, that &ldquo;+X tenge today&rdquo; line becomes visible to the naked eye. Money can be withdrawn instantly and free - but every day it sits, it earns. &ldquo;Unprofitable to withdraw&rdquo; means precisely this: nobody forbids the seller anything; the account is simply built so that keeping money inside is the rational choice, not a constraint. There is a fork here, and it is worth naming honestly: money that actually leaves for a fund is money the bank cannot lend - that is how Mercado Fondo works; in the installment model the bank pays the daily interest itself, slightly below market, and the balances remain its funding - the cheapness is the spread between the seller&rsquo;s rate and the market price of money. Those voluntarily left balances are what funds the next buyer&rsquo;s installment plan. Which is, incidentally, where the economics of that suspiciously generous commission ladder may come from. Securities enter the construction on the other side of the counter - with the buyer: their cashback doesn&rsquo;t expire as points but settles into a portfolio as fractional shares via the holding&rsquo;s broker. Behavioral studies have shown that recipients of a brand&rsquo;s stock increased their spending by double-digit percentages
                 <Fn n={40} tip="Medina, Mittal — NBER Working Paper No. 28479 (2021): brand stock ownership and consumer spending." />
                 . And the buyer of a kettle quietly becomes a brokerage client at zero acquisition cost - for a holding whose highest-margin business is precisely{" "}
                 <Term tip="The brokerage business: commissions on clients' securities trades.">brokerage</Term>
+                : per the segment reporting, the brokerage segment&rsquo;s pre-tax margin is about 55%, the banking segment&rsquo;s about 15%
+                <Fn n={27} tip="FRHC 10-K FY2026 (SEC), segment reporting: brokerage - revenue $831.5M, pre-tax income $456.2M (≈55% margin); banking - $689.2M and $102.0M (≈15%)." />
                 .
               </P>
               <P className="mb-5">
@@ -644,7 +646,7 @@ export default function FreedomMarketArticleEn() {
                 burned through $32 million of investment and was sold for $631 thousand - the startup had to build both the broker and the audience from scratch
                 <Fn n={41} tip="Bakkt 10-Q/10-K (SEC): on 08.02.2023 Bakkt acquired 100% of Bumped Financial for $631K in cash; the startup had raised ~$32M." />
                 .{" "}
-                <Term tip="Singapore's super-app: rides, delivery, payments; shut down its auto-invest product in 2023.">Grab</Term>{" "}
+                <Term tip="Singapore's super-app: rides, delivery, payments.">Grab</Term>{" "}
                 shut down its auto-invest in overbanked Singapore, where a 1.8% yield warmed nobody. Both products died of lacking what Freedom already has: a broker at the core of the business, and double-digit rates at which yield on a balance is visible to the naked eye. A rare case where an idea that buried startups can only be lifted by an{" "}
                 <Term tip="The sitting, dominant market player.">incumbent</Term>{" "}
                 - a sitting heavyweight who needs to build neither the license nor the audience.
@@ -662,7 +664,7 @@ export default function FreedomMarketArticleEn() {
                 . On former employees&rsquo; wages there is not even that much of a field signal. If the books are indeed closed, Freedom bought, along with the warehouse, the chance to quietly turn the worst page of its history. What remains is to say so out loud: here, silence works against the buyer.
               </P>
               <P className="mb-5">
-                Second - legal status. The deal is confirmed neither by a press release nor by a Nasdaq issuer&rsquo;s disclosure; a Freedom Market trademark is nowhere to be found in the open registries. A domain, however, is. fmarket.kz - the only name possible in the holding&rsquo;s nomenclature, where Freedom Finance lives at ffin.kz and Freedom Telecom at ftel.kz - was registered on May 9, 2026: two weeks after the Teez founders left management and three weeks before the Freedom brand unification. Registered through the same registrar that services ffin.kz and ftel.kz, with the same hidden owner as the flagship ffin.kz
+                Second - legal status. The deal is confirmed neither by a press release nor by a Nasdaq issuer&rsquo;s disclosure; a Freedom Market trademark is nowhere to be found in the open registries. A domain, however, is. fmarket.kz - the natural name in the holding&rsquo;s nomenclature, where Freedom Finance lives at ffin.kz and Freedom Telecom at ftel.kz - was registered on May 9, 2026: two weeks after the Teez founders left management and three weeks before the Freedom brand unification. Registered through the same registrar that services ffin.kz and ftel.kz, with the same hidden owner as the flagship ffin.kz
                 <Fn n={42} tip="KazNIC WHOIS, checked 05.07.2026: fmarket.kz created 09.05.2026, registrar PS Internet Company, owner redacted; ftel.kz - same registrar, registered openly to Freedom Telecom Operations. A shared registrar is not by itself proof of ownership; fmarket.kz's affiliation with Freedom Holding has not been established." />
                 . And four days later, an{" "}
                 <Term tip="A website security certificate; its issuance means the domain is being actively managed.">SSL certificate</Term>{" "}
@@ -691,7 +693,7 @@ export default function FreedomMarketArticleEn() {
             <div className="mb-12">
               <H2>In Lieu of an Epilogue</H2>
               <P className="mb-5">
-                I asked Zeinullayev whether he himself would join Freedom Market. He answered without a pause: yes. &ldquo;Companies like Kaspi need competitors. Where there&rsquo;s competition, there&rsquo;s growth. And you&rsquo;re not dependent on a single sales channel.&rdquo; Since the letter, an entire team from the platform has been on calls with him - discussing strategy, trading questions. That, most likely, is how dozens of large Kaspi sellers are reasoning right now: an empty storefront is cheap visibility and a 5% commission, and even the warehouse of a company that owed people money four months ago stops being frightening - if the people it owed have been paid.
+                I asked Zeinullayev whether he himself would join Freedom Market. He answered without a pause: yes. &ldquo;Companies like Kaspi need competitors. Where there&rsquo;s competition, there&rsquo;s growth. And you&rsquo;re not dependent on a single sales channel.&rdquo; Since the letter, an entire team from the platform has been on calls with him - discussing strategy, trading questions. That, most likely, is how dozens of large Kaspi sellers are reasoning right now: an empty storefront is cheap visibility and commissions from 5%, and even the warehouse of a company that owed people money four months ago stops being frightening - if the people it owed have been paid.
               </P>
               <P className="mb-5">
                 And while the sellers do their math, look at the whole board. Kaspi last year stepped onto the Turkish board, buying 65% of{" "}
@@ -706,7 +708,7 @@ export default function FreedomMarketArticleEn() {
                 The partner manager&rsquo;s letter asked what was missing from the existing marketplaces. My answer: for ten years, the market has been missing a second player. Looks like exactly that order is being assembled right now - at that same warehouse in Karaganda. And from there, as we remember, they deliver in one day.
               </P>
               <P className="mb-5">
-                From here, the game can be recorded in notation. Next-day delivery - a move. A 5% commission - a move. Storefronts instead of a shared listing, open categories, next-day payouts - move, move, move. Kaspi has an answer to each: the champion has the conveyor, the frequency and a ten-year head start. But one piece on the board belongs to Freedom alone, and it cannot be bought with money - the broker. Play it the way described above, and it is no longer an exchange of pawns. It is check. Not mate: mate is far away, and nobody in the country defends better than the champion. But what is it like - to play against yourself for ten years and suddenly hear a piece being moved across the table?
+                From here, the game can be recorded in notation. Next-day delivery - a move. A commission from 5% - a move. Storefronts instead of a shared listing, open categories, next-day payouts - move, move, move. Kaspi has an answer to each: the champion has the conveyor, the frequency and a ten-year head start. But one piece on the board belongs to Freedom alone, and it cannot be bought with money - the broker. Play it the way described above, and it is no longer an exchange of pawns. It is check. Not mate: mate is far away, and nobody in the country defends better than the champion. But what is it like - to play against yourself for ten years and suddenly hear a piece being moved across the table?
               </P>
               <P>
                 The clock is already running.
@@ -743,10 +745,10 @@ export default function FreedomMarketArticleEn() {
                 <li>MegaMarket sales collapse 93% in 2025 (Data Insight) - <Src href="https://ru.investing.com/news/general-news/article-3266688">Investing.com</Src>; <Src href="https://rb.ru/news/megamarket-opustilsya-s-4-go-na-38-e-mesto-v-rejtinge-marketplejsov-rossii-chislo-zakazov-na-ploshadke-upalo-vtroe/">RB.ru</Src>. Turnover grew 5x in 2023 - <Src href="https://www.rbc.ru/industries/news/65b79e249a794719b17035fa">RBC / Data Insight</Src>, 29.01.2024 (in Russian).</li>
                 <li>Sber posts ₽284 billion loss from non-core activities in 2024 - <Src href="https://www.interfax.ru/russia/1011212">Interfax</Src> (in Russian).</li>
                 <li>Halyk Market enters Kazakhstan&rsquo;s top-5 marketplaces - <Src href="https://www.nur.kz/nurfin/banks/2349777-halyk-market-voshel-v-top-5-marketpleysov-kazahstana-po-itogam-issledovaniya-ranking-kz/">Nur.kz</Src> (in Russian).</li>
-                <li>Author&rsquo;s estimate: on a 24-month annuity schedule the average outstanding balance is ≈52% of the receipt; funding at retail tenge deposit rates (term deposits ≈15-18% p.a., short ones up to 20.5%: <Src href="https://kdif.kz/depozity-i-garantiya/srochnye-vklady/">KDIF</Src>; <Src href="https://tengrinews.kz/private_finance/zarabotat-nazvanyi-samyie-vyigodnyie-depozityi-kazahstantsev-595951/">Tengrinews</Src>, 03.2026 (in Russian)) costs ≈16-19% of the receipt over two years, against the seller&rsquo;s 9 p.p. surcharge. Early repayments and the bank&rsquo;s adjacent income cheapen the estimate; credit-risk cost makes it dearer.</li>
+                <li>Author&rsquo;s estimate: on a 24-month annuity schedule the average outstanding balance is ≈52% of the receipt; funding at retail tenge deposit rates (term deposits ≈15-18% p.a., short ones up to 20.5%: <Src href="https://kdif.kz/depozity-i-garantiya/srochnye-vklady/">KDIF</Src>; <Src href="https://tengrinews.kz/private_finance/zarabotat-nazvanyi-samyie-vyigodnyie-depozityi-kazahstantsev-595951/">Tengrinews</Src>, 03.2026 (in Russian)) costs ≈16-19% of the receipt over two years, against the seller&rsquo;s 9 p.p. surcharge. The estimate is nominal, uses marginal (not blended-with-CASA) funding and no discounting - in present value the multiple is ~1.5-1.8 and the conclusion holds; early repayments, the bank&rsquo;s adjacent income and the upfront nature of the commission are not counted (they cheapen it), nor is credit-risk cost (it makes it dearer).</li>
                 <li>Redstat data, April 2026: 59 sellers on the iPhone 17 Pro 256Gb listing; 35–59 sellers on each of the eight top-selling iPhone listings.</li>
                 <li>Nurbek Zeinullayev&rsquo;s correspondence and calls with the Freedom Market team, July 2026. Records and screenshots on file with the author; published with Zeinullayev&rsquo;s consent.</li>
-                <li>Freedom Holding Corp. FY2026 results - <Src href="https://www.nasdaq.com/press-release/freedom-holding-corp-more-doubles-net-income-and-reports-record-revenue-fiscal-2026">Nasdaq/FRHC</Src>, 31.05.2026.</li>
+                <li>Freedom Holding Corp. FY2026 results - <Src href="https://www.nasdaq.com/press-release/freedom-holding-corp-more-doubles-net-income-and-reports-record-revenue-fiscal-2026">Nasdaq/FRHC</Src>, 02.06.2026.</li>
                 <li>T-Bank eCommerce research (October 2024): average seller income on one platform - ₽53K/month; on two - ₽137K/month - <Src href="https://www.tbank.ru/about/news/08102024-t-bank-ecommerce-and-t-data-released-a-study-on-the-marketplace-sellers-market-in-2024/">T-Bank</Src> (in Russian).</li>
                 <li>ARDFM, <Src href="https://nationalbank.kz/en/news/predydushchie-publikacii-opros">NBK Bank Lending Survey</Src>, <Src href="https://datahub.1cb.kz/ru/articles/53">FCB DataHub</Src> - bank-level approval rates are not published (in Russian).</li>
                 <li>Loan-application approval rates: AFK reviews for 2024 and 9M2025 - <Src href="https://forbes.kz/articles/afk-bezzalogovye-zaymy-v-kazahstane-padayut-zalogovye-segmenty-rastut-9cc40f">Forbes.kz</Src>; Finprom on NBK data - <Src href="https://tengrinews.kz/kazakhstan_news/potrebitelskie-kredityi-v-kazahstane-vsem-li-ih-odobryayut-566889/">Tengrinews</Src> (in Russian).</li>
@@ -755,7 +757,7 @@ export default function FreedomMarketArticleEn() {
                 <li>Kazakhstan&rsquo;s banking sector in June 2025 - <Src href="https://halykfinance.kz/download/files/analytics/banks_june2025.pdf">Halyk Finance</Src> (in Russian).</li>
                 <li>ForteBank absorbs Home Credit Bank - <Src href="https://the-tenge.kz/articles/forte-bank-pogloshchaet-home-credit-bank">The Tenge</Src>, 2025 (in Russian).</li>
                 <li>Tochka bank acquires 100% of MPSTATS - <Src href="https://bg.ru/bg/business/comm-news/31254-mpstats-tochka">BG.ru</Src>, February 2026 (in Russian).</li>
-                <li>Author&rsquo;s calculations: Kaspi category shares - Redstat, April 2026; Wildberries structure and fulfillment shares - MPSTATS, July 2025 - June 2026, twelve monthly windows. &ldquo;Revenue&rdquo; in MPSTATS data means orders, not completed purchases. Datasets and methodology available on request.</li>
+                <li>Author&rsquo;s calculations: Kaspi category shares - Redstat, April 2026; Wildberries structure and fulfillment shares - MPSTATS, July 2025 - June 2026, twelve monthly windows (clothing&rsquo;s FBW share by monthly windows - never below 76%, averaging 85.2%). &ldquo;Revenue&rdquo; in MPSTATS data means orders, not completed purchases. Datasets and methodology available on request.</li>
                 <li>eToro launches debit card in Europe, giving users 4% back in stock - <Src href="https://www.etoro.com/news-and-analysis/press-releases/etoro-launches-debit-card-in-europe-giving-users-4-back-in-stock-on-everyday-purchases/">eToro</Src>, 24.06.2025.</li>
                 <li>MercadoLibre: Mercado Fondo AUM dynamics - <Src href="https://api.mziq.com/mzfilemanager/v2/d/098a2d95-0ea8-4ed5-a340-d9ef6a2b0053/2ff0f141-ac16-6c7d-f47e-c9ff03c0da9e?origin=1">MELI Letters to Shareholders</Src>.</li>
                 <li>Author&rsquo;s prior-art survey of public disclosures and product announcements, June–July 2026. Methodology and source registry available on request.</li>

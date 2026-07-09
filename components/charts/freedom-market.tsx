@@ -552,7 +552,7 @@ export function Grafik5() {
           visible={visible}
         />
         <p className="text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
-          ×3,6 - недопредставленность моды на Kaspi
+          ×3,6 - недопредставленность моды на Kaspi (сопоставление структур по разным окнам: порядок величины, не точный коэффициент)
         </p>
         <ShareBar
           label="Kaspi"

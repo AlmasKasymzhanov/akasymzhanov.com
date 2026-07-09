@@ -276,7 +276,7 @@ export function Grafik1() {
       </div>
       <div>{rows}</div>
       <p className="mt-2 text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
-        There is still no press release. The sales department is already working.
+        There is still no press release on the deal. The sales department is already working.
       </p>
       <Legend
         items={[
@@ -541,7 +541,7 @@ export function Grafik5() {
           visible={visible}
         />
         <p className="text-[13px] font-semibold text-[var(--color-text)] border-l-2 border-[var(--color-dim)] pl-3">
-          3.6× - fashion&rsquo;s underrepresentation on Kaspi
+          3.6× - fashion&rsquo;s underrepresentation on Kaspi (structures compared across different windows: an order of magnitude, not a precise ratio)
         </p>
         <ShareBar
           label="Kaspi"
