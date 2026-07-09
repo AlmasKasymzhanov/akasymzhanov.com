@@ -110,19 +110,28 @@ function Tease({ children }: { children: React.ReactNode }) {
   );
 }
 
-/* ── 1 · cover ── */
+/* ── 1 · cover: our art, zoomed onto the box; headline kept inside the
+ * central square so the grid's 1:1 crop never cuts the text ── */
 function S1() {
   return (
     <Slide id="slide-1" n={1} kicker="Расследование">
-      <div className="relative w-full" style={{ aspectRatio: "1600/1195", background: "#e93032" }}>
-        <Image src="/blog/freedom-market/cover.webp" alt="" fill className="object-contain" priority sizes="952px" />
+      <div className="relative w-full overflow-hidden" style={{ height: 560, background: "#e93032" }}>
+        <Image
+          src="/blog/freedom-market/cover.webp"
+          alt=""
+          fill
+          className="object-cover"
+          style={{ objectPosition: "center 64%", transform: "scale(1.24)" }}
+          priority
+          sizes="1300px"
+        />
       </div>
-      <h1 className="font-bold tracking-tight leading-[1.04] text-[84px] mt-12">
+      <h1 className="font-bold tracking-tight leading-[1.04] text-[84px] mt-10">
         Маркетплейс умер.
         <br />
         Он вам позвонит.
       </h1>
-      <Dek mt={28}>Freedom Тимура Турлова тихо перезапускает мёртвый Teez - против Kaspi. Листайте →</Dek>
+      <Dek mt={26}>Freedom Тимура Турлова тихо перезапускает мёртвый Teez - против Kaspi. Листайте →</Dek>
     </Slide>
   );
 }
