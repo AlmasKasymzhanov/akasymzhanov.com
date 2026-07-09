@@ -64,6 +64,32 @@ export function localizeArticle(a: Article, locale: Locale): Article {
 
 export const ARTICLES: Article[] = [
   {
+    href: "/blog/freedom-market",
+    slug: "freedom-market",
+    img: "/blog/freedom-market/cover.webp",
+    coverBg: "#e93032",
+    rubric: "Расследование",
+    title: "Маркетплейс умер. Он вам позвонит",
+    subtitle:
+      "Как Freedom Тимура Турлова покупает площадку, которая не платила людям, зачем холдингу воскрешать её под своим именем - и почему у Kaspi впервые за десять лет появился соперник, которому есть чем ответить.",
+    date: "9 Июл 2026",
+    datePublished: "2026-07-09",
+    readMin: 21,
+    likes: 0,
+    comments: 0,
+    shares: 0,
+    credit: "Иллюстрация: Алмас Касымжанов · Higgsfield AI",
+    en: {
+      rubric: "Investigation",
+      title: "The Marketplace Is Dead. It Will Call You",
+      subtitle:
+        "How Timur Turlov's Freedom is buying a marketplace that stopped paying people, why the holding is resurrecting it under its own name - and why Kaspi, for the first time in a decade, faces a challenger with real ammunition.",
+      date: "Jul 9, 2026",
+      credit: "Illustration: Almas Kasymzhanov · Higgsfield AI",
+    },
+    enReady: true,
+  },
+  {
     href: "/blog/russia-fuel-jerrycan",
     slug: "russia-fuel-jerrycan",
     img: "/blog/russia-fuel-jerrycan/cover.webp",

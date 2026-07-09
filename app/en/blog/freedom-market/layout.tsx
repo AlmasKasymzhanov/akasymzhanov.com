@@ -9,9 +9,6 @@ const image = "/blog/freedom-market/cover.webp";
 export const metadata: Metadata = {
   title,
   description,
-  /* Draft mode: live by URL for editorial preview only — not announced, not
-   * indexable. REMOVE together with the front-page rollout. */
-  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://kasymzhanov.com/en/blog/freedom-market",
     languages: {

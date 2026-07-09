@@ -110,7 +110,7 @@ export default function FreedomMarketArticleEn() {
                 </>
               }
               slug="freedom-market"
-              date="July 7, 2026"
+              date="July 9, 2026"
               readMin={21}
               hero={{
                 src: "/blog/freedom-market/cover.webp",

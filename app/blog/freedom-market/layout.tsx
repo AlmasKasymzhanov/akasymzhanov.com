@@ -9,10 +9,6 @@ const image = "/blog/freedom-market/cover.webp";
 export const metadata: Metadata = {
   title,
   description,
-  /* Draft mode: the piece is live by URL for editorial preview only (Forbes
-   * pitch) — not announced, not in the sitemap, not indexable. REMOVE this
-   * block together with the front-page rollout. */
-  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://kasymzhanov.com/blog/freedom-market",
     languages: {
