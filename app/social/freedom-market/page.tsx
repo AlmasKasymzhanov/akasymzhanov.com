@@ -125,6 +125,14 @@ function S1() {
           priority
           sizes="1300px"
         />
+        {/* Bloomberg-style scoop badge: original material (the price sheet, the
+         * calls) that no other outlet has. Black chip, top-left of the photo. */}
+        <span
+          className="absolute top-6 left-6 px-4 py-2 text-[28px] font-bold uppercase tracking-[0.12em]"
+          style={{ background: "#000", color: "#fff" }}
+        >
+          Exclusive
+        </span>
       </div>
       <h1 className="font-bold tracking-tight leading-[1.04] text-[84px] mt-10">
         Маркетплейс умер.
