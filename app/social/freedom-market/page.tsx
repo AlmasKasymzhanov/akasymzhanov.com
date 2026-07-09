@@ -34,7 +34,7 @@ import { Coin } from "@/components/charts/tenge-journey";
 
 const pct = (v: number) => `${v.toLocaleString("ru-RU")}%`;
 const NEUTRAL = "var(--brock-neutral)";
-const TOTAL = 18;
+const TOTAL = 19;
 
 /* ── slide frame: masthead → content → source/counter footer ── */
 function Slide({
@@ -285,18 +285,18 @@ function S6() {
       id="slide-6"
       n={6}
       kicker="Эксклюзив 2/2"
-      source="Оценка автора: фондирование 24-месячной рассрочки по ставкам розничных депозитов (13-15% годовых)"
+      source="Оценка автора: аннуитет 24 мес → средний долг ≈ 52% чека; 52% × 2 года × 15-18% годовых ≈ 16-19% от чека. Ставки - КФГД, 2026"
     >
       <H size={60}>
-        За два года рассрочки продавец доплатит 9% от чека. Банку эти два года стоят 14–16%.
+        За два года рассрочки продавец доплатит 9% от чека. Банку эти два года стоят 16–19%.
       </H>
       <div className="mt-14 space-y-8 text-[32px] leading-relaxed" style={{ color: "var(--color-dim)" }}>
         <p>
           <span className="font-bold" style={{ color: "var(--color-text)" }}>14% − 5% = 9% от чека</span> - столько продавец доплачивает за 24-месячную рассрочку против оплаты картой. Один раз.
         </p>
         <p>
-          А банку надо два года где-то занимать эти деньги. Даже по ставкам обычных депозитов это{" "}
-          <span className="font-bold" style={{ color: "var(--viz-negative)" }}>14–16% от чека</span>.
+          А банку надо два года где-то занимать эти деньги. Даже по ставкам обычных тенговых депозитов (15–18% годовых) это{" "}
+          <span className="font-bold" style={{ color: "var(--viz-negative)" }}>16–19% от чека</span> - в 1,7–2 раза дороже.
         </p>
       </div>
       <div className="mt-14">
@@ -658,8 +658,8 @@ function S14() {
       d: "единственная в стране модель с центрального склада: доставка за день и ПВЗ с примерочными - наследство Teez, работавшего в 32 городах",
     },
     {
-      t: "FBF (Fulfillment by Freedom) - открытая дверь для продавцов из Китая",
-      d: "тех самых, что везут быструю моду",
+      t: "FBF (Fulfillment by Freedom): отгрузил на склад - остальное делает площадка",
+      d: "удобно селлеру из Казахстана, России, всего СНГ - остаётся товар и продвижение. И открытая дверь продавцам из Китая с их быстрой модой",
     },
     {
       t: "Тяжёлые фигуры Kaspi стоят в электронике",
@@ -689,12 +689,48 @@ function S14() {
   );
 }
 
-/* ── 15 · battlefield IV: data + money + credit ── */
+/* ── 15 · battlefield IV: super-app traffic ── */
 function S15() {
   return (
     <Slide
       id="slide-15"
       n={15}
+      kicker="Арсенал · трафик"
+      source="FRHC FY2026: MAU супераппа 2,59 млн против 1,02 млн годом ранее; 5,03 млн банковских клиентов"
+    >
+      <H size={58}>
+        Дефицитный ресурс этой партии - покупатель. У Freedom он уже в приложении.
+      </H>
+      <div className="mt-14 grid grid-cols-2 gap-12">
+        <div>
+          <p className="text-[88px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-freedom)" }}>2,6 млн</p>
+          <p className="text-[28px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            месячная аудитория супераппа Freedom - выросла в 2,5 раза за год
+          </p>
+        </div>
+        <div>
+          <p className="text-[88px] font-bold tabular-nums leading-none">5 млн</p>
+          <p className="text-[28px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            клиентов банка Freedom - каждый уже в контуре холдинга
+          </p>
+        </div>
+      </div>
+      <Dek mt={48}>
+        Кешбэк за коммуналку, билеты и покупки - поводы заходить, не собираясь ничего покупать. То, что Kaspi строил десятилетие. Осталось соединить провода с витриной.
+      </Dek>
+      <div className="mt-12">
+        <Takeaway>У Teez между заказами не было ни одной причины открыть приложение. У Freedom Market она есть с первого дня.</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 16 · battlefield V: data + money + credit ── */
+function S16() {
+  return (
+    <Slide
+      id="slide-16"
+      n={16}
       kicker="Экосистема"
       source="BG.ru, февраль 2026 · письмо Freedom Market первым партнёрам · оценка «внутренней аналитики» - по словам селлеров"
     >
@@ -720,12 +756,12 @@ function S15() {
   );
 }
 
-/* ── 16 · battlefield V: the regulator ── */
-function S16() {
+/* ── 17 · battlefield VI: the regulator ── */
+function S17() {
   return (
     <Slide
-      id="slide-16"
-      n={16}
+      id="slide-17"
+      n={17}
       kicker="Регулятор"
       source="АРРФР · НБРК · Послание Президента, 09.2023 · DataHub ПКБ"
     >
@@ -751,15 +787,15 @@ function S16() {
   );
 }
 
-/* ── 17 · the punchline: the game in notation ── */
-function S17() {
+/* ── 18 · the punchline: the game in notation ── */
+function S18() {
   const moves = [
     "Доставка за день - ход.",
     "Комиссия 5% - ход.",
     "Свои магазины, открытые категории, выплаты назавтра - ход, ход, ход.",
   ];
   return (
-    <Slide id="slide-17" n={17} kicker="Партия">
+    <Slide id="slide-18" n={18} kicker="Партия">
       <H size={58}>
         Дальше партию можно записывать по нотации.
       </H>
@@ -782,21 +818,43 @@ function S17() {
   );
 }
 
-/* ── 18 · CTA ── */
-function S18() {
+/* ── 19 · CTA: the clock is running ── */
+function ChessClock() {
+  /* A chess clock, mid-game: Freedom has made its move and slapped its (green)
+   * button down - the red side's clock is now running. */
   return (
-    <Slide id="slide-18" n={18} kicker="Полная версия">
+    <svg width="360" height="164" viewBox="0 0 360 164" aria-hidden>
+      <rect x="86" y="28" width="44" height="16" rx="3" fill="var(--viz-freedom)" />
+      <rect x="230" y="12" width="44" height="32" rx="3" fill="var(--viz-kaspi)" />
+      <rect x="20" y="44" width="320" height="112" rx="10" fill="none" stroke="var(--color-dim)" strokeWidth="3" />
+      <circle cx="104" cy="100" r="40" fill="none" stroke="var(--color-dim)" strokeWidth="3" />
+      <circle cx="256" cy="100" r="40" fill="none" stroke="var(--color-dim)" strokeWidth="3" />
+      {/* Freedom's dial: stopped at 12 - the move is made */}
+      <line x1="104" y1="100" x2="104" y2="68" stroke="var(--viz-freedom)" strokeWidth="4" strokeLinecap="round" />
+      {/* Kaspi's dial: running */}
+      <line x1="256" y1="100" x2="256" y2="76" stroke="var(--color-dim)" strokeWidth="3" strokeLinecap="round" opacity="0.6" />
+      <line x1="256" y1="100" x2="281" y2="79" stroke="var(--viz-kaspi)" strokeWidth="4" strokeLinecap="round" />
+    </svg>
+  );
+}
+function S19() {
+  return (
+    <Slide id="slide-19" n={19} kicker="Полная версия">
       <H size={60}>
         Здесь - десятая часть. Остальное уже опубликовано.
       </H>
-      <div className="mt-12 space-y-5 text-[31px] leading-snug" style={{ color: "var(--color-dim)" }}>
+      <div className="mt-10 space-y-5 text-[31px] leading-snug" style={{ color: "var(--color-dim)" }}>
         <p>· Вся хроника сделки - с документами и датами</p>
         <p>· Прейскурант целиком и его экономика</p>
         <p>· Интерактив: монета сама проходит оба пути</p>
         <p>· Три вопроса, на которые пока нет ответа</p>
         <p>· 46 источников - каждая цифра со ссылкой</p>
       </div>
-      <p className="text-[64px] font-bold tracking-tight mt-16" style={{ color: "var(--color-brand)" }}>
+      <div className="mt-12 flex items-center gap-10">
+        <ChessClock />
+        <p className="text-[44px] font-bold tracking-tight">Часы включены.</p>
+      </div>
+      <p className="text-[64px] font-bold tracking-tight mt-12" style={{ color: "var(--color-brand)" }}>
         kasymzhanov.com
       </p>
       <p className="text-[30px] mt-4" style={{ color: "var(--color-dim)" }}>
@@ -842,6 +900,7 @@ export default function SocialFreedomMarket() {
       <S16 />
       <S17 />
       <S18 />
+      <S19 />
     </div>
   );
 }

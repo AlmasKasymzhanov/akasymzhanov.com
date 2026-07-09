@@ -482,7 +482,7 @@ export function Grafik4() {
       </p>
       <p className="mt-3 font-mono text-[11.5px] leading-snug italic text-[var(--color-dim)]">
         <Term tip="Funding: the price a bank pays to raise the money it lends out.">Funding</Term>{" "}
-        two years at deposit rates costs the bank ~1.5× more than these 9 points.
+        two years at deposit rates costs the bank 1.7-2× more than these 9 points.
       </p>
       <Legend
         items={[
