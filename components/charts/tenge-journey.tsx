@@ -106,8 +106,9 @@ const EN: Copy = {
   interactiveKicker: "Interactive",
 };
 
-/* The user-supplied gold tenge coin (lies flat on the board like a piece). */
-function Coin({ dead, size = 56 }: { dead: boolean; size?: number }) {
+/* The user-supplied gold tenge coin (lies flat on the board like a piece).
+ * Exported for reuse in the social-card factory. */
+export function Coin({ dead, size = 56 }: { dead: boolean; size?: number }) {
   return (
     <svg
       viewBox="0 0 150 150"
