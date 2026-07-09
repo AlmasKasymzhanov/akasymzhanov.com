@@ -115,13 +115,13 @@ function Tease({ children }: { children: React.ReactNode }) {
 function S1() {
   return (
     <Slide id="slide-1" n={1} kicker="Расследование">
-      <div className="relative w-full overflow-hidden" style={{ height: 560, background: "#e93032" }}>
+      <div className="relative w-full overflow-hidden" style={{ height: 645, background: "#e93032" }}>
         <Image
           src="/blog/freedom-market/cover.webp"
           alt=""
           fill
           className="object-cover"
-          style={{ objectPosition: "center 66%", transform: "scale(1.12)" }}
+          style={{ objectPosition: "center 74%", transform: "scale(1.1)" }}
           priority
           sizes="1300px"
         />
