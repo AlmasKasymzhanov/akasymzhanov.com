@@ -644,7 +644,7 @@ function S13() {
         <div>
           <p className="text-[88px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-kaspi)" }}>~7%</p>
           <p className="text-[28px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
-            у Kaspi: магазин электроники размером со страну
+            оборота Kaspi - одежда и обувь. Магазин электроники размером со страну
           </p>
         </div>
       </div>
