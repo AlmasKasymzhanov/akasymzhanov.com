@@ -891,13 +891,14 @@ function S20() {
           </p>
         </div>
       </div>
-      <Dek mt={44}>
-        Ответьте в комментариях - и полный разбор прилетит вам в личку. Подпишитесь: продолжение этой партии посчитаем первыми.
-      </Dek>
+      <p className="text-[32px] leading-relaxed mt-11" style={{ color: "var(--color-dim)" }}>
+        Ответьте в комментариях, что думаете, - и полный разбор придёт вам в личку.{" "}
+        <span className="font-bold" style={{ color: "var(--color-brand)" }}>Подпишитесь</span> - продолжение этой партии посчитаем первыми.
+      </p>
       <div className="mt-8 inline-flex items-center gap-3 border rounded-[6px] px-6 py-4" style={{ borderColor: "var(--color-brand)" }}>
         <span className="text-[30px]" aria-hidden>💬</span>
         <span className="text-[28px] font-bold leading-snug">
-          Напишите ответ ниже - бот пришлёт разбор в Telegram
+          Напишите ответ ниже - бот пришлёт разбор вам в личку
         </span>
       </div>
     </Slide>
