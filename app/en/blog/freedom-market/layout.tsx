@@ -3,12 +3,15 @@ import { ArticleJsonLd } from "@/components/articles";
 
 const title = "The Marketplace Is Dead. It Will Call You | Almas Kasymzhanov";
 const description =
-  "How Timur Turlov's Freedom bought a marketplace that stopped paying people, why the holding is resurrecting it under its own name - and why Kaspi, for the first time in a decade, faces a challenger with real ammunition.";
+  "How Timur Turlov's Freedom is buying a marketplace that stopped paying people, why the holding is resurrecting it under its own name - and why Kaspi, for the first time in a decade, faces a challenger with real ammunition.";
 const image = "/blog/freedom-market/cover.webp";
 
 export const metadata: Metadata = {
   title,
   description,
+  /* Draft mode: live by URL for editorial preview only — not announced, not
+   * indexable. REMOVE together with the front-page rollout. */
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://kasymzhanov.com/en/blog/freedom-market",
     languages: {

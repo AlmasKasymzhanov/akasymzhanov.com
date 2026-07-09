@@ -3,12 +3,16 @@ import { ArticleJsonLd } from "@/components/articles";
 
 const title = "Маркетплейс умер. Он вам позвонит | Almas Kasymzhanov";
 const description =
-  "Как Freedom Тимура Турлова купил площадку, которая не платила людям, зачем холдингу воскрешать её под своим именем - и почему у Kaspi впервые за десять лет появился соперник, которому есть чем ответить.";
+  "Как Freedom Тимура Турлова покупает площадку, которая не платила людям, зачем холдингу воскрешать её под своим именем - и почему у Kaspi впервые за десять лет появился соперник, которому есть чем ответить.";
 const image = "/blog/freedom-market/cover.webp";
 
 export const metadata: Metadata = {
   title,
   description,
+  /* Draft mode: the piece is live by URL for editorial preview only (Forbes
+   * pitch) — not announced, not in the sitemap, not indexable. REMOVE this
+   * block together with the front-page rollout. */
+  robots: { index: false, follow: false },
   alternates: {
     canonical: "https://kasymzhanov.com/blog/freedom-market",
     languages: {
