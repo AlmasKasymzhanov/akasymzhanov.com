@@ -153,7 +153,7 @@ function Rank({
         return (
           <div
             key={s.title}
-            className="relative border p-2.5 md:p-3 transition-opacity duration-300"
+            className={`relative border p-2.5 md:p-3 transition-opacity duration-300 ${vertical ? "pr-14" : ""}`}
             style={{
               background: (i % 2 === 0) !== vertical ? STAGE.cellA : STAGE.cellB,
               borderColor: STAGE.line,
