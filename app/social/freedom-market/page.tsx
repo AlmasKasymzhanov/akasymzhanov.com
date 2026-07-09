@@ -898,7 +898,7 @@ function S20() {
       <div className="mt-8 inline-flex items-center gap-3 border rounded-[6px] px-6 py-4" style={{ borderColor: "var(--color-brand)" }}>
         <span className="text-[30px]" aria-hidden>💬</span>
         <span className="text-[28px] font-bold leading-snug">
-          Напишите ответ ниже - бот пришлёт разбор вам в личку
+          Напишите ответ ниже - и вышлю разбор вам в личку
         </span>
       </div>
     </Slide>
