@@ -887,7 +887,7 @@ function S20() {
         <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-freedom)" }}>
           <p className="text-[26px] uppercase tracking-[0.1em] mb-2" style={{ color: "var(--color-dim)" }}>Селлерам</p>
           <p className="text-[34px] font-bold leading-snug">
-            Зашли бы на маркетплейс, где есть аналитика, трафик и инструменты продвижения?
+            Зашли бы на маркетплейс, где есть аналитика, трафик, продвижение - и дешёвые деньги под закуп товара?
           </p>
         </div>
       </div>
