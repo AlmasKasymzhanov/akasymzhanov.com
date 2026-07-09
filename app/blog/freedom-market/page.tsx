@@ -229,7 +229,7 @@ export default function FreedomMarketArticle() {
                 brock="Timeline"
                 title="Хроника Teez: обещания против дат"
                 caption={<>Источник: Forbes Kazakhstan <Dot /> Exclusive.kz <Dot /> Orda.kz <Dot /> Kapital.kz <Dot /> <Term tip="WHOIS - публичный реестр данных о доменах (дата регистрации, регистратор, владелец); KazNIC - администратор национальной зоны .kz.">WHOIS KazNIC</Term> <Dot /> <Term tip="Certificate Transparency - публичные журналы всех выпущенных SSL-сертификатов; по ним видно, когда и на какие поддомены выпускался сертификат.">Certificate Transparency</Term></>}
-                note="Сентябрь 2024 - июль 2026. Зелёным (цвет Freedom) - события, которых никто не анонсировал: регистрация fmarket.kz 9 мая и SSL-сертификат 13 мая. Принадлежность домена холдингу не установлена (источник 42)."
+                note="Июнь 2024 - июль 2026. Зелёным (цвет Freedom) - события, которых никто не анонсировал: регистрация fmarket.kz 9 мая и SSL-сертификат 13 мая. Принадлежность домена холдингу не установлена (источник 42)."
               >
                 <Grafik1 />
               </ChartSlot>

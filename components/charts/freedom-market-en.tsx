@@ -109,6 +109,11 @@ const TIMELINE: TimelineEvent[] = [
     text: <>A seller writes to Exclusive.kz: no payouts &ldquo;for the second month running&rdquo;</>,
   },
   { date: "Mar 12, 2026", side: "fact", text: <>Venture investor Yerlan Issekeshev exits the ownership chain</> },
+  {
+    date: "Apr 20, 2026",
+    side: "promise",
+    text: <>Turlov on the marketplace, at the Kursiv forum: &ldquo;Whether it will be a partnership or fully our own platform - we are still deciding&rdquo;</>,
+  },
   { date: "Apr 24, 2026", side: "fact", text: <>Co-founders Khusnullin and Yeremin leave management</> },
   {
     date: "May 9, 2026",
