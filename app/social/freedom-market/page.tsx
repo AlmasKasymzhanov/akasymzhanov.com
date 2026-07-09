@@ -34,7 +34,7 @@ import { Coin } from "@/components/charts/tenge-journey";
 
 const pct = (v: number) => `${v.toLocaleString("ru-RU")}%`;
 const NEUTRAL = "var(--brock-neutral)";
-const TOTAL = 19;
+const TOTAL = 20;
 
 /* ── slide frame: masthead → content → source/counter footer ── */
 function Slide({
@@ -796,7 +796,11 @@ function S18() {
   ];
   return (
     <Slide id="slide-18" n={18} kicker="Партия">
-      <H size={58}>
+      <div className="flex items-center gap-9 mb-10">
+        <ChessClock width={300} />
+        <p className="text-[40px] font-bold tracking-tight">Часы включены.</p>
+      </div>
+      <H size={54}>
         Дальше партию можно записывать по нотации.
       </H>
       <div className="mt-12 space-y-6">
@@ -818,12 +822,11 @@ function S18() {
   );
 }
 
-/* ── 19 · CTA: the clock is running ── */
-function ChessClock() {
-  /* A chess clock, mid-game: Freedom has made its move and slapped its (green)
-   * button down - the red side's clock is now running. */
+/* A chess clock, mid-game: Freedom has made its move and slapped its (green)
+ * button down - the red side's clock is now running. */
+function ChessClock({ width = 360 }: { width?: number }) {
   return (
-    <svg width="360" height="164" viewBox="0 0 360 164" aria-hidden>
+    <svg width={width} height={Math.round((width * 164) / 360)} viewBox="0 0 360 164" aria-hidden>
       <rect x="86" y="28" width="44" height="16" rx="3" fill="var(--viz-freedom)" />
       <rect x="230" y="12" width="44" height="32" rx="3" fill="var(--viz-kaspi)" />
       <rect x="20" y="44" width="320" height="112" rx="10" fill="none" stroke="var(--color-dim)" strokeWidth="3" />
@@ -850,15 +853,40 @@ function S19() {
         <p>· Три вопроса, на которые пока нет ответа</p>
         <p>· 46 источников - каждая цифра со ссылкой</p>
       </div>
-      <div className="mt-12 flex items-center gap-10">
-        <ChessClock />
-        <p className="text-[44px] font-bold tracking-tight">Часы включены.</p>
-      </div>
-      <p className="text-[64px] font-bold tracking-tight mt-12" style={{ color: "var(--color-brand)" }}>
+      <p className="text-[64px] font-bold tracking-tight mt-16" style={{ color: "var(--color-brand)" }}>
         kasymzhanov.com
       </p>
       <p className="text-[30px] mt-4" style={{ color: "var(--color-dim)" }}>
         Ссылка в шапке профиля →
+      </p>
+    </Slide>
+  );
+}
+
+/* ── 20 · your move: the audience question ── */
+function S20() {
+  return (
+    <Slide id="slide-20" n={20} kicker="Ваш ход">
+      <H size={64}>Теперь ваш ход.</H>
+      <div className="mt-14 space-y-10">
+        <div className="border-l-4 pl-8" style={{ borderColor: "var(--color-brand)" }}>
+          <p className="text-[26px] uppercase tracking-[0.1em] mb-2" style={{ color: "var(--color-dim)" }}>Покупателям</p>
+          <p className="text-[34px] font-bold leading-snug">
+            Купили бы на новой площадке - с доставкой за день и рассрочкой?
+          </p>
+        </div>
+        <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-freedom)" }}>
+          <p className="text-[26px] uppercase tracking-[0.1em] mb-2" style={{ color: "var(--color-dim)" }}>Селлерам</p>
+          <p className="text-[34px] font-bold leading-snug">
+            Зашли бы на маркетплейс, где есть аналитика, трафик и инструменты продвижения?
+          </p>
+        </div>
+      </div>
+      <Dek mt={52}>
+        Расскажите в комментариях - и подпишитесь: у этой партии будет продолжение, и мы его посчитаем первыми.
+      </Dek>
+      <p className="text-[34px] font-bold tracking-tight mt-10" style={{ color: "var(--color-brand)" }}>
+        kasymzhanov.com
       </p>
     </Slide>
   );
@@ -901,6 +929,7 @@ export default function SocialFreedomMarket() {
       <S17 />
       <S18 />
       <S19 />
+      <S20 />
     </div>
   );
 }
