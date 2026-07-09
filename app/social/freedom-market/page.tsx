@@ -852,21 +852,22 @@ function ChessClock({ width = 360 }: { width?: number }) {
 function S19() {
   return (
     <Slide id="slide-19" n={19} kicker="Полная версия">
-      <H size={60}>
-        Здесь - десятая часть. Остальное уже опубликовано.
+      <H size={58}>
+        Всю партию в 20 слайдов не уместить.
       </H>
-      <div className="mt-10 space-y-5 text-[31px] leading-snug" style={{ color: "var(--color-dim)" }}>
+      <Dek mt={22}>В статье - то, чего здесь по определению нет:</Dek>
+      <div className="mt-8 space-y-5 text-[31px] leading-snug" style={{ color: "var(--color-dim)" }}>
+        <p>· <span className="font-bold" style={{ color: "var(--color-text)" }}>Интерактив</span>: монета сама проходит оба пути - картинкой это не показать</p>
         <p>· Вся хроника сделки - с документами и датами</p>
         <p>· Прейскурант целиком и его экономика</p>
-        <p>· Интерактив: монета сама проходит оба пути</p>
         <p>· Три вопроса, на которые пока нет ответа</p>
-        <p>· 46 источников - каждая цифра с источником</p>
+        <p>· 46 источников - каждая цифра проверяема</p>
       </div>
-      <p className="text-[64px] font-bold tracking-tight mt-16" style={{ color: "var(--color-brand)" }}>
+      <p className="text-[64px] font-bold tracking-tight mt-14" style={{ color: "var(--color-brand)" }}>
         kasymzhanov.com
       </p>
       <p className="text-[30px] mt-4" style={{ color: "var(--color-dim)" }}>
-        Ссылка в шапке профиля →
+        Уже опубликовано - ссылка в шапке →
       </p>
     </Slide>
   );
