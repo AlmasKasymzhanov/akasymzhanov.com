@@ -186,7 +186,14 @@ function Rank({
 export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
   const c = locale === "en" ? EN : RU;
   const trackRef = useRef<HTMLDivElement>(null);
+  const kaspiBoardRef = useRef<HTMLDivElement>(null);
+  const freedomBoardRef = useRef<HTMLDivElement>(null);
   const [progress, setProgress] = useState(0);
+  /* Mobile (unpinned) only: each lane's coin walks by that LANE's own travel
+   * through the viewport — Kaspi finishes while it is on screen, Freedom
+   * starts when the reader reaches it. Desktop keeps the shared step: both
+   * lanes are visible at once and race in parallel by design. */
+  const [laneSteps, setLaneSteps] = useState({ k: 0, f: 0 });
   const [reduced, setReduced] = useState(false);
   const [pinned, setPinned] = useState(true);
 
@@ -194,6 +201,7 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
       setReduced(true);
       setProgress(1);
+      setLaneSteps({ k: 3, f: 3 });
       return;
     }
     const mq = window.matchMedia("(min-width: 768px)");
@@ -216,6 +224,15 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
           p = total > 0 ? passed / total : 1;
         } else {
           p = Math.min(Math.max((vh - rect.top) / Math.max(rect.height, 1), 0), 1);
+          // Per-lane coin steps: 0 when the board's top crosses 70% of the
+          // viewport, 3 (last cell) as its bottom passes the same line.
+          const laneStep = (board: HTMLDivElement | null) => {
+            if (!board) return 0;
+            const r = board.getBoundingClientRect();
+            const pl = (vh * 0.7 - r.top) / Math.max(r.height, 1);
+            return Math.min(3, Math.max(0, Math.floor(pl * 4)));
+          };
+          setLaneSteps({ k: laneStep(kaspiBoardRef.current), f: laneStep(freedomBoardRef.current) });
         }
         setProgress(p);
       });
@@ -231,12 +248,14 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
     };
   }, []);
 
+  const vertical = !pinned;
   const step = Math.min(3, Math.floor(progress * 4.4));
+  const kaspiStep = vertical && !reduced ? laneSteps.k : step;
+  const freedomStep = vertical && !reduced ? laneSteps.f : step;
   // The Kaspi coin dies the moment it LANDS on "account, 0%": tied to the
   // step (works identically in pinned and unpinned modes), not to a raw
   // progress threshold. All coin movement is scroll-driven — no idle loops.
-  const kaspiDead = step >= 3;
-  const vertical = !pinned;
+  const kaspiDead = kaspiStep >= 3;
 
   return (
     <figure
@@ -261,14 +280,16 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
               <div>
                 <p className="text-[14px] font-bold mb-6" style={{ color: STAGE.text }}>{c.kaspiName}</p>
                 <div className={vertical ? "" : "grid grid-cols-[1fr_auto] gap-4 items-start"}>
-                  <Rank steps={c.kaspiSteps} coinAt={step} coinDead={kaspiDead} vertical={vertical} />
+                  <div ref={kaspiBoardRef}>
+                    <Rank steps={c.kaspiSteps} coinAt={kaspiStep} coinDead={kaspiDead} vertical={vertical} />
+                  </div>
                   {/* The diagonal deposit square - one move aside (down-right,
                    * clear of the header row), made by hand. */}
                   <div
                     className={`border border-dashed rounded-[2px] p-2.5 transition-colors duration-500 ${vertical ? "mt-3" : "w-[240px]"}`}
-                    style={{ borderColor: step >= 3 ? STAGE.dim : STAGE.line }}
+                    style={{ borderColor: kaspiStep >= 3 ? STAGE.dim : STAGE.line }}
                   >
-                    <p className="font-mono text-[10px] uppercase tracking-[0.08em]" style={{ color: step >= 3 ? STAGE.text : STAGE.dim }}>{c.depositMark}</p>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.08em]" style={{ color: kaspiStep >= 3 ? STAGE.text : STAGE.dim }}>{c.depositMark}</p>
                     <p className="text-[12px] font-semibold leading-snug mt-0.5" style={{ color: STAGE.text }}>{c.depositTitle}</p>
                     <p className="text-[10.5px] leading-snug mt-1" style={{ color: STAGE.dim }}>{c.depositNote}</p>
                   </div>
@@ -278,7 +299,9 @@ export function TengeJourney({ locale = "ru" }: { locale?: "ru" | "en" }) {
               {/* ── Freedom game ── */}
               <div>
                 <p className="text-[14px] font-bold mb-6" style={{ color: STAGE.text }}>{c.freedomName}</p>
-                <Rank steps={c.freedomSteps} coinAt={step} coinDead={false} vertical={vertical} />
+                <div ref={freedomBoardRef}>
+                  <Rank steps={c.freedomSteps} coinAt={freedomStep} coinDead={false} vertical={vertical} />
+                </div>
               </div>
             </div>
 
