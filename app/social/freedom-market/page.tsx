@@ -5,13 +5,15 @@
  * BI/Bloomberg Instagram anatomy on our own design system: the site's
  * masthead, Hack mono, entity colours and real Brock UI charts. Each slide
  * is a fixed 1080×1350 (4:5) frame; Playwright screenshots the elements by
- * id (#slide-1 … #slide-11) in the dark theme.
+ * id (#slide-1 … #slide-17) in the dark theme.
  *
  * Data-storytelling rules baked in: every slide stands alone — the reader
- * only flips images, nobody narrates. So each slide answers who/what/when
- * by itself: kicker = context, headline = takeaway (never a topic), named
- * actors, plain-language numbers, source + legal hedges on slides that can
- * travel without the deck.
+ * only flips images, nobody narrates. Kicker = context, headline = takeaway,
+ * named actors, plain-language numbers, sources + legal hedges on slides
+ * that can travel without the deck. Dramaturgy: hook → mystery → offer →
+ * exclusive → twin → twist → proof → context → model → the broker heart →
+ * first strike → ecosystem → regulator → check → CTA. Teasers («дальше →»)
+ * only where a genuine cliffhanger exists.
  */
 
 import Image from "next/image";
@@ -21,7 +23,7 @@ import { Coin } from "@/components/charts/tenge-journey";
 
 const pct = (v: number) => `${v.toLocaleString("ru-RU")}%`;
 const NEUTRAL = "var(--brock-neutral)";
-const TOTAL = 11;
+const TOTAL = 17;
 
 /* ── slide frame: masthead → content → source/counter footer ── */
 function Slide({
@@ -85,6 +87,13 @@ function Dek({ children, mt = 32 }: { children: React.ReactNode; mt?: number }) 
 function Takeaway({ children }: { children: React.ReactNode }) {
   return (
     <p className="text-[32px] font-bold leading-snug border-l-4 pl-6" style={{ borderColor: "var(--color-dim)" }}>
+      {children}
+    </p>
+  );
+}
+function Tease({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="text-[26px] italic mt-12" style={{ color: "var(--color-dim)" }}>
       {children}
     </p>
   );
@@ -161,27 +170,70 @@ function S3() {
           </div>
         ))}
       </div>
+      <Tease>Зачем такая спешка - видно по тому, что они предлагают →</Tease>
     </Slide>
   );
 }
 
-/* ── 4 · exclusive I: the commission ladder ── */
+/* ── 4 · the offer: undo everything Kaspi forbids ── */
 function S4() {
+  const rows = [
+    {
+      t: "Свой магазин у каждого продавца - как на WB и Ozon",
+      d: "против общей карточки Kaspi, где на одном iPhone сидят до 59 продавцов и режут друг другу маржу",
+    },
+    {
+      t: "Аналитика трафика и «оцифровка рекламных вложений»",
+      d: "против рекламы вслепую",
+    },
+    {
+      t: "Открытые категории",
+      d: "против категорийных турникетов",
+    },
+  ];
   return (
     <Slide
       id="slide-4"
       n={4}
+      kicker="Оферта"
+      source="Письмо Freedom Market первым партнёрам и созвоны с продавцами, июль 2026 · Redstat: 59 продавцов на карточке iPhone 17 Pro"
+    >
+      <H size={58}>
+        Freedom обзванивает продавцов Kaspi - и обещает разрешить всё, что тот запрещал.
+      </H>
+      <Dek mt={24}>Площадка ещё до запуска спрашивает селлеров, чего им не хватает. Из письма:</Dek>
+      <div className="mt-12 space-y-10">
+        {rows.map((r) => (
+          <div key={r.t} className="border-l-4 pl-8" style={{ borderColor: "var(--viz-freedom)" }}>
+            <p className="text-[32px] font-bold leading-snug">{r.t}</p>
+            <p className="text-[27px] leading-snug mt-2" style={{ color: "var(--color-dim)" }}>{r.d}</p>
+          </div>
+        ))}
+      </div>
+      <div className="mt-12">
+        <Takeaway>Freedom продаёт селлерам не комиссию. Он продаёт всё, что им запрещал Kaspi.</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 5 · exclusive I: the commission ladder ── */
+function S5() {
+  return (
+    <Slide
+      id="slide-5"
+      n={5}
       kicker="Эксклюзив 1/2"
       source="Условия Freedom Market для первых партнёров, июль 2026. Этой таблицы нет ни у одного СМИ"
     >
-      <H size={60}>
+      <H size={56}>
         Комиссии компании, которой нет: 5% за карту, 14% за длинную рассрочку.
       </H>
-      <Dek mt={24}>Комиссия - доля с каждой продажи, которую продавец отдаёт площадке. Зависит от того, как заплатил покупатель:</Dek>
-      <div className="mt-8" style={{ width: 904, height: 730 }}>
-        <div style={{ width: 452, transform: "scale(2)", transformOrigin: "top left" }}>
+      <Dek mt={22}>Комиссия - доля с каждой продажи, которую продавец отдаёт площадке:</Dek>
+      <div className="mt-8" style={{ width: 814, height: 610 }}>
+        <div style={{ width: 452, transform: "scale(1.8)", transformOrigin: "top left" }}>
           <ColumnChart
-            height={320}
+            height={300}
             barRadius={2}
             gap={8}
             accent="var(--viz-freedom)"
@@ -201,16 +253,19 @@ function S4() {
           />
         </div>
       </div>
+      <p className="text-[28px] leading-relaxed mt-8" style={{ color: "var(--color-dim)" }}>
+        Кредит стоит продавцу как карта: проценты платит покупатель. Рассрочка дорожает с длиной - чей-то «ноль процентов» всегда кем-то оплачен. Здесь - продавцом.
+      </p>
     </Slide>
   );
 }
 
-/* ── 5 · exclusive II: the arithmetic behind the ladder ── */
-function S5() {
+/* ── 6 · exclusive II: the arithmetic behind the ladder ── */
+function S6() {
   return (
     <Slide
-      id="slide-5"
-      n={5}
+      id="slide-6"
+      n={6}
       kicker="Эксклюзив 2/2"
       source="Оценка автора: фондирование 24-месячной рассрочки по ставкам розничных депозитов (13-15% годовых)"
     >
@@ -233,30 +288,74 @@ function S5() {
   );
 }
 
-/* ── 6 · the theorem ── */
-function S6() {
+/* ── 7 · the doppelgänger: Uzum ── */
+function S7() {
+  const rows = [
+    { l: "Рассрочка", u: "Nasiya - с первого дня", t: "«следующий этап» - так и не наступил" },
+    { l: "Финтех в обороте", u: "~50%", t: "0%" },
+    { l: "Итог", u: "раунд Tencent, оценка $1,5 млрд - первый единорог страны", t: "продан с долгами перед продавцами" },
+  ];
+  return (
+    <Slide
+      id="slide-7"
+      n={7}
+      kicker="Доппельгангер"
+      source="Пресс-релиз Uzum, 02.2025 · TechCrunch, 08.2025 · Zakon.kz"
+    >
+      <H size={60}>
+        У Teez есть близнец. Он жив - и стоит $1,5 млрд.
+      </H>
+      <Dek mt={24}>Uzum строит в Узбекистане ту же модель: склад, быстрая доставка, суперапп. С одной разницей:</Dek>
+      <div className="mt-12">
+        <div className="grid grid-cols-[220px_1fr_1fr] gap-x-8 pb-4 border-b" style={{ borderColor: "var(--color-border)" }}>
+          <span />
+          <span className="text-[30px] font-bold" style={{ color: "var(--viz-uzum)" }}>Uzum</span>
+          <span className="text-[30px] font-bold" style={{ color: "var(--color-dim)" }}>Teez</span>
+        </div>
+        {rows.map((r) => (
+          <div key={r.l} className="grid grid-cols-[220px_1fr_1fr] gap-x-8 py-6 border-b items-baseline" style={{ borderColor: "var(--color-border)" }}>
+            <span className="text-[22px] uppercase tracking-[0.08em]" style={{ color: "var(--color-dim)" }}>{r.l}</span>
+            <span className="text-[27px] leading-snug font-bold">{r.u}</span>
+            <span className="text-[27px] leading-snug" style={{ color: "var(--color-dim)" }}>{r.t}</span>
+          </div>
+        ))}
+      </div>
+      <div className="mt-12">
+        <Takeaway>Одна модель, два исхода. Разница - банк внутри.</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 8 · the theorem + the twist ── */
+function S8() {
   const rows = [
     { name: "Teez", fate: "перестал платить продавцам - и замолчал" },
     { name: "СберМегаМаркет", fate: "−93% продаж за 2025-й" },
     { name: "KazanExpress", fate: "поглощён «Магнитом», бренда больше нет" },
   ];
   return (
-    <Slide id="slide-6" n={6} kicker="Теорема" source="Data Insight · Exclusive.kz · Oborot.ru">
-      <H size={72}>Маркетплейс без банка умирает.</H>
-      <Dek mt={24}>Скорость и склад не спасают, если некому финансировать рассрочку. Три случая за три года:</Dek>
-      <div className="mt-14 space-y-12">
+    <Slide id="slide-8" n={8} kicker="Теорема" source="Data Insight · Exclusive.kz · Oborot.ru · Business-Gazeta">
+      <H size={68}>Маркетплейс без банка умирает.</H>
+      <Dek mt={22}>Скорость и склад не спасают, если некому финансировать рассрочку. Три случая за три года:</Dek>
+      <div className="mt-12 space-y-10">
         {rows.map((r) => (
           <div key={r.name} className="border-l-4 pl-8" style={{ borderColor: "var(--viz-negative)" }}>
-            <p className="text-[40px] font-bold">{r.name}</p>
-            <p className="text-[30px] mt-1.5" style={{ color: "var(--viz-negative)" }}>{r.fate}</p>
+            <p className="text-[38px] font-bold">{r.name}</p>
+            <p className="text-[28px] mt-1" style={{ color: "var(--viz-negative)" }}>{r.fate}</p>
           </div>
         ))}
+      </div>
+      <div className="mt-12">
+        <Takeaway>
+          Поворот: Teez и KazanExpress строил один человек - Линар Хуснуллин. И жалобы продавцов на задержки выплат были одинаковыми.
+        </Takeaway>
       </div>
     </Slide>
   );
 }
 
-/* ── 7 · the proof: bank inside vs bank next door ── */
+/* ── 9 · the proof: bank inside vs bank next door ── */
 function Panel({
   label,
   big,
@@ -281,11 +380,11 @@ function Panel({
     </div>
   );
 }
-function S7() {
+function S9() {
   return (
     <Slide
-      id="slide-7"
-      n={7}
+      id="slide-9"
+      n={9}
       kicker="Доказательство"
       source="Ozon IR · Data Insight. Панели в своём масштабе: слева выручка финтеха Ozon, справа продажи маркетплейса Сбера"
     >
@@ -295,8 +394,8 @@ function S7() {
         Банк по соседству - падает.
       </H>
       <div className="mt-14 flex justify-between">
-        {/* Built-in x-ticks are hidden: at scale(1.7) Chromium drops random
-         * truncated 10px labels; we draw our own year row at native 24px. */}
+        {/* Built-in x-ticks hidden: at scale() Chromium drops random truncated
+         * 10px labels; we draw our own year row at native 24px. */}
         <Panel label="Ozon · финтех, млрд ₽" big="+120%" bigColor="var(--viz-ozon)">
           <div style={{ width: 430, height: 430 }}>
             <div style={{ width: 254, transform: "scale(1.7)", transformOrigin: "top left" }}>
@@ -357,12 +456,12 @@ function S7() {
   );
 }
 
-/* ── 8 · context: installments are Kazakhstan's second currency ── */
-function S8() {
+/* ── 10 · context: installments are Kazakhstan's second currency ── */
+function S10() {
   return (
     <Slide
-      id="slide-8"
-      n={8}
+      id="slide-10"
+      n={10}
       kicker="Контекст · Казахстан"
       source="Kaspi.kz IR, FY2025 · АФК и НБРК, 2024-2025"
     >
@@ -390,7 +489,7 @@ function S8() {
   );
 }
 
-/* ── 9 · the model: the tenge journey ── */
+/* ── 11 · the model: the tenge journey ── */
 function Lane({
   name,
   cells,
@@ -432,11 +531,11 @@ function Lane({
     </div>
   );
 }
-function S9() {
+function S11() {
   return (
     <Slide
-      id="slide-9"
-      n={9}
+      id="slide-11"
+      n={11}
       kicker="Модель"
       source="Авторская модель на прецедентах Mercado Fondo и Shopify Balance - не анонсированный продукт Freedom"
     >
@@ -455,17 +554,146 @@ function S9() {
           cells={["Продажа", "Выплата", "Доход каждый день", "Фондирует рассрочку"]}
         />
       </div>
-      <div className="mt-16">
+      <div className="mt-14">
         <Takeaway>Kaspi владеет временем пользователя. Freedom может владеть его капиталом.</Takeaway>
+      </div>
+      <Tease>На чём всё это замыкается →</Tease>
+    </Slide>
+  );
+}
+
+/* ── 12 · the heart: brokerage ── */
+function S12() {
+  return (
+    <Slide
+      id="slide-12"
+      n={12}
+      kicker="Сердце схемы"
+      source="FRHC 10-K FY2026 (SEC), сегментная отчётность · Kursiv, 07.2025"
+    >
+      <H size={64}>Всё замыкается на брокере.</H>
+      <div className="mt-14 space-y-12">
+        <div>
+          <p className="text-[96px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-freedom)" }}>55%</p>
+          <p className="text-[30px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            маржа брокерского сегмента Freedom Holding - против 15% у банковского. Брокеридж и кормит весь холдинг
+          </p>
+        </div>
+        <div>
+          <p className="text-[44px] font-bold leading-tight">Кешбэк - бумагами</p>
+          <p className="text-[30px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            кешбэк супераппа уже начисляется биржевой нотой, привязанной к акциям холдинга, - прямо на брокерский счёт
+          </p>
+        </div>
+      </div>
+      <div className="mt-14">
+        <Takeaway>Покупатель чайника незаметно становится брокерским клиентом - с нулевой стоимостью привлечения. Ни у Kaspi, ни у Halyk такой фигуры нет.</Takeaway>
       </div>
     </Slide>
   );
 }
 
-/* ── 10 · the punchline ── */
-function S10() {
+/* ── 13 · first strike: fashion ── */
+function S13() {
   return (
-    <Slide id="slide-10" n={10} kicker="Вывод">
+    <Slide
+      id="slide-13"
+      n={13}
+      kicker="Первый удар"
+      source="MPSTATS, июль 2025 - июнь 2026 · Redstat, апрель 2026. Доли считаны по категорийным срезам"
+    >
+      <H size={60}>Шкаф Казахстана уже уехал - на Wildberries.</H>
+      <div className="mt-14 grid grid-cols-2 gap-12">
+        <div>
+          <p className="text-[88px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-wb)" }}>24,7%</p>
+          <p className="text-[28px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            оборота Wildberries - одежда и обувь
+          </p>
+        </div>
+        <div>
+          <p className="text-[88px] font-bold tabular-nums leading-none" style={{ color: "var(--viz-kaspi)" }}>~7%</p>
+          <p className="text-[28px] leading-snug mt-3" style={{ color: "var(--color-dim)" }}>
+            у Kaspi: магазин электроники размером со страну
+          </p>
+        </div>
+      </div>
+      <div className="mt-12 space-y-6 text-[30px] leading-relaxed" style={{ color: "var(--color-dim)" }}>
+        <p>Единственный в стране склад с примерочными - как раз в Караганде, у Freedom. Приёмы раскрутки - у Shein: микропартии и контент покупателей.</p>
+        <p>А тяжёлые фигуры Kaspi стоят в электронике: фланг открыт.</p>
+      </div>
+      <div className="mt-12">
+        <Takeaway>Мода покупает частоту и привычку. Маржа приходит позже - вместе с телевизором.</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 14 · data + money: the ecosystem play ── */
+function S14() {
+  return (
+    <Slide
+      id="slide-14"
+      n={14}
+      kicker="Экосистема"
+      source="BG.ru, февраль 2026 · письмо Freedom Market первым партнёрам"
+    >
+      <H size={58}>
+        Банк, который видит продажи селлера, кредитует его дешевле всех.
+      </H>
+      <div className="mt-14 space-y-9 text-[30px] leading-relaxed" style={{ color: "var(--color-dim)" }}>
+        <p>
+          В России это уже поняли: банк «Точка» купил аналитику{" "}
+          <span className="font-bold" style={{ color: "var(--color-text)" }}>MPSTATS за ~2 млрд ₽</span>, Альфа-Банк ответил покупкой MarketGuru.
+        </p>
+        <p>
+          У Freedom всё под одной крышей: счёт продавца, кредит под обороты, аналитика кабинета и рынка.
+        </p>
+        <p>
+          Плюс открытый API - и вокруг площадки вырастает экосистема сервисов, как вокруг Wildberries.
+        </p>
+      </div>
+      <div className="mt-14">
+        <Takeaway>«Данные, деньги и управленческие решения должны жить вместе» - CEO банка «Точка».</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 15 · the regulator: headwind and tailwind ── */
+function S15() {
+  return (
+    <Slide
+      id="slide-15"
+      n={15}
+      kicker="Регулятор"
+      source="АРРФР · НБРК · Послание Президента, 09.2023 · DataHub ПКБ"
+    >
+      <H size={60}>Регулятор жмёт на тормоз. И держит дверь открытой.</H>
+      <div className="mt-14 space-y-10">
+        <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-negative)" }}>
+          <p className="text-[32px] font-bold">Встречный ветер</p>
+          <p className="text-[29px] leading-snug mt-2" style={{ color: "var(--color-dim)" }}>
+            потребкредитование охлаждают: лимиты долговой нагрузки, выдачи падают, отказов всё больше
+          </p>
+        </div>
+        <div className="border-l-4 pl-8" style={{ borderColor: "var(--viz-freedom)" }}>
+          <p className="text-[32px] font-bold">Попутный ветер</p>
+          <p className="text-[29px] leading-snug mt-2" style={{ color: "var(--color-dim)" }}>
+            власти который год требуют от банков кредитовать бизнес. Кредит селлеру под обороты - это и есть кредит малому бизнесу: Freedom окажется не против повестки, а внутри неё
+          </p>
+        </div>
+      </div>
+      <div className="mt-14">
+        <Takeaway>Предупреждение тоже есть: Yu&rsquo;e Bao в Китае задушили лимитами ровно на пике.</Takeaway>
+      </div>
+    </Slide>
+  );
+}
+
+/* ── 16 · the punchline ── */
+function S16() {
+  return (
+    <Slide id="slide-16" n={16} kicker="Вывод">
       <H size={72}>
         Одна фигура есть только у Freedom - брокер.
       </H>
@@ -479,10 +707,10 @@ function S10() {
   );
 }
 
-/* ── 11 · CTA ── */
-function S11() {
+/* ── 17 · CTA ── */
+function S17() {
   return (
-    <Slide id="slide-11" n={11} kicker="Полная версия">
+    <Slide id="slide-17" n={17} kicker="Полная версия">
       <H size={60}>
         Здесь - десятая часть. Остальное уже опубликовано.
       </H>
@@ -517,6 +745,12 @@ export default function SocialFreedomMarket() {
       <S9 />
       <S10 />
       <S11 />
+      <S12 />
+      <S13 />
+      <S14 />
+      <S15 />
+      <S16 />
+      <S17 />
     </div>
   );
 }
