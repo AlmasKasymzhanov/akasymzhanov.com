@@ -891,12 +891,15 @@ function S20() {
           </p>
         </div>
       </div>
-      <Dek mt={52}>
-        Расскажите в комментариях - и подпишитесь: у этой партии будет продолжение, и мы его посчитаем первыми.
+      <Dek mt={44}>
+        Ответьте в комментариях - и полный разбор прилетит вам в личку. Подпишитесь: продолжение этой партии посчитаем первыми.
       </Dek>
-      <p className="text-[34px] font-bold tracking-tight mt-10" style={{ color: "var(--color-brand)" }}>
-        kasymzhanov.com
-      </p>
+      <div className="mt-8 inline-flex items-center gap-3 border rounded-[6px] px-6 py-4" style={{ borderColor: "var(--color-brand)" }}>
+        <span className="text-[30px]" aria-hidden>💬</span>
+        <span className="text-[28px] font-bold leading-snug">
+          Напишите ответ ниже - бот пришлёт разбор в Telegram
+        </span>
+      </div>
     </Slide>
   );
 }
