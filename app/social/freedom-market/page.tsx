@@ -121,7 +121,7 @@ function S1() {
           alt=""
           fill
           className="object-cover"
-          style={{ objectPosition: "center 64%", transform: "scale(1.24)" }}
+          style={{ objectPosition: "center 66%", transform: "scale(1.12)" }}
           priority
           sizes="1300px"
         />
