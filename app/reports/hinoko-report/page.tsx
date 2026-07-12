@@ -8,7 +8,7 @@ import {
 /* ════════════════════════════════════════════════════════════════════════
    HINOKO — Research-отчёт
    Дизайн-канон: Bloomberg minimalism × 10b platform tokens.
-   TT Norms Pro — текст. Menlo — все числовые значения (tabular-nums).
+   Geist — текст. Menlo — все числовые значения (tabular-nums).
    Геометрия: малые радиусы, монохром, единственный синий акцент.
    ════════════════════════════════════════════════════════════════════════ */
 
@@ -30,7 +30,7 @@ const C = {
   bad: "#ff4444",
 };
 
-const FONT_TEXT = "var(--font-tt-norms), system-ui, -apple-system, sans-serif";
+const FONT_TEXT = "var(--font-geist), system-ui, -apple-system, sans-serif";
 const FONT_NUM = "var(--font-menlo), ui-monospace, SFMono-Regular, monospace";
 
 /* ─────────────────────────── data ───────────────────────────────────── */

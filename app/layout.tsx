@@ -20,14 +20,6 @@ const menlo = localFont({
   display: "swap",
 });
 
-const ttNorms = localFont({
-  src: "../public/fonts/TTNormsProVariable.ttf",
-  variable: "--font-tt-norms",
-  weight: "100 900",
-  style: "normal",
-  display: "swap",
-});
-
 // Canon fonts (from Brock UI) — Hack = readable mono body, Departure Mono = pixel display.
 const hack = localFont({
   src: [
@@ -78,7 +70,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${geist.variable} ${menlo.variable} ${ttNorms.variable} ${hack.variable} ${departureMono.variable}`} suppressHydrationWarning>
+    <html lang="ru" className={`${geist.variable} ${menlo.variable} ${hack.variable} ${departureMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
