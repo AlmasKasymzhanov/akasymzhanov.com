@@ -7,9 +7,9 @@
 **Контент:**
 - 17 опубликованных reports (`/reports/<slug>`): ниши Kaspi/WB, unit economics, trend hunting, creative hunting, brand analysis
 - 3 интерактивных tools (`/tools/`): **WB Niche Analyzer** (CSV → анализ), **MPStats API Гайд**, **AI для селлеров (Занятие 5)**
-- Блог (Velite) + deep-dive `liqbeauty-likbez` (косметика)
+- Блог (hand-coded JSX) + deep-dive `liqbeauty-likbez` (косметика)
 
-**Stack:** Next.js 15 (App Router) + Velite (mdx blog) + Supabase + Vercel.
+**Stack:** Next.js 15 (App Router) + Supabase + Vercel. Статьи блога и отчёты — **hardcoded JSX** (`app/blog/<slug>/page.tsx`), НЕ Velite/MDX. Тексты статей приходят из отдельного проекта **Редакция** (см. «Редакционный конвейер» ниже).
 
 **Primary language of UI content: Russian.**
 
@@ -26,12 +26,42 @@ npm run lint         # ESLint
 - `app/` — Next.js App Router pages (landing, reports, tools, blog, analytics, api, contacts)
 - `app/reports/<slug>/page.tsx` — 17 аналитических отчётов (hardcoded JSX content)
 - `app/tools/<slug>/page.tsx` — 3 интерактивных инструмента
-- `content/blog/` — mdx-блог через Velite
+- `content/blog/` — исходники/research статей (`.md` из Редакции); **не рендерятся билдом**, это входной материал для вёрстки
 - `components/` — общие React-компоненты
 - `lib/` — утилиты
 - `data/` — вспомогательные данные (CSV etc.)
 - `supabase/` — миграции Supabase
 - `ZBODY-Enterprise-Report-Final.md` — развёрнутый enterprise-отчёт по бренду ZBODY
+
+## Редакционный конвейер (Редакция → сайт)
+
+Тексты статей пишутся **не здесь**. Есть отдельный проект-редакция:
+
+**`C:\Projects\Editorial`** (Редакция / Editorial) — производство статей: research, черновики, факт-чек, ревью по GIJN-планке. Один терминал = один агент, который занимается **только текстом**. Его канон и пайплайн — в `C:\Projects\Editorial\CLAUDE.md`.
+
+**Граница ответственности (жёсткая):**
+- **Редакция** отвечает за СЛОВА: тезис, факты, источники, числа, структуру, заголовки, EN-транскреацию. Отдаёт готовый `.md` + ассеты. JSX/код сайта не трогает.
+- **Этот проект (сайт)** отвечает за ВЁРСТКУ и ПУБЛИКАЦИЮ: превращает готовый `.md` в страницу по канону, графики, метаданные, деплой. Прозу не переписывает.
+
+**Золотое правило:** если при вёрстке нужно поменять *текст* (факт, формулировку, число) — это возвращается в Редакцию, а не правится в `page.tsx`. Код-проект меняет только подачу, не содержание.
+
+### Приём статьи (verstka intake)
+
+Источник входа: `C:\Projects\Editorial\articles\<slug>/` — финальный `.md` с HANDOFF-блоком в front-matter (формат — в `C:\Projects\Editorial\articles\HANDOFF.md`) + ассеты (обложка, данные для графиков).
+
+Чек-лист вёрстки готовой статьи (эталон — существующие `app/blog/*`, напр. `nvidia-kazakhstan`):
+
+1. **`app/blog/<slug>/page.tsx`** — `"use client"`, канон-компоненты: `SiteHeader`/`SiteFooter`/`AuthorBlock` (`@/components/canon/site-chrome`), `ArticleHeader`, `Term`/`Fn` (`@/components/canon/term`), `ReadTracker`, `EngagementProvider`/`EngagementBar`/`Comments`. Ссылки-источники — монохромный `Src` (акцент на ссылках не носим), разделитель `·` (`Dot`).
+2. **`app/blog/<slug>/layout.tsx`** — `Metadata` (title/description/OG/twitter/canonical + `languages` hreflang ru/en) + `<ArticleJsonLd slug=… />`.
+3. **Графики** — свой `@/components/charts/<slug>.tsx` на канон-чартах (BrockLineChart, FT/Burn-Murdoch стиль). Данные — из HANDOFF/ассетов.
+4. **EN-версия** — `app/en/blog/<slug>/` (page + layout), когда есть EN-текст из Редакции.
+5. **Регистрация в ленте** — добавить объект `Article` в `ARTICLES` (`components/articles.tsx`): href, slug, img, rubric, title, subtitle, date + `datePublished` (ISO), `readMin`, `en:{…}`, `enReady`. Без этого статья не появится в `/blog`.
+6. **Обложка** — `public/blog/<slug>/cover.webp` (путь = `img` в ARTICLES и `image` в layout OG).
+7. **Проверка и публикация** — `npm run build` → коммит → `git push origin main` (Vercel автодеплой) → верификация на проде.
+
+### Каноны, которые применяются при вёрстке
+
+Ссылки на детальные каноны — в auto-memory (`MEMORY.md`): media-design-canon, brock-ui-chart-canon, source-credit-canon, responsive-header-canon, social-contact-canon, en-version-scope. Их и держать как источник правды по подаче.
 
 ## Связь с Stream 2 курса
 
