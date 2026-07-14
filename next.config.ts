@@ -7,6 +7,12 @@ const nextConfig: NextConfig = {
   outputFileTracingIncludes: {
     "/api/web-analyzer/niches": ["./app/api/web-analyzer/snapshot.csv"],
   },
+  async redirects() {
+    return [
+      // Короткая клиентская ссылка: kasymzhanov.com/elki → отчёт для клиента.
+      { source: "/elki", destination: "/clients/elki", permanent: false },
+    ];
+  },
 };
 
 export default nextConfig;
