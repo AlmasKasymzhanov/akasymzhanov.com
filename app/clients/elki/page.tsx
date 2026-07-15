@@ -271,19 +271,19 @@ function SeasonMapChart() {
         gap={9}
         header={{
           title: "Сезонная карта Kaspi: где живут ваши покупатели",
-          subtitle: "Продавце-мест в нишах сезонного класса · июль 2026",
+          subtitle: "Продавце-мест в нишах сезонного класса · июнь 2026",
         }}
         slots={{ tooltip: () => null }}
         data={[
-          { label: "Умеренно-сезонные", value: 57334, color: NEUTRAL },
-          { label: "Новогодний (ваш)", value: 39854, color: ACCENT },
-          { label: "Позднее лето", value: 37359, color: NEUTRAL },
-          { label: "Осень", value: 32742, color: NEUTRAL },
-          { label: "Kaspi Juma", value: 21191, color: NEUTRAL },
-          { label: "Растущие", value: 19593, color: NEUTRAL },
-          { label: "Весна", value: 17631, color: NEUTRAL },
-          { label: "Лето", value: 16542, color: NEUTRAL },
-          { label: "Школьный сезон", value: 12831, color: NEUTRAL },
+          { label: "Умеренно-сезонные", value: 52173, color: NEUTRAL },
+          { label: "Новогодний (ваш)", value: 39565, color: ACCENT },
+          { label: "Позднее лето", value: 32480, color: NEUTRAL },
+          { label: "Осень", value: 28304, color: NEUTRAL },
+          { label: "Лето", value: 27297, color: NEUTRAL },
+          { label: "Растущие", value: 21990, color: NEUTRAL },
+          { label: "Kaspi Juma", value: 21444, color: NEUTRAL },
+          { label: "Весна", value: 16322, color: NEUTRAL },
+          { label: "Школьный сезон", value: 13121, color: NEUTRAL },
         ]}
         dataLabels={{ show: true, format: (v: number) => v.toLocaleString("ru-RU") }}
         formatValue={(v: number) => `${v.toLocaleString("ru-RU")} продавце-мест`}
@@ -305,18 +305,18 @@ function SummerChart() {
         gap={9}
         header={{
           title: "Летники: кому зимой нечем торговать",
-          subtitle: "Крупнейшие летние ниши, выручка за июль 2026, млн ₸",
+          subtitle: "Сезонные летние ниши, выручка за июнь 2026, млн ₸",
         }}
         slots={{ tooltip: () => null }}
         data={[
-          { label: "Кондиционеры", value: 5866, color: NEUTRAL },
-          { label: "Ноутбуки", value: 3532, color: NEUTRAL },
-          { label: "Бассейны", value: 2649, color: ACCENT },
-          { label: "Смарт-часы", value: 1937, color: NEUTRAL },
-          { label: "Платья и сарафаны", value: 787, color: NEUTRAL },
-          { label: "Палатки", value: 599, color: NEUTRAL },
-          { label: "Вентиляторы", value: 491, color: NEUTRAL },
-          { label: "Электровелосипеды", value: 434, color: NEUTRAL },
+          { label: "Кондиционеры", value: 4214, color: NEUTRAL },
+          { label: "Бассейны", value: 1957, color: ACCENT },
+          { label: "Велосипеды", value: 837, color: NEUTRAL },
+          { label: "Палатки", value: 416, color: NEUTRAL },
+          { label: "Электровелосипеды", value: 391, color: NEUTRAL },
+          { label: "Вентиляторы", value: 352, color: NEUTRAL },
+          { label: "Садовая мебель", value: 321, color: NEUTRAL },
+          { label: "Детские электромобили", value: 226, color: NEUTRAL },
         ]}
         dataLabels={{ show: true, format: (v: number) => v.toLocaleString("ru-RU") }}
         formatValue={fmtMln}
@@ -377,7 +377,7 @@ export default function ElkiClientReport() {
           <p className="text-[14px] md:text-[15px] text-[var(--color-dim)] leading-relaxed">
             Рынок новогодних и сезонных товаров на Kaspi.kz и база продавцов с прямыми контактами,
             приоритизированная под холодный обзвон оптового поставщика ёлок. Данные: ноябрь 2024 -
-            июль 2026, 3 484 ниши, 660 тыс. товаров.
+            июль 2026, 3 484 ниши, 663 тыс. товаров.
           </p>
 
           <StatStrip />
@@ -447,16 +447,16 @@ export default function ElkiClientReport() {
             ]}
           />
           <p className="text-[14px] leading-relaxed mb-4">
-            <b>63% выручки ниши</b> делается на карточках «Без бренда» и открытых марках - рынок ещё не
-            поделён. Окно, чтобы посадить сотни продавцов на вашу продукцию, открыто, но LILU, FNIX и
-            AmiVi уже строят закрытые бренды.
+            <b>70% продавцов ниши - 207 из 294 - работают на карточках «Без бренда»</b>, где продавать может
+            кто угодно (это 37% всей выручки ниши). Рынок ещё не поделён под бренды. Окно, чтобы посадить
+            сотни продавцов на вашу продукцию, открыто, но LILU, FNIX и AmiVi уже строят закрытые бренды.
           </p>
 
           {/* ── 3. Сезонка ── */}
           <SectionHead n="03" label="Сезонка" title="Карта сезонных продавцов Kaspi" />
           <p className="text-[14px] leading-relaxed mb-4">
             RedStat классифицирует каждую нишу Kaspi по типу сезонности - всего сезонных ниш больше
-            2 100. Продавцы «летних» ниш - второй по ценности сегмент: им нечем торговать зимой,
+            2 500. Продавцы «летних» ниш - второй по ценности сегмент: им нечем торговать зимой,
             и ёлки закрывают их мёртвый сезон.
           </p>
           <SeasonMapChart />
