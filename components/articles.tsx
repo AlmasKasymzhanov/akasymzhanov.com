@@ -67,7 +67,7 @@ export const ARTICLES: Article[] = [
     href: "/blog/wb-dual-use",
     slug: "wb-dual-use",
     img: "/blog/wb-dual-use/cover.webp",
-    coverBg: "#060607",
+    imgPosition: "center 50%",
     rubric: "Исследование",
     title: "Почему склады Wildberries оказались под ударом: что я нашёл в 7 500 категориях",
     subtitle:
