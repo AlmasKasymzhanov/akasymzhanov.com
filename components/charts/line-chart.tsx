@@ -67,7 +67,7 @@ import type {
   ReactNode,
   Ref,
 } from "react";
-import { useId, useImperativeHandle, useRef, useState } from "react";
+import { useEffect, useId, useImperativeHandle, useRef, useState } from "react";
 import {
   buildLinePathForDom,
   computeStat,
@@ -2214,6 +2214,15 @@ function Plot({
   const [pinnedX, setPinnedX] = useState<number | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    if (pinnedX === null) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!containerRef.current?.contains(event.target as Node)) setPinnedX(null);
+    };
+    document.addEventListener("pointerdown", closeOutside, true);
+    return () => document.removeEventListener("pointerdown", closeOutside, true);
+  }, [pinnedX]);
+
   const activeX = pinnedX ?? hoverX;
 
   function nearestX(clientX: number): number | null {
@@ -2526,7 +2535,13 @@ function Plot({
                 onKeyDown={(e) => handleKey(e, si, pi)}
                 onFocus={() => {
                   setFocus({ s: si, p: pi });
+                  setHoverX(p.x);
                   onPointFocus?.(makeSelection(series, si, pi));
+                }}
+                onBlur={(event) => {
+                  if (!containerRef.current?.contains(event.relatedTarget as Node | null)) {
+                    setHoverX(null);
+                  }
                 }}
                 onClick={
                   onPointClick

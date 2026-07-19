@@ -221,7 +221,7 @@ export function SiteHeader() {
 }
 
 // Main site footer — masthead, description, colophon, requisites + legal.
-export function SiteFooter({ locale = "ru" }: { locale?: Locale }) {
+export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Locale; hidePhone?: boolean }) {
   const t = dict[locale];
   return (
     <footer className="border-t border-[var(--color-border)]">
@@ -238,10 +238,14 @@ export function SiteFooter({ locale = "ru" }: { locale?: Locale }) {
         <div className="flex flex-col gap-1 leading-relaxed">
           <span>{t.footer.requisites}</span>
           <span>
-            <a href="tel:+77028290908" className="no-underline hover:text-[var(--color-brand)] transition-colors">
-              +7 702 829 09 08
-            </a>
-            {" · "}
+            {!hidePhone && (
+              <>
+                <a href="tel:+77028290908" className="no-underline hover:text-[var(--color-brand)] transition-colors">
+                  +7 702 829 09 08
+                </a>
+                {" · "}
+              </>
+            )}
             <a href="mailto:almas@kasymzhanov.com" className="inline-flex items-center gap-1.5 align-middle no-underline hover:text-[var(--color-brand)] transition-colors">
               <MailIcon size={14} />
               almas@kasymzhanov.com

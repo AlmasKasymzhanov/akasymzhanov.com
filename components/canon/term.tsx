@@ -203,7 +203,6 @@ export function Fn({ n, tip }: { n: number; tip: React.ReactNode }) {
   return (
     <span className="relative inline">
       <span
-        id={`fnref-${n}`}
         ref={triggerRef}
         tabIndex={0}
         role="button"

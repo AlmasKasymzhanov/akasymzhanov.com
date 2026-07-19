@@ -64,6 +64,24 @@ export function localizeArticle(a: Article, locale: Locale): Article {
 
 export const ARTICLES: Article[] = [
   {
+    href: "/blog/wb-dual-use",
+    slug: "wb-dual-use",
+    img: "/blog/wb-dual-use/cover.webp",
+    coverBg: "#060607",
+    rubric: "Исследование",
+    title: "Почему склады Wildberries оказались под ударом: что я нашёл в 7 500 категориях",
+    subtitle:
+      "После атаки на логистические комплексы в Электростали и Котовске я выгрузил 7 500 уникальных категорий Wildberries. В данных нашлись бронеодежда на 246 млн рублей в месяц, детекторы дронов среди приборов для калибровки и 10-километровые катушки для FPV-дронов. Это помогает понять роль маркетплейса в распределённом снабжении, но не доказывает, что такие товары лежали на атакованных складах.",
+    date: "19 Июл 2026",
+    datePublished: "2026-07-19",
+    readMin: 15,
+    likes: 0,
+    comments: 0,
+    shares: 0,
+    credit: "Иллюстрация создана Алмасом Касымжановым с помощью Kimi K3",
+    enReady: false,
+  },
+  {
     href: "/blog/freedom-market",
     slug: "freedom-market",
     img: "/blog/freedom-market/cover.webp",

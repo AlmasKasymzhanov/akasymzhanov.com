@@ -2273,6 +2273,16 @@ function BarsGroup({
   // Touch: on tap, pin the tapped bar's tooltip (hover/focus don't exist on
   // touch). Tapping the same bar again clears it; tapping another switches.
   const [tapIndex, setTapIndex] = useState<number | null>(null);
+  const plotRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (tapIndex === null) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!plotRef.current?.contains(event.target as Node)) setTapIndex(null);
+    };
+    document.addEventListener("pointerdown", closeOutside, true);
+    return () => document.removeEventListener("pointerdown", closeOutside, true);
+  }, [tapIndex]);
 
   const total = points.length;
   // Edge zone size: first/last 15% of rows (min 1). Top-zone rows anchor
@@ -2296,6 +2306,7 @@ function BarsGroup({
 
   return (
     <div
+      ref={plotRef}
       className={`brock-hbars brock-hbars-pattern-${patternStyle} relative flex min-w-0 flex-1 flex-col ${
         hasNegative ? "" : "border-s border-border"
       } ${animationEnabled ? "brock-hbars-animated" : ""}`}

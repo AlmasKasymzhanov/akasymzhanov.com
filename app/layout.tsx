@@ -102,7 +102,7 @@ export default function RootLayout({
           }
         `}} />
       </head>
-      <body><HtmlLang />{children}<Analytics /></body>
+      <body><HtmlLang />{children}{process.env.VERCEL === "1" && <Analytics />}</body>
     </html>
   );
 }
