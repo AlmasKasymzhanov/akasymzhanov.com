@@ -51,7 +51,7 @@ function growthSvg(width, mobile, theme) {
   const plotRight = width - right - valueWidth;
   const rowStep = mobile ? 190 : 132;
   const startY = mobile ? 55 : 48;
-  let body = text(left, 25, "Среднедневной индекс GMV · шкала 0–80", 'class="mono small"');
+  let body = text(left, 25, "Среднедневной индекс GMV · шкала 0-80", 'class="mono small"');
   growthRows.forEach(([name, value, transition, sales], index) => {
     const y = startY + index * rowStep;
     const barY = y + 56;
@@ -80,7 +80,7 @@ function anniversarySvg(width, mobile, theme) {
   const bottom = height - (mobile ? 92 : 88);
   const plotWidth = width - left - right;
   const plotHeight = bottom - top;
-  let body = text(32, 28, "Разгрузочные пояса · один устойчивый ряд", 'class="label"');
+  let body = text(32, 28, "Разгрузочные пояса: один устойчивый ряд", 'class="label"');
   body += text(32, 53, "4-й год: 464,4 млн ₽ · 110 796 продаж", 'class="mono small"');
   [0,20,40,60,80].forEach((tick) => {
     const y = bottom - tick / 80 * plotHeight;

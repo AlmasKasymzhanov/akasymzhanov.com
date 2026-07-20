@@ -1,6 +1,7 @@
 {
   "generated_at": "2026-07-20",
   "method": "Five non-overlapping anniversary windows. Raw sums retain all observations. Sensitivity sums exclude dates present in anomaly-audit.csv. A series is not publication-eligible when any window differs by more than 10% of raw GMV.",
+  "terminology": "raw: полный наблюдаемый ряд. cleaned: сценарий проверки устойчивости без автоматически отмеченных экстремальных дней. Эти наблюдения не признаны ошибочными и не удалены из основного датасета.",
   "threshold_pct": 10,
   "graph_2_publication": {
     "subject_id": 6338,

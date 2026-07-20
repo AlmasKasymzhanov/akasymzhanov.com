@@ -301,9 +301,9 @@ export function Grafik1() {
   return (
     <ChartShell
       id="grafik-1"
-      title="Четыре специализированные ниши выросли примерно в 22–75 раз"
-      subtitle="24.02.2021–23.02.2022 → 18.07.2025–17.07.2026 · индекс по среднему за наблюдаемый день"
-      caption="Источник: расчёт автора по данным MPStats. Абсолютные значения — суммы за наблюдаемые дни указанных календарных окон. Множители GMV и продаж рассчитаны по среднему за наблюдаемый день: в базе доступны 362–364 дня, в последнем периоде — 365."
+      title="Четыре специализированные ниши выросли примерно в 22-75 раз"
+      subtitle="24.02.2021-23.02.2022 → 18.07.2025-17.07.2026 · индекс по среднему за наблюдаемый день"
+      caption="Источник: расчёт автора по данным MPStats. Абсолютные значения показывают суммы за наблюдаемые дни указанных календарных окон. Множители GMV и продаж рассчитаны по среднему за наблюдаемый день: в базе доступны 362-364 дня, в последнем периоде 365."
       light="/blog/wb-dual-use/charts/phase2-scale-light.png"
       dark="/blog/wb-dual-use/charts/phase2-scale-dark.png"
       mobileLight="/blog/wb-dual-use/charts/phase2-scale-mobile-light.png"
@@ -386,7 +386,7 @@ function AnniversaryBars() {
         ))}
         <div className="absolute inset-x-2 bottom-0 top-0 grid grid-cols-5 items-end gap-2 sm:inset-x-5 sm:gap-5">
           {ANNIVERSARY_WINDOWS.map((window, index) => {
-            const tooltip = `${window.label} · ${window.d1}–${window.d2} · GMV за наблюдаемые дни ${formatExactRubles(window.revenue)} · продажи за наблюдаемые дни ${formatSales(window.sales)} · ${window.observedDays} наблюдаемых дней · среднедневной индекс к базе ${formatExactDailyIndex(window.index)}`;
+            const tooltip = `${window.label} · ${window.d1}-${window.d2} · GMV за наблюдаемые дни ${formatExactRubles(window.revenue)} · продажи за наблюдаемые дни ${formatSales(window.sales)} · ${window.observedDays} наблюдаемых дней · среднедневной индекс к базе ${formatExactDailyIndex(window.index)}`;
             const barHeight = Math.max(1.5, window.index / 80 * 100);
             return (
               <div key={window.label} className="h-full min-w-0">
@@ -444,7 +444,7 @@ function AnniversaryBars() {
       </p>
       {shownWindow && (
         <FloatingTooltip id={tooltipId} anchor={shown === null ? null : barRefs.current[shown]}>
-          <p className="font-bold text-[var(--color-text)]">{shownWindow.label} · {shownWindow.d1}–{shownWindow.d2}</p>
+          <p className="font-bold text-[var(--color-text)]">{shownWindow.label} · {shownWindow.d1}-{shownWindow.d2}</p>
           <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[var(--color-dim)]">
             <dt>GMV за наблюдаемые дни</dt>
             <dd className="text-right tabular-nums text-[var(--color-text)]">{formatExactRubles(shownWindow.revenue)}</dd>
@@ -473,7 +473,7 @@ export function Grafik2() {
       mobileLight="/blog/wb-dual-use/charts/phase2-anniversary-mobile-light.png"
       mobileDark="/blog/wb-dual-use/charts/phase2-anniversary-mobile-dark.png"
       fallbackAlt="Пять столбцов показывают среднедневной индекс оценочного GMV разгрузочных поясов: база до 24 февраля 2022 года, затем примерно 8, 35, 49 и 45 в четырёх последовательных годах"
-      table={<DataTable columns={anniversaryColumns} rows={ANNIVERSARY_WINDOWS.map((window) => [window.label, `${window.d1}–${window.d2}`, formatExactRubles(window.revenue), formatSales(window.sales), window.observedDays, formatExactDailyIndex(window.index)])} className="mb-0" />}
+      table={<DataTable columns={anniversaryColumns} rows={ANNIVERSARY_WINDOWS.map((window) => [window.label, `${window.d1}-${window.d2}`, formatExactRubles(window.revenue), formatSales(window.sales), window.observedDays, formatExactDailyIndex(window.index)])} className="mb-0" />}
     >
       <AnniversaryBars />
     </ChartShell>
