@@ -17,7 +17,7 @@ function useLightbox(items: readonly LightboxItem[]) {
 
 const BULAT: readonly LightboxItem[] = [{
   src: "/blog/wb-dual-use/evidence/product-949889001.png",
-  alt: "Карточка детектора «Булат v.4» с ценой 132 060 рублей, SKU 949889001 и путём раздела измерительных инструментов",
+  alt: "Карточка детектора «Булат v.4» с ценой 132 060 рублей, артикул 949889001, и путём раздела измерительных инструментов",
   caption: "Целевой фрагмент карточки «Булат v.4» на Wildberries, зафиксированной 18.07.2026.",
 }];
 
@@ -35,7 +35,7 @@ export function BulatEvidence() {
           <p><span className="text-[var(--color-text)]">MPStats category</span> = «Детекторы дронов»</p>
           <p className="mt-2">Источник: публичные метаданные карточки Wildberries<Cite n={14} /> · проверено 19.07.2026</p>
         </div>
-        <figcaption className="text-[11px] leading-relaxed text-[var(--color-dim)]">Карточка «Булат v.4» на Wildberries, зафиксирована 18.07.2026. Видимый путь интерфейса, публичные метаданные Wildberries и классификатор MPStats относят один SKU к трём разным веткам. SKU 949889001.</figcaption>
+        <figcaption className="text-[11px] leading-relaxed text-[var(--color-dim)]">Карточка «Булат v.4» на Wildberries, зафиксирована 18.07.2026. Видимый путь интерфейса, публичные метаданные Wildberries и классификатор MPStats относят один артикул к трём разным веткам. Артикул 949889001.</figcaption>
       </div>
       {lightbox}
     </figure>
@@ -43,11 +43,11 @@ export function BulatEvidence() {
 }
 
 const CARDS = [
-  { preview: "/blog/wb-dual-use/evidence/product-949889001.png", full: "/blog/wb-dual-use/evidence/product-949889001.png", alt: "Карточка детектора «Булат v.4» с ценой 132 060 рублей и SKU 949889001", caption: "«Булат v.4», 132 060 ₽ · 18.07.2026" },
-  { preview: "/blog/wb-dual-use/evidence/product-879755591.png", full: "/blog/wb-dual-use/evidence/product-879755591.png", alt: "Карточка бронежилета с заявлением продавца о двух плитах Бр5, ценой 17 098 рублей и SKU 879755591", caption: "Бронежилет; продавец заявляет две плиты и Бр5, 17 098 ₽ · 18.07.2026" },
-  { preview: "/blog/wb-dual-use/evidence/product-447850828.png", full: "/blog/wb-dual-use/evidence/product-447850828.png", alt: "Карточка 10-километровой катушки оптоволокна для дрона с ценой 22 705 рублей и SKU 447850828", caption: "Катушка оптоволокна для дрона, 10 км, 22 705 ₽ · 18.07.2026" },
-  { preview: "/blog/wb-dual-use/evidence/product-230725243.png", full: "/blog/wb-dual-use/evidence/product-230725243.png", alt: "Карточка аптечки с маркировкой «военная СВО», ценами 6 124 рублей с WB Кошельком и 6 249 рублей без этой скидки, SKU 230725243", caption: "Аптечка с маркировкой «военная СВО», 6 249 ₽ без скидки WB Кошелька · 18.07.2026" },
-  { preview: "/blog/wb-dual-use/evidence/product-972102728.png", full: "/blog/wb-dual-use/evidence/product-972102728.png", alt: "Карточка километрового оптического кабеля для интернета с ценами 12 947 рублей с WB Кошельком и 13 212 рублей без этой скидки, SKU 972102728", caption: "Оптический кабель для интернета, 1 км, 13 212 ₽ без скидки WB Кошелька · 18.07.2026" },
+    { preview: "/blog/wb-dual-use/evidence/product-949889001.png", full: "/blog/wb-dual-use/evidence/product-949889001.png", alt: "Карточка детектора «Булат v.4» с ценой 132 060 рублей, артикул 949889001", caption: "«Булат v.4», 132 060 ₽ · 18.07.2026" },
+    { preview: "/blog/wb-dual-use/evidence/product-879755591.png", full: "/blog/wb-dual-use/evidence/product-879755591.png", alt: "Карточка бронежилета с заявлением продавца о двух плитах Бр5, ценой 17 098 рублей, артикул 879755591", caption: "Бронежилет; продавец заявляет две плиты и Бр5, 17 098 ₽ · 18.07.2026" },
+    { preview: "/blog/wb-dual-use/evidence/product-447850828.png", full: "/blog/wb-dual-use/evidence/product-447850828.png", alt: "Карточка 10-километровой катушки оптоволокна для дрона с ценой 22 705 рублей, артикул 447850828", caption: "Катушка оптоволокна для дрона, 10 км, 22 705 ₽ · 18.07.2026" },
+    { preview: "/blog/wb-dual-use/evidence/product-230725243.png", full: "/blog/wb-dual-use/evidence/product-230725243.png", alt: "Карточка аптечки с маркировкой «военная СВО», ценами 6 124 рублей с WB Кошельком и 6 249 рублей без этой скидки, артикул 230725243", caption: "Аптечка с маркировкой «военная СВО», 6 249 ₽ без скидки WB Кошелька · 18.07.2026" },
+    { preview: "/blog/wb-dual-use/evidence/product-972102728.png", full: "/blog/wb-dual-use/evidence/product-972102728.png", alt: "Карточка километрового оптического кабеля для интернета с ценами 12 947 рублей с WB Кошельком и 13 212 рублей без этой скидки, артикул 972102728", caption: "Оптический кабель для интернета, 1 км, 13 212 ₽ без скидки WB Кошелька · 18.07.2026" },
 ] as const;
 
 const CARD_LIGHTBOX: readonly LightboxItem[] = CARDS.map((card) => ({ src: card.full, alt: card.alt, caption: card.caption }));
@@ -75,8 +75,8 @@ export function ProductCardGallery() {
 const CABLES: readonly LightboxItem[] = [
   { src: "/blog/wb-dual-use/evidence/civilian-cable.webp", alt: "Изображение гражданского километрового оптического кабеля для улицы и помещений", caption: "Гражданский километровый кабель для подключения здания к интернету." },
   { src: "/blog/wb-dual-use/evidence/fpv-spool.webp", alt: "Изображение 10-километровой катушки оптоволокна G.657A2, позиционируемой продавцом для FPV-дрона", caption: "10-километровая катушка G.657A2, которую продавец позиционирует для FPV-дрона." },
-  { src: "/blog/wb-dual-use/evidence/fpv-connection-video.webp", alt: "Схема подключения оптоволоконного модуля из карточки 10-километровой FPV-катушки SKU 971841998 к видеомодулю и приёмнику", caption: "Изображение продавца из карточки SKU 971841998: подключение к видеомодулю и приёмнику." },
-  { src: "/blog/wb-dual-use/evidence/fpv-connection-controller.webp", alt: "Схема подключения оптоволоконного модуля из карточки 10-километровой FPV-катушки SKU 971841998 к полётному контроллеру", caption: "Изображение продавца из карточки SKU 971841998: подключение к полётному контроллеру." },
+    { src: "/blog/wb-dual-use/evidence/fpv-connection-video.webp", alt: "Схема подключения оптоволоконного модуля из карточки 10-километровой FPV-катушки, артикул 971841998, к видеомодулю и приёмнику", caption: "Изображение продавца из карточки, артикул 971841998: подключение к видеомодулю и приёмнику." },
+    { src: "/blog/wb-dual-use/evidence/fpv-connection-controller.webp", alt: "Схема подключения оптоволоконного модуля из карточки 10-километровой FPV-катушки, артикул 971841998, к полётному контроллеру", caption: "Изображение продавца из карточки, артикул 971841998: подключение к полётному контроллеру." },
 ];
 
 export function CableComparison() {
@@ -90,7 +90,7 @@ export function CableComparison() {
           </button>
         ))}
       </div>
-      <figcaption className="border-t border-[var(--color-border)] p-4 text-[11px] leading-relaxed text-[var(--color-dim)]">Слева показан гражданский километровый кабель для подключения здания к интернету. Справа показана 10-километровая катушка G.657A2, которую продавец позиционирует для FPV-дрона. Схемы подключения в lightbox опубликованы продавцом в другой проверенной карточке, SKU 971841998. Общий класс волокна не делает изделия одинаковыми: отличаются длина, масса, конструкция, размотка и подключение.</figcaption>
+      <figcaption className="border-t border-[var(--color-border)] p-4 text-[11px] leading-relaxed text-[var(--color-dim)]">Слева показан гражданский километровый кабель для подключения здания к интернету. Справа показана 10-километровая катушка G.657A2, которую продавец позиционирует для FPV-дрона. Схемы подключения в lightbox опубликованы продавцом в другой проверенной карточке, артикул 971841998. Общий класс волокна не делает изделия одинаковыми: отличаются длина, масса, конструкция, размотка и подключение.</figcaption>
       {lightbox}
     </figure>
   );

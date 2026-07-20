@@ -1,65 +1,127 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
-import { BarChart, type BarChartTooltipSlotProps } from "@/components/charts/bar-chart";
-import {
-  LineChart,
-  type LineChartSeries,
-  type LineChartTooltipSlotProps,
-} from "@/components/charts/line-chart";
+import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { createPortal } from "react-dom";
 import { DataTable, type DataTableColumn } from "@/components/charts/data-table";
 
-const formatOne = (value: number) =>
-  value.toLocaleString("ru-RU", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
-const formatInt = (value: number) => value.toLocaleString("ru-RU");
-const formatMln = (value: number) => `${formatOne(value)} млн ₽`;
-const formatPct = (value: number) => `${value > 0 ? "+" : value < 0 ? "−" : ""}${formatOne(Math.abs(value))}%`;
+const formatExactRubles = (value: number) => `${value.toLocaleString("ru-RU")} ₽`;
+const formatSales = (value: number) => value.toLocaleString("ru-RU");
+const formatX = (value: number, digits = 1) =>
+  `×${value.toLocaleString("ru-RU", { maximumFractionDigits: digits })}`;
+const formatExactDailyIndex = (value: number) =>
+  value.toLocaleString("ru-RU", { minimumFractionDigits: 6, maximumFractionDigits: 6 });
+
+function FloatingTooltip({
+  id,
+  anchor,
+  children,
+}: {
+  id: string;
+  anchor: HTMLElement | null;
+  children: React.ReactNode;
+}) {
+  const tooltipRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+  const [position, setPosition] = useState<{ left: number; top: number; visible: boolean } | null>(null);
+
+  useEffect(() => setMounted(true), []);
+
+  useLayoutEffect(() => {
+    if (!mounted || !anchor) {
+      setPosition(null);
+      return;
+    }
+
+    const place = () => {
+      const tooltip = tooltipRef.current;
+      if (!tooltip) return;
+
+      const anchorRect = anchor.getBoundingClientRect();
+      const tooltipRect = tooltip.getBoundingClientRect();
+      const margin = 12;
+      const gap = 10;
+      const visible = anchorRect.bottom > 0 && anchorRect.top < window.innerHeight;
+      const centeredLeft = anchorRect.left + anchorRect.width / 2 - tooltipRect.width / 2;
+      const left = Math.max(margin, Math.min(centeredLeft, window.innerWidth - margin - tooltipRect.width));
+      const above = anchorRect.top - tooltipRect.height - gap;
+      const below = anchorRect.bottom + gap;
+      let top = above >= margin ? above : below;
+
+      if (top + tooltipRect.height > window.innerHeight - margin) {
+        top = Math.max(margin, window.innerHeight - margin - tooltipRect.height);
+      }
+
+      setPosition({ left, top, visible });
+    };
+
+    place();
+    window.addEventListener("resize", place);
+    window.addEventListener("scroll", place, true);
+    return () => {
+      window.removeEventListener("resize", place);
+      window.removeEventListener("scroll", place, true);
+    };
+  }, [anchor, mounted]);
+
+  if (!mounted || !anchor) return null;
+
+  return createPortal(
+    <div
+      ref={tooltipRef}
+      id={id}
+      role="tooltip"
+      style={{
+        position: "fixed",
+        left: position?.left ?? 12,
+        top: position?.top ?? 12,
+        width: "min(420px, calc(100vw - 24px))",
+        zIndex: 80,
+        visibility: position?.visible ? "visible" : "hidden",
+      }}
+      className="pointer-events-none rounded-[3px] border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-3 font-mono text-[10.5px] leading-relaxed text-[var(--color-text)] shadow-xl [overflow-wrap:anywhere]"
+    >
+      {children}
+    </div>,
+    document.body,
+  );
+}
 
 function ChartShell({
   id,
   title,
   subtitle,
-  source,
+  caption,
   light,
   dark,
+  mobileLight,
+  mobileDark,
   fallbackAlt,
-  wide = false,
   children,
-  afterSource,
   table,
-  labelledBy,
-  hideTitle = false,
 }: {
   id: string;
   title: string;
   subtitle: string;
-  source: string;
+  caption: string;
   light: string;
   dark: string;
+  mobileLight: string;
+  mobileDark: string;
   fallbackAlt: string;
-  wide?: boolean;
   children: React.ReactNode;
-  afterSource?: React.ReactNode;
   table: React.ReactNode;
-  labelledBy?: string;
-  hideTitle?: boolean;
 }) {
   return (
     <section
       id={id}
-      data-chart-slot={id}
-      className={`relative left-1/2 my-9 -translate-x-1/2 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6 ${
-        wide ? "w-[calc(100vw-2rem)] max-w-[1120px]" : "w-full max-w-[760px]"
-      }`}
-      aria-labelledby={labelledBy ?? `${id}-title`}
+      className="relative left-1/2 my-9 w-[calc(100vw-2rem)] max-w-[920px] -translate-x-1/2 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6"
+      aria-labelledby={`${id}-title`}
     >
-      <header className="mb-5">
-        {!hideTitle && (
-          <h3 id={`${id}-title`} className="text-[16px] font-bold leading-snug text-[var(--color-text)]">
-            {title}
-          </h3>
-        )}
-        <p className={`${hideTitle ? "" : "mt-1 "}font-mono text-[11px] leading-relaxed text-[var(--color-dim)]`}>{subtitle}</p>
+      <header className="mb-6">
+        <h3 id={`${id}-title`} className="text-[17px] font-bold leading-snug text-[var(--color-text)] sm:text-[19px]">
+          {title}
+        </h3>
+        <p className="mt-2 font-mono text-[10.5px] leading-relaxed text-[var(--color-dim)] sm:text-[11px]">{subtitle}</p>
       </header>
 
       <div className="wb-chart-interactive">{children}</div>
@@ -74,270 +136,371 @@ function ChartShell({
           }
         `}</style>
         <div className="overflow-hidden rounded-[2px] border border-[var(--color-border)] bg-[var(--color-bg)]">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="wb-chart-fallback-light h-auto w-full" src={light} alt={fallbackAlt} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="wb-chart-fallback-dark h-auto w-full" src={dark} alt={fallbackAlt} />
+          <picture className="wb-chart-fallback-light">
+            <source media="(max-width: 639px)" srcSet={mobileLight} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="h-auto w-full" src={light} alt={fallbackAlt} />
+          </picture>
+          <picture className="wb-chart-fallback-dark">
+            <source media="(max-width: 639px)" srcSet={mobileDark} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="h-auto w-full" src={dark} alt={fallbackAlt} />
+          </picture>
         </div>
       </noscript>
 
-      <p className="mt-3 font-mono text-[11px] leading-relaxed text-[var(--color-dim)]">{source}</p>
-      {afterSource}
+      <p className="mt-4 font-mono text-[10.5px] leading-relaxed text-[var(--color-dim)]">{caption}</p>
       <details className="mt-4 border-t border-[var(--color-border)] pt-3">
-        <summary className="cursor-pointer font-mono text-[11px] font-bold uppercase tracking-[0.08em] text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand)]">
+        <summary className="cursor-pointer font-mono text-[10px] font-bold uppercase tracking-[0.08em] text-[var(--color-text)] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[var(--color-brand)]">
           Данные графика
         </summary>
         {table}
       </details>
-      <p className="mt-3 font-mono text-[10px] text-[var(--color-dim)]">
-        График: {" "}
-        <a className="hover:underline" href="https://brockui.com" target="_blank" rel="noopener noreferrer">
-          Brock UI
-        </a>
-      </p>
     </section>
   );
 }
 
-type RankingRow = {
-  category: string;
-  turnover: number;
-  sales: number;
-  perSale: number;
-  fbo: number;
+type GrowthRow = {
+  niche: string;
+  multiplier: number;
+  displayMultiplier: number;
+  base: number;
+  latest: number;
+  baseLabel: string;
+  latestLabel: string;
+  salesMultiplier: number;
+  displaySalesLabel: string;
+  baseDays: number;
+  latestDays: number;
 };
 
-const RANKING: readonly RankingRow[] = [
-  { category: "Бронеодежда", turnover: 246.0, sales: 16115, perSale: 15266, fbo: 42.2 },
-  { category: "Маскировочные костюмы", turnover: 241.4, sales: 65676, perSale: 3676, fbo: 44.4 },
-  { category: "Приборы ночного видения", turnover: 96.3, sales: 3680, perSale: 26158, fbo: 13.4 },
-  { category: "Тепловизоры", turnover: 75.9, sales: 2832, perSale: 26814, fbo: 1.7 },
-  { category: "Маскировочные сети", turnover: 66.3, sales: 28505, perSale: 2326, fbo: 24.5 },
-  { category: "Аптечки первой помощи", turnover: 51.9, sales: 33673, perSale: 1543, fbo: 27.7 },
-  { category: "Разгрузочные жилеты", turnover: 51.8, sales: 8095, perSale: 6398, fbo: 36.2 },
-  { category: "Детекторы дронов", turnover: 10.7, sales: 225, perSale: 47339, fbo: 16.8 },
+const GROWTH_ROWS: readonly GrowthRow[] = [
+  { niche: "Маскировочные костюмы", multiplier: 75.449856421, displayMultiplier: 75, base: 41570921, latest: 3145136834, baseLabel: "41,6 млн", latestLabel: "3,15 млрд ₽", salesMultiplier: 37.426656711, displaySalesLabel: "≈×37", baseDays: 364, latestDays: 365 },
+  { niche: "Разгрузочные пояса", multiplier: 48.25601165, displayMultiplier: 48, base: 10214939, latest: 497017289, baseLabel: "10,2 млн", latestLabel: "497,0 млн ₽", salesMultiplier: 31.204997598, displaySalesLabel: "≈×31", baseDays: 362, latestDays: 365 },
+  { niche: "Разгрузочные жилеты", multiplier: 37.53589481, displayMultiplier: 38, base: 32004152, latest: 1204604770, baseLabel: "32,0 млн", latestLabel: "1,20 млрд ₽", salesMultiplier: 22.153100596, displaySalesLabel: "≈×22", baseDays: 364, latestDays: 365 },
+  { niche: "Маскировочные сети", multiplier: 22.155634609, displayMultiplier: 22, base: 36828522, latest: 818200923, baseLabel: "36,8 млн", latestLabel: "818,2 млн ₽", salesMultiplier: 19.460565853, displaySalesLabel: "почти ×20", baseDays: 364, latestDays: 365 },
 ];
 
-function RankingTooltip({ label }: BarChartTooltipSlotProps) {
-  const row = RANKING.find((item) => item.category === label);
-  if (!row) return null;
+const growthColumns: readonly DataTableColumn[] = [
+  { header: "Ниша" },
+  { header: "Среднедневной индекс GMV" },
+  { header: "База" },
+  { header: "Последний период" },
+  { header: "Среднедневной индекс продаж" },
+  { header: "Наблюдаемых дней" },
+];
+
+function GrowthBars() {
+  const [active, setActive] = useState<number | null>(null);
+  const [pinned, setPinned] = useState<number | null>(null);
+  const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const barRefs = useRef<Array<HTMLSpanElement | null>>([]);
+
+  useEffect(() => {
+    if (pinned === null) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (rootRef.current?.contains(event.target as Node)) return;
+      setPinned(null);
+      setActive(null);
+    };
+    document.addEventListener("pointerdown", closeOutside, true);
+    return () => document.removeEventListener("pointerdown", closeOutside, true);
+  }, [pinned]);
+
+  const shown = pinned ?? active;
+  useEffect(() => {
+    if (shown === null) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setPinned(null);
+      setActive(null);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [shown]);
+
+  const shownRow = shown === null ? null : GROWTH_ROWS[shown];
+  const tooltipId = "grafik-1-bar-tooltip";
   return (
-    <div role="tooltip" className="max-w-[min(420px,calc(100vw-3rem))] rounded border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 font-mono text-[11px] leading-relaxed text-[var(--color-text)] shadow-lg">
-      {row.category} · оборот {formatMln(row.turnover)} · {formatInt(row.sales)} оценочных продаж · оборот на одну оценочную продажу {formatInt(row.perSale)} ₽ · через склад WB {formatOne(row.fbo)}%
+    <div ref={rootRef} role="group" aria-label="Среднедневной оценочный GMV четырёх специализированных ниш в последних двенадцати месяцах перед атакой относительно наблюдаемого окна до 24 февраля 2022 года: примерно от 22 до 75 раз">
+      <div className="space-y-6">
+        {GROWTH_ROWS.map((row, index) => {
+          const tooltip = `${row.niche} · среднедневной индекс GMV ${formatX(row.multiplier, 6)} · база ${formatExactRubles(row.base)} · последний период ${formatExactRubles(row.latest)} · среднедневной индекс продаж ${formatX(row.salesMultiplier, 6)} · наблюдаемых дней ${row.baseDays} и ${row.latestDays}`;
+          return (
+          <button
+            key={row.niche}
+            ref={(node) => { buttonRefs.current[index] = node; }}
+            type="button"
+            className="block w-full min-w-0 rounded-[3px] p-1 text-left focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text)] [touch-action:manipulation]"
+            aria-label={tooltip}
+            aria-describedby={shown === index ? tooltipId : undefined}
+            aria-pressed={pinned === index}
+            onPointerEnter={(event) => {
+              if (event.pointerType === "mouse") setActive(index);
+            }}
+            onPointerLeave={(event) => {
+              if (event.pointerType === "mouse") setActive((current) => current === index ? null : current);
+            }}
+            onFocus={() => setActive(index)}
+            onBlur={() => setActive((current) => current === index ? null : current)}
+            onClick={() => setPinned((current) => current === index ? null : index)}
+            onKeyDown={(event) => {
+              const previous = event.key === "ArrowUp" || event.key === "ArrowLeft";
+              const next = event.key === "ArrowDown" || event.key === "ArrowRight";
+              if (!previous && !next) return;
+              event.preventDefault();
+              const target = (index + (next ? 1 : -1) + GROWTH_ROWS.length) % GROWTH_ROWS.length;
+              setPinned(null);
+              setActive(target);
+              buttonRefs.current[target]?.focus();
+            }}
+          >
+            <span className="block text-[12px] font-bold leading-snug text-[var(--color-text)] sm:text-[13px]">{row.niche}</span>
+            <span className="mt-1 block font-mono text-[10px] tabular-nums text-[var(--color-dim)]">{row.baseLabel} → {row.latestLabel}</span>
+            <span className="mt-2 grid grid-cols-[minmax(0,1fr)_52px] items-center gap-3 sm:grid-cols-[minmax(0,1fr)_64px]">
+              <span className="relative block h-8 overflow-hidden rounded-[2px] border-y border-[var(--color-border)] bg-[var(--color-bg)]">
+                {[20, 40, 60, 80].map((tick) => <i key={tick} className="absolute inset-y-0 w-px bg-[var(--color-border)]" style={{ left: `${tick / 80 * 100}%` }} aria-hidden />)}
+                <span ref={(node) => { barRefs.current[index] = node; }} className="absolute inset-y-[5px] left-0 rounded-r-[2px] bg-[var(--viz-wb)]" style={{ width: `${row.displayMultiplier / 80 * 100}%` }} aria-hidden />
+              </span>
+              <span className="font-mono text-[19px] font-bold tabular-nums text-[var(--viz-wb)] sm:text-[22px]">≈×{row.displayMultiplier}</span>
+            </span>
+            <span className="mt-1 block font-mono text-[10px] text-[var(--color-dim)]">продажи {row.displaySalesLabel}</span>
+          </button>
+          );
+        })}
+      </div>
+      <div className="mt-4 grid grid-cols-5 pr-[64px] font-mono text-[9px] tabular-nums text-[var(--color-dim)]">
+        {[0, 20, 40, 60, 80].map((tick) => <span key={tick} className={tick === 80 ? "text-right" : ""}>{tick === 0 ? "0" : `×${tick}`}</span>)}
+      </div>
+      <p className="mt-3 font-mono text-[9.5px] leading-relaxed text-[var(--color-dim)]">
+        Наведите или сфокусируйте строку. На сенсорном экране нажмите; повторное нажатие или касание вне графика закрывает подсказку.
+      </p>
+      {shownRow && (
+        <FloatingTooltip id={tooltipId} anchor={shown === null ? null : barRefs.current[shown]}>
+          <p className="font-bold text-[var(--color-text)]">{shownRow.niche}</p>
+          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[var(--color-dim)]">
+            <dt>Среднедневной индекс GMV</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatX(shownRow.multiplier, 6)}</dd>
+            <dt>База</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatExactRubles(shownRow.base)}</dd>
+            <dt>Последний период</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatExactRubles(shownRow.latest)}</dd>
+            <dt>Индекс продаж</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatX(shownRow.salesMultiplier, 6)}</dd>
+            <dt>Наблюдаемых дней</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{shownRow.baseDays} → {shownRow.latestDays}</dd>
+          </dl>
+        </FloatingTooltip>
+      )}
     </div>
   );
 }
-
-const rankingColumns: readonly DataTableColumn[] = [
-  { header: "Категория" },
-  { header: "Оборот, млн ₽" },
-  { header: "Оценочные продажи" },
-  { header: "Оборот на одну продажу, ₽" },
-  { header: "Оборот через склад WB, %" },
-];
 
 export function Grafik1() {
   return (
     <ChartShell
       id="grafik-1"
-      title="Самые крупные из выбранных категорий"
-      labelledBy="selected-categories-heading"
-      hideTitle
-      subtitle="Оценочный оборот за 30 дней, 18.06–17.07.2026, млн ₽"
-      source="Источник: расчёт автора по данным MPStats; показатели оценочные. Окно: 18.06–17.07.2026."
-      light="/blog/wb-dual-use/charts/g1-gmv-ranking-light.png"
-      dark="/blog/wb-dual-use/charts/g1-gmv-ranking-dark.png"
-      fallbackAlt="Статический график рейтинга восьми выбранных категорий по оценочному обороту"
-      afterSource={<p className="mt-3 border-l-2 border-[var(--viz-wb)] pl-3 font-mono text-[11px] leading-relaxed text-[var(--color-dim)]">Для масштаба: оборот генераторов составляет 1 917,4 млн ₽. Это широкая категория двойного назначения, поэтому она не включена в рейтинг.</p>}
-      table={<DataTable columns={rankingColumns} rows={RANKING.map((row) => [row.category, formatOne(row.turnover), formatInt(row.sales), formatInt(row.perSale), formatOne(row.fbo)])} className="mb-0" />}
+      title="Четыре специализированные ниши выросли примерно в 22–75 раз"
+      subtitle="24.02.2021–23.02.2022 → 18.07.2025–17.07.2026 · индекс по среднему за наблюдаемый день"
+      caption="Источник: расчёт автора по данным MPStats. Абсолютные значения — суммы за наблюдаемые дни указанных календарных окон. Множители GMV и продаж рассчитаны по среднему за наблюдаемый день: в базе доступны 362–364 дня, в последнем периоде — 365."
+      light="/blog/wb-dual-use/charts/phase2-scale-light.png"
+      dark="/blog/wb-dual-use/charts/phase2-scale-dark.png"
+      mobileLight="/blog/wb-dual-use/charts/phase2-scale-mobile-light.png"
+      mobileDark="/blog/wb-dual-use/charts/phase2-scale-mobile-dark.png"
+      fallbackAlt="Четыре горизонтальные полосы на линейной шкале от 0 до 80: маскировочные костюмы выросли примерно в 75 раз, разгрузочные пояса в 48, жилеты в 38, маскировочные сети в 22 раза"
+      table={<DataTable columns={growthColumns} rows={GROWTH_ROWS.map((row) => [row.niche, formatX(row.multiplier, 6), formatExactRubles(row.base), formatExactRubles(row.latest), formatX(row.salesMultiplier, 6), `${row.baseDays} → ${row.latestDays}`])} className="mb-0" />}
     >
-      <BarChart
-        className="wb-ranking-chart"
-        data={RANKING.map((row) => ({ label: row.category, value: row.turnover, color: "var(--viz-wb)" }))}
-        sort="desc"
-        labelWidth={190}
-        barThickness={32}
-        gap={10}
-        accent="var(--viz-wb)"
-        xAxisFormat={(value) => formatOne(value)}
-        formatValue={(value) => formatMln(value)}
-        dataLabels={{ show: true, format: (value) => formatMln(value) }}
-        description="Восемь выбранных категорий Wildberries, отсортированных по оценочному обороту за 30 дней"
-        animation={{ enabled: true, duration: 400 }}
-        slots={{ tooltip: RankingTooltip }}
-      />
-      <style jsx global>{`
-        .wb-ranking-chart [role="graphics-symbol"] .brock-hbar { transition: opacity 160ms ease; }
-        .wb-ranking-chart:has([role="graphics-symbol"]:hover) [role="graphics-symbol"]:not(:hover) .brock-hbar,
-        .wb-ranking-chart:has([role="graphics-symbol"]:focus) [role="graphics-symbol"]:not(:focus) .brock-hbar { opacity: .32; }
-        @media (prefers-reduced-motion: reduce) { .wb-ranking-chart [role="graphics-symbol"] .brock-hbar { transition: none; } }
-      `}</style>
+      <GrowthBars />
     </ChartShell>
   );
 }
 
-const DATES = ["30.07.2025", "30.08.2025", "30.09.2025", "30.10.2025", "30.11.2025", "30.12.2025", "30.01.2026", "28.02.2026", "30.03.2026", "30.04.2026", "30.05.2026", "30.06.2026", "17.07.2026*"] as const;
+type AnniversaryWindow = {
+  label: string;
+  d1: string;
+  d2: string;
+  observedDays: number;
+  revenue: number;
+  sales: number;
+  index: number;
+};
 
-type DynamicsRow = { category: string; values: readonly (number | null)[] };
-const DYNAMICS: readonly DynamicsRow[] = [
-  { category: "Бронеодежда", values: [125.1,217.9,217.6,254.1,624.0,317.3,198.1,257.1,291.7,428.2,285.8,235.8,246.0] },
-  { category: "Маскировочные костюмы", values: [230.5,215.4,285.2,282.5,249.9,246.7,167.7,202.1,281.6,363.6,323.0,241.1,241.4] },
-  { category: "Аксессуары для коптеров", values: [169.1,131.9,120.7,151.8,135.9,117.5,83.3,102.7,113.0,139.1,113.2,111.1,106.4] },
-  { category: "Маскировочные сети", values: [39.5,33.1,32.3,47.8,48.4,46.8,38.1,52.3,94.1,171.5,99.0,95.7,66.3] },
-  { category: "Разгрузочные жилеты", values: [227.8,139.8,148.1,151.2,112.5,100.6,67.8,69.1,85.1,88.8,75.7,53.5,51.8] },
-  { category: "Разгрузочные пояса", values: [31.4,38.8,39.8,42.8,42.5,46.7,33.1,43.3,45.4,44.8,42.2,31.6,30.1] },
-  { category: "Детекторы дронов", values: [null,null,null,null,null,27.4,53.0,27.4,29.2,35.5,21.3,14.8,10.7] },
+const ANNIVERSARY_WINDOWS: readonly AnniversaryWindow[] = [
+  { label: "До", d1: "24.02.2021", d2: "23.02.2022", observedDays: 362, revenue: 10214939, sales: 3764, index: 1 },
+  { label: "1-й год", d1: "24.02.2022", d2: "23.02.2023", observedDays: 365, revenue: 84794768, sales: 27030, index: 8.232827 },
+  { label: "2-й год", d1: "24.02.2023", d2: "23.02.2024", observedDays: 365, revenue: 364171279, sales: 80753, index: 35.357831 },
+  { label: "3-й год", d1: "24.02.2024", d2: "23.02.2025", observedDays: 366, revenue: 507119824, sales: 131087, index: 49.102352 },
+  { label: "4-й год", d1: "24.02.2025", d2: "23.02.2026", observedDays: 365, revenue: 464409176, sales: 110796, index: 45.09005 },
 ];
 
-function dynamicsSeries(row: DynamicsRow): readonly LineChartSeries[] {
-  return [
-    {
-      name: row.category,
-      color: "var(--viz-wb)",
-      emphasis: true,
-      data: row.values.map((value, index) => ({ x: DATES[index], y: index === 12 ? null : value })),
-    },
-    {
-      name: "Срез до 17.07.2026",
-      color: "var(--viz-wb)",
-      emphasis: true,
-      data: row.values.map((value, index) => ({ x: DATES[index], y: index === 12 ? value : null })),
-    },
-  ];
-}
-
-function DynamicsTooltip({ category, xLabel, points }: LineChartTooltipSlotProps & { category: string }) {
-  const point = points.find((item) => item.value !== null);
-  if (!point || point.value === null) return null;
-  const text = xLabel === "17.07.2026*"
-    ? `Срез до 17.07.2026 · ${formatMln(point.value)} · окно перекрывает срез до 30.06 и показано отдельно`
-    : `${category} · окно до ${xLabel} · ${formatMln(point.value)}`;
-  return <div role="tooltip" className="max-w-[min(360px,calc(100vw-3rem))] rounded border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 font-mono text-[10px] leading-relaxed text-[var(--color-text)] shadow-lg">{text}</div>;
-}
-
-const dynamicsColumns: readonly DataTableColumn[] = [
-  { header: "Ниша" },
-  ...DATES.map((date) => ({ header: date })),
+const anniversaryColumns: readonly DataTableColumn[] = [
+  { header: "Окно" },
+  { header: "Даты" },
+  { header: "Оценочный GMV" },
+  { header: "Оценочные продажи" },
+  { header: "Дней" },
+  { header: "Среднедневной индекс к базе" },
 ];
 
-export function Grafik2() {
-  return (
-    <ChartShell
-      id="grafik-2"
-      title="Динамика по нишам: 12 окон за год и срез перед атакой"
-      subtitle="Оценочный оборот, млн ₽ за 30 дней. У каждой панели своя шкала."
-      source="Источник: расчёт автора по данным MPStats; показатели оценочные. Срез до 17.07.2026 перекрывает предыдущее окно и показан отдельно."
-      light="/blog/wb-dual-use/charts/g2-dynamics-light.png"
-      dark="/blog/wb-dual-use/charts/g2-dynamics-dark.png"
-      fallbackAlt="Статический график динамики семи ниш по двенадцати историческим окнам и отдельному срезу до 17 июля"
-      wide
-      afterSource={<p className="mt-3 font-mono text-[11px] leading-relaxed text-[var(--color-dim)]">Сравнивайте форму тренда, а не высоту линий между панелями: у каждой панели независимая шкала. Символ ◆ обозначает отдельный перекрывающийся срез до 17.07.2026. `NA` означает отсутствие строки категории, а не нулевой оборот.</p>}
-      table={<DataTable columns={dynamicsColumns} rows={DYNAMICS.map((row) => [row.category, ...row.values.map((value) => value === null ? "NA" : formatOne(value))])} caption="* Срез до 17.07.2026 перекрывает окно до 30.06.2026 и не является тринадцатым последовательным месяцем." className="mb-0" />}
-    >
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        {DYNAMICS.map((row) => (
-          <section key={row.category} className="rounded-[2px] border border-[var(--color-border)] bg-[var(--color-bg)] p-3">
-            <h4 className="min-h-10 text-[12px] font-bold leading-snug text-[var(--color-text)]">{row.category}</h4>
-            {row.category === "Бронеодежда" && <p className="mb-1 font-mono text-[9px] text-[var(--viz-wb)]">624 млн ₽ · ноябрь 2025</p>}
-            <LineChart
-              className="wb-dynamics-panel"
-              data={dynamicsSeries(row)}
-              height={180}
-              curve="linear"
-              markers="always"
-              legend="none"
-              directLabels={false}
-              yAxisFormat={(value) => formatOne(value)}
-              formatValue={(value) => formatMln(value)}
-              xAxis={{ hideTicks: true }}
-              yAxis={{ ticks: 3 }}
-              accent="var(--viz-wb)"
-              animation={{ enabled: true, duration: 500 }}
-              description={`${row.category}: двенадцать исторических окон и отдельный перекрывающийся срез до 17 июля`}
-              slots={{ tooltip: (props) => <DynamicsTooltip {...props} category={row.category} /> }}
-            />
-            <div className="mt-1 grid grid-cols-[1fr_auto_1fr] items-center gap-2 font-mono text-[8px] text-[var(--color-dim)]">
-              <span className="whitespace-nowrap">июл. 2025</span>
-              <span className="whitespace-nowrap text-center">июн. 2026</span>
-              <span className="whitespace-nowrap text-right">◆ 17.07.2026</span>
-            </div>
-          </section>
-        ))}
-      </div>
-      <style jsx global>{`
-        .wb-dynamics-panel .brock-point:last-of-type { border-radius: 1px !important; transform: translate(-50%, -50%) rotate(45deg) !important; }
-      `}</style>
-    </ChartShell>
-  );
-}
-
-type SupplyRow = { category: string; turnover: number; cards: number; sellers: number };
-const SUPPLY: readonly SupplyRow[] = [
-  { category: "Бронеодежда", turnover: -14.8, cards: 48.9, sellers: 22.9 },
-  { category: "Детекторы дронов", turnover: -48.4, cards: 14.6, sellers: 13.4 },
-  { category: "Аксессуары для коптеров", turnover: -11.5, cards: 12.4, sellers: 10.7 },
-  { category: "Жгуты", turnover: -46.3, cards: 22.3, sellers: 7.2 },
-  { category: "Каски", turnover: -0.4, cards: 22.4, sellers: 9.8 },
-];
-
-const supplyColumns: readonly DataTableColumn[] = [
-  { header: "Категория" },
-  { header: "Оборот, %", type: "delta" },
-  { header: "Карточки, %", type: "delta" },
-  { header: "Продавцы, %", type: "delta" },
-];
-
-function DivergingBars() {
+function AnniversaryBars() {
   const [active, setActive] = useState<number | null>(null);
   const [pinned, setPinned] = useState<number | null>(null);
   const rootRef = useRef<HTMLDivElement>(null);
+  const buttonRefs = useRef<Array<HTMLButtonElement | null>>([]);
+  const barRefs = useRef<Array<HTMLSpanElement | null>>([]);
   useEffect(() => {
     if (pinned === null) return;
     const closeOutside = (event: PointerEvent) => {
-      if (!rootRef.current?.contains(event.target as Node)) setPinned(null);
+      if (rootRef.current?.contains(event.target as Node)) return;
+      setPinned(null);
+      setActive(null);
     };
     document.addEventListener("pointerdown", closeOutside, true);
     return () => document.removeEventListener("pointerdown", closeOutside, true);
   }, [pinned]);
   const shown = pinned ?? active;
+  useEffect(() => {
+    if (shown === null) return;
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key !== "Escape") return;
+      setPinned(null);
+      setActive(null);
+    };
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [shown]);
+  const shownWindow = shown === null ? null : ANNIVERSARY_WINDOWS[shown];
+  const tooltipId = "grafik-2-bar-tooltip";
   return (
-    <div ref={rootRef} className="space-y-5" role="img" aria-label="Изменение оценочного оборота и числа карточек в пяти категориях">
-      <div className="flex flex-wrap gap-x-5 gap-y-2 font-mono text-[10px] text-[var(--color-dim)]">
-        <span className="inline-flex items-center gap-2"><i className="size-3 bg-[var(--viz-negative)]" aria-hidden />Оборот, снижение</span>
-        <span className="inline-flex items-center gap-2"><i className="size-3 bg-[var(--viz-wb)]" aria-hidden />Карточки, рост</span>
+    <div ref={rootRef} className="relative" role="group" aria-label="Разгрузочные пояса: один устойчивый ряд, пять последовательных двенадцатимесячных окон и среднедневной индекс оценочного GMV к наблюдаемой базе">
+      <div className="mb-3">
+        <p className="text-[13px] font-bold text-[var(--color-text)]">Разгрузочные пояса</p>
+        <p className="mt-1 font-mono text-[10px] text-[var(--color-dim)]">4-й год: 464,4 млн ₽ · 110 796 оценочных продаж</p>
       </div>
-      {SUPPLY.map((row, index) => (
-        <div key={row.category} className="relative">
-          <p className="mb-2 text-[12px] font-bold text-[var(--color-text)]">{row.category}</p>
-          <div className="grid grid-cols-2 gap-0 font-mono text-[10px] tabular-nums"><span className="pr-2 text-right text-[var(--viz-negative)]">{formatPct(row.turnover)} оборот</span><span className="pl-2 text-[var(--viz-wb)]">{formatPct(row.cards)} карточки</span></div>
-          <div className="mt-1 grid h-7 grid-cols-2 border-y border-[var(--color-border)]">
-            <div className="relative border-r border-[var(--color-border)]">
-              <button type="button" aria-label={`${row.category}: оборот ${formatPct(row.turnover)}, карточки ${formatPct(row.cards)}, продавцы ${formatPct(row.sellers)}`} onPointerEnter={() => setActive(index)} onPointerLeave={() => setActive(null)} onFocus={() => setActive(index)} onBlur={() => setActive(null)} onClick={() => setPinned((value) => value === index ? null : index)} className="absolute right-0 top-1/2 h-4 -translate-y-1/2 bg-[var(--viz-negative)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text)]" style={{ width: `${Math.max(1.5, Math.abs(row.turnover) / 50 * 100)}%` }} />
-            </div>
-            <div className="relative">
-              <button type="button" aria-label={`${row.category}: оборот ${formatPct(row.turnover)}, карточки ${formatPct(row.cards)}, продавцы ${formatPct(row.sellers)}`} onPointerEnter={() => setActive(index)} onPointerLeave={() => setActive(null)} onFocus={() => setActive(index)} onBlur={() => setActive(null)} onClick={() => setPinned((value) => value === index ? null : index)} className="absolute left-0 top-1/2 h-4 -translate-y-1/2 bg-[var(--viz-wb)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--color-text)]" style={{ width: `${Math.max(1.5, row.cards / 50 * 100)}%` }} />
-            </div>
+      <div className="relative h-[300px] border-b border-l border-[var(--color-border)] pl-2 sm:h-[330px] sm:pl-4">
+        {[20, 40, 60, 80].map((tick) => (
+          <div key={tick} className="absolute inset-x-0 border-t border-[var(--color-border)]" style={{ bottom: `${tick / 80 * 100}%` }}>
+            <span className="absolute -left-1 -translate-x-full -translate-y-1/2 font-mono text-[8px] text-[var(--color-dim)] sm:text-[9px]">×{tick}</span>
           </div>
-          {shown === index && <div role="tooltip" className="absolute bottom-[calc(100%+8px)] left-1/2 z-20 w-max max-w-[min(420px,calc(100vw-3rem))] -translate-x-1/2 rounded border border-[var(--color-border)] bg-[var(--color-bg)] px-3 py-2 font-mono text-[11px] leading-relaxed text-[var(--color-text)] shadow-lg">{row.category} · оборот {formatPct(row.turnover)} · карточки {formatPct(row.cards)} · продавцы {formatPct(row.sellers)}</div>}
+        ))}
+        <div className="absolute inset-x-2 bottom-0 top-0 grid grid-cols-5 items-end gap-2 sm:inset-x-5 sm:gap-5">
+          {ANNIVERSARY_WINDOWS.map((window, index) => {
+            const tooltip = `${window.label} · ${window.d1}–${window.d2} · GMV за наблюдаемые дни ${formatExactRubles(window.revenue)} · продажи за наблюдаемые дни ${formatSales(window.sales)} · ${window.observedDays} наблюдаемых дней · среднедневной индекс к базе ${formatExactDailyIndex(window.index)}`;
+            const barHeight = Math.max(1.5, window.index / 80 * 100);
+            return (
+              <div key={window.label} className="h-full min-w-0">
+                <button
+                  ref={(node) => { buttonRefs.current[index] = node; }}
+                  type="button"
+                  data-anniversary-bar={index}
+                  className="group relative h-full w-full cursor-pointer rounded-[2px] focus-visible:outline-none [touch-action:manipulation]"
+                  aria-label={tooltip}
+                  aria-describedby={shown === index ? tooltipId : undefined}
+                  aria-pressed={pinned === index}
+                  onPointerEnter={(event) => {
+                    if (event.pointerType === "mouse") setActive(index);
+                  }}
+                  onPointerLeave={(event) => {
+                    if (event.pointerType === "mouse") setActive((current) => current === index ? null : current);
+                  }}
+                  onFocus={() => setActive(index)}
+                  onBlur={() => setActive((current) => current === index ? null : current)}
+                  onClick={() => setPinned((current) => current === index ? null : index)}
+                  onKeyDown={(event) => {
+                    if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+                    event.preventDefault();
+                    const direction = event.key === "ArrowRight" ? 1 : -1;
+                    const next = (index + direction + ANNIVERSARY_WINDOWS.length) % ANNIVERSARY_WINDOWS.length;
+                    setPinned(null);
+                    setActive(next);
+                    buttonRefs.current[next]?.focus();
+                  }}
+                >
+                  <span
+                    className="pointer-events-none absolute left-1/2 -translate-x-1/2 whitespace-nowrap font-mono text-[10px] font-bold text-[var(--viz-wb)] sm:text-[12px]"
+                    style={{ bottom: `calc(${barHeight}% + 8px)` }}
+                  >
+                    {index === 0 ? "База" : `≈×${Math.round(window.index)}`}
+                  </span>
+                  <span
+                    ref={(node) => { barRefs.current[index] = node; }}
+                    data-bar-anchor
+                    aria-hidden
+                    className="pointer-events-none absolute bottom-0 left-1/2 w-9 -translate-x-1/2 rounded-t-[2px] bg-[var(--viz-wb)] transition-[filter,opacity] group-hover:brightness-110 group-focus-visible:outline-2 group-focus-visible:outline-offset-2 group-focus-visible:outline-[var(--color-text)] sm:w-14"
+                    style={{ height: `${barHeight}%` }}
+                  />
+                </button>
+              </div>
+            );
+          })}
         </div>
-      ))}
+      </div>
+      <div className="mt-2 grid grid-cols-5 gap-2 pl-2 text-center font-mono text-[8.5px] leading-tight text-[var(--color-dim)] sm:pl-4 sm:text-[10px]">
+        {ANNIVERSARY_WINDOWS.map((window) => <span key={window.label}>{window.label}</span>)}
+      </div>
+      <p className="mt-3 font-mono text-[9.5px] leading-relaxed text-[var(--color-dim)]">
+        Наведите или сфокусируйте столбец. На сенсорном экране нажмите; повторное нажатие или касание вне графика закрывает подсказку.
+      </p>
+      {shownWindow && (
+        <FloatingTooltip id={tooltipId} anchor={shown === null ? null : barRefs.current[shown]}>
+          <p className="font-bold text-[var(--color-text)]">{shownWindow.label} · {shownWindow.d1}–{shownWindow.d2}</p>
+          <dl className="mt-2 grid grid-cols-[auto_1fr] gap-x-3 gap-y-1 text-[var(--color-dim)]">
+            <dt>GMV за наблюдаемые дни</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatExactRubles(shownWindow.revenue)}</dd>
+            <dt>Продажи за наблюдаемые дни</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatSales(shownWindow.sales)}</dd>
+            <dt>Наблюдаемых дней</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{shownWindow.observedDays}</dd>
+            <dt>Среднедневной индекс</dt>
+            <dd className="text-right tabular-nums text-[var(--color-text)]">{formatExactDailyIndex(shownWindow.index)}</dd>
+          </dl>
+        </FloatingTooltip>
+      )}
     </div>
   );
 }
 
-export function Grafik3() {
+export function Grafik2() {
   return (
     <ChartShell
-      id="grafik-3"
-      title="Оборот падал, а карточек становилось больше"
-      subtitle="Изменение окна до 17.07 относительно соседнего окна до 17.06, %"
-      source="Источник: расчёт автора по данным MPStats; показатели оценочные. Сравниваются соседние окна до 17.06 и 17.07.2026."
-      light="/blog/wb-dual-use/charts/g3-supply-vs-demand-light.png"
-      dark="/blog/wb-dual-use/charts/g3-supply-vs-demand-dark.png"
-      fallbackAlt="Статический расходящийся график изменения оборота и числа карточек в пяти категориях"
-      table={<DataTable columns={supplyColumns} rows={SUPPLY.map((row) => [row.category, row.turnover, row.cards, row.sellers])} deltaUpColor="var(--viz-wb)" deltaDownColor="var(--viz-negative)" className="mb-0" />}
+      id="grafik-2"
+      title="Разгрузочные пояса: как менялся оценочный оборот по годовым окнам"
+      subtitle="Среднедневной оценочный GMV MPStats · наблюдаемая база до 24.02.2022 = 1"
+      caption="Источник: расчёт автора по данным MPStats. Это один устойчивый кейс: в ряду разгрузочных поясов автоматическая проверка не нашла экстремальных дней, меняющих итог. Календарное базовое окно полное, но содержит 362 наблюдаемых дня; индекс сравнивает средний GMV за наблюдаемый день."
+      light="/blog/wb-dual-use/charts/phase2-anniversary-light.png"
+      dark="/blog/wb-dual-use/charts/phase2-anniversary-dark.png"
+      mobileLight="/blog/wb-dual-use/charts/phase2-anniversary-mobile-light.png"
+      mobileDark="/blog/wb-dual-use/charts/phase2-anniversary-mobile-dark.png"
+      fallbackAlt="Пять столбцов показывают среднедневной индекс оценочного GMV разгрузочных поясов: база до 24 февраля 2022 года, затем примерно 8, 35, 49 и 45 в четырёх последовательных годах"
+      table={<DataTable columns={anniversaryColumns} rows={ANNIVERSARY_WINDOWS.map((window) => [window.label, `${window.d1}–${window.d2}`, formatExactRubles(window.revenue), formatSales(window.sales), window.observedDays, formatExactDailyIndex(window.index)])} className="mb-0" />}
     >
-      <DivergingBars />
+      <AnniversaryBars />
     </ChartShell>
+  );
+}
+
+const SUPPLY_METRICS = [
+  { label: "Оценочный GMV", value: "≈×22", accent: false },
+  { label: "Оценочные продажи", value: "почти ×20", accent: false },
+  { label: "Среднее дневное число продавцов", value: "≈×59", accent: false },
+  { label: "Среднее дневное число карточек", value: ">×100", accent: true },
+] as const;
+
+export function SupplyCallout() {
+  return (
+    <aside className="my-8 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6" aria-labelledby="supply-callout-title">
+      <h3 id="supply-callout-title" className="text-[17px] font-bold leading-snug text-[var(--color-text)]">Витрина маскировочных сетей расширялась быстрее оборота</h3>
+      <p className="mt-2 font-mono text-[10px] text-[var(--color-dim)]">Маскировочные сети · последний сопоставимый период к наблюдаемой базе</p>
+      <div className="mt-5 grid grid-cols-2 gap-px overflow-hidden rounded-[2px] border border-[var(--color-border)] bg-[var(--color-border)] sm:grid-cols-4">
+        {SUPPLY_METRICS.map((metric) => (
+          <div key={metric.label} className="min-w-0 bg-[var(--color-bg)] p-3 sm:p-4">
+            <p className={`font-mono text-[22px] font-bold tabular-nums sm:text-[26px] ${metric.accent ? "text-[var(--viz-wb)]" : "text-[var(--color-text)]"}`}>{metric.value}</p>
+            <p className="mt-2 text-[10px] leading-snug text-[var(--color-dim)] sm:text-[11px]">{metric.label}</p>
+          </div>
+        ))}
+      </div>
+      <p className="mt-4 text-[13px] leading-relaxed text-[var(--color-dim)]">Между наблюдаемым довоенным окном и последними 12 месяцами перед атакой. Рост числа продавцов и карточек не означает, что доход каждого продавца увеличился.</p>
+    </aside>
   );
 }

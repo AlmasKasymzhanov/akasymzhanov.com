@@ -173,3 +173,9 @@ html.light ::-webkit-scrollbar-thumb { background: #ccc; }
 @utility font-heading {
   font-family: var(--font-sans);
 }
+
+/* Two footnote markers in a row (e.g. …региона²⁷²⁸) would otherwise touch and
+   read as one number. Space only the second one; single markers are untouched. */
+.fn-marker + .fn-marker {
+  margin-left: 0.18em;
+}

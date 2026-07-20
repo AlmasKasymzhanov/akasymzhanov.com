@@ -1,0 +1,58 @@
+{
+  "generated_at": "2026-07-20",
+  "method": "Five non-overlapping anniversary windows. Raw sums retain all observations. Sensitivity sums exclude dates present in anomaly-audit.csv. A series is not publication-eligible when any window differs by more than 10% of raw GMV.",
+  "threshold_pct": 10,
+  "graph_2_publication": {
+    "subject_id": 6338,
+    "niche": "Разгрузочные пояса",
+    "index_method": "Mean raw GMV per observed day in each window divided by mean raw GMV per observed day in the baseline window.",
+    "windows": [
+      { "label": "До", "observed_days": 362, "daily_normalized_gmv_x": 1.000000 },
+      { "label": "1-й год", "observed_days": 365, "daily_normalized_gmv_x": 8.232827 },
+      { "label": "2-й год", "observed_days": 365, "daily_normalized_gmv_x": 35.357831 },
+      { "label": "3-й год", "observed_days": 366, "daily_normalized_gmv_x": 49.102352 },
+      { "label": "4-й год", "observed_days": 365, "daily_normalized_gmv_x": 45.090050 }
+    ]
+  },
+  "series": [
+    {
+      "subject_id": 5111,
+      "niche": "Маскировочные костюмы",
+      "publication_eligible": false,
+      "exclusion_reason": "Raw/cleaned GMV differs by 65.945766% in the first post-baseline window.",
+      "windows": [
+        { "label": "До", "d1": "2021-02-24", "d2": "2022-02-23", "observed_days": 364, "raw_revenue": 41570921, "clean_revenue": 41570921, "raw_sales": 21576, "clean_sales": 21576, "raw_gmv_x": 1, "clean_gmv_x": 1, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "1-й год", "d1": "2022-02-24", "d2": "2023-02-23", "observed_days": 365, "raw_revenue": 996465408, "clean_revenue": 339338660, "raw_sales": 266263, "clean_sales": 92535, "raw_gmv_x": 23.970251, "clean_gmv_x": 8.162885, "flagged_days": 5, "flagged_share_days_pct": 1.369863, "raw_clean_diff_pct": 65.945766, "flag_dates": ["2022-03-31", "2022-04-01", "2022-04-08", "2022-08-04", "2022-09-08"] },
+        { "label": "2-й год", "d1": "2023-02-24", "d2": "2024-02-23", "observed_days": 365, "raw_revenue": 870844300, "clean_revenue": 870844300, "raw_sales": 262038, "clean_sales": 262038, "raw_gmv_x": 20.9484, "clean_gmv_x": 20.9484, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "3-й год", "d1": "2024-02-24", "d2": "2025-02-23", "observed_days": 366, "raw_revenue": 1285182232, "clean_revenue": 1191215480, "raw_sales": 417278, "clean_sales": 391948, "raw_gmv_x": 30.915414, "clean_gmv_x": 28.655018, "flagged_days": 1, "flagged_share_days_pct": 0.273224, "raw_clean_diff_pct": 7.311551, "flag_dates": ["2024-12-16"] },
+        { "label": "4-й год", "d1": "2025-02-24", "d2": "2026-02-23", "observed_days": 365, "raw_revenue": 2693603495, "clean_revenue": 2693603495, "raw_sales": 755387, "clean_sales": 755387, "raw_gmv_x": 64.795377, "clean_gmv_x": 64.795377, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] }
+      ]
+    },
+    {
+      "subject_id": 4620,
+      "niche": "Маскировочные сети",
+      "publication_eligible": false,
+      "exclusion_reason": "Raw/cleaned GMV differs by 87.220482% in the first post-baseline window.",
+      "windows": [
+        { "label": "До", "d1": "2021-02-24", "d2": "2022-02-23", "observed_days": 364, "raw_revenue": 36828522, "clean_revenue": 36828522, "raw_sales": 19139, "clean_sales": 19139, "raw_gmv_x": 1, "clean_gmv_x": 1, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "1-й год", "d1": "2022-02-24", "d2": "2023-02-23", "observed_days": 365, "raw_revenue": 1185152239, "clean_revenue": 151456749, "raw_sales": 274604, "clean_sales": 58473, "raw_gmv_x": 32.180282, "clean_gmv_x": 4.112485, "flagged_days": 2, "flagged_share_days_pct": 0.547945, "raw_clean_diff_pct": 87.220482, "flag_dates": ["2022-09-12", "2022-12-22"] },
+        { "label": "2-й год", "d1": "2023-02-24", "d2": "2024-02-23", "observed_days": 365, "raw_revenue": 372949588, "clean_revenue": 336589231, "raw_sales": 137948, "clean_sales": 127550, "raw_gmv_x": 10.126651, "clean_gmv_x": 9.139363, "flagged_days": 1, "flagged_share_days_pct": 0.273973, "raw_clean_diff_pct": 9.749403, "flag_dates": ["2023-07-17"] },
+        { "label": "3-й год", "d1": "2024-02-24", "d2": "2025-02-23", "observed_days": 366, "raw_revenue": 641975792, "clean_revenue": 581768589, "raw_sales": 299139, "clean_sales": 253010, "raw_gmv_x": 17.431484, "clean_gmv_x": 15.796686, "flagged_days": 1, "flagged_share_days_pct": 0.273224, "raw_clean_diff_pct": 9.378423, "flag_dates": ["2024-03-20"] },
+        { "label": "4-й год", "d1": "2025-02-24", "d2": "2026-02-23", "observed_days": 365, "raw_revenue": 549860209, "clean_revenue": 549860209, "raw_sales": 268723, "clean_sales": 268723, "raw_gmv_x": 14.930282, "clean_gmv_x": 14.930282, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] }
+      ]
+    },
+    {
+      "subject_id": 6338,
+      "niche": "Разгрузочные пояса",
+      "publication_eligible": true,
+      "exclusion_reason": null,
+      "windows": [
+        { "label": "До", "d1": "2021-02-24", "d2": "2022-02-23", "observed_days": 362, "raw_revenue": 10214939, "clean_revenue": 10214939, "raw_sales": 3764, "clean_sales": 3764, "raw_gmv_x": 1, "clean_gmv_x": 1, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "1-й год", "d1": "2022-02-24", "d2": "2023-02-23", "observed_days": 365, "raw_revenue": 84794768, "clean_revenue": 84794768, "raw_sales": 27030, "clean_sales": 27030, "raw_gmv_x": 8.301055, "clean_gmv_x": 8.301055, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "2-й год", "d1": "2023-02-24", "d2": "2024-02-23", "observed_days": 365, "raw_revenue": 364171279, "clean_revenue": 364171279, "raw_sales": 80753, "clean_sales": 80753, "raw_gmv_x": 35.650852, "clean_gmv_x": 35.650852, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "3-й год", "d1": "2024-02-24", "d2": "2025-02-23", "observed_days": 366, "raw_revenue": 507119824, "clean_revenue": 507119824, "raw_sales": 131087, "clean_sales": 131087, "raw_gmv_x": 49.644919, "clean_gmv_x": 49.644919, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] },
+        { "label": "4-й год", "d1": "2025-02-24", "d2": "2026-02-23", "observed_days": 365, "raw_revenue": 464409176, "clean_revenue": 464409176, "raw_sales": 110796, "clean_sales": 110796, "raw_gmv_x": 45.463725, "clean_gmv_x": 45.463725, "flagged_days": 0, "flagged_share_days_pct": 0, "raw_clean_diff_pct": 0, "flag_dates": [] }
+      ]
+    }
+  ]
+}

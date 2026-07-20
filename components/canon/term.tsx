@@ -201,7 +201,9 @@ export function Term({
 export function Fn({ n, tip }: { n: number; tip: React.ReactNode }) {
   const { open, triggerRef, popRef, pos, openNow, closeSoon, cancelClose, onClick, onPointerDown } = useTip();
   return (
-    <span className="relative inline">
+    /* fn-marker: lets globals.css space two consecutive markers apart, so
+       e.g. 27 + 28 read as two references and not as the number "2728". */
+    <span className="fn-marker relative inline">
       <span
         ref={triggerRef}
         tabIndex={0}

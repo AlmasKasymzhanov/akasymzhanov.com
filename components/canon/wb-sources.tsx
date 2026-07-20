@@ -103,9 +103,12 @@ const SOURCES: readonly SourceReference[] = [
   {
     n: 13,
     publication: "MPStats",
-    date: "проверено 19.07.2026",
-    claim: "Описание метода получения внешних оценочных данных.",
-    links: [{ label: "Документация MPStats", href: "https://mpstats.io/integrations/docs/description/" }],
+    date: "проверено 20.07.2026",
+    claim: "Публичная документация внешнего сервиса и методика расчётов, ограничений и периодов в этой статье.",
+    links: [
+      { label: "Документация MPStats", href: "https://mpstats.io/integrations/docs/description/" },
+      { label: "Методика статьи", href: "#methodology" },
+    ],
   },
   {
     n: 14,
@@ -113,7 +116,7 @@ const SOURCES: readonly SourceReference[] = [
     date: "18–19.07.2026",
     claim: "Карточка детектора «Булат v.4» и отдельный публичный файл метаданных классификатора.",
     links: [
-      { label: "Карточка SKU 949889001", href: "https://www.wildberries.ru/catalog/949889001/detail.aspx" },
+      { label: "Карточка, артикул 949889001", href: "https://www.wildberries.ru/catalog/949889001/detail.aspx" },
       { label: "Публичные метаданные карточки", href: "https://basket-40.wbbasket.ru/vol9498/part949889/949889001/info/ru/card.json" },
     ],
   },
@@ -122,16 +125,16 @@ const SOURCES: readonly SourceReference[] = [
     publication: "Wildberries",
     date: "18.07.2026",
     claim: "Карточка бронежилета и заявления продавца о комплектации.",
-    links: [{ label: "Карточка SKU 879755591", href: "https://www.wildberries.ru/catalog/879755591/detail.aspx" }],
+    links: [{ label: "Карточка, артикул 879755591", href: "https://www.wildberries.ru/catalog/879755591/detail.aspx" }],
   },
   {
     n: 16,
     publication: "Wildberries",
     date: "18.07.2026",
-    claim: "Карточка катушки SKU 447850828 с заявленным назначением для дрона и отдельная проверенная карточка SKU 971841998 со схемами подключения.",
+    claim: "Карточка катушки, артикул 447850828, с заявленным назначением для дрона и отдельная проверенная карточка, артикул 971841998, со схемами подключения.",
     links: [
-      { label: "Катушка SKU 447850828", href: "https://www.wildberries.ru/catalog/447850828/detail.aspx" },
-      { label: "Схемы подключения, SKU 971841998", href: "https://www.wildberries.ru/catalog/971841998/detail.aspx" },
+      { label: "Катушка, артикул 447850828", href: "https://www.wildberries.ru/catalog/447850828/detail.aspx" },
+      { label: "Схемы подключения, артикул 971841998", href: "https://www.wildberries.ru/catalog/971841998/detail.aspx" },
     ],
   },
   {
@@ -139,18 +142,18 @@ const SOURCES: readonly SourceReference[] = [
     publication: "Wildberries",
     date: "18.07.2026",
     claim: "Карточка аптечки с военной маркировкой.",
-    links: [{ label: "Карточка SKU 230725243", href: "https://www.wildberries.ru/catalog/230725243/detail.aspx" }],
+    links: [{ label: "Карточка, артикул 230725243", href: "https://www.wildberries.ru/catalog/230725243/detail.aspx" }],
   },
   {
     n: 18,
     publication: "Wildberries",
     date: "18.07.2026",
     claim: "Карточка гражданского километрового оптического кабеля.",
-    links: [{ label: "Карточка SKU 972102728", href: "https://www.wildberries.ru/catalog/972102728/detail.aspx" }],
+    links: [{ label: "Карточка, артикул 972102728", href: "https://www.wildberries.ru/catalog/972102728/detail.aspx" }],
   },
   {
     n: 19,
-    publication: "ITU",
+    publication: "Международный союз электросвязи (ITU)",
     date: "01.08.2024",
     claim: "Характеристики семейства одномодового волокна G.657.",
     links: [{ label: "Рекомендация ITU-T G.657", href: "https://www.itu.int/epublications/publication/itu-t-g-657-2024-08-characteristics-of-a-bending-loss-insensitive-single-mode-optical-fibre-and-cable" }],
@@ -164,17 +167,59 @@ const SOURCES: readonly SourceReference[] = [
   },
   {
     n: 21,
-    publication: "NATO ACT",
+    publication: "Командование НАТО по трансформации (NATO ACT)",
     date: "проверено 19.07.2026",
     claim: "Оптоволоконные БПЛА и ограничения традиционного радиочастотного подавления.",
     links: [{ label: "Материал NATO ACT", href: "https://www.act.nato.int/article/innovation-challenge-fibre-optic-drones/" }],
   },
   {
     n: 22,
-    publication: "Wildberries Data Centers",
-    date: "проверено 19.07.2026",
-    claim: "Параметры дата-центра внутри распределительного центра Wildberries.",
-    links: [{ label: "Сайт Wildberries Data Centers", href: "https://datacenters.wb.ru/en/" }],
+    publication: "Сергей Собянин",
+    date: "20.07.2026",
+    claim: "Официальное сообщение: более 400 БПЛА летели в направлении Московского региона с 20:30 до 05:00; 85 уничтожены на подлёте к Москве.",
+    links: [{ label: "Официальное сообщение", href: "https://t.me/mos_sobyanin/20878" }],
+  },
+  {
+    n: 23,
+    publication: "Минобороны России",
+    date: "20.07.2026",
+    claim: "Две последовательные сводки за 20:00–23:30 и 23:30–07:00: 4 и 19 БПЛА уничтожены над Московским регионом, из них 2 и 16 летели на Москву.",
+    links: [{ label: "Официальные сводки", href: "https://t.me/s/mod_russia/54841" }],
+  },
+  {
+    n: 24,
+    publication: "Андрей Воробьёв",
+    date: "20.07.2026, 09:44 мск",
+    claim: "Срез развивающегося события: десять пострадавших, включая ребёнка, и последствия в Московской области.",
+    links: [{ label: "Официальное уточнение", href: "https://t.me/vorobiev_live/12113" }],
+  },
+  {
+    n: 25,
+    publication: "Евгения Хрусталёва",
+    date: "20.07.2026",
+    claim: "Официальное сообщение главы Домодедова о пожаре в индустриальном парке «Южные Врата» и последствиях в округе.",
+    links: [{ label: "Официальное сообщение", href: "https://t.me/khrustaleva_domodedovo/7736" }],
+  },
+  {
+    n: 26,
+    publication: "Reuters",
+    date: "20.07.2026",
+    claim: "Комментарий RWB: эвакуация комплекса в Коледино, отсутствие повреждений и возобновление работы.",
+    links: [{ label: "Материал Reuters", href: "https://www.reuters.com/business/aerospace-defense/russia-says-ukraine-launched-400-drones-moscow-region-two-wounded-buildings-set-2026-07-20/" }],
+  },
+  {
+    n: 27,
+    publication: "The Insider",
+    date: "20.07.2026",
+    claim: "Проверка NASA FIRMS: тепловая аномалия у нефтебазы во Львовском и отсутствие аномалии на территории склада Wildberries в Коледино.",
+    links: [{ label: "Материал The Insider", href: "https://theins.ru/news/295040" }],
+  },
+  {
+    n: 28,
+    publication: "Украинская правда",
+    date: "20.07.2026",
+    claim: "Пересказ с прямой цитатой заявления Владимира Зеленского об ударах по логистическим объектам и нефтебазе Московского региона.",
+    links: [{ label: "Материал «Украинской правды»", href: "https://www.pravda.com.ua/news/2026/07/20/8044899/" }],
   },
 ] as const;
 
@@ -214,7 +259,7 @@ export function SourcesList() {
             {source.links.map((link, index) => (
               <span key={link.href}>
                 {index > 0 && " · "}
-                <a href={link.href} target="_blank" rel="noopener noreferrer" className="underline decoration-solid underline-offset-2 hover:text-[var(--color-text)]">
+                <a href={link.href} target={link.href.startsWith("#") ? undefined : "_blank"} rel={link.href.startsWith("#") ? undefined : "noopener noreferrer"} className="underline decoration-solid underline-offset-2 hover:text-[var(--color-text)]">
                   {link.label}
                 </a>
               </span>
