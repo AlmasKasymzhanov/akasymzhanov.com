@@ -11,6 +11,9 @@ const nextConfig: NextConfig = {
     return [
       // Короткая клиентская ссылка: kasymzhanov.com/elki → отчёт для клиента.
       { source: "/elki", destination: "/clients/elki", permanent: false },
+      // Кириллический алиас на отчёт по нишам WB. Основной адрес — латиница:
+      // её проще копировать в переписку (кириллица превращается в %D0%B0%D0%BD…).
+      { source: "/анализ", destination: "/analiz", permanent: false },
     ];
   },
 };
