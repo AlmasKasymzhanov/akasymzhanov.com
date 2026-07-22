@@ -153,22 +153,10 @@ export default async function HomeEn() {
         <SiteHeader locale="en" />
 
         <main className="flex-1">
-          {/* ── Hero ── */}
-          <section className="border-b border-[var(--color-border)]">
-            <div className="p-6 md:p-10 lg:p-12">
-              <HeroCard a={withEng(lead)} views={v(lead.slug)} />
-            </div>
-          </section>
-
-          {/* ── Latest + Trending ── */}
+          {/* ── Hero + Trending ── */}
           <section className="grid grid-cols-1 lg:grid-cols-[1fr_340px] border-b border-[var(--color-border)]">
             <div className="p-6 md:p-10 lg:p-12">
-              <SectionLabel>Latest</SectionLabel>
-              <div className="grid gap-10 md:gap-x-10 md:gap-y-12 md:grid-cols-2">
-                {latest.map((a) => (
-                  <ArticleCard key={a.slug} a={withEng(a)} views={v(a.slug)} locale={L} />
-                ))}
-              </div>
+              <HeroCard a={withEng(lead)} views={v(lead.slug)} />
             </div>
             <aside className="border-t lg:border-t-0 lg:border-l border-[var(--color-border)] p-6 md:p-10 lg:p-8">
               <SectionLabel>Trending</SectionLabel>
@@ -178,6 +166,16 @@ export default async function HomeEn() {
                 ))}
               </div>
             </aside>
+          </section>
+
+          {/* ── Latest ── */}
+          <section className="px-6 md:px-10 lg:px-12 py-12 md:py-16 border-b border-[var(--color-border)]">
+            <SectionLabel>Latest</SectionLabel>
+            <div className="grid gap-10 md:gap-x-10 md:gap-y-12 md:grid-cols-2">
+              {latest.map((a) => (
+                <ArticleCard key={a.slug} a={withEng(a)} views={v(a.slug)} locale={L} />
+              ))}
+            </div>
           </section>
 
           {/* ── Newsletter ── */}
