@@ -15,17 +15,17 @@ import {
 } from "@/components/articles";
 
 export const metadata: Metadata = {
-  title: "Kasymzhanov — Data Media",
+  title: "Kasymzhanov — Data Media on Markets, Economy & Tech",
   description:
-    "Investigations, analysis, and explainers on markets. Data, not opinions.",
+    "Investigations, analytics, and data journalism you can verify against the numbers. By Almas Kasymzhanov, data journalist, analyst, and founder.",
   alternates: {
     canonical: "/en",
     languages: { "ru-RU": "/", "en-US": "/en", "x-default": "/" },
   },
   openGraph: {
-    title: "Kasymzhanov — Data Media",
+    title: "Kasymzhanov — Data Media on Markets, Economy & Tech",
     description:
-      "Investigations, analysis, and explainers on markets. Data, not opinions.",
+      "Investigations, analytics, and data journalism you can verify against the numbers. By Almas Kasymzhanov, data journalist, analyst, and founder.",
     url: "https://kasymzhanov.com/en",
     locale: "en_US",
   },

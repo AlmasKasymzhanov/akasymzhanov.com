@@ -3,7 +3,7 @@ import { readFile } from "node:fs/promises";
 import { join } from "node:path";
 
 export const runtime = "nodejs";
-export const alt = "kasymzhanov.com — data journalism on marketplaces";
+export const alt = "Kasymzhanov — Independent Data Media";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -28,14 +28,14 @@ export default async function Image() {
         }}
       >
         <div style={{ display: "flex", fontFamily: "Mono", fontSize: 22, letterSpacing: 4, textTransform: "uppercase", color: "#888888" }}>
-          Data journalism on marketplaces
+          Independent Data Media
         </div>
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 1000 }}>
           <div style={{ display: "flex", fontFamily: "Mono", fontWeight: 700, fontSize: 96, lineHeight: 1.05, letterSpacing: -2, color: "#ededed" }}>
             KASYMZHANOV
           </div>
           <div style={{ fontFamily: "Mono", fontWeight: 400, fontSize: 30, lineHeight: 1.4, color: "#888888", marginTop: 26 }}>
-            Marketplace niches, unit economics, brand mistakes. Data, not opinions.
+            Investigations, analytics, data journalism. Data, not opinions.
           </div>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", fontFamily: "Mono", fontSize: 24 }}>

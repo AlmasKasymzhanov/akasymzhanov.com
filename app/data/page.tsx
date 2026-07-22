@@ -5,7 +5,7 @@ import { ARTICLES, ArticleCard, getViews, getEngagement, withEngagement } from "
 export const metadata: Metadata = {
   title: "Kasymzhanov Data — дата-журналистика и аналитика",
   description:
-    "Расследования, аналитика и разборы рынков. Данные вместо мнений.",
+    "Расследования, аналитика и дата-журналистика, которую можно проверить по цифрам. Данные вместо мнений.",
   alternates: {
     canonical: "/data",
     languages: { "ru-RU": "/data", "en-US": "/en/data", "x-default": "/data" },

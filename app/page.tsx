@@ -14,9 +14,9 @@ import {
 } from "@/components/articles";
 
 export const metadata: Metadata = {
-  title: "Kasymzhanov — дата-медиа",
+  title: "Kasymzhanov — дата-медиа о рынках, экономике и технологиях",
   description:
-    "Расследования, аналитика и разборы рынков. Данные вместо мнений.",
+    "Расследования, аналитика и дата-журналистика, которую можно проверить по цифрам. Автор — Алмас Касымжанов, дата-журналист, аналитик и предприниматель.",
   alternates: {
     canonical: "/",
     languages: { "ru-RU": "/", "en-US": "/en", "x-default": "/" },

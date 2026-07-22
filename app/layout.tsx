@@ -31,11 +31,13 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: "Kasymzhanov",
-  description: "Independent data media — data, not opinions.",
+  description:
+    "Kasymzhanov — независимое дата-медиа. Расследования, аналитика и дата-журналистика о рынках, экономике и технологиях. Данные вместо мнений.",
   metadataBase: new URL("https://kasymzhanov.com"),
   openGraph: {
     title: "Kasymzhanov",
-    description: "Independent data media — data, not opinions.",
+    description:
+      "Kasymzhanov — независимое дата-медиа. Расследования, аналитика и дата-журналистика о рынках, экономике и технологиях. Данные вместо мнений.",
     url: "https://kasymzhanov.com",
     siteName: "kasymzhanov.com",
     locale: "ru_RU",
@@ -44,7 +46,8 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Kasymzhanov",
-    description: "Independent data media — data, not opinions.",
+    description:
+      "Kasymzhanov — независимое дата-медиа. Расследования, аналитика и дата-журналистика о рынках, экономике и технологиях. Данные вместо мнений.",
     creator: "@akasymzhanov",
     site: "@akasymzhanov",
   },
@@ -72,13 +75,27 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              name: "Almas Kasymzhanov",
-              alternateName: "Алмас Касымжанов",
-              url: "https://kasymzhanov.com",
-              email: "almas@kasymzhanov.com",
-              jobTitle: "Дата-журналист, аналитик, предприниматель",
-              sameAs: SOCIAL_SAMEAS,
+              "@graph": [
+                {
+                  "@type": "Person",
+                  name: "Almas Kasymzhanov",
+                  alternateName: "Алмас Касымжанов",
+                  url: "https://kasymzhanov.com",
+                  email: "almas@kasymzhanov.com",
+                  jobTitle: "Дата-журналист, аналитик, предприниматель",
+                  description:
+                    "Автор Kasymzhanov — независимого дата-медиа о рынках, экономике и технологиях.",
+                  sameAs: SOCIAL_SAMEAS,
+                },
+                {
+                  "@type": "WebSite",
+                  name: "Kasymzhanov",
+                  url: "https://kasymzhanov.com",
+                  description:
+                    "Независимое дата-медиа. Расследования, аналитика и дата-журналистика. Данные вместо мнений.",
+                  publisher: { "@type": "Person", name: "Almas Kasymzhanov" },
+                },
+              ],
             }),
           }}
         />

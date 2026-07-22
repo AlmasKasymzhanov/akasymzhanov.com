@@ -8,7 +8,7 @@ import { dict } from "@/lib/i18n";
 export const metadata: Metadata = {
   title: "About — Kasymzhanov",
   description:
-    "Independent data media. Almas Kasymzhanov — data journalist, analyst, founder of 10b.kz, Redstat, and Brock UI.",
+    "Independent data media. Almas Kasymzhanov — data journalist, analyst, and founder. Investigations, analytics, and data journalism on markets, the economy, and technology.",
   alternates: {
     canonical: "/en/about",
     languages: { "ru-RU": "/about", "en-US": "/en/about", "x-default": "/about" },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "About — Kasymzhanov",
     description:
-      "Independent data media. Data, not opinions.",
+      "Independent data media. Almas Kasymzhanov — data journalist, analyst, and founder. Investigations, analytics, and data journalism on markets, the economy, and technology.",
     url: "https://kasymzhanov.com/en/about",
     locale: "en_US",
     type: "profile",

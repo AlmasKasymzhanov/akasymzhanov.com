@@ -5,7 +5,7 @@ import { SocialIcon } from "@/components/social-icons";
 export const metadata: Metadata = {
   title: "Контакты — Almas Kasymzhanov",
   description:
-    "Связаться с Алмасом Касымжановым: Telegram-канал, почта, телефон. Маркетплейс-аналитика, дата-журналистика, консалтинг.",
+    "Связаться с Алмасом Касымжановым: Telegram, почта, телефон. Дата-журналистика, аналитика рынков, enterprise-разборы.",
 };
 
 function MailIcon() {

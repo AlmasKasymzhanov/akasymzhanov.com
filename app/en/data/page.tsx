@@ -5,7 +5,7 @@ import { ARTICLES, ArticleCard, getViews, getEngagement, withEngagement, localiz
 export const metadata: Metadata = {
   title: "Kasymzhanov Data — data journalism and analysis",
   description:
-    "Investigations, analysis, and explainers on markets. Data, not opinions.",
+    "Investigations, analytics, and data journalism you can verify against the numbers. Data, not opinions.",
   alternates: {
     canonical: "/en/data",
     languages: { "ru-RU": "/data", "en-US": "/en/data", "x-default": "/data" },

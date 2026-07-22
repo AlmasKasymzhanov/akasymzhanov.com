@@ -8,7 +8,7 @@ import { dict } from "@/lib/i18n";
 export const metadata: Metadata = {
   title: "Об издании — Kasymzhanov",
   description:
-    "Независимое дата-медиа. Алмас Касымжанов — дата-журналист, аналитик, основатель 10b.kz, Redstat и Brock UI.",
+    "Независимое дата-медиа. Алмас Касымжанов — дата-журналист, аналитик и предприниматель. Расследования, аналитика и дата-журналистика о рынках, экономике и технологиях.",
   alternates: {
     canonical: "/about",
     languages: { "ru-RU": "/about", "en-US": "/en/about", "x-default": "/about" },
@@ -16,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Об издании — Kasymzhanov",
     description:
-      "Независимое дата-медиа. Данные вместо мнений.",
+      "Независимое дата-медиа. Алмас Касымжанов — дата-журналист, аналитик и предприниматель. Расследования, аналитика и дата-журналистика о рынках, экономике и технологиях.",
     url: "https://kasymzhanov.com/about",
     locale: "ru_RU",
     type: "profile",
