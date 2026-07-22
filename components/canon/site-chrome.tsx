@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Masthead } from "@/components/canon/masthead";
 import { HeaderSearch } from "@/components/canon/header-search";
+import { HeaderNav } from "@/components/canon/header-nav";
 import { LangToggle } from "@/components/lang-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SocialIcon } from "@/components/social-icons";
@@ -81,8 +82,8 @@ function MailIcon({ size = 16 }: { size?: number }) {
   );
 }
 
-/* ───── Author block sections (reused on home aside + article bottom) ───── */
-function AboutSection({ locale }: { locale: Locale }) {
+/* ───── Author block sections (reused on home aside + article bottom + about page) ───── */
+export function AboutSection({ locale }: { locale: Locale }) {
   const t = dict[locale];
   return (
     <div>
@@ -104,7 +105,7 @@ function AboutSection({ locale }: { locale: Locale }) {
   );
 }
 
-function ProjectsSection({ locale }: { locale: Locale }) {
+export function ProjectsSection({ locale }: { locale: Locale }) {
   return (
     <div>
       <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-4">{dict[locale].projects.label}</p>
@@ -141,7 +142,7 @@ function ProjectsSection({ locale }: { locale: Locale }) {
   );
 }
 
-function ContactsSection({ locale }: { locale: Locale }) {
+export function ContactsSection({ locale }: { locale: Locale }) {
   return (
     <div>
       <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-3">{dict[locale].contact.label}</p>
@@ -157,7 +158,7 @@ function ContactsSection({ locale }: { locale: Locale }) {
   );
 }
 
-function SocialsSection({ locale }: { locale: Locale }) {
+export function SocialsSection({ locale }: { locale: Locale }) {
   return (
     <div>
       <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-3">{dict[locale].social.label}</p>
@@ -202,12 +203,13 @@ export function AuthorBlock({ variant = "vertical", locale = "ru" }: { variant?:
 // Main site header — masthead left-aligned at every breakpoint (Bloomberg /
 // Business Insider / Rest of World convention), controls on the right. Compact
 // lang + theme on mobile, full segmented pills on tablet+. No hamburger.
-export function SiteHeader() {
+export function SiteHeader({ locale = "ru" }: { locale?: Locale }) {
   return (
     <header className="border-b border-[var(--color-border)]">
       <div className="relative flex items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 md:px-7 py-4 md:py-5">
-        <div className="min-w-0">
+        <div className="min-w-0 flex items-center gap-4 md:gap-6">
           <Masthead size="xl" surnameOnly />
+          <HeaderNav />
         </div>
         <div className="shrink-0 flex items-center gap-0.5 sm:gap-3 md:gap-4">
           <LangToggle />
@@ -220,13 +222,14 @@ export function SiteHeader() {
   );
 }
 
-// Main site footer — masthead, description, colophon, requisites + legal.
+// Main site footer — author name, description, colophon, requisites + legal.
 export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Locale; hidePhone?: boolean }) {
   const t = dict[locale];
   return (
     <footer className="border-t border-[var(--color-border)]">
       <div className="px-6 md:px-7 py-10 md:py-14">
-        <Masthead size="lg" surnameOnly />
+        <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight text-[var(--color-text)]">{t.name}</h2>
+        <p className="mt-2 text-[13px] text-[var(--color-brand)] font-medium">{t.about.role}</p>
         <p className="mt-5 text-[13px] md:text-[14px] text-[var(--color-dim)] leading-relaxed max-w-3xl">
           {t.footer.desc}
         </p>
@@ -253,6 +256,9 @@ export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Loca
           </span>
         </div>
         <nav className="flex items-center gap-5 shrink-0">
+          <Link href={locale === "en" ? "/en/about" : "/about"} className="no-underline hover:text-[var(--color-brand)] hover:underline underline-offset-4 decoration-1 transition-colors">
+            {t.footer.about}
+          </Link>
           <Link href="/privacy" className="no-underline hover:text-[var(--color-brand)] hover:underline underline-offset-4 decoration-1 transition-colors">
             {t.footer.privacy}
           </Link>

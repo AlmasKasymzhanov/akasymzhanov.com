@@ -2,12 +2,8 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { ReadTracker } from "@/components/read-tracker";
-import { SiteHeader, SiteFooter, AuthorBlock } from "@/components/canon/site-chrome";
 import { ArticleHeader } from "@/components/canon/article-header";
-import { EngagementProvider } from "@/components/engagement/engagement-provider";
-import { EngagementBar } from "@/components/engagement/engagement-bar";
-import { Comments } from "@/components/engagement/comments";
+import { ArticleLayout } from "@/components/canon/article-layout";
 import { useState } from "react";
 
 /* MCP-коннектор для аналитики Kaspi (используется в шаге 3) */
@@ -77,13 +73,10 @@ export default function KaspiMcpArticle() {
   const [showProgram, setShowProgram] = useState(false);
 
   return (
-    <div className="font-mono text-[var(--color-text)]">
-      <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
-        <ReadTracker slug="kaspi-mcp" />
-        <SiteHeader />
-        <EngagementProvider slug="kaspi-mcp">
-        <article className="w-full max-w-[680px] mx-auto px-6 py-12 md:py-20">
-
+    <ArticleLayout
+      slug="kaspi-mcp"
+      locale="ru"
+      header={
         <ArticleHeader
           kicker="Redstat + MCP"
           title={<>Арифметика лени: как заставить AI добывать золото из&nbsp;Kaspi, пока вы пьёте кофе</>}
@@ -97,11 +90,10 @@ export default function KaspiMcpArticle() {
             credit: "Иллюстрация: Алмас Касымжанов · Higgsfield AI",
           }}
         />
-
-        <hr className="border-[var(--color-border)] mb-12" />
-
-        {/* ─── Что произошло ─── */}
-        <div className="mb-12">
+      }
+    >
+      {/* ─── Что произошло ─── */}
+      <div className="mb-12">
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Большинство селлеров ищут товар по полдня и всё равно гадают. Я попросил AI и за пять минут получил три готовые ниши для старта на Kaspi: с ценами, долей «без бренда» и прикидкой, сколько закупить на бюджет в <span className="font-mono">5</span> миллионов.
           </p>
@@ -262,19 +254,6 @@ export default function KaspiMcpArticle() {
             Ознакомиться с полной программой
           </Link>
         </div>
-
-        {/* ─── Вовлечённость ─── */}
-        <div className="mt-12 flex justify-end">
-          <EngagementBar />
-        </div>
-        <Comments />
-        </article>
-        </EngagementProvider>
-
-        <div className="flex-1" aria-hidden />
-        <AuthorBlock variant="horizontal" />
-        <SiteFooter />
-      </div>
-    </div>
+    </ArticleLayout>
   );
 }

@@ -12,7 +12,7 @@ import {
 export const metadata: Metadata = {
   title: "Материалы — Almas Kasymzhanov",
   description:
-    "Дата-разборы рынков, брендов и инструментов. Аналитика маркетплейсов Казахстана и СНГ — данные вместо мнений.",
+    "Дата-разборы рынков, брендов и инструментов. Аналитика маркетплейсов — данные вместо мнений.",
   alternates: { canonical: "https://kasymzhanov.com/blog" },
 };
 
@@ -39,7 +39,7 @@ export default async function BlogPage() {
               Материалы
             </h1>
             <p className="text-[15px] md:text-[16px] text-[var(--color-dim)] leading-relaxed max-w-[640px]">
-              Дата-разборы рынков, брендов и инструментов. Аналитика маркетплейсов Казахстана и СНГ - данные вместо мнений.
+              Дата-разборы рынков, брендов и инструментов. Аналитика маркетплейсов - данные вместо мнений.
             </p>
           </header>
 

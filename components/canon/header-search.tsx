@@ -73,7 +73,7 @@ export function HeaderSearch() {
           </form>
           <button
             onClick={() => setOpen(false)}
-            aria-label="Закрыть поиск"
+            aria-label={t.closeSearch}
             className="shrink-0 grid place-items-center h-9 w-9 text-[var(--color-text)] hover:opacity-60 transition-opacity"
           >
             <svg width="18" height="18" viewBox="0 0 18 18" aria-hidden>

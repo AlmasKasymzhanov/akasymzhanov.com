@@ -1,51 +1,41 @@
 import type { Metadata } from "next";
-import localFont from "next/font/local";
+import { Inter, Inter_Tight, JetBrains_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/next";
 import { SOCIAL_SAMEAS } from "@/lib/social";
 import { HtmlLang } from "@/components/html-lang";
 import "./globals.css";
 
-const geist = localFont({
-  src: "../public/fonts/GeistVF.woff2",
-  variable: "--font-geist",
+// Display + UI: Inter Tight — tech-forward, works well in both RU and EN.
+const interTight = Inter_Tight({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-display",
   display: "swap",
+  weight: ["400", "500", "600", "700", "800"],
 });
 
-const menlo = localFont({
-  src: [
-    { path: "../public/fonts/Menlo-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/Menlo-Bold.ttf", weight: "700", style: "normal" },
-  ],
-  variable: "--font-menlo",
+// Body: Inter — maximum readability for long-form.
+const inter = Inter({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-body",
   display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
-// Canon fonts (from Brock UI) — Hack = readable mono body, Departure Mono = pixel display.
-const hack = localFont({
-  src: [
-    { path: "../public/fonts/hack/Hack-Regular.ttf", weight: "400", style: "normal" },
-    { path: "../public/fonts/hack/Hack-Italic.ttf", weight: "400", style: "italic" },
-    { path: "../public/fonts/hack/Hack-Bold.ttf", weight: "700", style: "normal" },
-    { path: "../public/fonts/hack/Hack-BoldItalic.ttf", weight: "700", style: "italic" },
-  ],
-  variable: "--font-hack",
+// Mono: JetBrains Mono for data labels, code, and UI metrics.
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin", "cyrillic"],
+  variable: "--font-mono",
   display: "swap",
-});
-
-const departureMono = localFont({
-  src: "../public/fonts/departure-mono/DepartureMono-Regular.woff2",
-  variable: "--font-departure",
-  weight: "400",
-  display: "swap",
+  weight: ["400", "500", "600", "700"],
 });
 
 export const metadata: Metadata = {
-  title: "Almas Kasymzhanov",
-  description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+  title: "Kasymzhanov",
+  description: "Independent data media — data, not opinions.",
   metadataBase: new URL("https://kasymzhanov.com"),
   openGraph: {
-    title: "Almas Kasymzhanov",
-    description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+    title: "Kasymzhanov",
+    description: "Independent data media — data, not opinions.",
     url: "https://kasymzhanov.com",
     siteName: "kasymzhanov.com",
     locale: "ru_RU",
@@ -53,8 +43,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Almas Kasymzhanov",
-    description: "Founder of Redstat & 10b.kz — Marketplace Analytics & Data Products",
+    title: "Kasymzhanov",
+    description: "Independent data media — data, not opinions.",
     creator: "@akasymzhanov",
     site: "@akasymzhanov",
   },
@@ -70,7 +60,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="ru" className={`${geist.variable} ${menlo.variable} ${hack.variable} ${departureMono.variable}`} suppressHydrationWarning>
+    <html lang="ru" className={`${interTight.variable} ${inter.variable} ${jetbrainsMono.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
         <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />

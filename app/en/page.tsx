@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { SiteHeader, SiteFooter, AuthorBlock } from "@/components/canon/site-chrome";
+import Image from "next/image";
+import Link from "next/link";
+import { SiteHeader, SiteFooter } from "@/components/canon/site-chrome";
 import {
   ARTICLES,
   ArticleCard,
@@ -9,72 +11,184 @@ import {
   getEngagement,
   withEngagement,
   localizeArticle,
+  type Article,
 } from "@/components/articles";
 
 export const metadata: Metadata = {
-  title: "Kasymzhanov — Data Journalism on Marketplaces",
+  title: "Kasymzhanov — Data Media",
   description:
-    "Deep dives into Kazakhstan's marketplace niches, unit economics, and where brands go wrong. Data, not opinions.",
+    "Investigations, analysis, and explainers on markets. Data, not opinions.",
   alternates: {
     canonical: "/en",
     languages: { "ru-RU": "/", "en-US": "/en", "x-default": "/" },
   },
   openGraph: {
-    title: "Kasymzhanov — Data Journalism on Marketplaces",
+    title: "Kasymzhanov — Data Media",
     description:
-      "Deep dives into Kazakhstan's marketplace niches, unit economics, and where brands go wrong. Data, not opinions.",
+      "Investigations, analysis, and explainers on markets. Data, not opinions.",
     url: "https://kasymzhanov.com/en",
     locale: "en_US",
   },
 };
 
-// Refresh view counts periodically (ISR) without per-request cost.
 export const revalidate = 120;
 
 const L = "en" as const;
 
+function SectionLabel({ children }: { children: React.ReactNode }) {
+  return (
+    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-brand)] mb-7">
+      [ {children} ]
+    </p>
+  );
+}
+
+function HeroCard({ a, views }: { a: Article; views: number }) {
+  return (
+    <Link href={a.href} className="group block">
+      <div className="relative aspect-[16/9] md:aspect-[2.4/1] border border-[var(--color-border)] overflow-hidden mb-6 bg-[var(--color-surface)]">
+        <Image
+          src={a.img}
+          alt={a.title}
+          fill
+          sizes="(min-width: 1400px) 1400px, 100vw"
+          style={a.imgPosition ? { objectPosition: a.imgPosition } : undefined}
+          className={`${a.coverBg ? "object-contain" : "object-cover"} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
+          priority
+        />
+      </div>
+      {a.credit && <p className="text-[11px] text-[var(--color-dim)] mb-4">{a.credit}</p>}
+      <p className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-3">
+        {a.rubric}
+      </p>
+      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold tracking-tight text-[var(--color-text)] leading-[1.05] mb-5 font-heading">
+        {a.title}
+      </h1>
+      <p className="text-[16px] md:text-[18px] text-[var(--color-dim)] leading-relaxed max-w-[720px] mb-5">
+        {a.subtitle}
+      </p>
+      <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
+        <span>{a.date}</span>
+        <span aria-hidden>·</span>
+        <span>{a.readMin} min read</span>
+        <span aria-hidden>·</span>
+        <span>{views.toLocaleString("en-US")} views</span>
+      </div>
+    </Link>
+  );
+}
+
+function TrendingItem({ a, views }: { a: Article; views: number }) {
+  return (
+    <Link href={a.href} className="group block">
+      <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-2">
+        {a.rubric}
+      </p>
+      <h3 className="text-[15px] font-bold leading-snug text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-2">
+        {a.title}
+      </h3>
+      <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
+        <span>{a.date}</span>
+        <span aria-hidden>·</span>
+        <span>{views.toLocaleString("en-US")}</span>
+      </div>
+    </Link>
+  );
+}
+
+function SectionCard({ title, desc, href, label }: { title: string; desc: string; href: string; label: string }) {
+  return (
+    <Link href={href} className="group block p-6 md:p-8 border border-[var(--color-border)] bg-[var(--color-surface)] hover:bg-[var(--color-surface-hover)] transition-colors">
+      <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-3">{label}</p>
+      <h3 className="text-[20px] md:text-[24px] font-bold tracking-tight text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-2 font-heading">
+        {title}
+      </h3>
+      <p className="text-[13px] md:text-[14px] text-[var(--color-dim)] leading-relaxed">{desc}</p>
+    </Link>
+  );
+}
+
+function HomeSections() {
+  return (
+    <section className="px-6 md:px-10 lg:px-12 py-12 md:py-16 border-b border-[var(--color-border)]">
+      <SectionLabel>Sections</SectionLabel>
+      <div className="grid gap-4 md:grid-cols-3">
+        <SectionCard
+          title="Kasymzhanov Data"
+          desc="Investigations, analysis, and data journalism you can verify against the numbers."
+          href="/en/data"
+          label="Analysis"
+        />
+        <SectionCard
+          title="Practice"
+          desc="Tools, guides, and practical cases for marketplace analytics."
+          href="/en/tools"
+          label="Tools"
+        />
+        <SectionCard
+          title="Market"
+          desc="Everything on marketplaces: Kaspi, Wildberries, Freedom."
+          href="/en/market"
+          label="Marketplaces"
+        />
+      </div>
+    </section>
+  );
+}
+
 export default async function HomeEn() {
-  const [LEAD, LICK, MCP] = ARTICLES;
-  const slugs = [LEAD.slug, LICK.slug, MCP.slug];
+  const all = ARTICLES.map((a) => localizeArticle(a, L));
+  const slugs = all.map((a) => a.slug);
   const [views, eng] = await Promise.all([getViews(slugs), getEngagement(slugs)]);
   const v = (slug: string) => views[slug] ?? 0;
-  const en = (a: typeof LEAD) => localizeArticle(withEngagement(a, eng), L);
+  const withEng = (a: Article) => withEngagement(a, eng);
+
+  const [lead, ...rest] = all;
+  const latest = rest.slice(0, 3);
+  const trending = [...all].sort((a, b) => v(b.slug) - v(a.slug)).slice(0, 3);
 
   return (
     <div className="font-mono text-[var(--color-text)]">
       <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
-        {/* ── Header ── */}
-        <SiteHeader />
+        <SiteHeader locale="en" />
 
-        {/* ── Front page: about (left) · flagship (center) · market+tools (right) ── */}
-        <section className="grid grid-cols-1 md:grid-cols-[minmax(0,2fr)_minmax(0,5fr)_minmax(0,3fr)] border-b border-[var(--color-border)]">
-          {/* LEFT — about the author */}
-          <aside className="min-w-0 md:border-r border-[var(--color-border)] p-6 md:p-7 order-2 md:order-none border-t md:border-t-0">
-            <AuthorBlock variant="vertical" locale={L} />
-          </aside>
-
-          {/* CENTER — flagship */}
-          <div className="min-w-0 p-6 md:p-10 order-1 md:order-none">
-            <ArticleCard a={en(LEAD)} views={v(LEAD.slug)} featured locale={L} />
-          </div>
-
-          {/* RIGHT — market story + tools (same anatomy) */}
-          <aside className="min-w-0 md:border-l border-[var(--color-border)] order-3 md:order-none border-t md:border-t-0 flex flex-col">
-            <div className="p-6 md:p-7 border-b border-[var(--color-border)]">
-              <ArticleCard a={en(LICK)} views={v(LICK.slug)} locale={L} />
+        <main className="flex-1">
+          {/* ── Hero ── */}
+          <section className="border-b border-[var(--color-border)]">
+            <div className="p-6 md:p-10 lg:p-12">
+              <HeroCard a={withEng(lead)} views={v(lead.slug)} />
             </div>
-            <div className="p-6 md:p-7 border-b border-[var(--color-border)]">
-              <CompactCard a={en(MCP)} views={v(MCP.slug)} locale={L} />
-            </div>
-            <div className="p-6 md:p-7">
-              <NewsletterCard source="home-en" locale={L} />
-            </div>
-          </aside>
-        </section>
+          </section>
 
-        <div className="flex-1" aria-hidden />
+          {/* ── Latest + Trending ── */}
+          <section className="grid grid-cols-1 lg:grid-cols-[1fr_340px] border-b border-[var(--color-border)]">
+            <div className="p-6 md:p-10 lg:p-12">
+              <SectionLabel>Latest</SectionLabel>
+              <div className="grid gap-10 md:gap-x-10 md:gap-y-12 md:grid-cols-2">
+                {latest.map((a) => (
+                  <ArticleCard key={a.slug} a={withEng(a)} views={v(a.slug)} locale={L} />
+                ))}
+              </div>
+            </div>
+            <aside className="border-t lg:border-t-0 lg:border-l border-[var(--color-border)] p-6 md:p-10 lg:p-8">
+              <SectionLabel>Trending</SectionLabel>
+              <div className="space-y-8">
+                {trending.map((a) => (
+                  <TrendingItem key={a.slug} a={withEng(a)} views={v(a.slug)} />
+                ))}
+              </div>
+            </aside>
+          </section>
 
-        {/* ── Footer ── */}
+          {/* ── Newsletter ── */}
+          <section className="px-6 md:px-10 lg:px-12 py-12 md:py-16 border-b border-[var(--color-border)]">
+            <NewsletterCard source="home-en" locale={L} />
+          </section>
+
+          {/* ── Sections ── */}
+          <HomeSections />
+        </main>
+
         <SiteFooter locale={L} />
       </div>
     </div>

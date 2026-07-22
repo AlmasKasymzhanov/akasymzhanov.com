@@ -1,12 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import { ReadTracker } from "@/components/read-tracker";
-import { SiteHeader, SiteFooter, AuthorBlock } from "@/components/canon/site-chrome";
 import { ArticleHeader } from "@/components/canon/article-header";
-import { EngagementProvider } from "@/components/engagement/engagement-provider";
-import { EngagementBar } from "@/components/engagement/engagement-bar";
-import { Comments } from "@/components/engagement/comments";
+import { ArticleLayout } from "@/components/canon/article-layout";
 import { useState } from "react";
 
 /* MCP connector for Kaspi analytics (used in step 3) */
@@ -72,13 +68,10 @@ function CopyField({ value }: { value: string }) {
 
 export default function KaspiMcpArticleEn() {
   return (
-    <div className="font-mono text-[var(--color-text)]">
-      <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
-        <ReadTracker slug="kaspi-mcp" />
-        <SiteHeader />
-        <EngagementProvider slug="kaspi-mcp">
-        <article className="w-full max-w-[680px] mx-auto px-6 py-12 md:py-20">
-
+    <ArticleLayout
+      slug="kaspi-mcp"
+      locale="en"
+      header={
         <ArticleHeader
           locale="en"
           kicker="Redstat + MCP"
@@ -93,11 +86,10 @@ export default function KaspiMcpArticleEn() {
             credit: "Illustration: Almas Kasymzhanov · Higgsfield AI",
           }}
         />
-
-        <hr className="border-[var(--color-border)] mb-12" />
-
-        {/* ─── What happened ─── */}
-        <div className="mb-12">
+      }
+    >
+      {/* ─── What happened ─── */}
+      <div className="mb-12">
           <p className="text-[15px] text-[var(--color-dim)] leading-[1.8] mb-5">
             Most sellers spend half a day hunting for a product and still end up guessing. I asked an AI and five minutes later had three ready-to-go niches to launch on Kaspi — with prices, the share of «unbranded» listings (open cards anyone can sell on), and a rough buy plan for a <span className="font-mono">₸5</span> million (~<span className="font-mono">$10K</span>) budget.
           </p>
@@ -179,19 +171,6 @@ export default function KaspiMcpArticleEn() {
             Claude pulls the niche analytics itself, shows the segments, and suggests where a newcomer should enter. No manual spreadsheets.
           </p>
         </div>
-
-        {/* ─── Engagement ─── */}
-        <div className="mt-12 flex justify-end">
-          <EngagementBar />
-        </div>
-        <Comments />
-        </article>
-        </EngagementProvider>
-
-        <div className="flex-1" aria-hidden />
-        <AuthorBlock variant="horizontal" locale="en" />
-        <SiteFooter locale="en" />
-      </div>
-    </div>
+    </ArticleLayout>
   );
 }

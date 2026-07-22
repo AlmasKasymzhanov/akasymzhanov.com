@@ -43,7 +43,7 @@ export function HeaderAuth() {
   }
 
   const meta = (user.user_metadata ?? {}) as Record<string, string>;
-  const name = meta.full_name ?? meta.name ?? user.email ?? "Аккаунт";
+  const name = meta.full_name ?? meta.name ?? user.email ?? t.account;
   const avatar = meta.avatar_url ?? meta.picture;
 
   async function signOut() {
@@ -56,7 +56,7 @@ export function HeaderAuth() {
     <div className="relative">
       <button
         onClick={() => setOpen((o) => !o)}
-        aria-label="Аккаунт"
+        aria-label={t.account}
         className="flex items-center gap-2 pl-1 pr-2.5 h-[30px] rounded-full border border-[var(--color-border)] hover:border-[var(--color-brand)] transition-colors"
       >
         {avatar ? (
@@ -83,7 +83,7 @@ export function HeaderAuth() {
               onClick={signOut}
               className="w-full text-left px-3 py-2 rounded-md text-[13px] text-[var(--color-text)] hover:bg-[var(--color-surface-hover)] transition-colors"
             >
-              Выйти
+              {t.signOut}
             </button>
           </div>
         </>

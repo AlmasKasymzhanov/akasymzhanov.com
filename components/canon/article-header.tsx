@@ -44,23 +44,23 @@ export function ArticleHeader({ kicker, title, subtitle, slug, date, readMin, he
   const t = dict[locale];
   return (
     <>
-      <header className="mb-10">
-        <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-brand)] mb-4">{kicker}</p>
-        <h1 className="text-[28px] md:text-[36px] font-bold tracking-tight text-[var(--color-text)] leading-[1.15] mb-5">{title}</h1>
-        <p className="text-[15px] md:text-[17px] text-[var(--color-dim)] leading-relaxed mb-7">{subtitle}</p>
+      <header className="mb-10 md:mb-14">
+        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-brand)] mb-4">{kicker}</p>
+        <h1 className="text-[36px] md:text-[52px] lg:text-[60px] font-bold tracking-tight text-[var(--color-text)] leading-[1.05] mb-6 font-heading">{title}</h1>
+        <p className="text-[17px] md:text-[20px] text-[var(--color-dim)] leading-relaxed mb-8 max-w-[720px]">{subtitle}</p>
 
         {/* Byline: author (left) — reading meta + engagement (right) */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5">
+        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 pt-6 border-t border-[var(--color-border)]">
           <div className="flex items-center gap-3">
-            <ArticleAvatar size={44} alt={t.name} />
+            <ArticleAvatar size={48} alt={t.name} />
             <div className="min-w-0">
-              <p className="text-[13px] font-medium text-[var(--color-text)] leading-tight">{t.name}</p>
-              <p className="mt-1 text-[11px] text-[var(--color-dim)]">{date}</p>
+              <p className="text-[14px] font-semibold text-[var(--color-text)] leading-tight">{t.name}</p>
+              <p className="mt-1 text-[12px] text-[var(--color-dim)]">{date}</p>
             </div>
           </div>
 
           <div className="flex flex-col sm:items-end gap-2.5">
-            <div className="flex flex-wrap items-center gap-x-1.5 text-[11px] text-[var(--color-dim)]">
+            <div className="flex flex-wrap items-center gap-x-2 text-[12px] text-[var(--color-dim)] font-mono">
               <span className="inline-flex items-center gap-1">
                 <ClockIcon /> {t.minRead(readMin)}
               </span>

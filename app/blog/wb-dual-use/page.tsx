@@ -1,11 +1,7 @@
 "use client";
 
-import { ReadTracker } from "@/components/read-tracker";
-import { SiteHeader, SiteFooter, AuthorBlock } from "@/components/canon/site-chrome";
 import { ArticleHeader } from "@/components/canon/article-header";
-import { EngagementProvider } from "@/components/engagement/engagement-provider";
-import { EngagementBar } from "@/components/engagement/engagement-bar";
-import { Comments } from "@/components/engagement/comments";
+import { ArticleLayout } from "@/components/canon/article-layout";
 import { Grafik1, Grafik2, SupplyCallout } from "@/components/charts/wb-dual-use";
 import { BulatEvidence, CableComparison, ProductCardGallery } from "@/components/canon/wb-evidence";
 import { Term } from "@/components/canon/term";
@@ -62,23 +58,21 @@ function TaxonomyExplainer() {
 
 export default function WbDualUseArticle() {
   return (
-    <div className="text-[var(--color-text)]">
-      <div className="mx-auto flex min-h-screen max-w-[1400px] flex-col border-x border-[var(--color-border)]">
-        <ReadTracker slug="wb-dual-use" />
-        <SiteHeader />
-        <EngagementProvider slug="wb-dual-use">
-          <article className="mx-auto w-full max-w-[680px] px-6 py-12 md:py-20">
-            <ArticleHeader
-              kicker="Исследование"
-              title={ARTICLE_TITLE}
-              subtitle={ARTICLE_DECK}
-              slug="wb-dual-use"
-              date="20 Июл 2026"
-              readMin={15}
-              hero={{ src: "/blog/wb-dual-use/cover.webp", alt: "Открытая коробка Wildberries с переносным электронным устройством, защитной плитой, аптечкой, оптическим кабелем и обычными товарами", credit: "Иллюстрация создана Алмасом Касымжановым с помощью Kimi K3", width: 5792, height: 4344 }}
-            />
-
-            <hr className="mb-12 border-[var(--color-border)]" />
+    <ArticleLayout
+      slug="wb-dual-use"
+      locale="ru"
+      header={
+        <ArticleHeader
+          kicker="Исследование"
+          title={ARTICLE_TITLE}
+          subtitle={ARTICLE_DECK}
+          slug="wb-dual-use"
+          date="20 Июл 2026"
+          readMin={15}
+          hero={{ src: "/blog/wb-dual-use/cover.webp", alt: "Открытая коробка Wildberries с переносным электронным устройством, защитной плитой, аптечкой, оптическим кабелем и обычными товарами", credit: "Иллюстрация создана Алмасом Касымжановым с помощью Kimi K3", width: 5792, height: 4344 }}
+        />
+      }
+    >
 
             <section className="mb-12">
               <H2>Почему я взялся за это исследование</H2>
@@ -184,15 +178,6 @@ export default function WbDualUseArticle() {
             </section>
 
             <SourcesList />
-
-            <hr className="mb-10 border-[var(--color-border)]" />
-            <EngagementBar className="mb-10" />
-            <Comments />
-          </article>
-          <AuthorBlock variant="horizontal" />
-        </EngagementProvider>
-        <SiteFooter hidePhone />
-      </div>
-    </div>
+    </ArticleLayout>
   );
 }
