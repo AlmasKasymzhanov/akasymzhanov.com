@@ -46,12 +46,12 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function HeroCard({ a, views }: { a: Article; views: number }) {
   return (
     <Link href={a.href} className="group block">
-      <div className="relative aspect-[16/9] md:aspect-[2.8/1] border border-[var(--color-border)] overflow-hidden mb-6 bg-[var(--color-surface)]">
+      <div className="relative aspect-[16/9] border border-[var(--color-border)] overflow-hidden mb-6 bg-[var(--color-surface)]">
         <Image
           src={a.img}
           alt={a.title}
           fill
-          sizes="(min-width: 1400px) 1400px, 100vw"
+          sizes="(min-width: 1024px) 860px, 100vw"
           style={a.imgPosition ? { objectPosition: a.imgPosition } : undefined}
           className={`${a.coverBg ? "object-contain" : "object-cover"} transition-transform duration-700 ease-out group-hover:scale-[1.03]`}
           priority
@@ -61,7 +61,7 @@ function HeroCard({ a, views }: { a: Article; views: number }) {
       <p className="font-mono text-[11px] md:text-[12px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-3">
         {a.rubric}
       </p>
-      <h1 className="text-[32px] md:text-[48px] lg:text-[56px] font-bold tracking-tight text-[var(--color-text)] leading-[1.05] mb-5 font-heading">
+      <h1 className="text-[32px] md:text-[44px] lg:text-[48px] font-bold tracking-tight text-[var(--color-text)] leading-[1.05] mb-5 font-heading">
         {a.title}
       </h1>
       <p className="text-[16px] md:text-[18px] text-[var(--color-dim)] leading-relaxed max-w-[720px] mb-5">
@@ -78,31 +78,31 @@ function HeroCard({ a, views }: { a: Article; views: number }) {
   );
 }
 
-function TrendingItem({ a, views }: { a: Article; views: number }) {
+function TrendingFeatured({ a, views }: { a: Article; views: number }) {
   return (
-    <Link href={a.href} className="group flex gap-4">
-      <div className="relative w-20 h-14 shrink-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
+    <Link href={a.href} className="group block">
+      <div className="relative aspect-[16/9] overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] mb-4">
         <Image
           src={a.img}
           alt={a.title}
           fill
-          sizes="160px"
+          sizes="460px"
           style={a.imgPosition ? { objectPosition: a.imgPosition } : undefined}
           className={`${a.coverBg ? "object-contain" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
         />
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-1">
-          {a.rubric}
-        </p>
-        <h3 className="text-[15px] font-bold leading-snug text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-1">
-          {a.title}
-        </h3>
-        <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
-          <span>{a.date}</span>
-          <span aria-hidden>·</span>
-          <span>{views.toLocaleString("en-US")}</span>
-        </div>
+      <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-2">
+        {a.rubric}
+      </p>
+      <h3 className="text-[18px] font-bold leading-snug text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-2">
+        {a.title}
+      </h3>
+      <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
+        <span>{a.date}</span>
+        <span aria-hidden>·</span>
+        <span>{a.readMin} min read</span>
+        <span aria-hidden>·</span>
+        <span>{views.toLocaleString("en-US")} views</span>
       </div>
     </Link>
   );
@@ -156,8 +156,11 @@ export default async function HomeEn() {
   const withEng = (a: Article) => withEngagement(a, eng);
 
   const [lead, ...rest] = all;
-  const latest = rest.slice(0, 3);
-  const trending = [...all].sort((a, b) => v(b.slug) - v(a.slug)).slice(0, 3);
+  const latest = rest.slice(0, 4);
+  const trending = [...all]
+    .filter((a) => a.slug !== lead.slug)
+    .sort((a, b) => v(b.slug) - v(a.slug))
+    .slice(0, 3);
 
   return (
     <div className="font-mono text-[var(--color-text)]">
@@ -166,16 +169,19 @@ export default async function HomeEn() {
 
         <main className="flex-1">
           {/* ── Hero + Trending ── */}
-          <section className="grid grid-cols-1 lg:grid-cols-[1fr_400px] border-b border-[var(--color-border)]">
+          <section className="grid grid-cols-1 lg:grid-cols-[1fr_460px] border-b border-[var(--color-border)]">
             <div className="p-6 md:p-10 lg:p-12">
               <HeroCard a={withEng(lead)} views={v(lead.slug)} />
             </div>
             <aside className="border-t lg:border-t-0 lg:border-l border-[var(--color-border)] p-6 md:p-10 lg:p-8">
               <SectionLabel>Trending</SectionLabel>
               <div className="space-y-8">
-                {trending.map((a) => (
-                  <TrendingItem key={a.slug} a={withEng(a)} views={v(a.slug)} />
-                ))}
+                <TrendingFeatured a={withEng(trending[0])} views={v(trending[0].slug)} />
+                <div className="space-y-6">
+                  {trending.slice(1).map((a) => (
+                    <CompactCard key={a.slug} a={withEng(a)} views={v(a.slug)} locale={L} />
+                  ))}
+                </div>
               </div>
             </aside>
           </section>
@@ -183,7 +189,7 @@ export default async function HomeEn() {
           {/* ── Latest ── */}
           <section className="px-6 md:px-10 lg:px-12 py-12 md:py-16 border-b border-[var(--color-border)]">
             <SectionLabel>Latest</SectionLabel>
-            <div className="grid gap-10 md:gap-x-10 md:gap-y-12 md:grid-cols-2">
+            <div className="grid gap-10 md:gap-x-10 md:gap-y-12 md:grid-cols-2 lg:grid-cols-4">
               {latest.map((a) => (
                 <ArticleCard key={a.slug} a={withEng(a)} views={v(a.slug)} locale={L} />
               ))}
