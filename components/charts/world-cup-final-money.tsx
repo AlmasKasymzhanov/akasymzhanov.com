@@ -138,6 +138,20 @@ const tooltipStyle = {
 
 const axisStyle = { fontSize: 11, fontFamily: "var(--font-mono)", fill: DIM };
 
+function MultiLineTick({ x, y, payload }: any) {
+  if (!payload?.value) return null;
+  const lines = String(payload.value).split("\n");
+  return (
+    <text x={x} y={y + 10} textAnchor="middle" fill={DIM} fontSize={10} fontFamily="var(--font-mono)">
+      {lines.map((line: string, i: number) => (
+        <tspan key={i} x={x} dy={i === 0 ? 0 : "1.1em"}>
+          {line}
+        </tspan>
+      ))}
+    </text>
+  );
+}
+
 /* ─────────── Chart 1 — monthly volume ─────────── */
 
 export function Chart1MonthlyVolume() {
@@ -223,16 +237,16 @@ export function Chart3WhalesPnl() {
   return (
     <ChartCard id="chart3-whales-pnl" title={c.title} source={c.source}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 24, bottom: 8, left: 80 }}>
+        <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 24, bottom: 8, left: 100 }}>
           <CartesianGrid stroke={BORDER} strokeDasharray="3 3" horizontal={false} />
           <XAxis type="number" tick={axisStyle} axisLine={false} tickLine={false} unit=" млн" />
           <YAxis
             type="category"
             dataKey="name"
-            tick={axisStyle}
+            tick={{ ...axisStyle, fontSize: 10 }}
             axisLine={false}
             tickLine={false}
-            width={78}
+            width={90}
           />
           <ReTooltip
             contentStyle={tooltipStyle}
@@ -245,7 +259,7 @@ export function Chart3WhalesPnl() {
             {rows.map((r, i) => (
               <Cell key={i} fill={r.fill} />
             ))}
-            <LabelList dataKey="value" position="right" fill={WHITE} formatter={(v: any) => `${v > 0 ? "+" : "−"}$${Math.abs(v)}`} />
+            <LabelList dataKey="value" position="inside" fill={WHITE} formatter={(v: any) => `${v > 0 ? "+" : "−"}$${Math.abs(v)}`} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>
@@ -264,9 +278,9 @@ export function Chart4FifaPrizes() {
   return (
     <ChartCard id="chart4-fifa-prizes" title={c.title} source={c.source}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 32, left: 0 }}>
+        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 44, left: 0 }}>
           <CartesianGrid stroke={BORDER} strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tick={axisStyle} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
+          <XAxis dataKey="name" tick={<MultiLineTick />} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
           <YAxis tick={axisStyle} axisLine={false} tickLine={false} unit=" млн" />
           <ReTooltip contentStyle={tooltipStyle} formatter={(v: any) => [`$${v} млн`, ""]} />
           <Bar dataKey="value" radius={[3, 3, 0, 0]}>
@@ -320,9 +334,9 @@ export function Chart6TicketPrices() {
   return (
     <ChartCard id="chart6-ticket-prices" title={c.title} source={c.source}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 32, left: 0 }}>
+        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 44, left: 0 }}>
           <CartesianGrid stroke={BORDER} strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tick={axisStyle} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
+          <XAxis dataKey="name" tick={<MultiLineTick />} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
           <YAxis tick={axisStyle} axisLine={false} tickLine={false} unit=" тыс." />
           <ReTooltip contentStyle={tooltipStyle} formatter={(v: any) => [`$${v} тыс.`, ""]} />
           <Bar dataKey="value" radius={[3, 3, 0, 0]}>
@@ -351,9 +365,9 @@ export function Chart7DrakeLosses() {
   return (
     <ChartCard id="chart7-drake-losses" title={c.title} source={c.source}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 32, left: 0 }}>
+        <BarChart data={rows} margin={{ top: 8, right: 8, bottom: 44, left: 0 }}>
           <CartesianGrid stroke={BORDER} strokeDasharray="3 3" vertical={false} />
-          <XAxis dataKey="name" tick={axisStyle} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
+          <XAxis dataKey="name" tick={<MultiLineTick />} axisLine={{ stroke: BORDER }} tickLine={false} interval={0} />
           <YAxis tick={axisStyle} axisLine={false} tickLine={false} unit=" млн" />
           <ReTooltip
             contentStyle={tooltipStyle}
@@ -390,10 +404,10 @@ export function Chart8RoiTop() {
   return (
     <ChartCard id="chart8-roi-top" title={c.title} source={c.source}>
       <ResponsiveContainer width="100%" height="100%">
-        <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 40, bottom: 8, left: 100 }}>
+        <BarChart data={rows} layout="vertical" margin={{ top: 8, right: 24, bottom: 8, left: 140 }}>
           <CartesianGrid stroke={BORDER} strokeDasharray="3 3" horizontal={false} />
           <XAxis type="number" tick={axisStyle} axisLine={false} tickLine={false} unit="%" />
-          <YAxis type="category" dataKey="name" tick={axisStyle} axisLine={false} tickLine={false} width={92} />
+          <YAxis type="category" dataKey="name" tick={{ ...axisStyle, fontSize: 10 }} axisLine={false} tickLine={false} width={120} />
           <ReTooltip
             contentStyle={tooltipStyle}
             formatter={(v: any, _n: any, p: any) => [`${v}%`, p.payload.note]}
@@ -402,7 +416,7 @@ export function Chart8RoiTop() {
             {rows.map((r, i) => (
               <Cell key={i} fill={r.fill} />
             ))}
-            <LabelList dataKey="value" position="right" fill={WHITE} formatter={(v: any) => `${v > 0 ? "+" : ""}${v}%`} />
+            <LabelList dataKey="value" position="inside" fill={WHITE} formatter={(v: any) => `${v > 0 ? "+" : ""}${v}%`} />
           </Bar>
         </BarChart>
       </ResponsiveContainer>

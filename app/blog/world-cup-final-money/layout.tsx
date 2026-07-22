@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { ArticleJsonLd } from "@/components/articles";
 
-const title = "Кто заработал на финале ЧМ-2026: киты, арбитражёры и мошенники";
+const title = "Кто заработал на финале ЧМ-2026: киты, арбитражники и мошенники";
 const description =
   "На финал ЧМ-2026 поставили $5,69 млрд. Мы посмотрели, куда ушли эти деньги — и кто реально их получил.";
 const canonical = "https://kasymzhanov.com/blog/world-cup-final-money";
