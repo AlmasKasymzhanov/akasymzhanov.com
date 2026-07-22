@@ -39,7 +39,7 @@ export default function WbDualUseEnArticle() {
           hero={{
             src: "/blog/wb-dual-use/cover.webp",
             alt: "Open Wildberries box with a portable electronic device, protective plate, first-aid kit, optical cable, and ordinary goods",
-            credit: "Illustration: Almas Kasymzhanov · Kimi K3",
+            credit: "Illustration: Almas Kasymzhanov",
             width: 5792,
             height: 4344,
           }}

@@ -69,7 +69,7 @@ export default function WbDualUseArticle() {
           slug="wb-dual-use"
           date="20 Июл 2026"
           readMin={15}
-          hero={{ src: "/blog/wb-dual-use/cover.webp", alt: "Открытая коробка Wildberries с переносным электронным устройством, защитной плитой, аптечкой, оптическим кабелем и обычными товарами", credit: "Иллюстрация создана Алмасом Касымжановым с помощью Kimi K3", width: 5792, height: 4344 }}
+          hero={{ src: "/blog/wb-dual-use/cover.webp", alt: "Открытая коробка Wildberries с переносным электронным устройством, защитной плитой, аптечкой, оптическим кабелем и обычными товарами", credit: "Иллюстрация: Алмас Касымжанов", width: 5792, height: 4344 }}
         />
       }
     >

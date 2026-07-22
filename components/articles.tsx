@@ -78,7 +78,7 @@ export const ARTICLES: Article[] = [
     likes: 0,
     comments: 0,
     shares: 0,
-    credit: "Иллюстрация создана Алмасом Касымжановым с помощью Kimi K3",
+    credit: "Иллюстрация: Алмас Касымжанов",
     enReady: false,
   },
   {
