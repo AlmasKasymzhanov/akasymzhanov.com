@@ -228,7 +228,7 @@ export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Loca
   return (
     <footer className="border-t border-[var(--color-border)]">
       <div className="px-6 md:px-7 py-10 md:py-14">
-        <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight text-[var(--color-text)]">{t.name}</h2>
+        <h2 className="text-[24px] md:text-[32px] font-bold tracking-tight text-[var(--color-text)]">Almas Kasymzhanov</h2>
         <p className="mt-2 text-[13px] text-[var(--color-brand)] font-medium">{t.about.role}</p>
         <p className="mt-5 text-[13px] md:text-[14px] text-[var(--color-dim)] leading-relaxed max-w-3xl">
           {t.footer.desc}
