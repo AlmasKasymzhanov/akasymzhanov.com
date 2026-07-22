@@ -1,0 +1,152 @@
+{
+  "metadata": {
+    "project": "world-cup-final-money",
+    "currency": "USD",
+    "generated_for": "interactive charts on kasymzhanov.com",
+    "source_file": "generate_charts.py",
+    "notes": "All money values in millions USD unless otherwise noted."
+  },
+  "charts": [
+    {
+      "id": "chart1_monthly_volume",
+      "title": "Объём торгов на предиктивных рынках, 2026",
+      "subtitle": "Ежемесячный оборот Kalshi и Polymarket, январь — июнь 2026",
+      "type": "line",
+      "unit": "млрд долл.",
+      "source": "Dune, CoinDesk, The Block, Fortune; расчёты Kasymzhanov Media",
+      "x_axis": {
+        "label": "Месяц",
+        "values": ["Jan", "Feb", "Mar", "Apr", "May", "Jun"]
+      },
+      "y_axis": {
+        "label": "Объём торгов, млрд долл."
+      },
+      "series": [
+        {
+          "name": "Kalshi",
+          "color": "#0D3692",
+          "values": [4.0, 9.8, 12.5, 15.0, 17.9, 31.0]
+        },
+        {
+          "name": "Polymarket International",
+          "color": "#E3120B",
+          "values": [3.4, 7.0, 6.5, 8.0, 9.5, 10.8]
+        },
+        {
+          "name": "Polymarket US",
+          "color": "#F4A261",
+          "values": [0.8, 1.2, 1.5, 2.0, 2.8, 3.5]
+        }
+      ]
+    },
+    {
+      "id": "chart2_ad_insertions",
+      "title": "Рекламные вставки во время трансляций ЧМ-2026",
+      "type": "bar",
+      "unit": "вставки",
+      "source": "iSpot / Sportico",
+      "categories": ["Kalshi", "Polymarket", "Остальная индустрия"],
+      "values": [36, 45, 22],
+      "colors": ["#0D3692", "#E3120B", "#7B8B8B"]
+    },
+    {
+      "id": "chart3_whales_pnl",
+      "title": "Крупнейшие выигрыши и проигрыши на Polymarket за ЧМ-2026",
+      "type": "horizontal_bar",
+      "unit": "млн долл.",
+      "source": "Lookonchain, ForkLog, Benzinga, Casino.org, Yahoo Finance",
+      "data": [
+        {"name": "coldsway", "value": -11.6, "note": "15 ставок за 10 дней"},
+        {"name": "FlickRaw", "value": -4.2, "note": "2 ставки за сутки"},
+        {"name": "gud.hl", "value": -1.23, "note": "ставка на Аргентину"},
+        {"name": "Дрейк", "value": -1.5, "note": "публичная ставка"},
+        {"name": "GRIMDRIP", "value": 7.6, "note": "2 ставки, вывод на Binance 0xB08B...317D"},
+        {"name": "endlessFate", "value": 7.41, "note": "9 ставок, вывод на Binance 0xB08B...317D"},
+        {"name": "yamal19", "value": 1.35, "note": "кошелёк создан перед финалом"},
+        {"name": "fishalive", "value": 4.7, "note": "итоговая прибыль ~$9 млн по двум ставкам"},
+        {"name": "blunttedge", "value": 8.47, "note": "требует дополнительной проверки"},
+        {"name": "mintblade", "value": 9.24, "note": "5 ставок, вывод на Binance 0xB08B...317D"}
+      ]
+    },
+    {
+      "id": "chart4_fifa_prizes",
+      "title": "Распределение призовых FIFA ЧМ-2026",
+      "type": "bar",
+      "unit": "млн долл.",
+      "source": "FIFA Council / Crypto Briefing / DD India",
+      "categories": ["Champion\nSpain", "Runner-up\nArgentina", "3rd\nEngland", "4th\nFrance", "Round of 16", "Group stage"],
+      "values": [51, 34, 29, 27, 13.5, 9.5],
+      "colors": ["#0D3692", "#0D3692", "#0D3692", "#0D3692", "#7B8B8B", "#7B8B8B"]
+    },
+    {
+      "id": "chart5_adidas_nike_emv",
+      "title": "Медиаценность Adidas и Nike на ЧМ-2026",
+      "type": "bar",
+      "unit": "млн долл.",
+      "source": "CreatorIQ / Digiday",
+      "categories": ["Adidas", "Nike"],
+      "values": [48.9, 28.9],
+      "colors": ["#0D3692", "#7B8B8B"]
+    },
+    {
+      "id": "chart6_ticket_prices",
+      "title": "Средние цены перепродажи билетов на крупные события",
+      "type": "bar",
+      "unit": "тыс. долл.",
+      "source": "TickPick / Miami Herald / Sports Illustrated",
+      "categories": ["Qatar 2022\n(final)", "Super Bowl 2024", "NBA Finals\n2026", "World Cup 2026\n(final)"],
+      "values": [1.6, 9.4, 6.3, 11.3],
+      "colors": ["#B0B8B8", "#B0B8B8", "#B0B8B8", "#E3120B"]
+    },
+    {
+      "id": "chart7_drake_losses",
+      "title": "Кумулятивные публичные потери Дрейка на спортивных ставках",
+      "type": "bar",
+      "unit": "млн долл.",
+      "source": "thedrakecurse.com / Instagram / Digital Music News / The News International",
+      "categories": ["2022 WC\nArgentina", "UFC 2026\nMcGregor", "2026 WC\nArgentina"],
+      "values": [-1.0, -2.0, -3.5],
+      "cumulative": true,
+      "colors": ["#E3120B", "#E3120B", "#E3120B"]
+    },
+    {
+      "id": "chart8_roi_top",
+      "title": "ROI публичных ставок на ЧМ-2026",
+      "type": "horizontal_bar",
+      "unit": "%",
+      "source": "Lookonchain, ForkLog, Benzinga, Рейтинг Букмекеров, Super",
+      "data": [
+        {"name": "Бустер", "value": -100, "note": "тотал больше 2,5"},
+        {"name": "Смолов", "value": -100, "note": "победа Аргентины"},
+        {"name": "Макгрегор", "value": -100, "note": "точный счёт 3:2"},
+        {"name": "Дрейк", "value": -100, "note": "Аргентина в основное время"},
+        {"name": "gud.hl", "value": -100, "note": "Аргентина — чемпион"},
+        {"name": "Ганвест (заявка)", "value": 65, "note": "неподтверждённое заявление"},
+        {"name": "yamal19", "value": 69, "note": "Испания — чемпион"},
+        {"name": "fishalive", "value": 214, "note": "Испания не победит Кабо-Верде"}
+      ]
+    },
+    {
+      "id": "chart9_noise_money",
+      "title": "Медийный шум vs реальный финансовый результат",
+      "type": "scatter",
+      "unit": "млн долл.",
+      "source": "Kasymzhanov Media (оценка шума по упоминаниям в СМИ и соцсетях)",
+      "x_axis": {
+        "label": "Медийный шум (оценка по упоминаниям, 0–100)"
+      },
+      "y_axis": {
+        "label": "Финансовый результат, млн долл."
+      },
+      "data": [
+        {"name": "fishalive", "noise_index": 5, "money_m": 9.0, "note": "анонимный кошелёк"},
+        {"name": "yamal19", "noise_index": 40, "money_m": 1.35, "note": "подозрительный кошелёк"},
+        {"name": "Ганвест (заявка)", "noise_index": 95, "money_m": 0.8, "note": "неподтверждённое заявление"},
+        {"name": "Дрейк", "noise_index": 100, "money_m": -3.5, "note": "публичные ставки"},
+        {"name": "gud.hl", "noise_index": 20, "money_m": -1.23, "note": "крупный бык Аргентины"},
+        {"name": "coldsway", "noise_index": 25, "money_m": -11.6, "note": "крупнейший проигравший"}
+      ],
+      "trend_line": true
+    }
+  ]
+}

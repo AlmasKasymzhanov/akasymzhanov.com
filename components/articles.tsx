@@ -64,6 +64,24 @@ export function localizeArticle(a: Article, locale: Locale): Article {
 
 export const ARTICLES: Article[] = [
   {
+    href: "/blog/world-cup-final-money",
+    slug: "world-cup-final-money",
+    img: "/blog/world-cup-final-money/cover.webp",
+    imgPosition: "center 50%",
+    rubric: "Data",
+    title: "Кто заработал на финале ЧМ-2026: киты, арбитражёры и мошенники",
+    subtitle:
+      "На финал ЧМ-2026 поставили $5,69 млрд. Мы посмотрели, куда ушли эти деньги — и кто реально их получил.",
+    date: "21 Июл 2026",
+    datePublished: "2026-07-21",
+    readMin: 25,
+    likes: 0,
+    comments: 0,
+    shares: 0,
+    credit: "Иллюстрация: Алмас Касымжанов",
+    enReady: false,
+  },
+  {
     href: "/blog/wb-dual-use",
     slug: "wb-dual-use",
     img: "/blog/wb-dual-use/cover.webp",
