@@ -1,4 +1,9 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+
+/* Отчёт закрыт по решению владельца 2026-07-22. Страница отдаёт 404, при этом
+   вся вёрстка и данные остаются в репозитории: чтобы открыть доступ обратно,
+   достаточно убрать вызов notFound() ниже. */
 
 export const metadata: Metadata = {
   title: "Отбор ниш для Wildberries: 7 из 7 545 — анализ рынка",
@@ -9,5 +14,6 @@ export const metadata: Metadata = {
 };
 
 export default function NicheReportLayout({ children }: { children: React.ReactNode }) {
+  notFound();
   return children;
 }
