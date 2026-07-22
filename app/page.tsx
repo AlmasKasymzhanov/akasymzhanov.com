@@ -36,7 +36,7 @@ function SectionLabel({ children }: { children: React.ReactNode }) {
 function HeroCard({ a, views }: { a: Article; views: number }) {
   return (
     <Link href={a.href} className="group block">
-      <div className="relative aspect-[16/9] md:aspect-[2.4/1] border border-[var(--color-border)] overflow-hidden mb-6 bg-[var(--color-surface)]">
+      <div className="relative aspect-[16/9] md:aspect-[2.8/1] border border-[var(--color-border)] overflow-hidden mb-6 bg-[var(--color-surface)]">
         <Image
           src={a.img}
           alt={a.title}
@@ -70,17 +70,29 @@ function HeroCard({ a, views }: { a: Article; views: number }) {
 
 function TrendingItem({ a, views }: { a: Article; views: number }) {
   return (
-    <Link href={a.href} className="group block">
-      <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-2">
-        {a.rubric}
-      </p>
-      <h3 className="text-[15px] font-bold leading-snug text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-2">
-        {a.title}
-      </h3>
-      <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
-        <span>{a.date}</span>
-        <span aria-hidden>·</span>
-        <span>{views.toLocaleString("ru-RU")}</span>
+    <Link href={a.href} className="group flex gap-4">
+      <div className="relative w-20 h-14 shrink-0 overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)]">
+        <Image
+          src={a.img}
+          alt={a.title}
+          fill
+          sizes="160px"
+          style={a.imgPosition ? { objectPosition: a.imgPosition } : undefined}
+          className={`${a.coverBg ? "object-contain" : "object-cover"} transition-transform duration-500 group-hover:scale-[1.03]`}
+        />
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-[var(--color-brand)] mb-1">
+          {a.rubric}
+        </p>
+        <h3 className="text-[15px] font-bold leading-snug text-[var(--color-text)] group-hover:text-[var(--color-brand)] transition-colors mb-1">
+          {a.title}
+        </h3>
+        <div className="flex items-center gap-2 text-[11px] text-[var(--color-dim)] font-mono">
+          <span>{a.date}</span>
+          <span aria-hidden>·</span>
+          <span>{views.toLocaleString("ru-RU")}</span>
+        </div>
       </div>
     </Link>
   );
@@ -144,7 +156,7 @@ export default async function Home() {
 
         <main className="flex-1">
           {/* ── Hero + Trending ── */}
-          <section className="grid grid-cols-1 lg:grid-cols-[1fr_340px] border-b border-[var(--color-border)]">
+          <section className="grid grid-cols-1 lg:grid-cols-[1fr_400px] border-b border-[var(--color-border)]">
             <div className="p-6 md:p-10 lg:p-12">
               <HeroCard a={withEng(lead)} views={v(lead.slug)} />
             </div>
