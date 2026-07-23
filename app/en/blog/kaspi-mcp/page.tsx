@@ -6,7 +6,7 @@ import { ArticleLayout } from "@/components/canon/article-layout";
 import { useState } from "react";
 
 /* MCP connector for Kaspi analytics (used in step 3) */
-const CONNECTOR_URL = "https://redstat-backend-production.up.railway.app/mcp";
+const CONNECTOR_URL = "https://mcp.redstat.kz/mcp";
 
 /* ───── Screenshot ───── */
 function Shot({ src, alt, caption, w, h, maxWidth }: { src: string; alt: string; caption: React.ReactNode; w: number; h: number; maxWidth?: number }) {
