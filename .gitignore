@@ -156,3 +156,4 @@ test-data/
 next-env.d.ts
 
 .vercel
+.screenshots/
