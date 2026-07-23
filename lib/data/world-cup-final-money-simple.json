@@ -11,7 +11,7 @@
       "id": "three_numbers",
       "file": "charts-simple/chart1_three_numbers.png",
       "type": "annotated-cards",
-      "title": "Три суммы с ЧМ-2026 — и что они означают",
+      "title": "Три суммы с ЧМ-2026 - и что они означают",
       "items": [
         {
           "value_usd": 5690000000,
@@ -77,7 +77,7 @@
         {
           "account": "fishalive",
           "result_usd_m": 4.3,
-          "scope": "групповой этап, Испания — Кабо-Верде",
+          "scope": "групповой этап, Испания - Кабо-Верде",
           "source": "Prediction News, 2026-06-16"
         }
       ],

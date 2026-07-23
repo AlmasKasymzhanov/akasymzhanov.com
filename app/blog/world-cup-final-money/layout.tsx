@@ -3,7 +3,7 @@ import { ArticleJsonLd } from "@/components/articles";
 
 const title = "Кто заработал и кто потерял деньги на ЧМ-2026";
 const description =
-  "$5,69 млрд оборота на рынках финала ЧМ-2026 — это не банк и не прибыль. Разбираем, кто реально заработал и потерял, и какие суммы нельзя сравнивать.";
+  "$5,69 млрд оборота на рынках финала ЧМ-2026 - это не банк и не прибыль. Разбираем, кто реально заработал и потерял, и какие суммы нельзя сравнивать.";
 const canonical = "https://kasymzhanov.com/blog/world-cup-final-money";
 const image = "/blog/world-cup-final-money/cover.webp";
 

@@ -596,7 +596,7 @@ export function SourcesList() {
       <ol className="list-decimal space-y-3 pl-5 text-[12px] leading-relaxed text-[var(--color-dim)] marker:font-mono marker:text-[var(--color-text)]">
         {SOURCES.map((source) => (
           <li key={source.n} id={`source-${source.n}`}>
-            <span className="font-bold text-[var(--color-text)]">{source.publication}</span>{` · ${source.title}${source.date ? `, ${source.date}` : ""} — `}
+            <span className="font-bold text-[var(--color-text)]">{source.publication}</span>{` · ${source.title}${source.date ? `, ${source.date}` : ""} - `}
             {source.hrefs.map((link, index) => <span key={link.href}>{index > 0 && "; "}<a href={link.href} target="_blank" rel="noopener noreferrer" className="underline decoration-solid underline-offset-2 hover:text-[var(--color-text)]">{link.label}</a></span>)}
           </li>
         ))}
