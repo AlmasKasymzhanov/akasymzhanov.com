@@ -33,12 +33,19 @@ export default function WorldCupFinalMoneyArticle() {
       locale="ru"
       header={
         <ArticleHeader
-          kicker="KASYMZHANOV.DATA"
+          kicker="Аналитика"
           title={ARTICLE_TITLE}
           subtitle={ARTICLE_DECK}
           slug="world-cup-final-money"
-          date="Дата публикации уточняется"
+          date="21 Июл 2026"
           readMin={7}
+          hero={{
+            src: "/blog/world-cup-final-money/cover.webp",
+            alt: "Кто заработал и кто потерял деньги на ЧМ-2026",
+            credit: "Иллюстрация: Алмас Касымжанов",
+            width: 1200,
+            height: 675,
+          }}
         />
       }
     >
