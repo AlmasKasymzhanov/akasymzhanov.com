@@ -54,6 +54,12 @@ export type Article = {
   enReady?: boolean;
 };
 
+// Editorially complete copy that must not enter public feeds or structured
+// data until publication-only fields (cover, credit, EN and date) are ready.
+export type ArticleDraft = Pick<Article, "href" | "slug" | "rubric" | "title" | "subtitle" | "readMin"> & {
+  status: "awaiting-cover-date-en";
+};
+
 // Swap in the EN transcreation when rendering the English site. RU is the base.
 // On EN, the card links to /en/blog/<slug> only if that page is live (enReady).
 export function localizeArticle(a: Article, locale: Locale): Article {
@@ -62,25 +68,20 @@ export function localizeArticle(a: Article, locale: Locale): Article {
   return { ...base, href: a.enReady ? `/en${a.href}` : a.href };
 }
 
-export const ARTICLES: Article[] = [
+export const ARTICLE_DRAFTS: ArticleDraft[] = [
   {
     href: "/blog/world-cup-final-money",
     slug: "world-cup-final-money",
-    img: "/blog/world-cup-final-money/cover.webp",
-    imgPosition: "center 50%",
-    rubric: "Data",
-    title: "Кто заработал на финале ЧМ-2026: киты, арбитражники и мошенники",
+    rubric: "KASYMZHANOV.DATA",
+    title: "Кто заработал и кто потерял деньги на ЧМ-2026",
     subtitle:
-      "На финал ЧМ-2026 поставили $5,69 млрд. Мы посмотрели, куда ушли эти деньги — и кто реально их получил.",
-    date: "21 Июл 2026",
-    datePublished: "2026-07-21",
-    readMin: 25,
-    likes: 0,
-    comments: 0,
-    shares: 0,
-    credit: "Иллюстрация: Алмас Касымжанов",
-    enReady: false,
+      "На рынках, связанных с финалом, прошёл оборот в $5,69 млрд. Но некоторые из самых заметных выигрышей и убытков случились ещё на групповом этапе. Разбираемся, кто и на чём заработал за весь чемпионат — и какие суммы нельзя сравнивать между собой.",
+    readMin: 7,
+    status: "awaiting-cover-date-en",
   },
+];
+
+export const ARTICLES: Article[] = [
   {
     href: "/blog/wb-dual-use",
     slug: "wb-dual-use",

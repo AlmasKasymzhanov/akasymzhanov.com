@@ -1,15 +1,17 @@
 import type { Metadata } from "next";
-import { ArticleJsonLd } from "@/components/articles";
 
-const title = "Кто заработал на финале ЧМ-2026: киты, арбитражники и мошенники";
+const title = "Кто заработал и кто потерял деньги на ЧМ-2026";
 const description =
-  "На финал ЧМ-2026 поставили $5,69 млрд. Мы посмотрели, куда ушли эти деньги — и кто реально их получил.";
+  "$5,69 млрд оборота на рынках финала ЧМ-2026 — это не банк и не прибыль. Разбираем, кто реально заработал и потерял, и какие суммы нельзя сравнивать.";
 const canonical = "https://kasymzhanov.com/blog/world-cup-final-money";
-const image = "/blog/world-cup-final-money/cover.webp";
 
 export const metadata: Metadata = {
   title,
   description,
+  robots: {
+    index: false,
+    follow: false,
+  },
   alternates: {
     canonical,
     languages: {
@@ -22,30 +24,15 @@ export const metadata: Metadata = {
     description,
     url: canonical,
     type: "article",
-    publishedTime: "2026-07-21",
     locale: "ru_RU",
-    images: [
-      {
-        url: image,
-        width: 1200,
-        height: 675,
-        alt: "Кто-то поставил $4,2 млн на ничью Испания — Кабо-Верде и вывел $9 млн",
-      },
-    ],
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title,
     description,
-    images: [image],
   },
 };
 
 export default function Layout({ children }: { children: React.ReactNode }) {
-  return (
-    <>
-      {children}
-      <ArticleJsonLd slug="world-cup-final-money" description={description} />
-    </>
-  );
+  return children;
 }

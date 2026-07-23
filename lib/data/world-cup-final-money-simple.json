@@ -1,0 +1,87 @@
+{
+  "version": 1,
+  "status": "editorial-candidate",
+  "principles": [
+    "Do not compare unlike measures with a shared quantitative axis.",
+    "Label trading volume as turnover, not a pot, stake pool, revenue, or profit.",
+    "Show only public results with a traceable source and an explicit scope."
+  ],
+  "charts": [
+    {
+      "id": "three_numbers",
+      "file": "charts-simple/chart1_three_numbers.png",
+      "type": "annotated-cards",
+      "title": "Три суммы с ЧМ-2026 — и что они означают",
+      "items": [
+        {
+          "value_usd": 5690000000,
+          "display": "$5,69 млрд",
+          "label": "сумма всех сделок по рынкам, связанным с финалом",
+          "note": "Не банк и не прибыль",
+          "source": "Fortune, 2026-07-20"
+        },
+        {
+          "value_usd": 871000000,
+          "display": "$871 млн",
+          "label": "пакет выплат FIFA 48 сборным",
+          "note": "Подготовка, участие и результат",
+          "source": "FIFA Council, 2026-04-28"
+        },
+        {
+          "value_usd": 51000000,
+          "display": "$51 млн",
+          "label": "выплата испанской федерации за победу",
+          "note": "Не личный гонорар игроков",
+          "source": "Associated Press, 2026-07-19"
+        }
+      ]
+    },
+    {
+      "id": "how_contract_works",
+      "file": "charts-simple/chart2_how_contract_works.png",
+      "type": "flow",
+      "title": "Как работает контракт рынка прогнозов",
+      "example": {
+        "buy_price_usd": 0.59,
+        "winning_redemption_usd": 1.0,
+        "gross_gain_per_share_usd": 0.41,
+        "note": "До финала контракт можно перепродать; каждая сделка увеличивает оборот."
+      },
+      "source": "Polymarket Help Center"
+    },
+    {
+      "id": "public_results",
+      "file": "charts-simple/chart3_public_results.png",
+      "type": "diverging-horizontal-bars",
+      "title": "Четыре результата из открытых данных",
+      "unit": "USD million",
+      "items": [
+        {
+          "account": "coldsway",
+          "result_usd_m": -11.6,
+          "scope": "15 ставок по ходу турнира",
+          "source": "BeInCrypto, 2026-07-06"
+        },
+        {
+          "account": "gud.hl",
+          "result_usd_m": -1.2,
+          "scope": "финал, победа Аргентины",
+          "source": "BeInCrypto, 2026-07-20"
+        },
+        {
+          "account": "yamal19",
+          "result_usd_m": 1.35,
+          "scope": "финал, победа Испании",
+          "source": "Benzinga, 2026-07-20"
+        },
+        {
+          "account": "fishalive",
+          "result_usd_m": 4.3,
+          "scope": "групповой этап, Испания — Кабо-Верде",
+          "source": "Prediction News, 2026-06-16"
+        }
+      ],
+      "caveat": "Это не рейтинг. Владельцы кошельков неизвестны; внешние хеджи и другие аккаунты не видны."
+    }
+  ]
+}
