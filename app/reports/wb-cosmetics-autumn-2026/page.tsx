@@ -14,14 +14,13 @@ const candidates = [
   { name: "Автозагар", revenue: "133,8 млн ₽", units: "×2,53", autumn: "×0,47", turnover: "90 дней", decision: "Не осенью", tone: "stop" },
   { name: "CC-кремы", revenue: "120,8 млн ₽", units: "×1,37", autumn: "×1,23", turnover: "189 дней", decision: "Не запускать", tone: "stop" },
   { name: "Оттеночные бальзамы", revenue: "176,6 млн ₽", units: "×1,23", autumn: "×1,03", turnover: "46 дней", decision: "Не запускать", tone: "stop" },
-  { name: "Кондиционеры для волос", revenue: "435,4 млн ₽", units: "×1,07", autumn: "×1,20", turnover: "305 дней", decision: "Данные смешаны", tone: "stop" },
   { name: "Жидкое мыло", revenue: "416,5 млн ₽", units: "×1,04", autumn: "×1,09", turnover: "123 дня", decision: "Не запускать", tone: "stop" },
   { name: "Краски для волос", revenue: "1 047,7 млн ₽", units: "×1,02", autumn: "×0,62", turnover: "94 дня", decision: "Не запускать", tone: "stop" },
 ];
 
 const reviewRows = [
   { name: "Гидролаты", sku: 3, text: 512, negative: 58, complaints: "запах — 28; упаковка и протечки — 9; отсутствие эффекта — 6; старая партия — 5" },
-  { name: "Спреи для волос", sku: 3, text: 1167, negative: 156, complaints: "упаковка — 54; несоответствие товара или подозрение покупателя — 28; налёт и текстура — 16; запах — 11" },
+  { name: "Спреи для волос", sku: 3, text: 1167, negative: 156, complaints: "упаковка — 54; несоответствие ожиданиям — 28; налёт и текстура — 16; запах — 11" },
   { name: "Жидкое мыло", sku: 1, text: 389, negative: 38, complaints: "протечки и повреждения — 14; запах — 6; несоответствие — 3" },
   { name: "CC-кремы", sku: 3, text: 1873, negative: 271, complaints: "оттенок — 59; реакции кожи — 35; вскрытая или повреждённая упаковка — 32; текстура — 19" },
 ];
@@ -69,11 +68,7 @@ export default function WBCosmeticsAutumnReport() {
     return cosmeticRows
       .filter((row) => !normalized || row.name.toLocaleLowerCase("ru-RU").includes(normalized))
       .toSorted((a, b) => {
-        if (sortKey === "turnover" || sortKey === "frozen") {
-          const av = a[sortKey] > 0 ? a[sortKey] : Number.POSITIVE_INFINITY;
-          const bv = b[sortKey] > 0 ? b[sortKey] : Number.POSITIVE_INFINITY;
-          return av - bv;
-        }
+        if (sortKey === "turnover" || sortKey === "frozen") return a[sortKey] - b[sortKey];
         return b[sortKey] - a[sortKey];
       });
   }, [query, sortKey]);
@@ -94,7 +89,7 @@ export default function WBCosmeticsAutumnReport() {
             карточки товаров и 11&nbsp;824 строки отзывов. Крупную закупку косметики из Китая
             к осени делать рано. Два направления можно довести до небольшого теста.
           </p>
-          <p className={styles.byline}>Подготовил <strong>Almas Kasymzhanov</strong></p>
+          <p className={styles.byline}>Подготовил: <strong>Almas Kasymzhanov</strong></p>
           <div className={styles.heroGrid}>
             <div><strong>331</strong><span>рубрика «Красоты» разобрана</span></div>
             <div><strong>154</strong><span>косметические ниши в расчёте</span></div>
@@ -190,9 +185,9 @@ export default function WBCosmeticsAutumnReport() {
             <article className={styles.detailCard}>
               <div className={styles.cardTop}><h3>1. Спреи для волос</h3><DecisionTag tone="pilot">Условный пилот</DecisionTag></div>
               <div className={styles.miniMetrics}><span><b>229,4 млн ₽</b>рынок</span><span><b>×1,45</b>вход в осень</span><span><b>94,6%</b>выкуп</span></div>
-              <p><b>Почему интересно.</b> Выкуп составляет 94,6%, остатки и оборот лучше многих соседних ниш, а сентябрь–октябрь были заметно сильнее июля–августа.</p>
+              <p><b>Почему интересно.</b> Девять из десяти заказов выкупаются, остатки и оборот лучше многих соседних ниш, а сентябрь–октябрь были заметно сильнее июля–августа.</p>
               <p><b>Что мешает.</b> 1&nbsp;089 активных продавцов, средний чек 747 ₽ и комиссия MPStats 32,5–36%. Аэрозоли сложнее перевозить. Новые карточки 2026 года пока не доказали лёгкий вход.</p>
-              <p><b>Что тестировать.</b> Один товар с помповым распылителем либо готовый аэрозоль от производителя с документами ЕАЭС. Нужны проверки распыления, фиксации, вычёсывания, налёта и протечки.</p>
+              <p><b>Что тестировать.</b> Один неаэрозольный pump-SKU либо готовый аэрозоль от производителя с документами ЕАЭС. Нужны проверки распыления, фиксации, вычёсывания, налёта и протечки.</p>
             </article>
             <article className={styles.detailCard}>
               <div className={styles.cardTop}><h3>2. Гидролаты</h3><DecisionTag tone="watch">Микропилот</DecisionTag></div>
@@ -250,19 +245,19 @@ export default function WBCosmeticsAutumnReport() {
             <span>Работа каждой помпы и клапана</span><span>Совместимость формулы с тарой</span><span>Стабильность запаха между партиями</span>
             <span>Фактический объём</span><span>Микробиология и стабильность</span><span>Прослеживаемость каждой партии</span>
           </div>
-          <p className={styles.sources}>Три артикула дополнительно сверены на страницах отзывов Wildberries: <a href="https://www.wildberries.ru/catalog/14387230/feedbacks" target="_blank" rel="noreferrer">14387230</a>, <a href="https://www.wildberries.ru/catalog/448032861/feedbacks" target="_blank" rel="noreferrer">448032861</a>, <a href="https://www.wildberries.ru/catalog/137993565/feedbacks" target="_blank" rel="noreferrer">137993565</a>.</p>
+          <p className={styles.sources}>Три артикула дополнительно сверены на Wildberries: <a href="https://www.wildberries.ru/catalog/14387230/detail.aspx" target="_blank" rel="noreferrer">14387230</a>, <a href="https://www.wildberries.ru/catalog/448032861/detail.aspx" target="_blank" rel="noreferrer">448032861</a>, <a href="https://www.wildberries.ru/catalog/137993565/detail.aspx" target="_blank" rel="noreferrer">137993565</a>.</p>
         </section>
 
         <section id="timing" className={styles.section}>
           <div className={styles.sectionKicker}>Календарь</div>
           <h2>Если запускать осенью — только готовый продукт</h2>
-          <p className={styles.intro}>Этот график подходит товару с уже существующей формулой и применимыми документами ЕАЭС. Для новой формулы под собственной маркой из Китая он слишком короткий.</p>
+          <p className={styles.intro}>Этот график подходит товару с уже существующей формулой и применимыми документами ЕАЭС. Для новой private-label формулы из Китая он слишком короткий.</p>
           <div className={styles.timeline}>
             {timeline.map((step) => <article key={step.date}><time>{step.date}</time><div><p>{step.task}</p><strong>{step.gate}</strong></div></article>)}
           </div>
           <div className={styles.timingSplit}>
             <article><span>Готовый товар ЕАЭС</span><strong>Пилот в сентябре</strong><p>100–300 единиц. Масштабирование только после 14–21 дня фактических продаж.</p></article>
-            <article><span>Новая собственная марка из Китая</span><strong>I квартал 2027</strong><p>Ноябрь–декабрь возможны лишь при уже готовых документах, формуле и упаковке.</p></article>
+            <article><span>Новый private label из Китая</span><strong>I квартал 2027</strong><p>Ноябрь–декабрь возможны лишь при уже готовых документах, формуле и упаковке.</p></article>
           </div>
         </section>
 
@@ -271,20 +266,11 @@ export default function WBCosmeticsAutumnReport() {
           <h2>Как выбирать поставщика</h2>
           <p className={styles.intro}>Низкая цена и высокий рейтинг на площадке — только начало. По каждой формуле нужны минимум три фабрики и подтверждения по четырём блокам.</p>
           <div className={styles.supplierGrid}>
-            <article><h3>Компания</h3><ul><li>Регистрационные документы и получатель оплаты</li><li>Фабрика или торговая компания</li><li>Видео и адрес производства</li><li>Опыт экспорта косметики</li></ul></article>
-            <article><h3>Качество</h3><ul><li>GMP или ISO 22716</li><li>Полный состав INCI и паспорт партии COA</li><li>Микробиология и стабильность</li><li>Образец будущей формулы</li></ul></article>
-            <article><h3>Упаковка</h3><ul><li>Материал флакона и прокладки</li><li>Проверка протечек, падений и перевозки</li><li>Пломба первого вскрытия</li><li>Место для кода Data Matrix</li></ul></article>
+            <article><h3>Компания</h3><ul><li>Business licence и юридическое лицо</li><li>Фабрика или торговая компания</li><li>Видео и адрес производства</li><li>Опыт экспорта косметики</li></ul></article>
+            <article><h3>Качество</h3><ul><li>GMP или ISO 22716</li><li>Полный INCI и COA</li><li>Микробиология и стабильность</li><li>Образец будущей формулы</li></ul></article>
+            <article><h3>Упаковка</h3><ul><li>Материал флакона и прокладки</li><li>Leak, drop и transport tests</li><li>Пломба первого вскрытия</li><li>Место для Data Matrix</li></ul></article>
             <article><h3>Коммерция</h3><ul><li>Цена на 100, 300, 1 000 и 3 000 шт.</li><li>Размеры и вес короба</li><li>Срок производства и повтора</li><li>Условия компенсации брака</li></ul></article>
           </div>
-          <p className={styles.plainCallout}>
-            <b>Документы для России.</b> Для обычной косметики нужна декларация о соответствии,
-            а для автозагара и химической окраски волос — государственная регистрация. В 2026 году
-            косметика уже подпадает под обязательную маркировку. Маршрут через Казахстан не отменяет
-            эти требования: код Data Matrix должен быть нанесён до пересечения российской границы.
-          </p>
-          <p className={styles.sources}>
-            Официально: <a href="https://eec.eaeunion.org/comission/department/deptexreg/tr/bezopParfum.php" target="_blank" rel="noreferrer">ТР ТС 009/2011</a> · <a href="https://markirovka.ru/knowledge/tovarnye-gruppy/obschie-voprosy-gis/kto-nanosit-markirovku-na-importnyy-tovar-gde-mozhno-markirovat-import" target="_blank" rel="noreferrer">маркировка импортного товара</a>.
-          </p>
         </section>
 
         <section id="economics" className={styles.section}>
@@ -328,7 +314,7 @@ export default function WBCosmeticsAutumnReport() {
               ))}</tbody>
             </table>
           </div>
-          <div className={styles.resultsLine}>Показано: <strong>{rows.length}</strong> из 154. Буквы С / О / П означают спрос, осень и операционные показатели. Полный итог: ни одна категория не прошла спрос и осенний вход одновременно.</div>
+          <div className={styles.resultsLine}>Показано: <strong>{rows.length}</strong> из 154. Полный итог: ни одна категория не прошла спрос и осенний вход одновременно.</div>
         </section>
 
         <section className={styles.section}>
@@ -348,7 +334,7 @@ export default function WBCosmeticsAutumnReport() {
         </section>
 
         <footer className={styles.footer}>
-          <div><strong>Almas Kasymzhanov</strong><span>Аналитика маркетплейсов</span></div>
+          <div><strong>Алмас Касымжанов</strong><span>Аналитика маркетплейсов</span></div>
           <p>Срез данных: 30 дней по 23 июля 2026 года включительно. Решение подготовлено 24 июля 2026 года.</p>
         </footer>
       </div>
