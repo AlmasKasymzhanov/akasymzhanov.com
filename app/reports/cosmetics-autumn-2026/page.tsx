@@ -10,8 +10,8 @@ export const dynamic = "force-static";
 
 const sections = [
   "Коротко: что запускать",
-  "Какие данные использованы",
-  "Как проверяли данные",
+  "Период и рамки анализа",
+  "Как читать показатели",
   "Структура рынка",
   "Рейтинг направлений",
   "Спрос с сентября по ноябрь",
@@ -28,7 +28,7 @@ const sections = [
   "Показатели и причины остановки",
   "Что происходит на рынке",
   "Итоговое решение",
-  "Как проводился анализ",
+  "Что делать дальше",
 ];
 
 function headingText(children: ReactNode): string {
@@ -109,7 +109,7 @@ export default function CosmeticsAutumn2026Report() {
             на что жалуются покупатели и как подготовить запуск по неделям.
           </p>
           <p className={styles.byline}>
-            Подготовил <strong>Алмас Касымжанов</strong> · RedStat
+            Подготовил <strong>Алмас Касымжанов</strong>
           </p>
 
           <div className={styles.metrics}>
@@ -160,7 +160,7 @@ export default function CosmeticsAutumn2026Report() {
         </article>
 
         <footer className={styles.footer}>
-          <div>Алмас Касымжанов · RedStat · 24 июля 2026</div>
+          <div>Алмас Касымжанов · 24 июля 2026</div>
           <Link href="/">kasymzhanov.com</Link>
         </footer>
       </div>
