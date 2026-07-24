@@ -72,24 +72,6 @@ export const ARTICLE_DRAFTS: ArticleDraft[] = [];
 
 export const ARTICLES: Article[] = [
   {
-    href: "/blog/world-cup-final-money",
-    slug: "world-cup-final-money",
-    img: "/blog/world-cup-final-money/cover.webp",
-    imgPosition: "center 40%",
-    rubric: "Аналитика",
-    title: "Кто заработал и кто потерял деньги на ЧМ-2026",
-    subtitle:
-      "На рынках, связанных с финалом, прошёл оборот в $5,69 млрд. Но некоторые из самых заметных выигрышей и убытков случились ещё на групповом этапе. Разбираемся, кто и на чём заработал за весь чемпионат - и какие суммы нельзя сравнивать между собой.",
-    date: "21 Июл 2026",
-    datePublished: "2026-07-21",
-    readMin: 7,
-    likes: 0,
-    comments: 0,
-    shares: 0,
-    credit: "Иллюстрация: Алмас Касымжанов",
-    enReady: false,
-  },
-  {
     href: "/blog/wb-dual-use",
     slug: "wb-dual-use",
     img: "/blog/wb-dual-use/cover.webp",
