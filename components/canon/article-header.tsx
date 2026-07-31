@@ -81,6 +81,7 @@ export function ArticleHeader({ kicker, title, subtitle, slug, date, readMin, he
               alt={hero.alt}
               width={hero.width ?? 1200}
               height={hero.height ?? 800}
+              sizes="(max-width: 719px) calc(100vw - 48px), 672px"
               priority
               className="w-full h-auto"
             />

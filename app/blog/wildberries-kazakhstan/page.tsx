@@ -50,7 +50,7 @@ export default function WildberriesKazakhstanArticle() {
             src: "/blog/wildberries-kazakhstan/cover.webp",
             alt: "Темная схема логистического комплекса со светящимися посылками и каркасами складов",
             credit: "Иллюстрация: Алмас Касымжанов",
-            width: 1344,
+            width: 1376,
             height: 768,
           }}
         />

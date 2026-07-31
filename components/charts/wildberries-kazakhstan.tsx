@@ -23,7 +23,7 @@
  */
 
 import { LineChart, type LineChartTooltipSlotProps } from "@/components/charts/line-chart";
-import { BarChart } from "@/components/charts/bar-chart";
+import { BarChart, type BarChartTooltipSlotProps } from "@/components/charts/bar-chart";
 import { DataTable, type DataTableColumn } from "@/components/charts/data-table";
 import { Term } from "@/components/canon/term";
 
@@ -125,6 +125,18 @@ const labelTip = (label: string): React.ReactNode =>
 
 const hasTip = (label: string): boolean => label in LABEL_TIPS;
 
+function CategoryTooltip({ label, value }: BarChartTooltipSlotProps) {
+  return (
+    <div className="flex max-w-[260px] flex-col gap-1 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-bg)] px-2.5 py-2 shadow-md">
+      <span className="text-[11px] text-[var(--color-dim)]">{label}</span>
+      <span className="font-mono text-[12px] font-bold tabular-nums text-[var(--color-text)]">{value}</span>
+      <span className="font-mono text-[9.5px] leading-relaxed text-[var(--color-dim)]">
+        публичная оценка MarketPapa, методика раскрыта не полностью
+      </span>
+    </div>
+  );
+}
+
 export function Grafik1() {
   return (
     <ChartFigure
@@ -147,8 +159,8 @@ export function Grafik1() {
       }
     >
       <BarChart
-        barThickness={28}
-        gap={12}
+        barThickness={44}
+        gap={8}
         barRadius={2}
         labelWidth={128}
         formatLabel={labelTip}
@@ -156,6 +168,7 @@ export function Grafik1() {
         data={CATEGORY_ROWS.map((row) => ({ label: row.category, value: row.changePct, color: WB }))}
         formatValue={formatPct}
         xAxisFormat={formatPct}
+        slots={{ tooltip: CategoryTooltip }}
         dataDescription="Оценочное изменение продаж Wildberries в четырех категориях за 23–29 июля 2026 года к 16–22 июля 2026 года по публичному расчету канала MarketPapa"
       />
     </ChartFigure>
@@ -252,6 +265,7 @@ export function Grafik2() {
     >
       <LineChart
         height={280}
+        pointTargetSize={44}
         xScale="time"
         yBaselineZero
         markers="always"
@@ -283,6 +297,7 @@ export function Grafik3() {
     >
       <LineChart
         height={280}
+        pointTargetSize={44}
         xScale="time"
         yBaselineZero
         markers="always"

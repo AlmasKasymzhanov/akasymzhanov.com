@@ -2259,6 +2259,11 @@ function BarsGroup({
         event.preventDefault();
         moveFocus(points.length - 1);
         break;
+      case "Escape":
+        event.preventDefault();
+        setTapIndex(null);
+        event.currentTarget.blur();
+        break;
       case "Enter":
       case " ":
         // Activation: trigger the click handler with the keyboard event.

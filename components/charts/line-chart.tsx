@@ -404,6 +404,12 @@ export type LineChartProps = {
   markers?: LineChartMarkers;
 
   /**
+   * Minimum square hit area for every keyboard/pointer data point. The visual
+   * marker keeps its normal size inside this transparent target. Default 10.
+   */
+  pointTargetSize?: number;
+
+  /**
    * X-axis scale. When omitted, inferred: `point` for string x, else `linear`.
    * `time` parses timestamps / ISO strings deterministically.
    */
@@ -1009,6 +1015,7 @@ export function LineChart({
   lineWidth = 1.75,
   curve = "linear",
   markers = "auto",
+  pointTargetSize = 10,
   xScale: xScaleProp,
   yScale = "linear",
   gridlines = true,
@@ -1638,6 +1645,7 @@ export function LineChart({
           curve={curve}
           lineWidth={lineWidth}
           showMarkers={showMarkers}
+          pointTargetSize={pointTargetSize}
           lastValueDot={lastValueDot}
           gridlines={gridlines}
           directLabels={effectiveDirectLabels}
@@ -2142,6 +2150,7 @@ function Plot({
   curve,
   lineWidth,
   showMarkers,
+  pointTargetSize,
   lastValueDot,
   gridlines,
   directLabels,
@@ -2174,6 +2183,7 @@ function Plot({
   curve: LineChartCurve;
   lineWidth: number;
   showMarkers: boolean;
+  pointTargetSize: number;
   lastValueDot: boolean;
   gridlines: boolean;
   directLabels: boolean;
@@ -2297,6 +2307,12 @@ function Plot({
       case "End":
         e.preventDefault();
         moveFocus({ s, p: series[s].points.length - 1 });
+        break;
+      case "Escape":
+        e.preventDefault();
+        setPinnedX(null);
+        setHoverX(null);
+        e.currentTarget.blur();
         break;
       case "Enter":
       case " ":
@@ -2509,6 +2525,8 @@ function Plot({
             const isTabStop = focus.s === si && focus.p === pi;
             const showDot =
               showMarkers || (lastValueDot && isLast);
+            const visualPointSize = showDot ? lineWidth * 2 + 3 : 10;
+            const targetSize = Math.max(pointTargetSize, visualPointSize);
             return (
               <button
                 key={`${s.key}-${pi}`}
@@ -2520,13 +2538,11 @@ function Plot({
                 style={{
                   left: `${left}%`,
                   top: `${top}%`,
-                  width: showDot ? lineWidth * 2 + 3 : 10,
-                  height: showDot ? lineWidth * 2 + 3 : 10,
-                  background: showDot ? s.color : "transparent",
-                  border:
-                    lastValueDot && isLast
-                      ? "1.5px solid var(--background)"
-                      : undefined,
+                  width: targetSize,
+                  height: targetSize,
+                  padding: 0,
+                  border: 0,
+                  background: "transparent",
                   pointerEvents: isMouseInteractive ? "auto" : "none",
                 }}
                 tabIndex={isTabStop ? 0 : -1}
@@ -2551,7 +2567,23 @@ function Plot({
                       }
                     : undefined
                 }
-              />
+              >
+                {showDot && (
+                  <span
+                    className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full"
+                    style={{
+                      width: visualPointSize,
+                      height: visualPointSize,
+                      background: s.color,
+                      border:
+                        lastValueDot && isLast
+                          ? "1.5px solid var(--background)"
+                          : undefined,
+                    }}
+                    aria-hidden
+                  />
+                )}
+              </button>
             );
           }),
         )}

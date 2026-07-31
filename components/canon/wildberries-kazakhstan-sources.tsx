@@ -29,6 +29,12 @@ type SourceReference = {
   links: readonly SourceLink[];
 };
 
+type CanonicalReference = {
+  n: number;
+  text: string;
+  href?: string;
+};
+
 const SOURCES: readonly SourceReference[] = [
   {
     n: 1,
@@ -356,6 +362,147 @@ const SOURCES: readonly SourceReference[] = [
   },
 ];
 
+/*
+ * Literal transcription of the numbered `## Источники` block in the
+ * editorial index.md. The structured SOURCES records above intentionally stay
+ * separate: they power the compact inline citation cards, while this array is
+ * the canonical text readers see at the end of the article.
+ */
+const CANONICAL_REFERENCES: readonly CanonicalReference[] = [
+  {
+    n: 1,
+    text: `Дарья Андрианова. «С логистикой все сопредельно ясно: Wildberries ищет 100 тыс. кв. м складов в Казахстане». Коммерсантъ, 29.07.2026.`,
+    href: "https://www.kommersant.ru/doc/8846772",
+  },
+  {
+    n: 2,
+    text: `Associated Press. «Russian strikes across Ukraine kill 10 and NATO scrambles jets after a missile falls in Poland», 30.07.2026 — в материале также сообщается об атаках, пожарах и эвакуации работников объектов Wildberries в Пензе и Сарапуле.`,
+    href: "https://apnews.com/article/russia-ukraine-war-zelenskyy-missile-attack-63ab11e0ebe6a9aefdb547fe442bef3f",
+  },
+  {
+    n: 3,
+    text: `Tengrinews со ссылкой на Министерство торговли и интеграции РК. «В Казахстане официально отреагировали на перенос складов Wildberries», 29.07.2026.`,
+    href: "https://tengrinews.kz/curious/kazahstane-otreagirovali-vozmojnyiy-perenos-skladov-605066/",
+  },
+  {
+    n: 4,
+    text: `MarketPapa. «Неделя продаж на WB»: публичная оценка за периоды 23–29 июля и 16–22 июля 2026 года; набор данных и полная методика в посте не названы. Telegram-публикация.`,
+    href: "https://t.me/marketpapa_channel/1755",
+  },
+  {
+    n: 5,
+    text: `Собственный анализ автора по данным MPStats API. Фиксированная панель из 40 SKU, восемь дат, склад 324108 «Астана Карагандинское шоссе». Методология приведена в приложении к статье.`,
+  },
+  {
+    n: 6,
+    text: `Бюро национальной статистики РК. «Об электронной коммерции в Республике Казахстан (2025 г.)», 25.05.2026.`,
+    href: "https://stat.gov.kz/ru/industries/economy/local-market/publications/346330/",
+  },
+  {
+    n: 7,
+    text: `Kaspi Гид. «Я нерезидент Республики Казахстан. Я могу подключиться к Магазину на Kaspi.kz?»`,
+    href: "https://guide.kaspi.kz/partner/ru/shop/connection/q2907",
+  },
+  {
+    n: 8,
+    text: `Kaspi Гид. «Как стать партнером Магазина на Kaspi.kz?» — требование продаж через Kaspi Pay не менее 20 дней за последние два месяца.`,
+    href: "https://guide.kaspi.kz/partner/ru/shop/conditions/q1350",
+  },
+  {
+    n: 9,
+    text: `Kaspi Гид. «Как в Магазине на Kaspi.kz добавить склад?»`,
+    href: "https://guide.kaspi.kz/partner/ru/shop/sale_points/q2708",
+  },
+  {
+    n: 10,
+    text: `Kaspi Гид. «Как работает Kaspi Доставка?»`,
+    href: "https://guide.kaspi.kz/partner/ru/shop/delivery/shipping/q2287",
+  },
+  {
+    n: 11,
+    text: `Татьяна Романова, Алена Белая. «Подсчитали — прослезились: во что обойдется Wildberries атака на склады». Forbes Russia, 20.07.2026.`,
+    href: "https://www.forbes.ru/biznes/565242-podscitali-proslezilis-vo-cto-obojdetsa-wildberries-ataka-na-sklady",
+  },
+  {
+    n: 12,
+    text: `Официальный информационный ресурс Премьер-министра РК. «Олжас Бектенов проверил реализацию поручений Президента по развитию реального сектора», 08.06.2026.`,
+    href: "https://primeminister.kz/ru/news/olzas-bektenov-proveril-realizaciiu-porucenii-prezidenta-po-razvitiiu-realnogo-sektora-31481",
+  },
+  {
+    n: 13,
+    text: `Forbes Kazakhstan. «Продажи казахстанских предпринимателей на Wildberries выросли на 67% за год», 23.10.2024.`,
+    href: "https://forbes.kz/articles/prodazhi-kazahstanskih-predprinimateley-na-wildberries-vyrosli-na-67-za-god-fe31ca",
+  },
+  {
+    n: 14,
+    text: `Kaspi Гид. «Как в Магазине на Kaspi.kz подключить Kaspi Доставку по Казахстану?»`,
+    href: "https://guide.kaspi.kz/partner/ru/shop/delivery/shipping/q2289",
+  },
+  {
+    n: 15,
+    text: `РБК. «Ким рассказала о компенсации продавцам после атак БПЛА на склады WB», 18.07.2026.`,
+    href: "https://www.rbc.ru/business/18/07/2026/6a5b7db89a794732ae4f7a2a",
+  },
+  {
+    n: 16,
+    text: `Wilbox. Расчет медиан СПП по FBO и FBS в 20 крупных по обороту предметах, предоставлен автору 31.07.2026. Полная методика и сырой набор данных не предоставлены.`,
+  },
+  {
+    n: 17,
+    text: `Wildberries. «Скидка WB» — дополнительная скидка площадки и отражение платформенных скидок в финансовом отчете; обновлено 22.07.2026.`,
+    href: "https://seller.wildberries.ru/instructions/ru/ru/material/wb-discount",
+  },
+  {
+    n: 18,
+    text: `Wildberries. «Модель продаж “Маркетплейс” (FBS)» — сборка заказа продавцом, точки передачи и привязка логистических коэффициентов; обновлено 18.05.2026.`,
+    href: "https://seller.wildberries.ru/instructions/ru/ru/material/fbs-sales-model",
+  },
+  {
+    n: 19,
+    text: `Wildberries. «Как создать склад продавца для работы по модели “Маркетплейс” (FBS)» — физический узел, зона отгрузки и список зон; обновлено 20.07.2026.`,
+    href: "https://seller.wildberries.ru/instructions/ru/ru/material/how-to-create-sellers-warehouse",
+  },
+  {
+    n: 20,
+    text: `Wildberries. «Выдача и ранжирование товаров» — влияние зон доставки, времени сборки и доставки на место товара; обновлено 27.07.2026.`,
+    href: "https://seller.wildberries.ru/instructions/ru/ru/material/item-search-results-and-ranking",
+  },
+  {
+    n: 21,
+    text: `Wildberries. «Рейтинг доставки» — расчет рейтинга FBS и ограничения при значении ниже 70%; обновлено 18.05.2026.`,
+    href: "https://seller.wildberries.ru/instructions/ru/ru/material/delivery-rating",
+  },
+  {
+    n: 22,
+    text: `Дарья Андреева. «Эксперт: Ситуация вокруг WB серьезно изменит карту e-commerce Центральной Азии». Forbes Kazakhstan, 31.07.2026.`,
+    href: "https://forbes.kz/articles/ekspert-situatsiya-vokrug-wbserezno-izmenit-kartu-e-commerce-tsentralnoy-azii-62fd03",
+  },
+  {
+    n: 23,
+    text: `Анонимный комментарий продавца, переданный автору 31.07.2026: сокращение закупок на 30%, сценарий сокращения на 50% и хранения товара на собственном складе. Использован только как частный пример, не как статистика рынка.`,
+  },
+  {
+    n: 24,
+    text: `Marketplace_biz. «Первые последствия пожаров на WB уже добрались до ПВЗ» — сообщение анонимного владельца ПВЗ Ozon о соседнем пункте Wildberries; доступ 31.07.2026.`,
+    href: "https://t.me/marketplace_biz/9122",
+  },
+  {
+    n: 25,
+    text: `Wildberries. Официальный сайт для партнеров ПВЗ — 98 тыс. пунктов в России и других странах, 28 млн заказов в день и доля получения заказов через ПВЗ. Доступ 31.07.2026.`,
+    href: "https://pvz.wb.ru/",
+  },
+  {
+    n: 26,
+    text: `Анна Липень. «Ну вы, блин, выдаете! Как пункты выдачи Wildberries и Ozon [не]уживаются в Казахстане». Курсив, №39, 17.10.2024.`,
+    href: "https://cdn-kz.kursiv.media/wp-content/uploads/2024/10/gazeta-kursiv-39-17102024.pdf",
+  },
+  {
+    n: 27,
+    text: `PRO Wildberries. «Какие расходы заложить на открытие ПВЗ и на чем зарабатывать» — основной доход партнера как процент от оборота выданных заказов; материал для российского рынка, доступ 31.07.2026.`,
+    href: "https://pro.wildberries.ru/lesson/2zavBjdRQc6Y46b2yCQdGvL8jI4/39q8tdxyJcWJkPl0WR4ZXd24e9q",
+  },
+];
+
 function getSource(n: number) {
   const source = SOURCES.find((item) => item.n === n);
   if (!source) throw new Error(`Unknown source reference: ${n}`);
@@ -383,32 +530,35 @@ export function Cite({ n }: { n: number }) {
 }
 
 export function SourcesList() {
+  const linkClass = "underline decoration-solid underline-offset-2 hover:text-[var(--color-text)]";
+
   return (
     <section className="mb-12" aria-labelledby="article-sources-heading">
       <h2 id="article-sources-heading" className="mb-6 text-[20px] font-bold tracking-tight text-[var(--color-text)]">
         Источники
       </h2>
       <ol className="list-decimal space-y-3 pl-5 text-[12px] leading-relaxed text-[var(--color-dim)] marker:font-mono marker:text-[var(--color-text)]">
-        {SOURCES.map((source) => (
-          <li key={source.n} id={`source-${source.n}`} className="scroll-mt-20">
-            <span className="font-bold text-[var(--color-text)]">{source.publication}</span>
-            {` · ${source.date}. ${source.claim} `}
-            {source.links.map((link, index) => {
-              const internal = link.href.startsWith("#") || link.href.startsWith("/");
-              return (
-                <span key={link.href}>
-                  {index > 0 && " · "}
-                  <a
-                    href={link.href}
-                    target={internal ? undefined : "_blank"}
-                    rel={internal ? undefined : "noopener noreferrer"}
-                    className="underline decoration-solid underline-offset-2 hover:text-[var(--color-text)]"
-                  >
-                    {link.label}
-                  </a>
-                </span>
-              );
-            })}
+        {CANONICAL_REFERENCES.map((reference) => (
+          <li key={reference.n} id={`source-${reference.n}`} className="scroll-mt-20">
+            {reference.n === 5 ? (
+              <>
+                <a href="/blog/wildberries-kazakhstan/data/mpstats-astana-daily.csv" className={linkClass}>
+                  Собственный анализ автора по данным MPStats API.
+                </a>{" "}
+                <a href="/blog/wildberries-kazakhstan/data/mpstats-pre-post-summary.csv" className={linkClass}>
+                  Фиксированная панель из 40 SKU, восемь дат, склад 324108 «Астана Карагандинское шоссе».
+                </a>{" "}
+                <a href="#methodology" className={linkClass}>
+                  Методология приведена в приложении к статье.
+                </a>
+              </>
+            ) : reference.href ? (
+              <a href={reference.href} target="_blank" rel="noopener noreferrer" className={linkClass}>
+                {reference.text}
+              </a>
+            ) : (
+              reference.text
+            )}
           </li>
         ))}
       </ol>
