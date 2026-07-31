@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 
 export const revalidate = 120;
 
-const DATA_SLUGS = new Set(["wb-dual-use", "freedom-market", "russia-fuel-jerrycan", "nvidia-kazakhstan", "why-blogger-brands-fail"]);
+const DATA_SLUGS = new Set(["wildberries-kazakhstan", "wb-dual-use", "freedom-market", "russia-fuel-jerrycan", "nvidia-kazakhstan", "why-blogger-brands-fail"]);
 const L = "en" as const;
 
 export default async function DataPageEn() {

@@ -1,0 +1,9 @@
+date,period,panel_size,interpretable_sku_date,astana_positive_skus,astana_positive_share_pct,astana_observed_balance_lower_bound,total_returned_network_balance,astana_network_share_pct_absent_zero,median_active_warehouses_per_sku,median_largest_warehouse_share_pct
+2026-06-18,PRE,40,40,5,12.5,5,227795,0.002195,17.0,24.4001
+2026-07-04,PRE,40,40,10,25.0,15,214668,0.006988,17.5,25.7406
+2026-07-11,PRE,40,40,16,40.0,19,203633,0.009331,18.0,24.5038
+2026-07-17,PRE,40,40,12,30.0,15,196460,0.007635,18.0,24.9882
+2026-07-20,POST,40,40,12,30.0,19,161411,0.011771,16.0,26.4598
+2026-07-24,POST,40,40,6,15.0,7,101416,0.006902,11.0,32.7205
+2026-07-27,POST,40,40,8,20.0,11,85352,0.012888,10.5,36.1993
+2026-07-29,POST,40,39,6,15.0,7,67887,0.010311,10.0,39.3552

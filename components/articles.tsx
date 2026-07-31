@@ -72,6 +72,23 @@ export const ARTICLE_DRAFTS: ArticleDraft[] = [];
 
 export const ARTICLES: Article[] = [
   {
+    href: "/blog/wildberries-kazakhstan",
+    slug: "wildberries-kazakhstan",
+    img: "/blog/wildberries-kazakhstan/cover.webp",
+    rubric: "Аналитика",
+    title: "Wildberries ищет склады в Казахстане. Единого блока на 100 тыс. кв. м нет",
+    subtitle:
+      "После атак на российские комплексы RWB начала искать площади в Казахстане, сообщили участники рынка недвижимости. Я проверил FBS, остатки в Астане и экономику ПВЗ. Данные показывают дефицит инфраструктуры; массовый переток заказов к Kaspi пока не подтверждается.",
+    date: "31 Июл 2026",
+    datePublished: "2026-07-31",
+    readMin: 17,
+    likes: 0,
+    comments: 0,
+    shares: 0,
+    credit: "Иллюстрация: Алмас Касымжанов",
+    enReady: false,
+  },
+  {
     href: "/blog/wb-dual-use",
     slug: "wb-dual-use",
     img: "/blog/wb-dual-use/cover.webp",

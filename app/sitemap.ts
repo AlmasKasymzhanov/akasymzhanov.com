@@ -10,6 +10,7 @@ const BILINGUAL = ["", "/blog/freedom-market", "/blog/russia-fuel-jerrycan", "/b
 /* RU-only routes (no EN counterpart). */
 const RU_ONLY = [
   "/blog",
+  "/blog/wildberries-kazakhstan",
   "/blog/wb-dual-use",
   "/analytics",
   "/tools",

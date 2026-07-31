@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 export const revalidate = 120;
 
 // Editorial stories: everything in ARTICLES except the tool guide.
-const DATA_SLUGS = new Set(["wb-dual-use", "freedom-market", "russia-fuel-jerrycan", "nvidia-kazakhstan", "why-blogger-brands-fail"]);
+const DATA_SLUGS = new Set(["wildberries-kazakhstan", "wb-dual-use", "freedom-market", "russia-fuel-jerrycan", "nvidia-kazakhstan", "why-blogger-brands-fail"]);
 
 export default async function DataPage() {
   const items = ARTICLES.filter((a) => DATA_SLUGS.has(a.slug));
