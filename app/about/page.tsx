@@ -54,11 +54,11 @@ export default function AboutPage() {
   const L = "ru" as const;
 
   return (
-    <div className="font-mono text-[var(--color-text)]">
+    <div className="font-body text-[var(--color-text)]">
       <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
         <SiteHeader />
 
-        <main className="w-full max-w-[1040px] mx-auto px-6 py-12 md:py-20">
+        <main id="main-content" className="w-full max-w-[1040px] mx-auto px-6 py-12 md:py-20">
           {/* ── Hero ── */}
           <header className="grid gap-10 md:gap-14 md:grid-cols-[1fr_2fr] items-start mb-16 md:mb-24">
             <div className="relative w-40 h-40 md:w-52 md:h-52 rounded-full overflow-hidden border border-[var(--color-border)] shrink-0">
@@ -84,6 +84,9 @@ export default function AboutPage() {
               <p className="text-[14px] md:text-[15px] leading-relaxed text-[var(--color-text)]/90 border-l-2 border-[var(--color-brand)] pl-4">
                 {t.about.manifesto}
               </p>
+              <Link href="/standards" className="mt-5 inline-block font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--color-brand)] hover:underline underline-offset-4">
+                Редакционные стандарты →
+              </Link>
             </div>
           </header>
 

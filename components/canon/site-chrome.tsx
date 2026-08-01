@@ -7,6 +7,7 @@ import { LangToggle } from "@/components/lang-toggle";
 import { ThemeToggle } from "@/components/theme-toggle";
 import { SocialIcon } from "@/components/social-icons";
 import { HeaderAuth } from "@/components/canon/header-auth";
+import { MobileMenu, MobileTopicRail } from "@/components/canon/mobile-menu";
 import { SOCIAL_PROFILES } from "@/lib/social";
 import { type Locale, dict } from "@/lib/i18n";
 
@@ -200,18 +201,74 @@ export function AuthorBlock({ variant = "vertical", locale = "ru" }: { variant?:
   );
 }
 
-// Main site header — masthead left-aligned at every breakpoint (Bloomberg /
-// Business Insider / Rest of World convention), controls on the right. Compact
-// lang + theme on mobile, full segmented pills on tablet+. No hamburger.
-export function SiteHeader({ locale = "ru" }: { locale?: Locale }) {
+function MobilePublicationHeader({ locale }: { locale: Locale }) {
+  const homeHref = locale === "en" ? "/en" : "/";
   return (
-    <header className="border-b border-[var(--color-border)]">
-      <div className="relative flex items-center justify-between gap-1.5 sm:gap-3 px-4 sm:px-6 md:px-7 py-4 md:py-5">
+    <div className="xl:hidden">
+      <div className="flex h-16 items-center justify-between gap-3 px-4 sm:px-6">
+        <div className="min-w-0 overflow-hidden">
+          <Masthead size="xl" surnameOnly href={homeHref} />
+        </div>
+        <div className="-mr-1 flex shrink-0 items-center">
+          <HeaderAuth variant="icon" />
+          <MobileMenu />
+        </div>
+      </div>
+      <MobileTopicRail />
+    </div>
+  );
+}
+
+// Main site header: one compact publication header below xl, with all
+// interface settings inside the menu; full editorial chrome on desktop.
+export function SiteHeader({ locale = "ru", variant = "compact" }: { locale?: Locale; variant?: "compact" | "masthead" }) {
+  const t = dict[locale];
+  const prefix = locale === "en" ? "/en" : "";
+  const homeHref = locale === "en" ? "/en" : "/";
+
+  if (variant === "masthead") {
+    return (
+      <header className="relative border-b border-[var(--color-border)]">
+        <a href="#main-content" className="skip-link">{locale === "en" ? "Skip to content" : "Перейти к материалам"}</a>
+        <MobilePublicationHeader locale={locale} />
+        <div className="hidden xl:block">
+          <div className="flex items-center justify-between gap-4 border-b border-[var(--color-border)] px-8 py-2.5">
+            <nav className="flex items-center gap-5 font-body text-[12px] font-semibold" aria-label={locale === "en" ? "Publication" : "Издание"}>
+              <Link href={`${prefix}/latest`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.latest}</Link>
+              <Link href={`${prefix}/newsletter`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.newsletter}</Link>
+              <Link href={`${prefix}/about`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.about}</Link>
+            </nav>
+            <div className="ml-auto flex items-center gap-3">
+              <LangToggle />
+              <ThemeToggle />
+              <HeaderSearch />
+              <HeaderAuth />
+            </div>
+          </div>
+          <div className="flex flex-col items-center px-4 py-12 text-center">
+            <Masthead size="hero" surnameOnly href={homeHref} />
+            <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-dim)]">
+              {locale === "en" ? "Independent data publication · Central Asia" : "Независимое дата-издание · Центральная Азия"}
+            </p>
+          </div>
+          <div className="flex min-h-12 items-center justify-center border-t border-[var(--color-border)] px-4">
+            <HeaderNav />
+          </div>
+        </div>
+      </header>
+    );
+  }
+
+  return (
+    <header className="relative border-b border-[var(--color-border)]">
+      <a href="#main-content" className="skip-link">{locale === "en" ? "Skip to content" : "Перейти к материалу"}</a>
+      <MobilePublicationHeader locale={locale} />
+      <div className="hidden items-center justify-between gap-3 px-7 py-5 xl:flex">
         <div className="min-w-0 flex items-center gap-4 md:gap-6">
-          <Masthead size="xl" surnameOnly />
+          <Masthead size="xl" surnameOnly href={homeHref} />
           <HeaderNav />
         </div>
-        <div className="shrink-0 flex items-center gap-0.5 sm:gap-3 md:gap-4">
+        <div className="flex shrink-0 items-center gap-4">
           <LangToggle />
           <ThemeToggle />
           <HeaderSearch />
@@ -225,6 +282,7 @@ export function SiteHeader({ locale = "ru" }: { locale?: Locale }) {
 // Main site footer — author name, description, colophon, requisites + legal.
 export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Locale; hidePhone?: boolean }) {
   const t = dict[locale];
+  const prefix = locale === "en" ? "/en" : "";
   return (
     <footer className="border-t border-[var(--color-border)]">
       <div className="px-6 md:px-7 py-10 md:py-14">
@@ -233,9 +291,21 @@ export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Loca
         <p className="mt-5 text-[13px] md:text-[14px] text-[var(--color-dim)] leading-relaxed max-w-3xl">
           {t.footer.desc}
         </p>
-        <p className="mt-4 text-[12px] text-[var(--color-dim)]/70">
-          {t.footer.colophon}
-        </p>
+        <div className="mt-7 grid gap-6 border-t border-[var(--color-border)] pt-7 sm:grid-cols-3">
+          <nav className="flex flex-col items-start gap-2 text-[12px]" aria-label={locale === "en" ? "Explore" : "Разделы"}>
+            <Link href={`${prefix}/latest`} className="hover:text-[var(--color-brand)]">{t.nav.latest}</Link>
+            <Link href={`${prefix}/market`} className="hover:text-[var(--color-brand)]">{t.nav.market}</Link>
+            <Link href={`${prefix}/technology`} className="hover:text-[var(--color-brand)]">{t.nav.technology}</Link>
+            <Link href={`${prefix}/kazakhstan`} className="hover:text-[var(--color-brand)]">{t.nav.kazakhstan}</Link>
+          </nav>
+          <nav className="flex flex-col items-start gap-2 text-[12px]" aria-label={locale === "en" ? "Publication" : "Об издании"}>
+            <Link href={`${prefix}/about`} className="hover:text-[var(--color-brand)]">{t.nav.about}</Link>
+            <Link href={`${prefix}/standards`} className="hover:text-[var(--color-brand)]">{locale === "en" ? "Editorial standards" : "Редакционные стандарты"}</Link>
+            <Link href={`${prefix}/newsletter`} className="hover:text-[var(--color-brand)]">{t.nav.newsletter}</Link>
+            <a href={locale === "en" ? "/en/feed.xml" : "/feed.xml"} className="hover:text-[var(--color-brand)]">RSS</a>
+          </nav>
+          <p className="text-[12px] leading-relaxed text-[var(--color-dim)]">{t.footer.colophon}</p>
+        </div>
       </div>
       <div className="border-t border-[var(--color-border)] px-6 md:px-7 py-6 flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between text-[12px] text-[var(--color-dim)]">
         <div className="flex flex-col gap-1 leading-relaxed">
@@ -255,10 +325,7 @@ export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Loca
             </a>
           </span>
         </div>
-        <nav className="flex items-center gap-5 shrink-0">
-          <Link href={locale === "en" ? "/en/about" : "/about"} className="no-underline hover:text-[var(--color-brand)] hover:underline underline-offset-4 decoration-1 transition-colors">
-            {t.footer.about}
-          </Link>
+        <nav className="flex flex-wrap items-center gap-5 shrink-0">
           <Link href="/privacy" className="no-underline hover:text-[var(--color-brand)] hover:underline underline-offset-4 decoration-1 transition-colors">
             {t.footer.privacy}
           </Link>

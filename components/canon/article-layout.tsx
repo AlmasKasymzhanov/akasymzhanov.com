@@ -5,6 +5,7 @@ import { EngagementBar } from "@/components/engagement/engagement-bar";
 import { Comments } from "@/components/engagement/comments";
 import { ReadingProgress } from "@/components/canon/reading-progress";
 import { RelatedArticles } from "@/components/canon/related-articles";
+import { NewsletterCard } from "@/components/articles";
 import { type Locale } from "@/lib/i18n";
 
 export function ArticleLayout({
@@ -21,26 +22,38 @@ export function ArticleLayout({
   showAuthorBlock?: boolean;
 }) {
   return (
-    <div className="font-mono text-[var(--color-text)]">
+    <div className="font-body text-[var(--color-text)]">
       <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
         <ReadTracker slug={slug} />
         <ReadingProgress />
         <SiteHeader locale={locale} />
 
-        <EngagementProvider slug={slug}>
-          <article className="w-full max-w-[720px] mx-auto px-6 py-12 md:py-20">
-            {header}
-            <hr className="border-[var(--color-border)] mb-12" />
-            {children}
+        <main id="main-content">
+          <EngagementProvider slug={slug}>
+            <article>
+              <div className="mx-auto w-full max-w-[1120px] px-6 pb-12 pt-10 md:pb-16 md:pt-16 lg:px-10">
+                {header}
+              </div>
 
-            <div className="mt-12 flex justify-end">
-              <EngagementBar />
-            </div>
-            <Comments />
+              <div className="article-content mx-auto w-full max-w-[760px] px-6 pb-12 md:pb-16">
+                <div className="article-story-body" data-article-body>{children}</div>
 
-            <RelatedArticles currentSlug={slug} locale={locale} />
-          </article>
-        </EngagementProvider>
+                <div className="my-14">
+                  <NewsletterCard source={`article-${slug}`} locale={locale} />
+                </div>
+
+                <div className="mt-12 flex justify-end">
+                  <EngagementBar />
+                </div>
+                <Comments />
+              </div>
+
+              <div className="mx-auto w-full max-w-[1120px] px-6 pb-16 lg:px-10">
+                <RelatedArticles currentSlug={slug} locale={locale} />
+              </div>
+            </article>
+          </EngagementProvider>
+        </main>
 
         <div className="flex-1" aria-hidden />
         {showAuthorBlock && <AuthorBlock variant="horizontal" locale={locale} />}

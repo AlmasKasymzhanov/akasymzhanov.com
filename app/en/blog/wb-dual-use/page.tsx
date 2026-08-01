@@ -1,5 +1,3 @@
-"use client";
-
 import { ArticleHeader } from "@/components/canon/article-header";
 import { ArticleLayout } from "@/components/canon/article-layout";
 import { Grafik1, Grafik2, Grafik3, SupplyCallout } from "@/components/charts/wb-dual-use-en";

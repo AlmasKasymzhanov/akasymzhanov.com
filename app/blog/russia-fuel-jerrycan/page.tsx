@@ -1,5 +1,3 @@
-"use client";
-
 import { ArticleHeader } from "@/components/canon/article-header";
 import { ArticleLayout } from "@/components/canon/article-layout";
 import { Term, Fn } from "@/components/canon/term";

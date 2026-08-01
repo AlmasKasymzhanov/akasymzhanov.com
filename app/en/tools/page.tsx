@@ -87,11 +87,11 @@ export const metadata: Metadata = {
 
 export default function ToolsPageEn() {
   return (
-    <div className="font-mono text-[var(--color-text)]">
+    <div className="font-body text-[var(--color-text)]">
       <div className="max-w-[1400px] mx-auto border-x border-[var(--color-border)] min-h-screen flex flex-col">
         <SiteHeader locale="en" />
 
-        <main className="w-full max-w-[1040px] mx-auto px-6 py-12 md:py-16">
+        <main id="main-content" className="w-full max-w-[1040px] mx-auto px-6 py-12 md:py-16">
           <header className="mb-10">
             <p className="font-mono text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-4">
               Section

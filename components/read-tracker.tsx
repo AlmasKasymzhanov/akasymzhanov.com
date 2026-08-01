@@ -10,10 +10,14 @@ export function ReadTracker({ slug }: { slug: string }) {
 
   useEffect(() => {
     function handleScroll() {
-      const scrollTop = window.scrollY;
-      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-      if (docHeight <= 0) return;
-      const pct = Math.round((scrollTop / docHeight) * 100);
+      const story = document.querySelector<HTMLElement>("[data-article-body]");
+      if (!story) return;
+      const rect = story.getBoundingClientRect();
+      const storyTop = rect.top + window.scrollY;
+      const storyHeight = story.scrollHeight;
+      if (storyHeight <= 0) return;
+      const visibleBottom = window.scrollY + window.innerHeight;
+      const pct = Math.max(0, Math.min(100, Math.round(((visibleBottom - storyTop) / storyHeight) * 100)));
 
       for (const threshold of THRESHOLDS) {
         if (pct >= threshold && !firedRef.current.has(threshold)) {

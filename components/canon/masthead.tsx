@@ -9,20 +9,24 @@ export function Masthead({
   back = false,
   size = "sm",
   surnameOnly = false,
+  href = "/",
 }: {
   back?: boolean;
-  size?: "sm" | "lg" | "xl";
+  size?: "sm" | "lg" | "xl" | "hero";
   surnameOnly?: boolean;
+  href?: string;
 }) {
   const sizeCls =
-    size === "xl"
+    size === "hero"
+      ? "text-[38px] sm:text-[54px] md:text-[72px] lg:text-[88px] tracking-[-0.035em] sm:tracking-[-0.02em]"
+      : size === "xl"
       ? "text-[15px] sm:text-[19px] md:text-[24px] lg:text-[28px] tracking-[0.01em] sm:tracking-[0.06em]"
       : size === "lg"
         ? "text-[20px] md:text-[28px] tracking-[0.12em]"
         : "text-[13px] md:text-[14px] tracking-[0.16em]";
   return (
     <Link
-      href="/"
+      href={href}
       aria-label={ARIA_LABEL}
       className={`inline-flex items-baseline font-mono ${sizeCls} font-bold uppercase text-[var(--color-text)] no-underline hover:opacity-70 transition-opacity`}
     >

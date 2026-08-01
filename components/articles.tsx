@@ -35,10 +35,12 @@ export type Article = {
   // instead of being cropped to fill — for art whose own text would otherwise clip.
   coverBg?: string;
   rubric: string;
+  topics: ArticleTopic[];
   title: string;
   subtitle: string;
   date: string; // display date, e.g. "22 Июн 2026"
   datePublished: string; // ISO 8601, e.g. "2026-06-22" — for structured data
+  dateModified?: string;
   readMin: number;
   // Engagement counts — overridden at request time from Supabase.
   likes: number;
@@ -54,6 +56,8 @@ export type Article = {
   enReady?: boolean;
 };
 
+export type ArticleTopic = "markets" | "technology" | "kazakhstan";
+
 // Editorially complete copy that must not enter public feeds or structured
 // data until publication-only fields (cover, credit, EN and date) are ready.
 export type ArticleDraft = Pick<Article, "href" | "slug" | "rubric" | "title" | "subtitle" | "readMin"> & {
@@ -68,6 +72,19 @@ export function localizeArticle(a: Article, locale: Locale): Article {
   return { ...base, href: a.enReady ? `/en${a.href}` : a.href };
 }
 
+/** Public editorial catalogue in canonical chronology. English is curated:
+ * only completed translations enter English feeds and section fronts. */
+export function getPublishedArticles(locale: Locale = "ru"): Article[] {
+  return ARTICLES
+    .filter((a) => locale === "ru" || a.enReady)
+    .map((a) => localizeArticle(a, locale))
+    .sort((a, b) => b.datePublished.localeCompare(a.datePublished));
+}
+
+export function getArticlesByTopic(topic: ArticleTopic, locale: Locale = "ru"): Article[] {
+  return getPublishedArticles(locale).filter((a) => a.topics.includes(topic));
+}
+
 export const ARTICLE_DRAFTS: ArticleDraft[] = [];
 
 export const ARTICLES: Article[] = [
@@ -76,6 +93,7 @@ export const ARTICLES: Article[] = [
     slug: "wildberries-kazakhstan",
     img: "/blog/wildberries-kazakhstan/cover.webp",
     rubric: "Аналитика",
+    topics: ["markets", "kazakhstan"],
     title: "Wildberries ищет склады в Казахстане. Единого блока на 100 тыс. кв. м нет",
     subtitle:
       "После атак на российские комплексы RWB начала искать площади в Казахстане, сообщили участники рынка недвижимости. Я проверил FBS, остатки в Астане и экономику ПВЗ. Данные показывают дефицит инфраструктуры; массовый переток заказов к Kaspi пока не подтверждается.",
@@ -94,6 +112,7 @@ export const ARTICLES: Article[] = [
     img: "/blog/wb-dual-use/cover.webp",
     imgPosition: "center 50%",
     rubric: "Исследование",
+    topics: ["markets", "technology"],
     title: "Я искал товары на атакованных складах Wildberries и нашёл ниши, выросшие в десятки раз",
     subtitle:
       "Связать семь проверенных карточек с конкретными складами не удалось. Тогда я поднял данные MPStats с 2021 года. В сопоставимых 12-месячных окнах оборот маскировочных костюмов вырос примерно с 42 млн до 3,15 млрд рублей, а продажи выросли более чем в 37 раз. Эти цифры не объясняют причину роста и не показывают, что лежало в атакованных корпусах.",
@@ -112,6 +131,7 @@ export const ARTICLES: Article[] = [
     img: "/blog/freedom-market/cover.webp",
     coverBg: "#e93032",
     rubric: "Расследование",
+    topics: ["markets", "kazakhstan"],
     title: "Маркетплейс умер. Он вам позвонит",
     subtitle:
       "Как Freedom Тимура Турлова покупает площадку, которая не платила людям, зачем холдингу воскрешать её под своим именем - и почему у Kaspi впервые за десять лет появился соперник, которому есть чем ответить.",
@@ -138,6 +158,7 @@ export const ARTICLES: Article[] = [
     img: "/blog/russia-fuel-jerrycan/cover.webp",
     coverBg: "#f9ecd7",
     rubric: "Аналитика",
+    topics: ["markets"],
     title: "Государство закрыло статистику. Рынок открыл канистру",
     subtitle:
       "Дефицит топлива в России нельзя объявить — но можно посчитать. Как продажи пустых канистр на Wildberries стали барометром кризиса, когда статистику погасили.",
@@ -164,6 +185,7 @@ export const ARTICLES: Article[] = [
     img: "/blog/nvidia-kazakhstan/cover.webp",
     imgPosition: "center 62%",
     rubric: "Аналитика",
+    topics: ["technology", "kazakhstan"],
     title: "Кремний на угле",
     subtitle:
       "Казахстан подписал с NVIDIA и Firebird на $10 млрд — а ток для ИИ добудут углём. Что подписали, чем заплатят и где этот фильм уже показывали.",
@@ -189,6 +211,7 @@ export const ARTICLES: Article[] = [
     slug: "why-blogger-brands-fail",
     img: "/blog/why-blogger-brands-fail/likbeauty.webp",
     rubric: "Рынок",
+    topics: ["markets", "kazakhstan"],
     title: "Lick Beauty: семь миллионов против четырёхсот двадцати",
     subtitle: "Как бренд с 7 млн подписчиков проиграл реплике за 420 тенге.",
     date: "25 Мар 2026",
@@ -210,6 +233,7 @@ export const ARTICLES: Article[] = [
     slug: "kaspi-mcp",
     img: "/blog/kaspi-mcp/mcp.webp",
     rubric: "Инструменты",
+    topics: ["markets", "technology", "kazakhstan"],
     title: "Арифметика лени: как AI добывает золото из Kaspi",
     subtitle: "MCP-коннектор: Claude сам достаёт ниши, цены и долю «без бренда».",
     date: "29 Май 2026",
@@ -326,24 +350,14 @@ function AuthorAvatar({ size, locale = "ru" }: { size: number; locale?: Locale }
   );
 }
 
-function BylineRow({ a, views, avatar = 26, className = "", locale = "ru" }: { a: Article; views: number; avatar?: number; className?: string; locale?: Locale }) {
+function BylineRow({ a, className = "", locale = "ru" }: { a: Article; views?: number; avatar?: number; className?: string; locale?: Locale }) {
   return (
-    <div className={`flex items-center gap-2.5 ${className}`}>
-      <AuthorAvatar size={avatar} locale={locale} />
-      <div className="min-w-0">
-        <p className="text-[12px] text-[var(--color-text)] leading-tight">{dict[locale].name}</p>
-        <div className="flex flex-wrap items-center gap-x-1.5 gap-y-0.5 mt-0.5 text-[11px] text-[var(--color-dim)]">
-          <span>{a.date}</span>
-          <span aria-hidden>·</span>
-          <MetaItem>
-            <ClockIcon /> {dict[locale].minRead(a.readMin)}
-          </MetaItem>
-          <span aria-hidden>·</span>
-          <MetaItem>
-            <EyeIcon /> {views.toLocaleString(bcp47[locale])}
-          </MetaItem>
-        </div>
-      </div>
+    <div className={`flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[10px] uppercase tracking-[0.04em] text-[var(--color-dim)] ${className}`}>
+      <span>{locale === "en" ? "By" : "Автор"} {dict[locale].name}</span>
+      <span aria-hidden>·</span>
+      <time dateTime={a.datePublished}>{a.date}</time>
+      <span aria-hidden>·</span>
+      <MetaItem><ClockIcon /> {dict[locale].minRead(a.readMin)}</MetaItem>
     </div>
   );
 }
@@ -382,7 +396,7 @@ export function ArticleCard({
 }) {
   const Heading = headingLevel ?? (featured ? "h1" : "h2");
   return (
-    <Link href={a.href} className="group block">
+    <Link href={a.href} className="group block font-body">
       <div
         className="relative aspect-video border border-[var(--color-border)] overflow-hidden mb-5 bg-[var(--color-surface)]"
         style={a.coverBg ? { backgroundColor: a.coverBg } : undefined}
@@ -421,8 +435,7 @@ export function ArticleCard({
       <p className={`text-[var(--color-dim)] leading-relaxed ${featured ? "text-[15px] md:text-[16px] mb-4" : "text-[13px] mb-3"}`}>
         {a.subtitle}
       </p>
-      <BylineRow a={a} views={views} avatar={featured ? 34 : 30} className="mb-3" locale={locale} />
-      <ActionRow a={a} locale={locale} />
+      <BylineRow a={a} views={views} className="mt-4" locale={locale} />
     </Link>
   );
 }
@@ -430,14 +443,13 @@ export function ArticleCard({
 // Compact preview (Business Insider "Inside Business" style): text + small thumbnail.
 export function CompactCard({ a, views, locale = "ru" }: { a: Article; views: number; locale?: Locale }) {
   return (
-    <Link href={a.href} className="group flex gap-4 items-start">
+    <Link href={a.href} className="group flex gap-4 items-start font-body">
       <div className="flex-1 min-w-0">
         <Rubric a={a} />
         <h2 className="text-[15px] md:text-[16px] font-bold leading-[1.2] tracking-tight group-hover:text-[var(--color-brand)] transition-colors mb-2">
           {a.title}
         </h2>
-        <BylineRow a={a} views={views} avatar={28} className="mb-2" locale={locale} />
-        <ActionRow a={a} locale={locale} />
+        <BylineRow a={a} views={views} className="mt-3" locale={locale} />
       </div>
       <div className="relative shrink-0 w-[120px] h-[104px] border border-[var(--color-border)] overflow-hidden">
         <Image
@@ -454,13 +466,30 @@ export function CompactCard({ a, views, locale = "ru" }: { a: Article; views: nu
 
 // Newsletter signup — Business Insider "BI Today" style. Brand-tinted panel.
 export function NewsletterCard({ source = "home", locale = "ru" }: { source?: string; locale?: Locale }) {
+  const copy = locale === "en"
+    ? {
+        eyebrow: "The newsletter",
+        title: "A clearer view of digital markets",
+        body: "New investigations, data notes, and practical findings from Kazakhstan and Central Asia. Sent only when there is something worth reading.",
+        note: "No daily noise. Unsubscribe any time.",
+      }
+    : {
+        eyebrow: "Рассылка",
+        title: "Цифровые рынки без информационного шума",
+        body: "Новые расследования, дата-разборы и практические находки из Казахстана и Центральной Азии. Письмо выходит, когда есть что сказать.",
+        note: "Без ежедневного спама. Отписаться можно в любой момент.",
+      };
   return (
-    <div className="bg-[var(--color-brand)] text-[var(--color-bg)] p-6">
-      <p className="text-[24px] md:text-[26px] font-bold tracking-tight leading-none mb-2.5">KASYMZHANOV.COM</p>
-      <p className="text-[13px] leading-relaxed opacity-80 mb-5">
-        {dict[locale].newsletter.tagline}
-      </p>
-      <SubscribeForm source={source} variant="brand" />
+    <div className="grid min-w-0 gap-8 overflow-hidden bg-[var(--color-brand)] p-5 text-[var(--color-bg)] sm:p-7 md:grid-cols-[1.25fr_1fr] md:p-10 lg:p-12">
+      <div className="min-w-0">
+        <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] opacity-75 mb-4">{copy.eyebrow}</p>
+        <p className="font-heading text-[28px] md:text-[36px] font-bold tracking-tight leading-[1.02] mb-4">{copy.title}</p>
+        <p className="font-body text-[14px] md:text-[16px] leading-relaxed opacity-85 max-w-xl">{copy.body}</p>
+      </div>
+      <div className="min-w-0 self-end">
+        <SubscribeForm source={source} variant="brand" />
+        <p className="font-body text-[11px] opacity-70 mt-3">{copy.note}</p>
+      </div>
     </div>
   );
 }
@@ -519,20 +548,25 @@ export function ArticleJsonLd({ slug, description, locale = "ru" }: { slug: stri
     description,
     image: [`${SITE}${a.img}`],
     datePublished: a.datePublished,
-    dateModified: a.datePublished,
+    dateModified: a.dateModified ?? a.datePublished,
     inLanguage: locale === "en" ? "en-US" : "ru-RU",
     articleSection: a.rubric,
+    genre: a.rubric,
+    keywords: a.topics,
+    isAccessibleForFree: true,
     mainEntityOfPage: { "@type": "WebPage", "@id": url },
     author: {
       "@type": "Person",
       name: dict[locale].name,
-      url: SITE,
+      url: `${SITE}${locale === "en" ? "/en" : ""}/authors/almas-kasymzhanov`,
       sameAs: SOCIAL_SAMEAS,
     },
     publisher: {
-      "@type": "Organization",
-      name: "kasymzhanov.com",
-      logo: { "@type": "ImageObject", url: `${SITE}/icon-192.png` },
+      "@type": "NewsMediaOrganization",
+      "@id": `${SITE}/#publisher`,
+      name: "Kasymzhanov",
+      url: SITE,
+      logo: { "@type": "ImageObject", url: `${SITE}/icon-192.png`, width: 192, height: 192 },
     },
   };
   return <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }} />;

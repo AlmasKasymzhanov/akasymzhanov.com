@@ -1,7 +1,18 @@
 import Image from "next/image";
+import Link from "next/link";
 import { ViewCounter } from "@/components/view-counter";
 import { EngagementBar } from "@/components/engagement/engagement-bar";
 import { type Locale, dict } from "@/lib/i18n";
+
+const TOPIC_BY_SLUG: Record<string, "market" | "technology" | "kazakhstan"> = {
+  "wildberries-kazakhstan": "market",
+  "wb-dual-use": "market",
+  "freedom-market": "market",
+  "russia-fuel-jerrycan": "market",
+  "nvidia-kazakhstan": "technology",
+  "why-blogger-brands-fail": "market",
+  "kaspi-mcp": "technology",
+};
 
 // Canonical article header: kicker → headline → dek → author byline (left) +
 // reading meta & engagement bar (right) → hero + credit.
@@ -42,28 +53,36 @@ export type ArticleHeaderProps = {
 
 export function ArticleHeader({ kicker, title, subtitle, slug, date, readMin, hero, locale = "ru" }: ArticleHeaderProps) {
   const t = dict[locale];
+  const authorHref = locale === "en" ? "/en/authors/almas-kasymzhanov" : "/authors/almas-kasymzhanov";
+  const prefix = locale === "en" ? "/en" : "";
+  const primaryTopic = TOPIC_BY_SLUG[slug] ?? "market";
+  const kickerHref = /инструмент|tool/i.test(kicker)
+    ? `${prefix}/tools`
+    : `${prefix}/${primaryTopic}`;
   return (
     <>
-      <header className="mb-10 md:mb-14">
-        <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-[var(--color-brand)] mb-4">{kicker}</p>
-        <h1 className="text-[36px] md:text-[52px] lg:text-[60px] font-bold tracking-tight text-[var(--color-text)] leading-[1.05] mb-6 font-heading">{title}</h1>
-        <p className="text-[17px] md:text-[20px] text-[var(--color-dim)] leading-relaxed mb-8 max-w-[720px]">{subtitle}</p>
+      <header className="mb-10 grid gap-8 md:mb-14 md:grid-cols-[190px_minmax(0,1fr)] md:gap-12 lg:gap-16">
+        <aside className="order-2 border-t border-[var(--color-border)] pt-6 md:order-1 md:border-t-0 md:pt-0">
+          <Link href={authorHref} className="group inline-block">
+            <ArticleAvatar size={88} alt={t.name} />
+            <p className="mt-4 font-mono text-[11px] font-bold uppercase tracking-[0.06em] text-[var(--color-text)] group-hover:text-[var(--color-brand)]">
+              {locale === "en" ? "By" : "Автор"} {t.name}
+            </p>
+          </Link>
+          <p className="mt-3 font-body text-[12px] leading-relaxed text-[var(--color-dim)]">
+            {locale === "en" ? "Data journalist covering digital markets and Central Asia." : "Дата-журналист о цифровых рынках и Центральной Азии."}
+          </p>
+          <time className="mt-4 block font-mono text-[10px] uppercase tracking-[0.08em] text-[var(--color-dim)]">{date}</time>
+        </aside>
 
-        {/* Byline: author (left) — reading meta + engagement (right) */}
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-5 pt-6 border-t border-[var(--color-border)]">
-          <div className="flex items-center gap-3">
-            <ArticleAvatar size={48} alt={t.name} />
-            <div className="min-w-0">
-              <p className="text-[14px] font-semibold text-[var(--color-text)] leading-tight">{t.name}</p>
-              <p className="mt-1 text-[12px] text-[var(--color-dim)]">{date}</p>
-            </div>
-          </div>
+        <div className="order-1 md:order-2">
+          <Link href={kickerHref} className="font-mono text-[11px] font-bold uppercase tracking-[0.15em] text-[var(--color-brand)] hover:underline underline-offset-4">{kicker}</Link>
+          <h1 className="mt-5 max-w-[920px] text-[40px] font-bold tracking-[-0.035em] text-[var(--color-text)] leading-[0.98] sm:text-[48px] md:text-[58px] lg:text-[68px] font-heading">{title}</h1>
+          <p className="mt-7 max-w-[880px] font-body text-[18px] text-[var(--color-dim)] leading-[1.5] md:text-[22px]">{subtitle}</p>
 
-          <div className="flex flex-col sm:items-end gap-2.5">
-            <div className="flex flex-wrap items-center gap-x-2 text-[12px] text-[var(--color-dim)] font-mono">
-              <span className="inline-flex items-center gap-1">
-                <ClockIcon /> {t.minRead(readMin)}
-              </span>
+          <div className="mt-8 flex flex-col gap-4 border-t border-[var(--color-border)] pt-5 sm:flex-row sm:items-center sm:justify-between">
+            <div className="flex flex-wrap items-center gap-x-2 font-mono text-[11px] text-[var(--color-dim)]">
+              <span className="inline-flex items-center gap-1"><ClockIcon /> {t.minRead(readMin)}</span>
               <span aria-hidden>·</span>
               <ViewCounter slug={slug} />
             </div>
@@ -74,14 +93,14 @@ export function ArticleHeader({ kicker, title, subtitle, slug, date, readMin, he
 
       {/* Hero illustration (optional — some articles launch text-first) */}
       {hero && (
-        <figure className="mb-12">
+        <figure className="mb-0">
           <div className="border border-[var(--color-border)] overflow-hidden">
             <Image
               src={hero.src}
               alt={hero.alt}
               width={hero.width ?? 1200}
               height={hero.height ?? 800}
-              sizes="(max-width: 719px) calc(100vw - 48px), 672px"
+              sizes="(max-width: 767px) calc(100vw - 48px), 1040px"
               priority
               className="w-full h-auto"
             />

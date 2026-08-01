@@ -60,7 +60,7 @@ function ChartFigure({
   return (
     <figure
       id={id}
-      className="my-9 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6"
+      className="article-figure-wide my-9 rounded-[3px] border border-[var(--color-border)] bg-[var(--color-surface)] p-4 sm:p-6"
       aria-labelledby={`${id}-title`}
     >
       <figcaption className="mb-5">

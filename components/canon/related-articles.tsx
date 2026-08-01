@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
-import { ARTICLES, type Article, localizeArticle } from "@/components/articles";
+import { ARTICLES, type Article, getPublishedArticles } from "@/components/articles";
 import { type Locale } from "@/lib/i18n";
 
 function RelatedCard({ a, locale }: { a: Article; locale: Locale }) {
@@ -28,15 +28,15 @@ export function RelatedArticles({ currentSlug, locale = "ru" }: { currentSlug: s
 
   // Find current article rubric.
   const current = ARTICLES.find((a) => a.slug === currentSlug);
-  const base = locale === "en" && current?.en ? localizeArticle(current, "en") : current;
+  const base = current;
 
   // Score: same rubric = 2, otherwise = 0. Exclude current. Take 3.
-  const related = ARTICLES
+  const related = getPublishedArticles(locale)
     .filter((a) => a.slug !== currentSlug)
     .map((a) => {
-      const localized = locale === "en" ? localizeArticle(a, "en") : a;
-      const score = localized.rubric === base?.rubric ? 2 : 0;
-      return { article: localized, score };
+      const sharedTopics = a.topics.filter((topic) => base?.topics.includes(topic)).length;
+      const score = sharedTopics * 2 + (a.rubric === base?.rubric ? 1 : 0);
+      return { article: a, score };
     })
     .sort((a, b) => b.score - a.score)
     .slice(0, 3)

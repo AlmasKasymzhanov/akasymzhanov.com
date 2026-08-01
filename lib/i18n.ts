@@ -31,7 +31,7 @@ export function pathForLocale(pathname: string, locale: Locale): string {
 export const bcp47: Record<Locale, string> = { ru: "ru-RU", en: "en-US" };
 
 type Dict = {
-  nav: { search: string; closeSearch: string; signIn: string; account: string; signOut: string; lang: string; menu: string; openMenu: string; closeMenu: string; theme: string; themeSystem: string; themeLight: string; themeDark: string; data: string; practice: string; market: string; about: string };
+  nav: { search: string; closeSearch: string; signIn: string; account: string; signOut: string; lang: string; menu: string; openMenu: string; closeMenu: string; theme: string; themeSystem: string; themeLight: string; themeDark: string; latest: string; practice: string; market: string; technology: string; kazakhstan: string; newsletter: string; about: string };
   about: { label: string; role: string; orders: string; building: string; title: string; subtitle: string; manifesto: string; bio: string; metrics: string; press: string; cta: string; publication: string };
   projects: { label: string; tenb: string; redstat: string; brock: string };
   contact: { label: string; body: string };
@@ -87,7 +87,7 @@ type Dict = {
 
 export const dict: Record<Locale, Dict> = {
   ru: {
-    nav: { search: "Поиск", closeSearch: "Закрыть поиск", signIn: "Войти", account: "Аккаунт", signOut: "Выйти", lang: "Язык интерфейса", menu: "Меню", openMenu: "Открыть меню", closeMenu: "Закрыть меню", theme: "Тема оформления", themeSystem: "Системная тема", themeLight: "Светлая тема", themeDark: "Тёмная тема", data: "Data", practice: "Практика", market: "Market", about: "Об издании" },
+    nav: { search: "Поиск", closeSearch: "Закрыть поиск", signIn: "Войти", account: "Аккаунт", signOut: "Выйти", lang: "Язык интерфейса", menu: "Меню", openMenu: "Открыть меню", closeMenu: "Закрыть меню", theme: "Тема оформления", themeSystem: "Системная тема", themeLight: "Светлая тема", themeDark: "Тёмная тема", latest: "Последнее", practice: "Практика", market: "Рынки", technology: "Технологии", kazakhstan: "Казахстан", newsletter: "Рассылка", about: "Об издании" },
     about: {
       label: "Обо мне",
       role: "Дата-журналист · аналитик · предприниматель",
@@ -95,7 +95,7 @@ export const dict: Record<Locale, Dict> = {
       building: "Строю",
       title: "Об издании",
       subtitle: "Независимое дата-медиа. Данные вместо мнений.",
-      manifesto: "kasymzhanov.com публикует аналитику, расследования и разборы, которые можно проверить по данным. Мы не даём прогнозов без цифр и не пишем «по словам анонимного источника» — если факт нельзя измерить, он не попадает в материал.",
+      manifesto: "kasymzhanov.com публикует аналитику, расследования и разборы, которые можно проверить по данным. Мы отделяем факт от оценки, раскрываем ограничения расчётов и объясняем, почему источнику можно доверять.",
       bio: "Алмас Касымжанов — дата-журналист, аналитик и предприниматель. Более 1,6 млрд заказов прошли через алгоритмы, которые он построил. Основатель 10b.kz, Redstat и Brock UI. Пишет о маркетплейсах, экономике и цифровых рынках.",
       metrics: "Ключевые цифры",
       press: "В прессе",
@@ -182,7 +182,7 @@ export const dict: Record<Locale, Dict> = {
     minRead: (n) => `${n} мин`,
   },
   en: {
-    nav: { search: "Search", closeSearch: "Close search", signIn: "Sign in", account: "Account", signOut: "Sign out", lang: "Interface language", menu: "Menu", openMenu: "Open menu", closeMenu: "Close menu", theme: "Color theme", themeSystem: "System theme", themeLight: "Light theme", themeDark: "Dark theme", data: "Data", practice: "Practice", market: "Market", about: "About" },
+    nav: { search: "Search", closeSearch: "Close search", signIn: "Sign in", account: "Account", signOut: "Sign out", lang: "Interface language", menu: "Menu", openMenu: "Open menu", closeMenu: "Close menu", theme: "Color theme", themeSystem: "System theme", themeLight: "Light theme", themeDark: "Dark theme", latest: "Latest", practice: "Practice", market: "Markets", technology: "Technology", kazakhstan: "Kazakhstan", newsletter: "Newsletter", about: "About" },
     about: {
       label: "About",
       role: "Data journalist · Analyst · Founder",
@@ -190,7 +190,7 @@ export const dict: Record<Locale, Dict> = {
       building: "Building",
       title: "About the publication",
       subtitle: "Independent data media. Data, not opinions.",
-      manifesto: "kasymzhanov.com publishes analytics, investigations, and explainers that can be verified against data. We don't make predictions without numbers, and we don't write 'according to an anonymous source' — if a fact can't be measured, it doesn't make it into the story.",
+      manifesto: "kasymzhanov.com publishes analysis, investigations, and explainers that can be checked against evidence. We separate fact from judgment, disclose the limits of our calculations, and explain why a source can be trusted.",
       bio: "Almas Kasymzhanov is a data journalist, analyst, and founder. More than 1.6 billion orders have passed through algorithms he built. Founder of 10b.kz, Redstat, and Brock UI. Writes about marketplaces, the economy, and digital markets.",
       metrics: "Key numbers",
       press: "In the press",

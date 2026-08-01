@@ -70,6 +70,7 @@ export default function RootLayout({
         <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
         <link rel="alternate" type="text/plain" href="/llms.txt" title="LLMs.txt" />
         <link rel="alternate" type="text/plain" href="/llms-full.txt" title="LLMs Full" />
+        <link rel="alternate" type="application/rss+xml" href="/feed.xml" title="Kasymzhanov RSS" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -78,9 +79,10 @@ export default function RootLayout({
               "@graph": [
                 {
                   "@type": "Person",
+                  "@id": "https://kasymzhanov.com/#almas-kasymzhanov",
                   name: "Almas Kasymzhanov",
                   alternateName: "Алмас Касымжанов",
-                  url: "https://kasymzhanov.com",
+                  url: "https://kasymzhanov.com/authors/almas-kasymzhanov",
                   email: "almas@kasymzhanov.com",
                   jobTitle: "Дата-журналист, аналитик, предприниматель",
                   description:
@@ -88,12 +90,33 @@ export default function RootLayout({
                   sameAs: SOCIAL_SAMEAS,
                 },
                 {
+                  "@type": "NewsMediaOrganization",
+                  "@id": "https://kasymzhanov.com/#publisher",
+                  name: "Kasymzhanov",
+                  url: "https://kasymzhanov.com",
+                  logo: {
+                    "@type": "ImageObject",
+                    url: "https://kasymzhanov.com/icon-192.png",
+                    width: 192,
+                    height: 192,
+                  },
+                  founder: { "@id": "https://kasymzhanov.com/#almas-kasymzhanov" },
+                  foundingDate: "2026",
+                  ethicsPolicy: "https://kasymzhanov.com/standards",
+                },
+                {
                   "@type": "WebSite",
+                  "@id": "https://kasymzhanov.com/#website",
                   name: "Kasymzhanov",
                   url: "https://kasymzhanov.com",
                   description:
                     "Независимое дата-медиа. Расследования, аналитика и дата-журналистика. Данные вместо мнений.",
-                  publisher: { "@type": "Person", name: "Almas Kasymzhanov" },
+                  publisher: { "@id": "https://kasymzhanov.com/#publisher" },
+                  potentialAction: {
+                    "@type": "SearchAction",
+                    target: "https://kasymzhanov.com/search?q={search_term_string}",
+                    "query-input": "required name=search_term_string",
+                  },
                 },
               ],
             }),

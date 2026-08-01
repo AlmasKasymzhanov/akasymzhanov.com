@@ -12,7 +12,7 @@
   --color-dim: #888888;
   --color-border: #2c2c2c;
   /* Brand accent — mint-teal in dark. TODO: unify with light theme for single brand identity. */
-  --color-brand: #46d9b8;
+  --color-brand: #7180ff;
 
   /* ── Font tokens ── */
   /* Display + UI: Inter Tight — tech-forward, clean in RU and EN. */
@@ -33,7 +33,7 @@ html.light {
   --color-dim: #666666;
   --color-border: #e5e5e5;
   /* Brand accent — blue in light. TODO: unify with dark theme. */
-  --color-brand: #242ef7;
+  --color-brand: #2438f5;
 }
 
 /* ──────────────────────────────────────────────────────────────────────
@@ -86,6 +86,66 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.publication-topic-rail {
+  max-width: 100%;
+  overflow-x: auto;
+  overscroll-behavior-inline: contain;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+
+.publication-topic-rail::-webkit-scrollbar {
+  display: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: fixed;
+  z-index: 100;
+  top: 10px;
+  left: 10px;
+  transform: translateY(-160%);
+  background: var(--color-text);
+  color: var(--color-bg);
+  padding: 10px 14px;
+  font: 600 12px/1 var(--font-body);
+  transition: transform 120ms ease;
+}
+
+.skip-link:focus { transform: translateY(0); }
+
+.article-content {
+  font-family: var(--font-body);
+}
+
+.article-story-body > section > p,
+.article-story-body > p {
+  font-family: var(--font-body);
+  font-size: 17px;
+  line-height: 1.78;
+}
+
+.article-story-body > section > h2,
+.article-story-body > h2 {
+  font-family: var(--font-display);
+  font-size: clamp(24px, 3vw, 32px);
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+}
+
+@media (min-width: 1024px) {
+  .article-content .article-figure-wide {
+    width: min(1040px, calc(100vw - 96px));
+    max-width: none;
+    margin-left: 50%;
+    transform: translateX(-50%);
+  }
 }
 
 h1, h2, h3, h4, h5, h6 {

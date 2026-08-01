@@ -1,69 +1,50 @@
 import type { MetadataRoute } from "next";
+import { getPublishedArticles } from "@/components/articles";
 
-const BASE_URL = "https://kasymzhanov.com";
+const SITE = "https://kasymzhanov.com";
+const RELEASE = "2026-08-01";
 
-/* Editorial pages that exist in both languages (RU at "/", EN at "/en").
-   Each is emitted twice — once per language URL — with hreflang `alternates`
-   so Google pairs them. Course pages stay RU-only and are not mirrored. */
-const BILINGUAL = ["", "/blog/freedom-market", "/blog/russia-fuel-jerrycan", "/blog/nvidia-kazakhstan", "/blog/why-blogger-brands-fail", "/blog/kaspi-mcp"];
-
-/* RU-only routes (no EN counterpart). */
-const RU_ONLY = [
-  "/blog",
-  "/blog/wildberries-kazakhstan",
-  "/blog/wb-dual-use",
-  "/analytics",
+const BILINGUAL = [
+  "",
+  "/latest",
+  "/market",
+  "/technology",
+  "/kazakhstan",
   "/tools",
-  "/tools/wb-analyzer",
-  "/tools/wb-analyzer/guide",
-  "/tools/mpstats-api",
-  "/tools/ai-seller-guide",
-  "/contacts",
-  "/sellers-forum",
-  "/sellers-forum/razbor",
-  "/sellers-forum/guide",
-  "/stream-3",
-  "/reports/zbody",
-  "/reports/kaspi-clothing",
-  "/reports/bg-optic",
-  "/reports/optics-guide",
-  "/reports/trend-hunting",
-  "/reports/kaspi-3-niches",
-  "/reports/kaspi-preorder-guide",
-  "/reports/kaspi-preorder-niches",
-  "/reports/foot-stretcher-analysis",
-  "/reports/towel-warmer-analysis",
-  "/reports/kaspi-camping",
-  "/reports/kaspi-fitness",
-  "/reports/hinoko-report",
-];
+  "/about",
+  "/newsletter",
+  "/standards",
+  "/authors/almas-kasymzhanov",
+] as const;
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const now = new Date();
-  const priority = (r: string) => (r === "" ? 1 : r === "/blog" ? 0.9 : 0.7);
-
-  const bilingual: MetadataRoute.Sitemap = BILINGUAL.flatMap((route) => {
-    const ru = `${BASE_URL}${route}`;
-    const en = `${BASE_URL}/en${route}`;
-    const languages = { "ru-RU": ru, "en-US": en, "x-default": ru };
-    const base = {
-      lastModified: now,
-      changeFrequency: route === "" ? ("weekly" as const) : ("monthly" as const),
-      priority: priority(route),
-      alternates: { languages },
+  const staticPages: MetadataRoute.Sitemap = BILINGUAL.flatMap((route) => {
+    const ru = `${SITE}${route}`;
+    const en = `${SITE}/en${route}`;
+    const common = {
+      lastModified: RELEASE,
+      changeFrequency: route === "" || route === "/latest" ? ("weekly" as const) : ("monthly" as const),
+      priority: route === "" ? 1 : route === "/latest" ? 0.9 : 0.75,
+      alternates: { languages: { "ru-RU": ru, "en-US": en, "x-default": ru } },
     };
-    return [
-      { url: ru, ...base },
-      { url: en, ...base },
-    ];
+    return [{ url: ru, ...common }, { url: en, ...common }];
   });
 
-  const ruOnly: MetadataRoute.Sitemap = RU_ONLY.map((route) => ({
-    url: `${BASE_URL}${route}`,
-    lastModified: now,
-    changeFrequency: route === "/blog" ? ("weekly" as const) : ("monthly" as const),
-    priority: priority(route),
-  }));
+  const articlePages: MetadataRoute.Sitemap = getPublishedArticles("ru").flatMap((article) => {
+    const ru = `${SITE}${article.href}`;
+    const modified = article.dateModified ?? article.datePublished;
+    if (!article.enReady) {
+      return [{ url: ru, lastModified: modified, changeFrequency: "monthly" as const, priority: 0.8 }];
+    }
+    const en = `${SITE}/en${article.href}`;
+    const common = {
+      lastModified: modified,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+      alternates: { languages: { "ru-RU": ru, "en-US": en, "x-default": ru } },
+    };
+    return [{ url: ru, ...common }, { url: en, ...common }];
+  });
 
-  return [...bilingual, ...ruOnly];
+  return [...staticPages, ...articlePages];
 }

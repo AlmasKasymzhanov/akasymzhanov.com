@@ -1,5 +1,3 @@
-"use client";
-
 import Image from "next/image";
 import { ArticleHeader } from "@/components/canon/article-header";
 import { ArticleLayout } from "@/components/canon/article-layout";

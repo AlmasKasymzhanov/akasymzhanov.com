@@ -51,9 +51,14 @@ const OPTIONS: { value: Mode; Icon: ({ size }: { size?: number }) => React.React
 
 // Segmented theme switch — System · Light · Dark, all visible on every
 // breakpoint (compact on mobile). System follows the OS and updates live.
-export function ThemeToggle() {
-  const t = dict[localeFromPathname(usePathname() ?? "/")].nav;
+export function ThemeToggle({ variant = "compact" }: { variant?: "compact" | "panel" }) {
+  const locale = localeFromPathname(usePathname() ?? "/");
+  const t = dict[locale].nav;
   const labelFor = (v: Mode) => (v === "system" ? t.themeSystem : v === "light" ? t.themeLight : t.themeDark);
+  const shortLabelFor = (v: Mode) => {
+    if (locale === "en") return v === "system" ? "System" : v === "light" ? "Light" : "Dark";
+    return v === "system" ? "Система" : v === "light" ? "Светлая" : "Тёмная";
+  };
   const [mode, setMode] = useState<Mode>("system");
   const [mounted, setMounted] = useState(false);
 
@@ -84,7 +89,11 @@ export function ThemeToggle() {
     <div
       role="radiogroup"
       aria-label={t.theme}
-      className="inline-flex items-center gap-0.5 rounded-full border border-[var(--color-border)] p-0.5 bg-[var(--color-text)]/5"
+      className={
+        variant === "panel"
+          ? "grid w-full grid-cols-3 rounded-md border border-[var(--color-border)] bg-[var(--color-bg)] p-1"
+          : "inline-flex items-center gap-0.5 rounded-full border border-[var(--color-border)] bg-[var(--color-text)]/5 p-0.5"
+      }
     >
       {OPTIONS.map(({ value, Icon }) => {
         const active = mounted && mode === value;
@@ -98,13 +107,14 @@ export function ThemeToggle() {
             aria-label={label}
             title={label}
             onClick={() => choose(value)}
-            className={`grid size-6 md:size-7 place-items-center rounded-full transition-colors duration-150 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-brand)]/60 ${
+            className={`${variant === "panel" ? "flex h-12 min-w-0 flex-col items-center justify-center gap-1 rounded-[4px]" : "grid size-6 place-items-center rounded-full md:size-7"} transition-colors duration-150 ease-out cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[var(--color-brand)]/60 ${
               active
                 ? "bg-[var(--color-bg)] text-[var(--color-text)] shadow-sm"
                 : "text-[var(--color-dim)] hover:text-[var(--color-text)] hover:bg-[var(--color-text)]/8"
             }`}
           >
             <Icon size={14} />
+            {variant === "panel" && <span className="truncate text-[9px] font-bold uppercase tracking-[0.04em]">{shortLabelFor(value)}</span>}
           </button>
         );
       })}

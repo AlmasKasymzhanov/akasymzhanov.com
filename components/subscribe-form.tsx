@@ -92,7 +92,7 @@ export function SubscribeForm({
     }
     return (
       <>
-        <form onSubmit={submit} className="flex">
+        <form onSubmit={submit} className="flex w-full min-w-0 flex-col gap-2 sm:flex-row sm:gap-0">
           <input
             type="email"
             required
@@ -106,7 +106,7 @@ export function SubscribeForm({
           <button
             type="submit"
             disabled={state === "loading"}
-            className="shrink-0 h-[42px] px-5 text-[12px] font-bold uppercase tracking-[0.08em] bg-[var(--color-text)] text-[var(--color-bg)] hover:opacity-90 disabled:opacity-60 transition-opacity"
+            className="h-[42px] w-full shrink-0 bg-[var(--color-text)] px-5 text-[12px] font-bold uppercase tracking-[0.08em] text-[var(--color-bg)] transition-opacity hover:opacity-90 disabled:opacity-60 sm:w-auto"
           >
             {state === "loading" ? t.loading : t.button}
           </button>

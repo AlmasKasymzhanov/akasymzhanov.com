@@ -9,6 +9,10 @@ const nextConfig: NextConfig = {
   },
   async redirects() {
     return [
+      { source: "/blog", destination: "/latest", permanent: true },
+      { source: "/data", destination: "/latest", permanent: true },
+      { source: "/en/data", destination: "/en/latest", permanent: true },
+      { source: "/subscribe", destination: "/newsletter", permanent: true },
       // Короткая клиентская ссылка: kasymzhanov.com/elki → отчёт для клиента.
       { source: "/elki", destination: "/clients/elki", permanent: false },
       // Кириллический алиас на отчёт по нишам WB. Основной адрес — латиница:

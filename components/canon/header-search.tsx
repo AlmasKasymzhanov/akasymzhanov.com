@@ -33,7 +33,9 @@ function SearchIcon({ size = 20 }: { size?: number }) {
 export function HeaderSearch() {
   const [open, setOpen] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
-  const t = dict[localeFromPathname(usePathname() ?? "/")].nav;
+  const pathname = usePathname() ?? "/";
+  const locale = localeFromPathname(pathname);
+  const t = dict[locale].nav;
 
   useEffect(() => {
     if (open) inputRef.current?.focus();
@@ -57,16 +59,11 @@ export function HeaderSearch() {
           <span className="text-[var(--color-dim)] shrink-0">
             <SearchIcon size={18} />
           </span>
-          <form
-            className="flex-1"
-            onSubmit={(e) => {
-              e.preventDefault();
-              // TODO: route to the search results page once it exists.
-            }}
-          >
+          <form className="flex-1" action={locale === "en" ? "/en/search" : "/search"} method="get">
             <input
               ref={inputRef}
               type="search"
+              name="q"
               placeholder={t.search}
               className="w-full bg-transparent border-b border-[var(--color-border)] focus:border-[var(--color-text)] py-1.5 text-[14px] font-mono text-[var(--color-text)] placeholder:text-[var(--color-dim)] outline-none transition-colors"
             />
