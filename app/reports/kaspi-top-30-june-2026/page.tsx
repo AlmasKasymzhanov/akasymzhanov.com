@@ -25,6 +25,12 @@ const WHATSAPP_MESSAGE = "Здравствуйте, Алмас! Хочу обс�
 const PERSONAL_ANALYSIS_URL = WHATSAPP_NUMBER
   ? `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(WHATSAPP_MESSAGE)}`
   : "mailto:almas@kasymzhanov.com?subject=Персональное%20исследование%20Kaspi";
+const REDSTAT_REGISTER_URL = "https://app.redstat.kz/register";
+
+type RedStatPlacement = "top" | "middle" | "end";
+
+const redStatUrl = (placement: RedStatPlacement) =>
+  `${REDSTAT_REGISTER_URL}?utm_source=kasymzhanov&utm_medium=editorial&utm_campaign=kaspi_top30_june_2026&utm_content=${placement}`;
 
 const revenueLeaders = [...niches].sort((a, b) => b.revenue - a.revenue).slice(0, 10);
 const candidates = niches
@@ -121,6 +127,62 @@ function NicheCard({ niche }: { niche: Niche }) {
 
 function PlainParagraph({ children }: { children: React.ReactNode }) {
   return <p className="mb-5 text-[16px] leading-[1.8] text-[var(--color-dim)]">{children}</p>;
+}
+
+const redStatCopy: Record<RedStatPlacement, { kicker: string; title: string; body: string; cta: string }> = {
+  top: {
+    kicker: "Самостоятельная аналитика · redstat.kz",
+    title: "Хотите так же проверить свою категорию?",
+    body: "В RedStat вы можете сами открыть нужную нишу и посмотреть выручку, динамику, товары и продавцов. Это хороший первый шаг, если хотите быстро понять рынок до закупки.",
+    cta: "Посмотреть свою категорию",
+  },
+  middle: {
+    kicker: "Проверьте свою нишу · redstat.kz",
+    title: "В списке нет вашей категории? Посмотрите её самостоятельно",
+    body: "В RedStat можно сравнивать категории, изучать конкуренцию, цены и тренды. Выберите интересующую нишу и проверьте, что в ней происходит сейчас.",
+    cta: "Открыть RedStat бесплатно",
+  },
+  end: {
+    kicker: "Продолжить самостоятельно · redstat.kz",
+    title: "Начните с цифр по своей категории",
+    body: "Если персональное исследование пока не нужно, откройте RedStat и проведите первый анализ сами. Найдите категорию, посмотрите рынок и сохраните направления, которые хотите проверить глубже.",
+    cta: "Начать анализ в RedStat",
+  },
+};
+
+function RedStatCallout({ placement }: { placement: RedStatPlacement }) {
+  const copy = redStatCopy[placement];
+  const dark = placement === "middle";
+
+  return (
+    <aside
+      data-redstat-placement={placement}
+      className={dark
+        ? "border-y border-[var(--color-text)] bg-[var(--color-text)] text-[var(--color-bg)]"
+        : "border border-[var(--color-border)] bg-[var(--color-surface)]"}
+    >
+      <div className={`grid gap-5 p-5 md:grid-cols-[minmax(0,1fr)_230px] md:items-center md:gap-8 md:p-7 ${dark ? "mx-auto max-w-[1120px] lg:px-10" : ""}`}>
+        <div>
+          <p className={`font-mono text-[9px] font-bold uppercase tracking-[0.12em] ${dark ? "text-amber-300" : "text-[var(--color-brand)]"}`}>{copy.kicker}</p>
+          <h3 className="mt-3 font-heading text-[26px] font-bold leading-[1.02] tracking-[-0.025em] md:text-[30px]">{copy.title}</h3>
+          <p className={`mt-3 max-w-[720px] text-[14px] leading-[1.7] ${dark ? "opacity-75" : "text-[var(--color-dim)]"}`}>{copy.body}</p>
+        </div>
+        <a
+          href={redStatUrl(placement)}
+          target="_blank"
+          rel="noopener noreferrer"
+          data-redstat-cta={placement}
+          className={`inline-flex min-h-14 items-center justify-center px-5 text-center font-mono text-[10px] font-bold uppercase tracking-[0.08em] transition-colors ${
+            dark
+              ? "bg-[var(--color-bg)] text-[var(--color-text)] hover:bg-amber-300"
+              : "bg-[var(--color-brand)] text-white hover:bg-[var(--color-text)]"
+          }`}
+        >
+          {copy.cta} →
+        </a>
+      </div>
+    </aside>
+  );
 }
 
 const analysisFeatures = [
@@ -247,6 +309,9 @@ export default function KaspiTop30JuneReport() {
               <PlainParagraph>
                 Поэтому я сделал так: сначала отобрал категории с заметной выручкой, не слишком огромным количеством товаров и продавцов, а затем проверил рост, сезонность и отзывы. После этого красивый список заметно сократился.
               </PlainParagraph>
+              <div className="my-8">
+                <RedStatCallout placement="top" />
+              </div>
               <div className="my-8 border-l-4 border-[var(--color-brand)] bg-[var(--color-surface)] p-5 md:p-6">
                 <p className="font-heading text-[22px] font-bold leading-tight">Сразу важная оговорка</p>
                 <p className="mt-3 text-[14px] leading-[1.7] text-[var(--color-dim)]">
@@ -436,6 +501,8 @@ export default function KaspiTop30JuneReport() {
               </div>
             </section>
 
+            <RedStatCallout placement="middle" />
+
             <PersonalAnalysisOffer placement="middle" />
 
             <section id="all-30" className="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
@@ -558,6 +625,10 @@ export default function KaspiTop30JuneReport() {
 
             <section className="mx-auto max-w-[960px] px-6 py-12 md:py-16">
               <PersonalAnalysisOffer placement="end" />
+
+              <div className="mt-8">
+                <RedStatCallout placement="end" />
+              </div>
 
               <div className="mt-12">
                 <NewsletterCard source="kaspi-top-30-june-2026" locale="ru" />
