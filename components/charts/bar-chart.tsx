@@ -1149,6 +1149,11 @@ export function BarChart({
   const figureRef = useRef<HTMLElement>(null);
   const barRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [focusIndex, setFocusIndexState] = useState(0);
+  // Category labels live in a separate fixed-width column. Mirror their
+  // hover/tap state into the matching plot row so the complete visual row —
+  // label, empty track and filled bar — opens the same tooltip.
+  const [labelHoverIndex, setLabelHoverIndex] = useState<number | null>(null);
+  const [labelTapIndex, setLabelTapIndex] = useState<number | null>(null);
   // Ref mirror of focusIndex so the imperative `getSelection` / `focusBar`
   // can read the latest value synchronously, before React flushes state.
   const focusIndexRef = useRef(0);
@@ -1156,6 +1161,17 @@ export function BarChart({
     focusIndexRef.current = i;
     setFocusIndexState(i);
   };
+
+  useEffect(() => {
+    if (labelTapIndex === null) return;
+    const closeOutside = (event: PointerEvent) => {
+      if (!figureRef.current?.contains(event.target as Node)) {
+        setLabelTapIndex(null);
+      }
+    };
+    document.addEventListener("pointerdown", closeOutside, true);
+    return () => document.removeEventListener("pointerdown", closeOutside, true);
+  }, [labelTapIndex]);
 
   // Snap focus into the data range if data shrank/grew under us.
   if (points.length > 0 && focusIndex >= points.length) {
@@ -1691,6 +1707,11 @@ export function BarChart({
                 barThickness={barThickness}
                 formatLabel={formatLabel}
                 labelInteractive={labelInteractive}
+                onLabelEnter={setLabelHoverIndex}
+                onLabelLeave={() => setLabelHoverIndex(null)}
+                onLabelActivate={(index) =>
+                  setLabelTapIndex((current) => current === index ? null : index)
+                }
               />
             )}
             <BarsGroup
@@ -1715,6 +1736,7 @@ export function BarChart({
               onBarHover={onBarHover}
               onBarFocus={onBarFocus}
               tooltipSlot={slots?.tooltip}
+              externalActiveIndex={labelTapIndex ?? labelHoverIndex}
             />
           </div>
         </ScrollableRowsArea>
@@ -2101,12 +2123,18 @@ function LabelColumn({
   barThickness,
   formatLabel,
   labelInteractive,
+  onLabelEnter,
+  onLabelLeave,
+  onLabelActivate,
 }: {
   points: NormalizedPoint[];
   gap: number;
   barThickness: number;
   formatLabel?: (label: string) => ReactNode;
   labelInteractive?: (label: string) => boolean;
+  onLabelEnter?: (index: number) => void;
+  onLabelLeave?: () => void;
+  onLabelActivate?: (index: number) => void;
 }) {
   return (
     <div className="flex shrink-0 flex-col" style={{ gap }} aria-hidden>
@@ -2123,6 +2151,9 @@ function LabelColumn({
             className="brock-hbar-label flex min-w-0 items-center justify-end pe-2"
             style={{ height: barThickness }}
             title={formatLabel ? undefined : p.label}
+            onMouseEnter={() => onLabelEnter?.(i)}
+            onMouseLeave={onLabelLeave}
+            onClick={() => onLabelActivate?.(i)}
           >
             <span
               className={`max-w-full truncate pb-px font-mono text-xs text-muted-foreground${
@@ -2197,6 +2228,7 @@ function BarsGroup({
   onBarHover,
   onBarFocus,
   tooltipSlot,
+  externalActiveIndex,
 }: {
   points: NormalizedPoint[];
   max: number;
@@ -2228,6 +2260,7 @@ function BarsGroup({
   ) => void;
   onBarFocus?: (point: BarChartDataPoint, index: number) => void;
   tooltipSlot?: ComponentType<BarChartTooltipSlotProps>;
+  externalActiveIndex?: number | null;
 }) {
   function moveFocus(target: number) {
     const clamped = Math.max(0, Math.min(points.length - 1, target));
@@ -2363,6 +2396,7 @@ function BarsGroup({
               : undefined
           }
           isTapActive={tapIndex === i}
+          isExternallyActive={externalActiveIndex === i}
           onTap={() => setTapIndex((prev) => (prev === i ? null : i))}
           tooltipSlot={tooltipSlot}
         />
@@ -2467,6 +2501,7 @@ function BarRow({
   onClick,
   onMouseEnter,
   isTapActive,
+  isExternallyActive,
   onTap,
   tooltipSlot,
 }: {
@@ -2489,6 +2524,7 @@ function BarRow({
   onClick?: (e: ReactMouseEvent<HTMLDivElement>) => void;
   onMouseEnter?: () => void;
   isTapActive: boolean;
+  isExternallyActive: boolean;
   onTap: () => void;
   tooltipSlot?: ComponentType<BarChartTooltipSlotProps>;
 }) {
@@ -2519,6 +2555,7 @@ function BarRow({
 
   // Cursor hints affordance — only when a click handler is wired.
   const cursorClass = onClick ? "cursor-pointer" : "";
+  const tooltipActive = isTapActive || isExternallyActive;
 
   // Where outer-end text sits. The note offsets a further 44px past the value
   // label — a fixed budget, no text measurement (the CSS-only policy from
@@ -2550,9 +2587,11 @@ function BarRow({
       tabIndex={isTabStop ? 0 : -1}
       onKeyDown={onKeyDown}
       onFocus={onFocus}
-      onClick={onClick}
+      onClick={(event) => {
+        onTap();
+        onClick?.(event);
+      }}
       onMouseEnter={onMouseEnter}
-      onTouchStart={onTap}
     >
       {/* Value labels + notes anchor to the bar's OUTER end (Datawrapper
           direct-labeling convention; matches the SVG export). Deep bars flip
@@ -2630,7 +2669,7 @@ function BarRow({
             return (
               <div
                 className={`brock-hbar-tip pointer-events-none absolute z-10 ${
-                  isTapActive
+                  tooltipActive
                     ? "flex"
                     : "hidden group-hover/hbar:flex group-focus/hbar:flex"
                 } ${TOOLTIP_POSITION[edge]}`}
@@ -2658,7 +2697,7 @@ function BarRow({
             label={point.label}
             value={formatValue(point.value, publicDatum)}
             edge={edge}
-            forceVisible={isTapActive}
+            forceVisible={tooltipActive}
           />
         ))}
     </div>
@@ -2695,7 +2734,7 @@ function Tooltip({
       aria-hidden
     >
       {label && (
-        <span className="font-sans text-[11px] whitespace-nowrap text-muted-foreground">
+        <span className="max-w-[min(320px,calc(100vw-112px))] break-words font-sans text-[11px] leading-tight whitespace-normal text-muted-foreground">
           {label}
         </span>
       )}
@@ -2769,36 +2808,41 @@ function DataTableSummary({
   // everything twice. Rows are in DISPLAY order (canon §10) and carry the
   // FULL category label — this is one of the truncation-policy fallbacks.
   return (
-    <table className="sr-only">
-      <caption>
-        Data table.
-        {transformNote ? ` ${transformNote}` : ""}
-      </caption>
-      <thead>
-        <tr>
-          <th scope="col">Label</th>
-          <th scope="col">Value</th>
-        </tr>
-      </thead>
-      <tbody>
-        {points.map((p, i) => (
-          <tr key={i}>
-            <th scope="row">
-              {p.isOther
-                ? `${p.label} (${p.items?.length ?? 0} categories combined)`
-                : (p.label ?? `Bar ${i + 1}`)}
-            </th>
-            <td>{formatValue(p.value, toPublicPoint(p))}</td>
+    <div className="sr-only">
+      <table>
+        <caption>
+          Data table.
+          {transformNote ? ` ${transformNote}` : ""}
+        </caption>
+        <thead>
+          <tr>
+            <th scope="col">Label</th>
+            <th scope="col">Value</th>
           </tr>
-        ))}
-      </tbody>
-    </table>
+        </thead>
+        <tbody>
+          {points.map((p, i) => (
+            <tr key={i}>
+              <th scope="row">
+                {p.isOther
+                  ? `${p.label} (${p.items?.length ?? 0} categories combined)`
+                  : (p.label ?? `Bar ${i + 1}`)}
+              </th>
+              <td>{formatValue(p.value, toPublicPoint(p))}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
   );
 }
 
 function HBarAnimationStyles() {
   return (
     <style>{`
+      /* Native table layout ignores the 1px width from .sr-only. Containment
+         keeps its long accessible labels from widening the visual page. */
+      .brock-hbars-figure > .sr-only { contain: strict; }
       .brock-hbars-animated .brock-hbar {
         animation: brock-hbar-grow var(--brock-hbar-duration, 400ms) cubic-bezier(0.22, 0.61, 0.36, 1) backwards;
       }
