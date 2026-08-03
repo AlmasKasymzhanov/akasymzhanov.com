@@ -2,12 +2,13 @@ import type { MetadataRoute } from "next";
 import { getPublishedArticles } from "@/components/articles";
 
 const SITE = "https://kasymzhanov.com";
-const RELEASE = "2026-08-01";
+const RELEASE = "2026-08-03";
 
 const BILINGUAL = [
   "",
   "/latest",
   "/market",
+  "/kaspi",
   "/technology",
   "/kazakhstan",
   "/tools",

@@ -189,7 +189,7 @@ export function ShareMenu({ count = 0, onShare }: { count?: number; onShare?: ()
   const meta = useCallback(() => {
     const canonical = document.querySelector('link[rel="canonical"]')?.getAttribute("href");
     const url = canonical || window.location.href;
-    const title = document.title.replace(/\s*[|·—-]\s*Almas Kasymzhanov.*$/i, "").trim() || document.title;
+    const title = document.title.replace(/\s*[|·—-]\s*(?:Almas Kasymzhanov|Алмас Касымжанов).*$/i, "").trim() || document.title;
     return { url, title };
   }, []);
 

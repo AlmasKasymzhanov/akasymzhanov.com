@@ -36,6 +36,11 @@ export type Article = {
   coverBg?: string;
   rubric: string;
   topics: ArticleTopic[];
+  series?: ArticleSeries[];
+  analysisPace?: AnalysisPace;
+  // Keep specialist reports inside their product hub instead of promoting
+  // them to the publication's main lead or broad topic rows.
+  sectionOnly?: boolean;
   title: string;
   subtitle: string;
   date: string; // display date, e.g. "22 Июн 2026"
@@ -57,6 +62,8 @@ export type Article = {
 };
 
 export type ArticleTopic = "markets" | "technology" | "kazakhstan";
+export type ArticleSeries = "kaspi-market";
+export type AnalysisPace = "fast" | "slow";
 
 // Editorially complete copy that must not enter public feeds or structured
 // data until publication-only fields (cover, credit, EN and date) are ready.
@@ -82,12 +89,38 @@ export function getPublishedArticles(locale: Locale = "ru"): Article[] {
 }
 
 export function getArticlesByTopic(topic: ArticleTopic, locale: Locale = "ru"): Article[] {
-  return getPublishedArticles(locale).filter((a) => a.topics.includes(topic));
+  return getPublishedArticles(locale).filter((a) => !a.sectionOnly && a.topics.includes(topic));
+}
+
+export function getKaspiMarketArticles(locale: Locale = "ru", pace?: AnalysisPace): Article[] {
+  return getPublishedArticles(locale).filter(
+    (article) => article.series?.includes("kaspi-market") && (!pace || article.analysisPace === pace),
+  );
 }
 
 export const ARTICLE_DRAFTS: ArticleDraft[] = [];
 
 export const ARTICLES: Article[] = [
+  {
+    href: "/reports/kaspi-top-30-june-2026",
+    slug: "kaspi-top-30-june-2026",
+    img: "/reports/kaspi-top-30-june-2026/cover.png",
+    rubric: "Рыночный срез",
+    topics: ["markets"],
+    series: ["kaspi-market"],
+    analysisPace: "fast",
+    sectionOnly: true,
+    title: "30 ниш Kaspi: что я бы проверял к осени",
+    subtitle: "Подписчик спросил, с каким товаром сейчас заходить на Kaspi. Я посмотрел данные и собрал 30 ниш для следующей проверки.",
+    date: "2 Авг 2026",
+    datePublished: "2026-08-02",
+    readMin: 16,
+    likes: 0,
+    comments: 0,
+    shares: 0,
+    credit: "Графика: Kasymzhanov",
+    enReady: false,
+  },
   {
     href: "/blog/wildberries-kazakhstan",
     slug: "wildberries-kazakhstan",
@@ -112,7 +145,7 @@ export const ARTICLES: Article[] = [
     img: "/blog/wb-dual-use/cover.webp",
     imgPosition: "center 50%",
     rubric: "Исследование",
-    topics: ["markets", "technology"],
+    topics: ["markets"],
     title: "Я искал товары на атакованных складах Wildberries и нашёл ниши, выросшие в десятки раз",
     subtitle:
       "Связать семь проверенных карточек с конкретными складами не удалось. Тогда я поднял данные MPStats с 2021 года. В сопоставимых 12-месячных окнах оборот маскировочных костюмов вырос примерно с 42 млн до 3,15 млрд рублей, а продажи выросли более чем в 37 раз. Эти цифры не объясняют причину роста и не показывают, что лежало в атакованных корпусах.",
@@ -212,6 +245,8 @@ export const ARTICLES: Article[] = [
     img: "/blog/why-blogger-brands-fail/likbeauty.webp",
     rubric: "Рынок",
     topics: ["markets", "kazakhstan"],
+    series: ["kaspi-market"],
+    analysisPace: "slow",
     title: "Lick Beauty: семь миллионов против четырёхсот двадцати",
     subtitle: "Как бренд с 7 млн подписчиков проиграл реплике за 420 тенге.",
     date: "25 Мар 2026",
@@ -233,7 +268,9 @@ export const ARTICLES: Article[] = [
     slug: "kaspi-mcp",
     img: "/blog/kaspi-mcp/mcp.webp",
     rubric: "Инструменты",
-    topics: ["markets", "technology", "kazakhstan"],
+    topics: ["markets", "kazakhstan"],
+    series: ["kaspi-market"],
+    analysisPace: "fast",
     title: "Арифметика лени: как AI добывает золото из Kaspi",
     subtitle: "MCP-коннектор: Claude сам достаёт ниши, цены и долю «без бренда».",
     date: "29 Май 2026",
@@ -483,7 +520,7 @@ export function NewsletterCard({ source = "home", locale = "ru" }: { source?: st
     <div className="grid min-w-0 gap-8 overflow-hidden bg-[var(--color-brand)] p-5 text-[var(--color-bg)] sm:p-7 md:grid-cols-[1.25fr_1fr] md:p-10 lg:p-12">
       <div className="min-w-0">
         <p className="font-mono text-[10px] font-bold uppercase tracking-[0.16em] opacity-75 mb-4">{copy.eyebrow}</p>
-        <p className="font-heading text-[28px] md:text-[36px] font-bold tracking-tight leading-[1.02] mb-4">{copy.title}</p>
+        <p className="break-words font-heading text-[28px] md:text-[36px] font-bold tracking-tight leading-[1.02] mb-4">{copy.title}</p>
         <p className="font-body text-[14px] md:text-[16px] leading-relaxed opacity-85 max-w-xl">{copy.body}</p>
       </div>
       <div className="min-w-0 self-end">

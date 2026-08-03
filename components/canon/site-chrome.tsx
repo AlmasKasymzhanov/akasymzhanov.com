@@ -86,13 +86,14 @@ function MailIcon({ size = 16 }: { size?: number }) {
 /* ───── Author block sections (reused on home aside + article bottom + about page) ───── */
 export function AboutSection({ locale }: { locale: Locale }) {
   const t = dict[locale];
+  const authorName = "Almas Kasymzhanov";
   return (
     <div>
       <p className="text-[11px] uppercase tracking-[0.16em] text-[var(--color-brand)] mb-5">{t.about.label}</p>
       <div className="relative w-20 h-20 rounded-full overflow-hidden border border-[var(--color-border)] mb-4">
-        <Image src="/avatar/almas.webp" alt={t.name} fill sizes="80px" className="object-cover object-[center_24%]" />
+        <Image src="/avatar/almas.webp" alt={authorName} fill sizes="80px" className="object-cover object-[center_24%]" />
       </div>
-      <h2 className="text-[17px] font-bold tracking-tight mb-3">{t.name}</h2>
+      <h2 className="text-[17px] font-bold tracking-tight mb-3">{authorName}</h2>
       <div className="space-y-2 text-[12.5px] text-[var(--color-dim)] leading-relaxed">
         <p>{t.about.role}</p>
         <p>{t.about.orders}</p>
@@ -237,6 +238,7 @@ export function SiteHeader({ locale = "ru", variant = "compact" }: { locale?: Lo
               <Link href={`${prefix}/latest`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.latest}</Link>
               <Link href={`${prefix}/newsletter`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.newsletter}</Link>
               <Link href={`${prefix}/about`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.about}</Link>
+              <Link href={`${prefix}/tools`} className="transition-colors hover:text-[var(--color-brand)]">{t.nav.practice}</Link>
             </nav>
             <div className="ml-auto flex items-center gap-3">
               <LangToggle />
@@ -295,8 +297,8 @@ export function SiteFooter({ locale = "ru", hidePhone = false }: { locale?: Loca
           <nav className="flex flex-col items-start gap-2 text-[12px]" aria-label={locale === "en" ? "Explore" : "Разделы"}>
             <Link href={`${prefix}/latest`} className="hover:text-[var(--color-brand)]">{t.nav.latest}</Link>
             <Link href={`${prefix}/market`} className="hover:text-[var(--color-brand)]">{t.nav.market}</Link>
+            <Link href={`${prefix}/kaspi`} className="hover:text-[var(--color-brand)]">{t.nav.kaspi}</Link>
             <Link href={`${prefix}/technology`} className="hover:text-[var(--color-brand)]">{t.nav.technology}</Link>
-            <Link href={`${prefix}/kazakhstan`} className="hover:text-[var(--color-brand)]">{t.nav.kazakhstan}</Link>
           </nav>
           <nav className="flex flex-col items-start gap-2 text-[12px]" aria-label={locale === "en" ? "Publication" : "Об издании"}>
             <Link href={`${prefix}/about`} className="hover:text-[var(--color-brand)]">{t.nav.about}</Link>
